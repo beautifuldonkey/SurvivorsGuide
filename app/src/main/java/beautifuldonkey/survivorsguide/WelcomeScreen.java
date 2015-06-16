@@ -4,6 +4,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class WelcomeScreen extends ActionBarActivity {
@@ -12,6 +14,15 @@ public class WelcomeScreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+
+        Button btn_Skills = (Button) findViewById(R.id.btn_skills);
+        btn_Skills.setOnClickListener(new Button.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //TODO open skills view
+            }
+        });
     }
 
     @Override
