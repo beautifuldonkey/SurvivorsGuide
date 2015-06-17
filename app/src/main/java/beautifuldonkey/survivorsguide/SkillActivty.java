@@ -21,6 +21,7 @@ import beautifuldonkey.survivorsguide.Data.SkillList;
 
 
 public class SkillActivty extends ActionBarActivity {
+
     protected List<Skill> skillList = new ArrayList();
 
     @Override

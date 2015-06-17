@@ -1,17 +1,72 @@
 package beautifuldonkey.survivorsguide;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import beautifuldonkey.survivorsguide.Data.Strain;
+import beautifuldonkey.survivorsguide.Data.StrainList;
 
 
 public class StrainActivity extends ActionBarActivity {
+
+    protected List<Strain> strainList = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_strain);
+
+        strainList = StrainList.getStrainList();
+        ArrayAdapter<Strain> adapter = new strainListAdapter(this, 0, strainList);
+        ListView strainListView = (ListView) findViewById(R.id.strainList);
+        strainListView.setAdapter(adapter);
+
+    }
+
+    class strainListAdapter extends ArrayAdapter<Strain>{
+
+        Context context;
+        List<Strain> objects;
+
+        public strainListAdapter(Context context, int resource, List<Strain> objects) {
+            super(context, resource, objects);
+            this.context = context;
+            this.objects = objects;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            Strain strain = objects.get(position);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.item_strain, null);
+
+            TextView viewStrainName = (TextView) view.findViewById(R.id.strainName);
+            viewStrainName.setText(strain.getName());
+
+            TextView viewStrainBody = (TextView) view.findViewById(R.id.strainBody);
+            viewStrainBody.setText(String.valueOf(strain.getHealth()));
+
+            TextView viewStrainMind = (TextView) view.findViewById(R.id.strainMind);
+            viewStrainMind.setText(String.valueOf(strain.getMind()));
+
+            TextView viewStrainInfection = (TextView) view.findViewById(R.id.strainInfection);
+            viewStrainInfection.setText(String.valueOf(strain.getInfection()));
+
+            return view;
+        }
     }
 
     @Override

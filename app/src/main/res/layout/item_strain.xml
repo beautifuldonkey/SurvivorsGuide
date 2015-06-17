@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strain_name"
+        android:id="@+id/strainName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strain_infection"
+        android:id="@+id/strainInfection"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strain_mind"
+        android:id="@+id/strainMind"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/strainInfection"
+        android:layout_toStartOf="@+id/strainInfection" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strain_body"
+        android:id="@+id/strainBody"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/strainMind"
+        android:layout_toStartOf="@+id/strainMind" />
+</RelativeLayout>
