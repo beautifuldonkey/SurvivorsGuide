@@ -20,6 +20,10 @@
             android:name=".SkillActivty"
             android:label="@string/title_skill_activty" >
         </activity>
+        <activity
+            android:name=".StrainActivity"
+            android:label="@string/title_strain_activty" >
+        </activity>
     </application>
 
 </manifest>
