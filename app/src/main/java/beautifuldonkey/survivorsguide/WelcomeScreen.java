@@ -8,8 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import beautifuldonkey.survivorsguide.SkillActivty;
-
 
 public class WelcomeScreen extends ActionBarActivity {
 
@@ -21,13 +19,19 @@ public class WelcomeScreen extends ActionBarActivity {
 
         Button btn_Skills = (Button) findViewById(R.id.btn_skills);
         btn_Skills.setOnClickListener(new Button.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                //TODO open skills view
                 Intent intent = new Intent(context, SkillActivty.class);
-                //Intent intent = new Intent();
                 startActivityForResult(intent, 01);
+            }
+        });
+
+        Button btn_Strain = (Button) findViewById(R.id.btn_strains);
+        btn_Strain.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, StrainActivity.class);
+                startActivityForResult(intent, 02);
             }
         });
     }

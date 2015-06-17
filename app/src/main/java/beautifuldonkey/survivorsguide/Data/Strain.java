@@ -18,4 +18,44 @@ public class Strain {
         infection = strainInfection;
         skills = strainSkills;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getMind() {
+        return mind;
+    }
+
+    public void setMind(int mind) {
+        this.mind = mind;
+    }
+
+    public int getInfection() {
+        return infection;
+    }
+
+    public void setInfection(int infection) {
+        this.infection = infection;
+    }
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills;
+    }
 }
