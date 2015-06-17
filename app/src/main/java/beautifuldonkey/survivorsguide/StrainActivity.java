@@ -57,7 +57,7 @@ public class StrainActivity extends ActionBarActivity {
             viewStrainName.setText(strain.getName());
 
             TextView viewStrainBody = (TextView) view.findViewById(R.id.strainBody);
-            viewStrainBody.setText(String.valueOf(strain.getHealth()));
+            viewStrainBody.setText(String.valueOf(strain.getBody()));
 
             TextView viewStrainMind = (TextView) view.findViewById(R.id.strainMind);
             viewStrainMind.setText(String.valueOf(strain.getMind()));

@@ -6,14 +6,14 @@ package beautifuldonkey.survivorsguide.Data;
 public class Strain {
 
     private String name;
-    private int health;
+    private int body;
     private int mind;
     private int infection;
     private String skills;
 
-    public Strain (String strainName, int strainHealth, int strainMind, int strainInfection, String strainSkills){
+    public Strain (String strainName, int strainBody, int strainMind, int strainInfection, String strainSkills){
         name = strainName;
-        health = strainHealth;
+        body = strainBody;
         mind = strainMind;
         infection = strainInfection;
         skills = strainSkills;
@@ -27,12 +27,12 @@ public class Strain {
         this.name = name;
     }
 
-    public int getHealth() {
-        return health;
+    public int getBody() {
+        return body;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void setBody(int health) {
+        this.body = health;
     }
 
     public int getMind() {
