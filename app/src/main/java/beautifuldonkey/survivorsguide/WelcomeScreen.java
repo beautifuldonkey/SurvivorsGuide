@@ -1,11 +1,14 @@
 package beautifuldonkey.survivorsguide;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import beautifuldonkey.survivorsguide.SkillActivty;
 
 
 public class WelcomeScreen extends ActionBarActivity {
@@ -14,6 +17,7 @@ public class WelcomeScreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+        final Context context = getApplicationContext();
 
         Button btn_Skills = (Button) findViewById(R.id.btn_skills);
         btn_Skills.setOnClickListener(new Button.OnClickListener() {
@@ -21,6 +25,9 @@ public class WelcomeScreen extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 //TODO open skills view
+                Intent intent = new Intent(context, SkillActivty.class);
+                //Intent intent = new Intent();
+                startActivityForResult(intent, 01);
             }
         });
     }
