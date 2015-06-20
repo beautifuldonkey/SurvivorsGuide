@@ -19,8 +19,21 @@ public class StrainDetailActivity extends ActionBarActivity {
 
         //Intent intent
         Strain strain = getIntent().getParcelableExtra("STRAIN");
+
         TextView viewStrainName = (TextView) findViewById(R.id.strainName);
         viewStrainName.setText(strain.getName());
+
+        TextView viewStrainBody = (TextView) findViewById(R.id.strainBody);
+        viewStrainBody.setText(String.valueOf(strain.getBody()));
+
+        TextView viewStrainMind = (TextView) findViewById(R.id.strainMind);
+        viewStrainMind.setText(String.valueOf(strain.getMind()));
+
+        TextView viewStrainInfection = (TextView) findViewById(R.id.strainInfection);
+        viewStrainInfection.setText(String.valueOf(strain.getInfection()));
+
+        TextView viewStrainSkills = (TextView) findViewById(R.id.strainSkills);
+        viewStrainSkills.setText(strain.getSkills());
     }
 
     @Override
