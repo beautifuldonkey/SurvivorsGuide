@@ -11,6 +11,11 @@ import android.widget.Button;
 
 public class WelcomeScreen extends ActionBarActivity {
 
+    public static int SKILL_ACTIVITY = 01;
+    public static int STRAIN_ACTIVITY = 02;
+    public static int PROFESSION_ACTIVITY = 03;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +27,7 @@ public class WelcomeScreen extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SkillActivty.class);
-                startActivityForResult(intent, 01);
+                startActivityForResult(intent, SKILL_ACTIVITY);
             }
         });
 
@@ -31,7 +36,7 @@ public class WelcomeScreen extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, StrainActivity.class);
-                startActivityForResult(intent, 02);
+                startActivityForResult(intent, STRAIN_ACTIVITY);
             }
         });
 
@@ -40,7 +45,7 @@ public class WelcomeScreen extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfessionActivity.class);
-                startActivityForResult(intent, 03);
+                startActivityForResult(intent, PROFESSION_ACTIVITY);
             }
         });
 

@@ -1,6 +1,7 @@
 package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,6 +23,8 @@ import beautifuldonkey.survivorsguide.Data.ProfessionList;
 
 public class ProfessionActivity extends ActionBarActivity {
 
+    public static int PROFESSION_DETAIL_ACTIVITY = 11;
+
     private List<Profession> professions = ProfessionList.getProfessionList();
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,15 @@ public class ProfessionActivity extends ActionBarActivity {
         ArrayAdapter <Profession> adapter = new professionArrayAdapter(this, 0, professions);
         ListView professionList = (ListView) findViewById(R.id.professionList);
         professionList.setAdapter(adapter);
+
+        professionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Context context = getApplicationContext();
+                Intent intent = new Intent (context, ProfessionDetailActivity.class);
+                startActivityForResult(intent, PROFESSION_DETAIL_ACTIVITY);
+            }
+        });
     }
 
     class professionArrayAdapter extends ArrayAdapter<Profession>{
