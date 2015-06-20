@@ -14,9 +14,9 @@
     <string name="btn_character">Character</string>
 
     <string name="strain_name">Name</string>
-    <string name="strain_mind">Mind</string>
-    <string name="strain_body">Body</string>
-    <string name="strain_infection">Infection</string>
+    <string name="strain_mind">Mind: </string>
+    <string name="strain_body">Body: </string>
+    <string name="strain_infection">Infection: </string>
 
     <string name="profession_name">Name</string>
     <string name="title_activity_profession_detail">ProfessionDetail</string>
