@@ -36,6 +36,10 @@
             android:name=".StrainDetailActivity"
             android:label="@string/title_strain_detail_activity" >
         </activity>
+        <activity
+            android:name=".SkillDetailActivity"
+            android:label="@string/title_skill_detail_activity" >
+        </activity>
     </application>
 
 </manifest>
