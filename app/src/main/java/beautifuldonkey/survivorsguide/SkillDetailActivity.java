@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import beautifuldonkey.survivorsguide.Data.Skill;
 
 
 public class SkillDetailActivity extends ActionBarActivity {
@@ -12,6 +15,17 @@ public class SkillDetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skill_detail);
+
+        Skill skill = getIntent().getParcelableExtra("SKILL");
+
+        TextView viewSkillName = (TextView) findViewById(R.id.skillName);
+        viewSkillName.setText(skill.getName());
+
+        TextView viewSkillCost = (TextView) findViewById(R.id.skillCost);
+        viewSkillCost.setText(String.valueOf(skill.getMpCost()));
+
+        TextView viewSkillDesc = (TextView) findViewById(R.id.skillDescription);
+        viewSkillDesc.setText(skill.getDescription());
     }
 
     @Override
