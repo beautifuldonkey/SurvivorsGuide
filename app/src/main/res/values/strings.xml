@@ -8,6 +8,8 @@
     <string name="title_profession_activity">Professions</string>
     <string name="title_profession_detail_activity">Professions</string>
     <string name="title_strain_detail_activity">Strain Details</string>
+    <string name="title_skill_detail_activity">Skill Details</string>
+
 
     <string name="btn_skills">Skills</string>
     <string name="btn_strains">Strains</string>
@@ -18,6 +20,8 @@
     <string name="strain_mind">Mind: </string>
     <string name="strain_body">Body: </string>
     <string name="strain_infection">Infection: </string>
+
+    <string name="skill_cost">Mind: </string>
 
     <string name="profession_name">Name</string>
 

@@ -55,6 +55,7 @@ public class Strain implements Parcelable {
             return new Strain[size];
         }
     };
+
     public String getName() {
         return name;
     }
