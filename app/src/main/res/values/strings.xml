@@ -7,6 +7,7 @@
     <string name="title_strain_activty">Strains</string>
     <string name="title_profession_activity">Professions</string>
     <string name="title_profession_detail_activity">Professions</string>
+    <string name="title_strain_detail_activity">Strain Details</string>
 
     <string name="btn_skills">Skills</string>
     <string name="btn_strains">Strains</string>
@@ -19,5 +20,5 @@
     <string name="strain_infection">Infection: </string>
 
     <string name="profession_name">Name</string>
-    <string name="title_activity_profession_detail">ProfessionDetail</string>
+
 </resources>
