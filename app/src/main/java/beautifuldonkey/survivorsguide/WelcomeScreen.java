@@ -40,7 +40,7 @@ public class WelcomeScreen extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfessionActivity.class);
-                startActivityForResult(intent, 02);
+                startActivityForResult(intent, 03);
             }
         });
 
