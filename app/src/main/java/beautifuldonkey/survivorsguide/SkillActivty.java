@@ -1,6 +1,7 @@
 package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -33,6 +35,17 @@ public class SkillActivty extends ActionBarActivity {
         ArrayAdapter <Skill> adapter = new skillListAdapter(this, 0, skillList);
         ListView viewSkillList = (ListView) findViewById(R.id.skillsList);
         viewSkillList.setAdapter(adapter);
+
+        viewSkillList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Context context = getApplicationContext();
+                Skill skill = skillList.get(position);
+                Intent intent = new Intent(context, SkillDetailActivity.class);
+                intent.putExtra("SKILL", skill);
+                startActivityForResult(intent, 07);
+            }
+        });
     }
 
    class skillListAdapter extends ArrayAdapter<Skill>{
