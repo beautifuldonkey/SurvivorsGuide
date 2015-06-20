@@ -1,17 +1,60 @@
 package beautifuldonkey.survivorsguide;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
+import java.util.Objects;
+
+import beautifuldonkey.survivorsguide.Data.Profession;
+import beautifuldonkey.survivorsguide.Data.ProfessionList;
 
 
 public class ProfessionActivity extends ActionBarActivity {
 
-    @Override
+    private List<Profession> professions = ProfessionList.getProfessionList();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profession);
+
+        ArrayAdapter <Profession> adapter = new professionArrayAdapter(this, 0, professions);
+        ListView professionList = (ListView) findViewById(R.id.professionList);
+        professionList.setAdapter(adapter);
+    }
+
+    class professionArrayAdapter extends ArrayAdapter<Profession>{
+
+        Context context;
+        List<Profession> objects;
+
+        public professionArrayAdapter(Context context, int resource, List<Profession> objects) {
+            super(context, resource, objects);
+            this.context = context;
+            this.objects = objects;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            Profession profession = objects.get(position);
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.item_profession, null);
+
+            TextView professionName = (TextView) view.findViewById(R.id.professionName);
+            professionName.setText(profession.getName());
+
+            return view;
+        }
     }
 
     @Override

@@ -16,4 +16,6 @@
     <string name="strain_mind">Mind</string>
     <string name="strain_body">Body</string>
     <string name="strain_infection">Infection</string>
+
+    <string name="profession_name">Name</string>
 </resources>
