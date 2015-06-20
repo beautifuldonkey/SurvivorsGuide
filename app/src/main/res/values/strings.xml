@@ -21,6 +21,8 @@
     <string name="strain_body">Body: </string>
     <string name="strain_infection">Infection: </string>
 
+    <string name="skill_cost">Mind: </string>
+
     <string name="profession_name">Name</string>
 
 </resources>

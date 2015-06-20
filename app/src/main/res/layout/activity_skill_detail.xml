@@ -14,11 +14,17 @@
         android:paddingLeft="20dp"/>
 
     <TextView
-        android:id="@+id/skillCost"
+        android:id="@+id/skillCostLabel"
+        android:text="@string/skill_cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/skillName"
         android:paddingLeft="20dp"/>
+    <TextView
+        android:id="@+id/skillCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/skillCostLabel"/>
 
     <TextView
         android:id="@+id/skillDescription"
