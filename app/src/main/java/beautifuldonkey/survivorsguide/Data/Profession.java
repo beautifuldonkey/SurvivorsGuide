@@ -11,9 +11,41 @@ public class Profession {
     private String strainReqs;
 
     public Profession (String profName, String profDesc, String profSkills, String profStrainReqs){
-        name = profName;
-        description = profDesc;
-        skills = profSkills;
-        strainReqs = profStrainReqs;
+        this.name = profName;
+        this.description = profDesc;
+        this.skills = profSkills;
+        this.strainReqs = profStrainReqs;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills;
+    }
+
+    public String getStrainReqs() {
+        return strainReqs;
+    }
+
+    public void setStrainReqs(String strainReqs) {
+        this.strainReqs = strainReqs;
     }
 }
