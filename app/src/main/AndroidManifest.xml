@@ -24,6 +24,14 @@
             android:name=".StrainActivity"
             android:label="@string/title_strain_activty" >
         </activity>
+        <activity
+            android:name=".ProfessionActivity"
+            android:label="@string/title_profession_activity" >
+        </activity>
+        <activity
+            android:name=".ProfessionDetailActivity"
+            android:label="@string/title_profession_detail_activity" >
+        </activity>
     </application>
 
 </manifest>
