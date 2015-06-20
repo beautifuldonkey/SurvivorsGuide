@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="beautifuldonkey.survivorsguide.StrainDetailActivity">
+
+    <TextView
+        android:id="@+id/strainName"
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/strainSkills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/strainName"
+        android:layout_centerInParent="true"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_mind"
+            android:id="@+id/strainMindLabel"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_mind"
+            android:id="@+id/strainMind"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/strainMindLabel" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_body"
+            android:id="@+id/strainBodyLabel"
+            android:layout_toRightOf="@id/strainMindLabel"
+            android:paddingLeft="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_body"
+            android:id="@+id/strainBody"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/strainBodyLabel" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_infection"
+            android:id="@+id/strainInfectionLabel"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/strainBodyLabel"
+            android:paddingLeft="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_infection"
+            android:id="@+id/strainInfection"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/strainInfectionLabel" />
+    </RelativeLayout>
+
+</RelativeLayout>

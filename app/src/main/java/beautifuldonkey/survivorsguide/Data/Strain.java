@@ -1,9 +1,12 @@
 package beautifuldonkey.survivorsguide.Data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by user on 6/15/2015.
  */
-public class Strain {
+public class Strain implements Parcelable {
 
     private String name;
     private int body;
@@ -12,13 +15,46 @@ public class Strain {
     private String skills;
 
     public Strain (String strainName, int strainBody, int strainMind, int strainInfection, String strainSkills){
-        name = strainName;
-        body = strainBody;
-        mind = strainMind;
-        infection = strainInfection;
-        skills = strainSkills;
+        name        = strainName;
+        body        = strainBody;
+        mind        = strainMind;
+        infection   = strainInfection;
+        skills      = strainSkills;
     }
 
+    public Strain (Parcel source){
+        name        = source.readString();
+        body        = source.readInt();
+        mind        = source.readInt();
+        infection   = source.readInt();
+        skills      = source.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeInt(body);
+        dest.writeInt(mind);
+        dest.writeInt(infection);
+        dest.writeString(skills);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Strain> CREATOR = new Creator<Strain>() {
+        @Override
+        public Strain createFromParcel(Parcel source) {
+            return new Strain(source);
+        }
+
+        @Override
+        public Strain[] newArray(int size) {
+            return new Strain[size];
+        }
+    };
     public String getName() {
         return name;
     }
