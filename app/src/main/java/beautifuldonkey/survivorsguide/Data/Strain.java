@@ -44,6 +44,17 @@ public class Strain implements Parcelable {
         return 0;
     }
 
+    public static final Creator<Strain> CREATOR = new Creator<Strain>() {
+        @Override
+        public Strain createFromParcel(Parcel source) {
+            return new Strain(source);
+        }
+
+        @Override
+        public Strain[] newArray(int size) {
+            return new Strain[size];
+        }
+    };
     public String getName() {
         return name;
     }

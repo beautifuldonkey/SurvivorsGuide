@@ -1,9 +1,13 @@
 package beautifuldonkey.survivorsguide;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import beautifuldonkey.survivorsguide.Data.Strain;
 
 
 public class StrainDetailActivity extends ActionBarActivity {
@@ -12,6 +16,11 @@ public class StrainDetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_strain_detail);
+
+        //Intent intent
+        Strain strain = getIntent().getParcelableExtra("STRAIN");
+        TextView viewStrainName = (TextView) findViewById(R.id.strainName);
+        viewStrainName.setText(strain.getName());
     }
 
     @Override

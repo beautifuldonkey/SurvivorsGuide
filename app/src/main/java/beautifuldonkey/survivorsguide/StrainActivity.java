@@ -1,6 +1,7 @@
 package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,6 +34,18 @@ public class StrainActivity extends ActionBarActivity {
         ArrayAdapter<Strain> adapter = new strainListAdapter(this, 0, strainList);
         ListView strainListView = (ListView) findViewById(R.id.strainList);
         strainListView.setAdapter(adapter);
+
+        strainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Context context = getApplicationContext();
+                Strain strain = strainList.get(position);
+                Intent intent = new Intent(context, StrainDetailActivity.class);
+                intent.putExtra("STRAIN", strain);
+                startActivityForResult(intent, 06);
+            }
+        });
 
     }
 
