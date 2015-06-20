@@ -34,6 +34,16 @@ public class WelcomeScreen extends ActionBarActivity {
                 startActivityForResult(intent, 02);
             }
         });
+
+        Button btn_Profession = (Button) findViewById(R.id.btn_professions);
+        btn_Profession.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProfessionActivity.class);
+                startActivityForResult(intent, 02);
+            }
+        });
+
     }
 
     @Override
