@@ -39,7 +39,9 @@ public class ProfessionActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Context context = getApplicationContext();
+                Profession profession = professions.get(position);
                 Intent intent = new Intent (context, ProfessionDetailActivity.class);
+                intent.putExtra("PROFESSION", profession);
                 startActivityForResult(intent, PROFESSION_DETAIL_ACTIVITY);
             }
         });
