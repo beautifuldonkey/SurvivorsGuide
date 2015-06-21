@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import beautifuldonkey.survivorsguide.Data.Profession;
 
 
 public class ProfessionDetailActivity extends ActionBarActivity {
@@ -12,6 +15,12 @@ public class ProfessionDetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profession_detail);
+
+        Profession profession = getIntent().getParcelableExtra("PROFESSION");
+
+        TextView viewProfessionName = (TextView) findViewById(R.id.professionName);
+        viewProfessionName.setText(profession.getName());
+
     }
 
     @Override
