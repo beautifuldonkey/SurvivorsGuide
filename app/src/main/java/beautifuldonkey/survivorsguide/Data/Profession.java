@@ -1,9 +1,12 @@
 package beautifuldonkey.survivorsguide.Data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by user on 6/15/2015.
  */
-public class Profession {
+public class Profession implements Parcelable {
 
     private String name;
     private String description;
@@ -15,6 +18,38 @@ public class Profession {
         this.description = profDesc;
         this.skills = profSkills;
         this.strainReqs = profStrainReqs;
+    }
+
+    public Profession(Parcel source){
+        name = source.readString();
+        description = source.readString();
+        skills = source.readString();
+        strainReqs = source.readString();
+    }
+
+    public static Creator<Profession> CREATOR = new Creator<Profession>() {
+        @Override
+        public Profession createFromParcel(Parcel source) {
+            return new Profession(source);
+        }
+
+        @Override
+        public Profession[] newArray(int size) {
+            return new Profession[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(skills);
+        dest.writeString(strainReqs);
     }
 
     public String getName() {
