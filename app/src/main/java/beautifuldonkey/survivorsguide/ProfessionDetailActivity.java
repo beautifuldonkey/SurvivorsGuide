@@ -35,6 +35,7 @@ public class ProfessionDetailActivity extends ActionBarActivity {
 
         ArrayAdapter <Skill> adapter = new professionSkillListAdapter(this, 0, professionSkills);
         ListView viewProfessionSkills = (ListView) findViewById(R.id.professionSkills);
+        viewProfessionSkills.setAdapter(adapter);
 
     }
 
