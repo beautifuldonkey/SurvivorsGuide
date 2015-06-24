@@ -12,7 +12,7 @@ public class SkillList {
 
     public static List<Skill> getSkillList(){ return skillList; }
 
-    public List<Skill> getSkillsByName(String skillName){
+    public static List<Skill> getSkillsByName(String skillName){
         List<Skill> skills = new ArrayList();
 
         if(skillName.contains(",")){
