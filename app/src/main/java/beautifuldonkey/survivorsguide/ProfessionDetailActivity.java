@@ -1,6 +1,7 @@
 package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,7 +30,7 @@ public class ProfessionDetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_profession_detail);
 
         Profession profession = getIntent().getParcelableExtra("PROFESSION");
-        List<Skill> professionSkills = SkillList.getSkillsByName(profession.getSkills());
+        final List<Skill> professionSkills = SkillList.getSkillsByName(profession.getSkills());
 
         TextView viewProfessionName = (TextView) findViewById(R.id.professionName);
         viewProfessionName.setText(profession.getName());
@@ -36,6 +38,16 @@ public class ProfessionDetailActivity extends ActionBarActivity {
         ArrayAdapter <Skill> adapter = new professionSkillListAdapter(this, 0, professionSkills);
         ListView viewProfessionSkills = (ListView) findViewById(R.id.professionSkills);
         viewProfessionSkills.setAdapter(adapter);
+
+        viewProfessionSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Context context = getApplicationContext();
+                Intent intent = new Intent(context, SkillDetailActivity.class);
+                intent.putExtra("SKILL", professionSkills.get(position));
+                startActivityForResult(intent,05);
+            }
+        });
 
     }
 
