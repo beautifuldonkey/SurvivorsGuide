@@ -23,7 +23,8 @@ import beautifuldonkey.survivorsguide.Data.ProfessionList;
 
 public class ProfessionActivity extends ActionBarActivity {
 
-    public static int PROFESSION_DETAIL_ACTIVITY = 11;
+    public static int PROFESSION_DETAIL_ACTIVITY = 12;
+    public static String INTENT_PROFESSION = "PROFESSION";
 
     private List<Profession> professions = ProfessionList.getProfessionList();
 
@@ -41,7 +42,7 @@ public class ProfessionActivity extends ActionBarActivity {
                 Context context = getApplicationContext();
                 Profession profession = professions.get(position);
                 Intent intent = new Intent (context, ProfessionDetailActivity.class);
-                intent.putExtra("PROFESSION", profession);
+                intent.putExtra(INTENT_PROFESSION, profession);
                 startActivityForResult(intent, PROFESSION_DETAIL_ACTIVITY);
             }
         });

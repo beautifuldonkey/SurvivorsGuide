@@ -24,6 +24,8 @@ import beautifuldonkey.survivorsguide.Data.StrainList;
 public class StrainActivity extends ActionBarActivity {
 
     protected List<Strain> strainList = new ArrayList();
+    public static int STRAIN_DETAIL_ACTIVITY = 13;
+    public static String INTENT_STRAIN = "STRAIN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,8 @@ public class StrainActivity extends ActionBarActivity {
                 Context context = getApplicationContext();
                 Strain strain = strainList.get(position);
                 Intent intent = new Intent(context, StrainDetailActivity.class);
-                intent.putExtra("STRAIN", strain);
-                startActivityForResult(intent, 06);
+                intent.putExtra(INTENT_STRAIN, strain);
+                startActivityForResult(intent, STRAIN_DETAIL_ACTIVITY);
             }
         });
 

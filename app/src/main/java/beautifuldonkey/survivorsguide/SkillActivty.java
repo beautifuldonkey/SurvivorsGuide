@@ -25,6 +25,8 @@ import beautifuldonkey.survivorsguide.Data.SkillList;
 public class SkillActivty extends ActionBarActivity {
 
     protected List<Skill> skillList = new ArrayList();
+    public static int SKILL_DETAIL_ACTIVITY = 11;
+    public static String INTENT_SKILL = "SKILL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,8 @@ public class SkillActivty extends ActionBarActivity {
                 Context context = getApplicationContext();
                 Skill skill = skillList.get(position);
                 Intent intent = new Intent(context, SkillDetailActivity.class);
-                intent.putExtra("SKILL", skill);
-                startActivityForResult(intent, 07);
+                intent.putExtra(INTENT_SKILL, skill);
+                startActivityForResult(intent, SKILL_DETAIL_ACTIVITY);
             }
         });
     }
