@@ -5,7 +5,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
         android:id="@+id/skillName"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -14,7 +13,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
         android:id="@+id/skillCost"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -23,7 +21,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
         android:id="@+id/skillDescription"
         android:layout_below="@+id/skillName"
         android:layout_alignParentLeft="true"

@@ -13,7 +13,7 @@ public class ProfessionList {
     public static List<Profession> getProfessionList(){ return professionList;}
 
     static{
-        professionList.add(new Profession("Soldier", "Melee badass", "Parry, Avoid", "N/A"));
-        professionList.add(new Profession("Gaurd", "Melee badass", "Parry, Shield", "N/A"));
+        professionList.add(new Profession("Soldier", "Melee badass", "Parry,Avoid", "N/A"));
+        professionList.add(new Profession("Gaurd", "Melee badass", "Parry,Avoid", "N/A"));
     }
 }

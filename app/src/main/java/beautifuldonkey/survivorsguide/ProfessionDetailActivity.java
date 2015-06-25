@@ -72,7 +72,7 @@ public class ProfessionDetailActivity extends ActionBarActivity {
             viewSkillName.setText(skill.getName());
 
             TextView viewSkillCost = (TextView) view.findViewById(R.id.skillCost);
-            viewSkillCost.setText(skill.getMpCost());
+            viewSkillCost.setText(String.valueOf(skill.getMpCost()));
 
             return view;
         }
