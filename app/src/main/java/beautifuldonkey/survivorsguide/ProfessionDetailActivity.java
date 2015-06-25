@@ -1,12 +1,25 @@
 package beautifuldonkey.survivorsguide;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.List;
+import java.util.zip.Inflater;
+
 import beautifuldonkey.survivorsguide.Data.Profession;
+import beautifuldonkey.survivorsguide.Data.Skill;
+import beautifuldonkey.survivorsguide.Data.SkillList;
 
 
 public class ProfessionDetailActivity extends ActionBarActivity {
@@ -17,10 +30,52 @@ public class ProfessionDetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_profession_detail);
 
         Profession profession = getIntent().getParcelableExtra("PROFESSION");
+        final List<Skill> professionSkills = SkillList.getSkillsByName(profession.getSkills());
 
         TextView viewProfessionName = (TextView) findViewById(R.id.professionName);
         viewProfessionName.setText(profession.getName());
 
+        ArrayAdapter <Skill> adapter = new professionSkillListAdapter(this, 0, professionSkills);
+        ListView viewProfessionSkills = (ListView) findViewById(R.id.professionSkills);
+        viewProfessionSkills.setAdapter(adapter);
+
+        viewProfessionSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Context context = getApplicationContext();
+                Intent intent = new Intent(context, SkillDetailActivity.class);
+                intent.putExtra("SKILL", professionSkills.get(position));
+                startActivityForResult(intent,05);
+            }
+        });
+
+    }
+
+    class professionSkillListAdapter extends ArrayAdapter<Skill>{
+
+        Context context;
+        List<Skill> objects;
+        public professionSkillListAdapter(Context context, int resource, List<Skill> objects) {
+            super(context, resource, objects);
+            this.context = context;
+            this.objects = objects;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            Skill skill = objects.get(position);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.item_skill, null);
+
+            TextView viewSkillName = (TextView) view.findViewById(R.id.skillName);
+            viewSkillName.setText(skill.getName());
+
+            TextView viewSkillCost = (TextView) view.findViewById(R.id.skillCost);
+            viewSkillCost.setText(String.valueOf(skill.getMpCost()));
+
+            return view;
+        }
     }
 
     @Override

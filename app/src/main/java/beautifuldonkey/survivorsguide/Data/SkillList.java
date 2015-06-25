@@ -1,5 +1,7 @@
 package beautifuldonkey.survivorsguide.Data;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,29 @@ public class SkillList {
     private static List<Skill> skillList = new ArrayList();
 
     public static List<Skill> getSkillList(){ return skillList; }
+
+    public static List<Skill> getSkillsByName(String skillName){
+        List<Skill> skills = new ArrayList();
+
+        if(skillName.contains(",")){
+            String [] skillNames = skillName.split(",");
+            for(int i =0; i < skillNames.length; i++){
+                for(int j=0; j<skillList.size();j++){
+                    if(skillNames[i].equals(skillList.get(j).getName())){
+                        skills.add(skillList.get(j));
+                    }
+                }
+            }
+        }else{
+            for(int j=0; j<skillList.size();j++){
+                if(skillName == skillList.get(j).getName()){
+                    skills.add(skillList.get(j));
+                }
+            }
+        }
+
+        return skills;
+    }
 
     static {
         skillList.add(new Skill("Parry", 5, "Melee Nope"));

@@ -14,7 +14,7 @@ public class WelcomeScreen extends ActionBarActivity {
     public static int SKILL_ACTIVITY = 01;
     public static int STRAIN_ACTIVITY = 02;
     public static int PROFESSION_ACTIVITY = 03;
-
+    public static int CHARACTER_ACTIVITY = 04;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
