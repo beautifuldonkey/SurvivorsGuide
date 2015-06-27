@@ -10,6 +10,7 @@
     <string name="title_strain_detail_activity">Strain Details</string>
     <string name="title_skill_detail_activity">Skill Details</string>
     <string name="title_character_activity">Character</string>
+    <string name="title_character_new_activity">CharacterNewActivity</string>
 
     <string name="btn_skills">Skills</string>
     <string name="btn_strains">Strains</string>
@@ -27,5 +28,6 @@
 
     <string name="profession_name">Name</string>
 
+    <string name="character_name">Name</string>
 
 </resources>
