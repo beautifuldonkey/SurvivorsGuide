@@ -42,7 +42,7 @@
         </activity>
         <activity
             android:name=".CharacterActivity"
-            android:label="@string/title_activity_character" >
+            android:label="@string/title_character_activity" >
         </activity>
     </application>
 
