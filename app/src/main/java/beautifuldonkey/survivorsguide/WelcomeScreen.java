@@ -49,6 +49,15 @@ public class WelcomeScreen extends ActionBarActivity {
             }
         });
 
+        Button btn_Character = (Button) findViewById(R.id.btn_character);
+        btn_Character.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CharacterActivity.class);
+                startActivityForResult(intent, CHARACTER_ACTIVITY);
+            }
+        });
+
     }
 
     @Override
