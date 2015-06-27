@@ -40,6 +40,10 @@
             android:name=".SkillDetailActivity"
             android:label="@string/title_skill_detail_activity" >
         </activity>
+        <activity
+            android:name=".CharacterActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
     </application>
 
 </manifest>
