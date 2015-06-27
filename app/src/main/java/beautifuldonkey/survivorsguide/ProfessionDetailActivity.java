@@ -24,12 +24,16 @@ import beautifuldonkey.survivorsguide.Data.SkillList;
 
 public class ProfessionDetailActivity extends ActionBarActivity {
 
+    public static int SKILL_DETAIL_ACTIVITY = 11;
+    public static String INTENT_PROFESSION = "PROFESSION";
+    public static String INTENT_SKILL = "SKILL";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profession_detail);
 
-        Profession profession = getIntent().getParcelableExtra("PROFESSION");
+        Profession profession = getIntent().getParcelableExtra(INTENT_PROFESSION);
         final List<Skill> professionSkills = SkillList.getSkillsByName(profession.getSkills());
 
         TextView viewProfessionName = (TextView) findViewById(R.id.professionName);
@@ -44,8 +48,8 @@ public class ProfessionDetailActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Context context = getApplicationContext();
                 Intent intent = new Intent(context, SkillDetailActivity.class);
-                intent.putExtra("SKILL", professionSkills.get(position));
-                startActivityForResult(intent,05);
+                intent.putExtra(INTENT_SKILL, professionSkills.get(position));
+                startActivityForResult(intent, SKILL_DETAIL_ACTIVITY);
             }
         });
 

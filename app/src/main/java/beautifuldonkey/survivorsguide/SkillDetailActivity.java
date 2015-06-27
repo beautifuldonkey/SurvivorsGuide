@@ -11,12 +11,14 @@ import beautifuldonkey.survivorsguide.Data.Skill;
 
 public class SkillDetailActivity extends ActionBarActivity {
 
+    public static String INTENT_SKILL = "SKILL";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skill_detail);
 
-        Skill skill = getIntent().getParcelableExtra("SKILL");
+        Skill skill = getIntent().getParcelableExtra(INTENT_SKILL);
 
         TextView viewSkillName = (TextView) findViewById(R.id.skillName);
         viewSkillName.setText(skill.getName());

@@ -12,13 +12,15 @@ import beautifuldonkey.survivorsguide.Data.Strain;
 
 public class StrainDetailActivity extends ActionBarActivity {
 
+    public static String INTENT_STRAIN = "STRAIN";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_strain_detail);
 
         //Intent intent
-        Strain strain = getIntent().getParcelableExtra("STRAIN");
+        Strain strain = getIntent().getParcelableExtra(INTENT_STRAIN);
 
         TextView viewStrainName = (TextView) findViewById(R.id.strainName);
         viewStrainName.setText(strain.getName());
