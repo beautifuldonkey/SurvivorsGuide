@@ -4,6 +4,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 
 public class CharacterNewActivity extends ActionBarActivity {
@@ -12,7 +14,12 @@ public class CharacterNewActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_new);
-    }
+
+        Spinner strainDropDown = (Spinner) findViewById(R.id.strainDropDown);
+        String [] items = new String[]{"Natural One","Baywalker"};
+        ArrayAdapter<String> strainAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
+        strainDropDown.setAdapter(strainAdapter);
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
