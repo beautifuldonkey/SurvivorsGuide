@@ -7,6 +7,11 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.util.List;
+
+import beautifuldonkey.survivorsguide.Data.Strain;
+import beautifuldonkey.survivorsguide.Data.StrainList;
+
 
 public class CharacterNewActivity extends ActionBarActivity {
 
@@ -15,10 +20,16 @@ public class CharacterNewActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_new);
 
+        List<Strain> strains = StrainList.getStrainList();
+        String [] items = new String[strains.size()];
+        for(int i =0; i<strains.size(); i++){
+            items[i] = strains.get(i).getName();
+        }
         Spinner strainDropDown = (Spinner) findViewById(R.id.strainDropDown);
-        String [] items = new String[]{"Natural One","Baywalker"};
         ArrayAdapter<String> strainAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
         strainDropDown.setAdapter(strainAdapter);
+
+
         }
 
     @Override
