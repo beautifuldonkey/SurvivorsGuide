@@ -9,6 +9,8 @@ import android.widget.Spinner;
 
 import java.util.List;
 
+import beautifuldonkey.survivorsguide.Data.Profession;
+import beautifuldonkey.survivorsguide.Data.ProfessionList;
 import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.StrainList;
 
@@ -29,6 +31,14 @@ public class CharacterNewActivity extends ActionBarActivity {
         ArrayAdapter<String> strainAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, strainNames);
         strainDropDown.setAdapter(strainAdapter);
 
+        List<Profession> professions = ProfessionList.getProfessionList();
+        String[] professionNames = new String[professions.size()];
+        for(int i = 0; i<professions.size(); i++){
+            professionNames[i] = professions.get(i).getName();
+        }
+        Spinner profDropDown = (Spinner) findViewById(R.id.professionDropDown);
+        ArrayAdapter<String> profAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, professionNames);
+        profDropDown.setAdapter(profAdapter);
 
         }
 
