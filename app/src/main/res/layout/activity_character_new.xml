@@ -7,19 +7,27 @@
     tools:context="beautifuldonkey.survivorsguide.CharacterNewActivity">
 
     <TextView
-        android:id="@+id/characterName"
-        android:text="@string/character_name"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"/>
+    android:id="@+id/characterName"
+    android:text="@string/character_name"
+    android:layout_width="100dp"
+    android:layout_height="20dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"/>
 
     <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/strainDropDown"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        android:layout_below="@id/characterName"/>
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/strainDropDown"
+    android:background="@android:drawable/btn_dropdown"
+    android:spinnerMode="dropdown"
+    android:layout_below="@id/characterName"/>
+
+    <Spinner
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/professionDropDown"
+    android:background="@android:drawable/btn_dropdown"
+    android:spinnerMode="dropdown"
+    android:layout_below="@id/strainDropDown"/>
 
 </RelativeLayout>
