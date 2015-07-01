@@ -1,6 +1,8 @@
 package beautifuldonkey.survivorsguide;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,7 +22,9 @@ public class CharacterActivity extends ActionBarActivity {
         btnNewChar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Context context = getApplicationContext();
+                Intent intent = new Intent(context,CharacterNewActivity.class);
+                startActivityForResult(intent, 22);
             }
         });
 
