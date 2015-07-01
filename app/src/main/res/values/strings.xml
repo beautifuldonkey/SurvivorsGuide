@@ -28,5 +28,6 @@
     <string name="profession_name">Name</string>
 
     <string name="character_name">Name</string>
+    <string name="title_activity_character_existing">CharacterExistingActivity</string>
 
 </resources>

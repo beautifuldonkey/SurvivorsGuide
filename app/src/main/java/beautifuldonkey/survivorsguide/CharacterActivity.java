@@ -13,6 +13,9 @@ import android.widget.Button;
 
 public class CharacterActivity extends ActionBarActivity {
 
+    public static int NEW_CHARACTER_ACTIVITY = 20;
+    public static int EXISTING_CHARACTER_ACTIVITY = 21;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +27,7 @@ public class CharacterActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Context context = getApplicationContext();
                 Intent intent = new Intent(context,CharacterNewActivity.class);
-                startActivityForResult(intent, 22);
+                startActivityForResult(intent, NEW_CHARACTER_ACTIVITY);
             }
         });
 
@@ -32,7 +35,9 @@ public class CharacterActivity extends ActionBarActivity {
         btnExistingChar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Context context = getApplicationContext();
+                Intent intent = new Intent(context,CharacterExistingActivity.class);
+                startActivityForResult(intent, EXISTING_CHARACTER_ACTIVITY);
             }
         });
     }

@@ -48,6 +48,10 @@
             android:name=".CharacterNewActivity"
             android:label="@string/title_character_new_activity" >
         </activity>
+        <activity
+            android:name=".CharacterExistingActivity"
+            android:label="@string/title_activity_character_existing" >
+        </activity>
     </application>
 
 </manifest>
