@@ -21,12 +21,12 @@ public class CharacterNewActivity extends ActionBarActivity {
         setContentView(R.layout.activity_character_new);
 
         List<Strain> strains = StrainList.getStrainList();
-        String [] items = new String[strains.size()];
+        String [] strainNames = new String[strains.size()];
         for(int i =0; i<strains.size(); i++){
-            items[i] = strains.get(i).getName();
+            strainNames[i] = strains.get(i).getName();
         }
         Spinner strainDropDown = (Spinner) findViewById(R.id.strainDropDown);
-        ArrayAdapter<String> strainAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
+        ArrayAdapter<String> strainAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, strainNames);
         strainDropDown.setAdapter(strainAdapter);
 
 
