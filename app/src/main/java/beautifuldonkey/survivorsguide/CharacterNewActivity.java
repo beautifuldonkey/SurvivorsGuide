@@ -26,6 +26,10 @@ public class CharacterNewActivity extends ActionBarActivity {
 
     Profession charProfession;
     Strain charStrain;
+    ArrayAdapter<String> availSkillAdapter;
+    String strainSkills = "";
+    String profSkills = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +49,10 @@ public class CharacterNewActivity extends ActionBarActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 charStrain = strains.get(position);
-                String profStrain = " , ";
                 if(charStrain != null){
-                    profStrain = charStrain.getSkills();
+                    strainSkills = charStrain.getSkills();
                 }
-                updateAvailableSkillList(context, profStrain);
+                updateAvailableSkillList(context, profSkills, strainSkills);
             }
 
             @Override
@@ -70,11 +73,10 @@ public class CharacterNewActivity extends ActionBarActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 charProfession = professions.get(position);
-                String profSkills = " , ";
                 if(charProfession != null){
                     profSkills = charProfession.getSkills();
                 }
-                updateAvailableSkillList(context, profSkills);
+                updateAvailableSkillList(context, profSkills, strainSkills);
             }
 
             @Override
@@ -85,22 +87,36 @@ public class CharacterNewActivity extends ActionBarActivity {
 
     }
 
-    public void updateAvailableSkillList(Context context, String skills){
-        String[] charSkills = skills.split(",");
-        ListView availSkills = (ListView) findViewById(R.id.availableSkills);
-        ArrayAdapter<String> availSkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,charSkills ){
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position,convertView,parent);
-
-                TextView textView = (TextView) view.findViewById(android.R.id.text1);
-                textView.setTextColor(Color.BLACK);
-
-                return view;
+    public void updateAvailableSkillList(Context context, String profSkills, String strainSkills){
+        String[] incProfSkills = profSkills.split(",");
+        String[] incStrainSkills = strainSkills.split(",");
+        String[] newDisplayedSkills = incStrainSkills;
+        for(int i=0; i<newDisplayedSkills.length; i++){
+            for(int j=0; j<incProfSkills.length; j++){
+                if(newDisplayedSkills[i] != incProfSkills[j]){
+                    //TODO compile strain & profession skills, if there is a match only keep strain
+                    //newDisplayedSkills[newDisplayedSkills.length] = incProfSkills[j];
+                }
             }
-        };
-        availSkills.setAdapter(availSkillAdapter);
+        }
 
+        if(availSkillAdapter==null) {
+            ListView availSkills = (ListView) findViewById(R.id.availableSkills);
+            availSkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, newDisplayedSkills) {
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    View view = super.getView(position, convertView, parent);
+
+                    TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                    textView.setTextColor(Color.BLACK);
+
+                    return view;
+                }
+            };
+            availSkills.setAdapter(availSkillAdapter);
+        }else{
+
+        }
     }
 
     @Override
