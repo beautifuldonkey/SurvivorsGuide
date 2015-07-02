@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import beautifuldonkey.survivorsguide.Data.Profession;
@@ -90,18 +91,25 @@ public class CharacterNewActivity extends ActionBarActivity {
     public void updateAvailableSkillList(Context context, String profSkills, String strainSkills){
         String[] incProfSkills = profSkills.split(",");
         String[] incStrainSkills = strainSkills.split(",");
-        String[] newDisplayedSkills = incStrainSkills;
-        for(int i=0; i<newDisplayedSkills.length; i++){
-            for(int j=0; j<incProfSkills.length; j++){
-                if(newDisplayedSkills[i] != incProfSkills[j]){
-                    //TODO compile strain & profession skills, if there is a match only keep strain
-                    //newDisplayedSkills[newDisplayedSkills.length] = incProfSkills[j];
+        ArrayList<String> newDisplayedSkills = new ArrayList<>();
+        for(int i=0; i<incStrainSkills.length; i++){
+            newDisplayedSkills.add(incStrainSkills[i]);
+        }
+
+        for(int i=0; i<incProfSkills.length; i++){
+            Boolean uniqueProfSkill = true;
+            for(int j=0; j<newDisplayedSkills.size(); j++){
+                if(incProfSkills[i] == newDisplayedSkills.get(j)){
+                    uniqueProfSkill = false;
+                }
+                if(j+1 == newDisplayedSkills.size() && uniqueProfSkill == true){
+                    newDisplayedSkills.add(incProfSkills[i]);
                 }
             }
         }
 
+        ListView availSkills = (ListView) findViewById(R.id.availableSkills);
         if(availSkillAdapter==null) {
-            ListView availSkills = (ListView) findViewById(R.id.availableSkills);
             availSkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, newDisplayedSkills) {
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
@@ -115,7 +123,8 @@ public class CharacterNewActivity extends ActionBarActivity {
             };
             availSkills.setAdapter(availSkillAdapter);
         }else{
-
+            //TODO fix this: not refreshing data in listview though newDisplayedSkills gets values
+            availSkillAdapter.notifyDataSetChanged();
         }
     }
 
