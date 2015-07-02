@@ -30,4 +30,10 @@
     android:spinnerMode="dropdown"
     android:layout_below="@id/strainDropDown"/>
 
+    <ListView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/availableSkills"
+    android:layout_below="@+id/professionDropDown" />
+
 </RelativeLayout>

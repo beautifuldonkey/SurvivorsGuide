@@ -1,11 +1,18 @@
 package beautifuldonkey.survivorsguide;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -16,6 +23,8 @@ import beautifuldonkey.survivorsguide.Data.StrainList;
 
 
 public class CharacterNewActivity extends ActionBarActivity {
+
+    Profession charProfession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +40,7 @@ public class CharacterNewActivity extends ActionBarActivity {
         ArrayAdapter<String> strainAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, strainNames);
         strainDropDown.setAdapter(strainAdapter);
 
-        List<Profession> professions = ProfessionList.getProfessionList();
+        final List<Profession> professions = ProfessionList.getProfessionList();
         String[] professionNames = new String[professions.size()];
         for(int i = 0; i<professions.size(); i++){
             professionNames[i] = professions.get(i).getName();
@@ -39,6 +48,41 @@ public class CharacterNewActivity extends ActionBarActivity {
         Spinner profDropDown = (Spinner) findViewById(R.id.professionDropDown);
         ArrayAdapter<String> profAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, professionNames);
         profDropDown.setAdapter(profAdapter);
+        profDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                charProfession = professions.get(position);
+                String profSkills = " , ";
+                if(charProfession != null){
+                    profSkills = charProfession.getSkills();
+                }
+                Context context = getApplicationContext();
+                String[] charSkills = profSkills.split(",");
+                ListView availSkills = (ListView) findViewById(R.id.availableSkills);
+                ArrayAdapter<String> availSkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,charSkills ){
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        View view = super.getView(position,convertView,parent);
+
+                        TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                        textView.setTextColor(Color.BLACK);
+
+                        return view;
+                    }
+                };
+                availSkills.setAdapter(availSkillAdapter);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
 
         }
 
