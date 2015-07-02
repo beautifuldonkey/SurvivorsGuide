@@ -1,25 +1,123 @@
 package beautifuldonkey.survivorsguide;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.List;
+
+import beautifuldonkey.survivorsguide.Data.Profession;
+import beautifuldonkey.survivorsguide.Data.ProfessionList;
+import beautifuldonkey.survivorsguide.Data.Strain;
+import beautifuldonkey.survivorsguide.Data.StrainList;
 
 
 public class CharacterNewActivity extends ActionBarActivity {
+
+    Profession charProfession;
+    Strain charStrain;
+    ArrayAdapter<String> availSkillAdapter;
+    String strainSkills = "";
+    String profSkills = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_new);
+        final Context context = getApplicationContext();
 
-        Spinner strainDropDown = (Spinner) findViewById(R.id.strainDropDown);
-        String [] items = new String[]{"Natural One","Baywalker"};
-        ArrayAdapter<String> strainAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, items);
-        strainDropDown.setAdapter(strainAdapter);
+        final List<Strain> strains = StrainList.getStrainList();
+        String [] strainNames = new String[strains.size()];
+        for(int i =0; i<strains.size(); i++){
+            strainNames[i] = strains.get(i).getName();
         }
+        Spinner strainDropDown = (Spinner) findViewById(R.id.strainDropDown);
+        ArrayAdapter<String> strainAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, strainNames);
+        strainDropDown.setAdapter(strainAdapter);
+        strainDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                charStrain = strains.get(position);
+                if(charStrain != null){
+                    strainSkills = charStrain.getSkills();
+                }
+                updateAvailableSkillList(context, profSkills, strainSkills);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        final List<Profession> professions = ProfessionList.getProfessionList();
+        String[] professionNames = new String[professions.size()];
+        for(int i = 0; i<professions.size(); i++){
+            professionNames[i] = professions.get(i).getName();
+        }
+        Spinner profDropDown = (Spinner) findViewById(R.id.professionDropDown);
+        ArrayAdapter<String> profAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, professionNames);
+        profDropDown.setAdapter(profAdapter);
+        profDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                charProfession = professions.get(position);
+                if(charProfession != null){
+                    profSkills = charProfession.getSkills();
+                }
+                updateAvailableSkillList(context, profSkills, strainSkills);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    public void updateAvailableSkillList(Context context, String profSkills, String strainSkills){
+        String[] incProfSkills = profSkills.split(",");
+        String[] incStrainSkills = strainSkills.split(",");
+        String[] newDisplayedSkills = incStrainSkills;
+        for(int i=0; i<newDisplayedSkills.length; i++){
+            for(int j=0; j<incProfSkills.length; j++){
+                if(newDisplayedSkills[i] != incProfSkills[j]){
+                    //TODO compile strain & profession skills, if there is a match only keep strain
+                    //newDisplayedSkills[newDisplayedSkills.length] = incProfSkills[j];
+                }
+            }
+        }
+
+        if(availSkillAdapter==null) {
+            ListView availSkills = (ListView) findViewById(R.id.availableSkills);
+            availSkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, newDisplayedSkills) {
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    View view = super.getView(position, convertView, parent);
+
+                    TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                    textView.setTextColor(Color.BLACK);
+
+                    return view;
+                }
+            };
+            availSkills.setAdapter(availSkillAdapter);
+        }else{
+
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
