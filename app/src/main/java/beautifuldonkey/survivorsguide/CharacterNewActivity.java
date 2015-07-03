@@ -38,6 +38,7 @@ public class CharacterNewActivity extends ActionBarActivity {
         setContentView(R.layout.activity_character_new);
         final Context context = getApplicationContext();
 
+
         final List<Strain> strains = StrainList.getStrainList();
         String [] strainNames = new String[strains.size()];
         for(int i =0; i<strains.size(); i++){
@@ -108,7 +109,6 @@ public class CharacterNewActivity extends ActionBarActivity {
             }
         }
 
-        ListView availSkills = (ListView) findViewById(R.id.availableSkills);
         if(availSkillAdapter==null) {
             availSkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, newDisplayedSkills) {
                 @Override
@@ -121,9 +121,11 @@ public class CharacterNewActivity extends ActionBarActivity {
                     return view;
                 }
             };
+            ListView availSkills = (ListView) findViewById(R.id.availableSkills);
             availSkills.setAdapter(availSkillAdapter);
         }else{
-            //TODO fix this: not refreshing data in listview though newDisplayedSkills gets values
+            availSkillAdapter.clear();
+            availSkillAdapter.addAll(newDisplayedSkills);
             availSkillAdapter.notifyDataSetChanged();
         }
     }
