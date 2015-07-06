@@ -28,9 +28,10 @@ public class CharacterNewActivity extends ActionBarActivity {
     Profession charProfession;
     Strain charStrain;
     ArrayAdapter<String> availSkillAdapter;
+    ArrayAdapter<String> displaySkillAdapter;
     String strainSkills = "";
     String profSkills = "";
-    String selectedSkills = "";
+    ArrayList<String> selectedSkills = new ArrayList();
 
 
     @Override
@@ -88,13 +89,26 @@ public class CharacterNewActivity extends ActionBarActivity {
             }
         });
 
+        final ListView displayedSkills = (ListView) findViewById(R.id.selectedSkills);
+
+
         final ListView availSkills = (ListView) findViewById(R.id.availableSkills);
         availSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedSkills = availSkills.getSelectedItem().toString();
+                selectedSkills.add(availSkills.getSelectedItem().toString());
+                if(displaySkillAdapter == null){
+                    displaySkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, selectedSkills);
+                    displayedSkills.setAdapter(displaySkillAdapter);
+                }else{
+                    displaySkillAdapter.clear();
+                    displaySkillAdapter.addAll(selectedSkills);
+                    displaySkillAdapter.notifyDataSetChanged();
+                }
             }
         });
+
+
     }
 
     public void updateAvailableSkillList(Context context, String profSkills, String strainSkills){
