@@ -94,8 +94,6 @@ public class CharacterNewActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedSkills.remove(position);
-                displaySkillAdapter.clear();
-                displaySkillAdapter.addAll(selectedSkills);
                 displaySkillAdapter.notifyDataSetChanged();
             }
         });
@@ -104,7 +102,10 @@ public class CharacterNewActivity extends ActionBarActivity {
         availSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedSkills.add(availSkills.getItemAtPosition(position).toString());
+                if(!selectedSkills.contains(availSkills.getItemAtPosition(position).toString())){
+                    selectedSkills.add(availSkills.getItemAtPosition(position).toString());
+                }
+
                 if(displaySkillAdapter == null){
                     displaySkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, selectedSkills){
                         @Override
@@ -119,8 +120,6 @@ public class CharacterNewActivity extends ActionBarActivity {
                     };
                     displayedSkills.setAdapter(displaySkillAdapter);
                 }else{
-                    displaySkillAdapter.clear();
-                    displaySkillAdapter.addAll(selectedSkills);
                     displaySkillAdapter.notifyDataSetChanged();
                 }
             }
