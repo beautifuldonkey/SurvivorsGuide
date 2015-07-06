@@ -33,7 +33,13 @@
     <ListView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/availableSkills"
+    android:id="@+id/selectedSkills"
     android:layout_below="@+id/professionDropDown" />
+
+    <ListView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/availableSkills"
+    android:layout_below="@+id/selectedSkills" />
 
 </RelativeLayout>
