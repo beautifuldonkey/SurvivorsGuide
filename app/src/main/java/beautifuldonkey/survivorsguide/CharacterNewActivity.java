@@ -138,7 +138,7 @@ public class CharacterNewActivity extends ActionBarActivity {
         for(int i=0; i<incProfSkills.length; i++){
             Boolean uniqueProfSkill = true;
             for(int j=0; j<newDisplayedSkills.size(); j++){
-                if(incProfSkills[i] == newDisplayedSkills.get(j)){
+                if(incProfSkills[i].equals(newDisplayedSkills.get(j))){
                     uniqueProfSkill = false;
                 }
                 if(j+1 == newDisplayedSkills.size() && uniqueProfSkill == true){
