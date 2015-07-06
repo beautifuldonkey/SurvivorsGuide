@@ -90,7 +90,15 @@ public class CharacterNewActivity extends ActionBarActivity {
         });
 
         final ListView displayedSkills = (ListView) findViewById(R.id.selectedSkills);
-
+        displayedSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedSkills.remove(position);
+                displaySkillAdapter.clear();
+                displaySkillAdapter.addAll(selectedSkills);
+                displaySkillAdapter.notifyDataSetChanged();
+            }
+        });
 
         final ListView availSkills = (ListView) findViewById(R.id.availableSkills);
         availSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
