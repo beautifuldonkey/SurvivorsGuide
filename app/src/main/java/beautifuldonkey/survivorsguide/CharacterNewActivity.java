@@ -117,6 +117,7 @@ public class CharacterNewActivity extends ActionBarActivity {
         });
 
 
+
     }
 
     public void updateAvailableSkillList(Context context, String profSkills, String strainSkills){
