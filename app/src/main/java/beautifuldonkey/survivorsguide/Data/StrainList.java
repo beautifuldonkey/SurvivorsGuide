@@ -14,8 +14,8 @@ public class StrainList {
 
     static{
 
-        strainList.add(new Strain("Bay Walker", 8, 10, 4, "some Skillz"));
-        strainList.add(new Strain("Diesel Jock", 10, 10, 3, "some Skillz"));
+        strainList.add(new Strain("Bay Walker", 8, 10, 4, "Analyze Creature, Double Tap, First Aide, Instruct, Literacy, Parry"));
+        strainList.add(new Strain("Diesel Jock", 10, 10, 3, "Balance, Bolt Action, Forging the Future, Patch Job, Trade Ties, Melee Standard"));
         strainList.add(new Strain("Full Dead", 20, 10, 1, "some Skillz"));
         strainList.add(new Strain("Genjian", 6, 6, 5, "some Skillz"));
         strainList.add(new Strain("Iron Slave", 7, 4, 4, "some Skillz"));
