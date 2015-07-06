@@ -104,9 +104,19 @@ public class CharacterNewActivity extends ActionBarActivity {
         availSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedSkills.add(availSkills.getSelectedItem().toString());
+                selectedSkills.add(availSkills.getItemAtPosition(position).toString());
                 if(displaySkillAdapter == null){
-                    displaySkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, selectedSkills);
+                    displaySkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, selectedSkills){
+                        @Override
+                        public View getView(int position, View convertView, ViewGroup parent) {
+                            View view = super.getView(position,convertView,parent);
+
+                            TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                            textView.setTextColor(Color.BLACK);
+
+                            return view;
+                        }
+                    };
                     displayedSkills.setAdapter(displaySkillAdapter);
                 }else{
                     displaySkillAdapter.clear();
@@ -115,8 +125,6 @@ public class CharacterNewActivity extends ActionBarActivity {
                 }
             }
         });
-
-
 
     }
 
