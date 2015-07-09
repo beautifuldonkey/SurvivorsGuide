@@ -8,13 +8,13 @@ import java.util.List;
  */
 public class StrainList {
 
-    private static List<Strain> strainList = new ArrayList();
+    private static List<Strain> strainList = new ArrayList<>();
 
     public static List<Strain> getStrainList() { return strainList;}
 
     static{
 
-        strainList.add(new Strain("Bay Walker", 8, 10, 4, "Analyze Creature, Double Tap, First Aide, Instruct, Literacy, Parry"));
+        strainList.add(new Strain("Bay Walker", 8, 10, 4, "Analyze Creature,Double Tap,First Aide,Instruct,Literacy,Parry"));
         strainList.add(new Strain("Diesel Jock", 10, 10, 3, "Balance, Bolt Action, Forging the Future, Patch Job, Trade Ties, Melee Standard"));
         strainList.add(new Strain("Full Dead", 20, 10, 1, "some Skillz"));
         strainList.add(new Strain("Genjian", 6, 6, 5, "some Skillz"));

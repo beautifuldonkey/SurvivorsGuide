@@ -4,12 +4,16 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,7 +27,7 @@ import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.StrainList;
 
 
-public class CharacterNewActivity extends ActionBarActivity {
+public class CharacterNewActivity extends AppCompatActivity {
 
     Profession charProfession;
     Strain charStrain;
@@ -31,7 +35,7 @@ public class CharacterNewActivity extends ActionBarActivity {
     ArrayAdapter<String> displaySkillAdapter;
     String strainSkills = "";
     String profSkills = "";
-    ArrayList<String> selectedSkills = new ArrayList();
+    ArrayList<String> selectedSkills = new ArrayList<>();
 
 
     @Override
@@ -40,6 +44,18 @@ public class CharacterNewActivity extends ActionBarActivity {
         setContentView(R.layout.activity_character_new);
         final Context context = getApplicationContext();
 
+        EditText charName = (EditText) findViewById(R.id.characterName);
+        charName.setText("Enter character name");
+        charName.setTextColor(Color.BLACK);
+
+        Button btn_charNameDone = (Button) findViewById(R.id.btn_charName_done);
+        btn_charNameDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        });
 
         final List<Strain> strains = StrainList.getStrainList();
         String [] strainNames = new String[strains.size()];
@@ -47,7 +63,7 @@ public class CharacterNewActivity extends ActionBarActivity {
             strainNames[i] = strains.get(i).getName();
         }
         Spinner strainDropDown = (Spinner) findViewById(R.id.strainDropDown);
-        ArrayAdapter<String> strainAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, strainNames);
+        ArrayAdapter<String> strainAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, strainNames);
         strainDropDown.setAdapter(strainAdapter);
         strainDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -71,7 +87,7 @@ public class CharacterNewActivity extends ActionBarActivity {
             professionNames[i] = professions.get(i).getName();
         }
         Spinner profDropDown = (Spinner) findViewById(R.id.professionDropDown);
-        ArrayAdapter<String> profAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, professionNames);
+        ArrayAdapter<String> profAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, professionNames);
         profDropDown.setAdapter(profAdapter);
         profDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -138,10 +154,10 @@ public class CharacterNewActivity extends ActionBarActivity {
         for(int i=0; i<incProfSkills.length; i++){
             Boolean uniqueProfSkill = true;
             for(int j=0; j<newDisplayedSkills.size(); j++){
-                if(incProfSkills[i] == newDisplayedSkills.get(j)){
+                if(incProfSkills[i].equals(newDisplayedSkills.get(j))){
                     uniqueProfSkill = false;
                 }
-                if(j+1 == newDisplayedSkills.size() && uniqueProfSkill == true){
+                if(j+1 == newDisplayedSkills.size() && uniqueProfSkill){
                     newDisplayedSkills.add(incProfSkills[i]);
                 }
             }
