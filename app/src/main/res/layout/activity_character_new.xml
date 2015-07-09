@@ -9,7 +9,8 @@
     <EditText
     android:id="@+id/characterName"
     android:editable="true"
-    android:layout_width="200dp"
+    android:text="@string/character_name"
+    android:layout_width="wrap_content"
     android:layout_height="50dp"
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true"/>
@@ -27,7 +28,8 @@
     android:id="@+id/strainDropDown"
     android:background="@android:drawable/btn_dropdown"
     android:spinnerMode="dropdown"
-    android:layout_below="@id/characterName"/>
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"/>
 
     <Spinner
     android:layout_width="wrap_content"
@@ -35,18 +37,20 @@
     android:id="@+id/professionDropDown"
     android:background="@android:drawable/btn_dropdown"
     android:spinnerMode="dropdown"
+    android:layout_alignParentRight="true"
     android:layout_below="@id/strainDropDown"/>
 
     <ListView
-    android:layout_width="wrap_content"
+    android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:id="@+id/selectedSkills"
-    android:layout_below="@+id/professionDropDown" />
+    android:layout_below="@+id/characterName" />
 
     <ListView
-    android:layout_width="wrap_content"
+    android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:id="@+id/availableSkills"
-    android:layout_below="@+id/selectedSkills" />
+    android:layout_below="@+id/professionDropDown"
+    android:layout_alignParentRight="true"/>
 
-</RelativeLayout>
+    </RelativeLayout>
