@@ -11,17 +11,20 @@ public class Skill implements Parcelable {
     private String name;
     private int mpCost;
     private String description;
+    private Boolean isStrain;
 
-    public Skill (String skillName, int cost, String desc){
+    public Skill (String skillName, int cost, String desc, Boolean isStrainSkill){
         this.name = skillName;
         this.mpCost = cost;
         this.description = desc;
+        this.isStrain = isStrainSkill;
     }
 
     public Skill (Parcel source){
         name = source.readString();
         mpCost = source.readInt();
         description = source.readString();
+        isStrain = source.readByte() !=0;
     }
 
     @Override
@@ -29,6 +32,7 @@ public class Skill implements Parcelable {
         dest.writeString(name);
         dest.writeInt(mpCost);
         dest.writeString(description);
+        dest.writeByte((byte) (isStrain ? 1 : 0));
     }
 
     @Override
@@ -70,5 +74,13 @@ public class Skill implements Parcelable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getIsStrain() {
+        return isStrain;
+    }
+
+    public void setIsStrain(Boolean isStrain) {
+        this.isStrain = isStrain;
     }
 }
