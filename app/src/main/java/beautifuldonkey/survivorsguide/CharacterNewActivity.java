@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -20,9 +23,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.ProfessionList;
+import beautifuldonkey.survivorsguide.Data.Skill;
+import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.StrainList;
 
@@ -31,11 +37,12 @@ public class CharacterNewActivity extends AppCompatActivity {
 
     Profession charProfession;
     Strain charStrain;
-    ArrayAdapter<String> availSkillAdapter;
-    ArrayAdapter<String> displaySkillAdapter;
+    ArrayAdapter<Skill> availSkillAdapter;
+    ArrayAdapter<Skill> displaySkillAdapter;
     String strainSkills = "";
     String profSkills = "";
-    ArrayList<String> selectedSkills = new ArrayList<>();
+    List<Skill> selectedSkills = new ArrayList<>();
+    Boolean isStrainSkill = false;
 
 
     @Override
@@ -57,6 +64,10 @@ public class CharacterNewActivity extends AppCompatActivity {
             }
         });
 
+        //
+        //Strain drop down
+        //
+
         final List<Strain> strains = StrainList.getStrainList();
         String [] strainNames = new String[strains.size()];
         for(int i =0; i<strains.size(); i++){
@@ -72,7 +83,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 if(charStrain != null){
                     strainSkills = charStrain.getSkills();
                 }
-                updateAvailableSkillList(context, profSkills, strainSkills);
+                updateAvailableSkillList(context, profSkills, strainSkills, true);
             }
 
             @Override
@@ -81,6 +92,9 @@ public class CharacterNewActivity extends AppCompatActivity {
             }
         });
 
+        //
+        //Profession Drop Down
+        //
         final List<Profession> professions = ProfessionList.getProfessionList();
         String[] professionNames = new String[professions.size()];
         for(int i = 0; i<professions.size(); i++){
@@ -96,7 +110,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 if(charProfession != null){
                     profSkills = charProfession.getSkills();
                 }
-                updateAvailableSkillList(context, profSkills, strainSkills);
+                updateAvailableSkillList(context, profSkills, strainSkills, false);
             }
 
             @Override
@@ -118,19 +132,33 @@ public class CharacterNewActivity extends AppCompatActivity {
         availSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(!selectedSkills.contains(availSkills.getItemAtPosition(position).toString())){
-                    selectedSkills.add(availSkills.getItemAtPosition(position).toString());
-                }
-
+                //TODO click listener no longer works, skills not being added
+//                if(!selectedSkills.contains(availSkills.getItemAtPosition(position).toString())){
+//                    selectedSkills.add(availSkills.getItemAtPosition(position).toString());
+//                }
+                Log.d("ADDINGSKILL", availSkills.getItemAtPosition(position).toString());
+                selectedSkills.add((Skill)availSkills.getSelectedItem());
+                //selectedSkills.add((Skill)availSkills.getItemAtPosition(position));
                 if(displaySkillAdapter == null){
-                    displaySkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, selectedSkills){
+                    displaySkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, selectedSkills){
                         @Override
                         public View getView(int position, View convertView, ViewGroup parent) {
-                            View view = super.getView(position,convertView,parent);
+                            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+                            View view = inflater.inflate(R.layout.item_character_skill, null);
 
-                            TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                            TextView textView = (TextView) view.findViewById(R.id.skillName);
                             textView.setTextColor(Color.BLACK);
+                            textView.setText(selectedSkills.get(position).getName());
 
+                            TextView textViewChkBoxLabel = (TextView) view.findViewById(R.id.skillStrainLabel);
+                            textViewChkBoxLabel.setTextColor(Color.BLACK);
+
+                            CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
+                            checkBoxStrainSkill.setTextColor(Color.BLACK);
+
+                            if(selectedSkills.get(position).getIsStrain()){
+                                checkBoxStrainSkill.setChecked(true);
+                            }
                             return view;
                         }
                     };
@@ -143,34 +171,45 @@ public class CharacterNewActivity extends AppCompatActivity {
 
     }
 
-    public void updateAvailableSkillList(Context context, String profSkills, String strainSkills){
-        String[] incProfSkills = profSkills.split(",");
-        String[] incStrainSkills = strainSkills.split(",");
-        ArrayList<String> newDisplayedSkills = new ArrayList<>();
-        for(int i=0; i<incStrainSkills.length; i++){
-            newDisplayedSkills.add(incStrainSkills[i]);
-        }
-
-        for(int i=0; i<incProfSkills.length; i++){
-            Boolean uniqueProfSkill = true;
-            for(int j=0; j<newDisplayedSkills.size(); j++){
-                if(incProfSkills[i].equals(newDisplayedSkills.get(j))){
-                    uniqueProfSkill = false;
-                }
-                if(j+1 == newDisplayedSkills.size() && uniqueProfSkill){
-                    newDisplayedSkills.add(incProfSkills[i]);
+    public void updateAvailableSkillList(final Context context, String profSkills, String strainSkills, Boolean strainFlag){
+        isStrainSkill = strainFlag;
+        List<Skill> incProfSkills = SkillList.getSkillsByName(profSkills);
+        List<Skill> incStrainSkills = SkillList.getSkillsByName(strainSkills);
+        final List<Skill> newDisplayedSkills = new ArrayList<>();
+        for(int i=0; i<incStrainSkills.size(); i++){
+            incStrainSkills.get(i).setIsStrain(true);
+            for(int j=0; j<incProfSkills.size(); j++){
+                if(incStrainSkills.get(i).getName().equals(incProfSkills.get(j).getName())){
+                    incProfSkills.remove(j);
+                    break;
                 }
             }
         }
 
+        newDisplayedSkills.addAll(incStrainSkills);
+        newDisplayedSkills.addAll(incProfSkills);
+
         if(availSkillAdapter==null) {
-            availSkillAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, newDisplayedSkills) {
+            availSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, newDisplayedSkills) {
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
 
-                    TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View view = inflater.inflate(R.layout.item_character_skill, null);
+
+                    TextView textView = (TextView) view.findViewById(R.id.skillName);
                     textView.setTextColor(Color.BLACK);
+                    textView.setText(newDisplayedSkills.get(position).getName());
+
+                    TextView textViewChkBoxLabel = (TextView) view.findViewById(R.id.skillStrainLabel);
+                    textViewChkBoxLabel.setTextColor(Color.BLACK);
+
+                    CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
+                    checkBoxStrainSkill.setTextColor(Color.BLACK);
+
+                    if(newDisplayedSkills.get(position).getIsStrain()){
+                        checkBoxStrainSkill.setChecked(true);
+                    }
 
                     return view;
                 }
