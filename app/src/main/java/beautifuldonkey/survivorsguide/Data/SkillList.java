@@ -163,7 +163,7 @@ public class SkillList {
         skillList.add(new Skill("Take Down", 5, "description", false));
         skillList.add(new Skill("Teach", 5, "description", false));
         skillList.add(new Skill("Throwing", 5, "description", false));
-        skillList.add(new Skill("Throwing, Javelins", 5, "description", false));
+        skillList.add(new Skill("Throwing-Javelins", 5, "description", false));
         skillList.add(new Skill("Tie Bonds", 5, "description", false));
         skillList.add(new Skill("Torture", 5, "description", false));
         skillList.add(new Skill("Trade Ties", 5, "description", false));
