@@ -65,6 +65,14 @@ public class CharacterNewActivity extends AppCompatActivity {
             }
         });
 
+        Button btn_save = (Button) findViewById(R.id.btn_save);
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO save character
+            }
+        });
+
         //
         //Strain drop down
         //

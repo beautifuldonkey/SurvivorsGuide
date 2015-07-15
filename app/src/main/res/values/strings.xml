@@ -16,6 +16,7 @@
     <string name="btn_change_name">Add/Change Name</string>
     <string name="btn_skills">Skills</string>
     <string name="btn_strains">Strains</string>
+    <string name="btn_save">Save</string>
     <string name="btn_professions">Professions</string>
     <string name="btn_character">Character</string>
     <string name="btn_new_character">New Character</string>
