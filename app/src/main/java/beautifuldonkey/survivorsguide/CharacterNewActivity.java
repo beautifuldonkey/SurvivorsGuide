@@ -79,6 +79,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 JSONObject character;
                 String charProfSkills = "";
                 String charStrainSkills = "";
+                String characterName = charName.getText().toString();
                 for(int i=0; i<selectedSkills.size(); i++){
                     Skill skill = selectedSkills.get(i);
                     if(skill.getIsStrain()){
@@ -90,7 +91,7 @@ public class CharacterNewActivity extends AppCompatActivity {
 
                 character = new JSONObject();
                 try {
-                    character.put("name", charName.getText().toString());
+                    character.put("name", characterName);
                     character.put("health", charStrain.getBody());
                     character.put("mind", charStrain.getMind());
                     character.put("strain", charStrain.getName());
@@ -102,13 +103,13 @@ public class CharacterNewActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                File newCharacter = new File(context.getFilesDir(), charName.getText().toString());
+                File newCharacter = new File(context.getFilesDir(), characterName);
                 String path = newCharacter.getAbsolutePath();
 
                 String text = charName.getText().toString();
 
                 try {
-                    FileOutputStream fos = openFileOutput("test", MODE_PRIVATE);
+                    FileOutputStream fos = openFileOutput(characterName, MODE_PRIVATE);
                     fos.write(text.getBytes());
                     fos.close();
                     Log.d("FILEWRITTEN", "File written to local storage!");
