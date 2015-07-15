@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,12 +20,10 @@ import java.util.Objects;
 
 import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.ProfessionList;
+import beautifuldonkey.survivorsguide.Data.SgConstants;
 
 
-public class ProfessionActivity extends ActionBarActivity {
-
-    public static int PROFESSION_DETAIL_ACTIVITY = 12;
-    public static String INTENT_PROFESSION = "PROFESSION";
+public class ProfessionActivity extends AppCompatActivity {
 
     private List<Profession> professions = ProfessionList.getProfessionList();
 
@@ -42,8 +41,8 @@ public class ProfessionActivity extends ActionBarActivity {
                 Context context = getApplicationContext();
                 Profession profession = professions.get(position);
                 Intent intent = new Intent (context, ProfessionDetailActivity.class);
-                intent.putExtra(INTENT_PROFESSION, profession);
-                startActivityForResult(intent, PROFESSION_DETAIL_ACTIVITY);
+                intent.putExtra(SgConstants.INTENT_PROFESSION, profession);
+                startActivityForResult(intent, SgConstants.PROFESSION_DETAIL_ACTIVITY);
             }
         });
     }

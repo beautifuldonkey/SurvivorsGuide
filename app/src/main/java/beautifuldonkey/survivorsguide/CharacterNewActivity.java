@@ -21,6 +21,12 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
@@ -45,14 +51,13 @@ public class CharacterNewActivity extends AppCompatActivity {
     Boolean isStrainSkill = false;
     ListView availSkills;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_new);
         final Context context = getApplicationContext();
 
-        EditText charName = (EditText) findViewById(R.id.characterName);
+        final EditText charName = (EditText) findViewById(R.id.characterName);
         charName.setText("Enter character name");
         charName.setTextColor(Color.BLACK);
 
@@ -62,6 +67,55 @@ public class CharacterNewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 InputMethodManager inputManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        });
+
+        Button btn_save = (Button) findViewById(R.id.btn_save);
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                JSONArray data = new JSONArray();
+                JSONObject character;
+                String charProfSkills = "";
+                String charStrainSkills = "";
+                String characterName = charName.getText().toString();
+                for(int i=0; i<selectedSkills.size(); i++){
+                    Skill skill = selectedSkills.get(i);
+                    if(skill.getIsStrain()){
+                        charStrainSkills = skill.getName()+",";
+                    }else{
+                        charProfSkills = skill.getName()+",";
+                    }
+                }
+
+                character = new JSONObject();
+                try {
+                    character.put("name", characterName);
+                    character.put("health", charStrain.getBody());
+                    character.put("mind", charStrain.getMind());
+                    character.put("strain", charStrain.getName());
+                    character.put("professions", charProfession.getName());
+                    character.put("profSkills", charProfSkills);
+                    character.put("strainSkills", charStrainSkills);
+                    data.put(character);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                File newCharacter = new File(context.getFilesDir(), characterName);
+                String path = newCharacter.getAbsolutePath();
+
+                String text = charName.getText().toString();
+
+                try {
+                    FileOutputStream fos = openFileOutput(characterName, MODE_PRIVATE);
+                    fos.write(text.getBytes());
+                    fos.close();
+                    Log.d("FILEWRITTEN", "File written to local storage!");
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
             }
         });
 

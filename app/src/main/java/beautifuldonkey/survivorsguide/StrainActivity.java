@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,15 +18,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import beautifuldonkey.survivorsguide.Data.SgConstants;
 import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.StrainList;
 
 
-public class StrainActivity extends ActionBarActivity {
+public class StrainActivity extends AppCompatActivity {
 
-    protected List<Strain> strainList = new ArrayList();
-    public static int STRAIN_DETAIL_ACTIVITY = 13;
-    public static String INTENT_STRAIN = "STRAIN";
+    protected List<Strain> strainList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +44,8 @@ public class StrainActivity extends ActionBarActivity {
                 Context context = getApplicationContext();
                 Strain strain = strainList.get(position);
                 Intent intent = new Intent(context, StrainDetailActivity.class);
-                intent.putExtra(INTENT_STRAIN, strain);
-                startActivityForResult(intent, STRAIN_DETAIL_ACTIVITY);
+                intent.putExtra(SgConstants.INTENT_STRAIN, strain);
+                startActivityForResult(intent, SgConstants.STRAIN_DETAIL_ACTIVITY);
             }
         });
 

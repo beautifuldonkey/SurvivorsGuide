@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,13 +21,13 @@ import java.util.List;
 
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
+import beautifuldonkey.survivorsguide.Data.SgConstants;
 
 
-public class SkillActivty extends ActionBarActivity {
+public class SkillActivty extends AppCompatActivity {
 
-    protected List<Skill> skillList = new ArrayList();
-    public static int SKILL_DETAIL_ACTIVITY = 11;
-    public static String INTENT_SKILL = "SKILL";
+    protected List<Skill> skillList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,8 @@ public class SkillActivty extends ActionBarActivity {
                 Context context = getApplicationContext();
                 Skill skill = skillList.get(position);
                 Intent intent = new Intent(context, SkillDetailActivity.class);
-                intent.putExtra(INTENT_SKILL, skill);
-                startActivityForResult(intent, SKILL_DETAIL_ACTIVITY);
+                intent.putExtra(SgConstants.INTENT_SKILL, skill);
+                startActivityForResult(intent, SgConstants.SKILL_DETAIL_ACTIVITY);
             }
         });
     }

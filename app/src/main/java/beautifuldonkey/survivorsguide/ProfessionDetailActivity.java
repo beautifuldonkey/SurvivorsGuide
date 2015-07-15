@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,22 +19,19 @@ import java.util.List;
 import java.util.zip.Inflater;
 
 import beautifuldonkey.survivorsguide.Data.Profession;
+import beautifuldonkey.survivorsguide.Data.SgConstants;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
 
 
-public class ProfessionDetailActivity extends ActionBarActivity {
-
-    public static int SKILL_DETAIL_ACTIVITY = 11;
-    public static String INTENT_PROFESSION = "PROFESSION";
-    public static String INTENT_SKILL = "SKILL";
+public class ProfessionDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profession_detail);
 
-        Profession profession = getIntent().getParcelableExtra(INTENT_PROFESSION);
+        Profession profession = getIntent().getParcelableExtra(SgConstants.INTENT_PROFESSION);
         final List<Skill> professionSkills = SkillList.getSkillsByName(profession.getSkills());
 
         TextView viewProfessionName = (TextView) findViewById(R.id.professionName);
@@ -48,8 +46,8 @@ public class ProfessionDetailActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Context context = getApplicationContext();
                 Intent intent = new Intent(context, SkillDetailActivity.class);
-                intent.putExtra(INTENT_SKILL, professionSkills.get(position));
-                startActivityForResult(intent, SKILL_DETAIL_ACTIVITY);
+                intent.putExtra(SgConstants.INTENT_SKILL, professionSkills.get(position));
+                startActivityForResult(intent, SgConstants.SKILL_DETAIL_ACTIVITY);
             }
         });
 
