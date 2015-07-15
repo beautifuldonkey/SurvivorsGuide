@@ -43,6 +43,7 @@ public class CharacterNewActivity extends AppCompatActivity {
     String profSkills = "";
     List<Skill> selectedSkills = new ArrayList<>();
     Boolean isStrainSkill = false;
+    ListView availSkills;
 
 
     @Override
@@ -107,7 +108,7 @@ public class CharacterNewActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 charProfession = professions.get(position);
-                if(charProfession != null){
+                if (charProfession != null) {
                     profSkills = charProfession.getSkills();
                 }
                 updateAvailableSkillList(context, profSkills, strainSkills, false);
@@ -128,17 +129,14 @@ public class CharacterNewActivity extends AppCompatActivity {
             }
         });
 
-        final ListView availSkills = (ListView) findViewById(R.id.availableSkills);
+        availSkills = (ListView) findViewById(R.id.availableSkills);
         availSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO click listener no longer works, skills not being added
-//                if(!selectedSkills.contains(availSkills.getItemAtPosition(position).toString())){
-//                    selectedSkills.add(availSkills.getItemAtPosition(position).toString());
-//                }
-                Log.d("ADDINGSKILL", availSkills.getItemAtPosition(position).toString());
-                selectedSkills.add((Skill)availSkills.getSelectedItem());
-                //selectedSkills.add((Skill)availSkills.getItemAtPosition(position));
+                if(!selectedSkills.contains(availSkills.getItemAtPosition(position))){
+                    selectedSkills.add((Skill)availSkills.getItemAtPosition(position));
+                }
+
                 if(displaySkillAdapter == null){
                     displaySkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, selectedSkills){
                         @Override
@@ -214,7 +212,6 @@ public class CharacterNewActivity extends AppCompatActivity {
                     return view;
                 }
             };
-            ListView availSkills = (ListView) findViewById(R.id.availableSkills);
             availSkills.setAdapter(availSkillAdapter);
         }else{
             availSkillAdapter.clear();
