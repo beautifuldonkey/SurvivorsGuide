@@ -4,17 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class WelcomeScreen extends ActionBarActivity {
+import beautifuldonkey.survivorsguide.Data.SgConstants;
 
-    public static int SKILL_ACTIVITY = 01;
-    public static int STRAIN_ACTIVITY = 02;
-    public static int PROFESSION_ACTIVITY = 03;
-    public static int CHARACTER_ACTIVITY = 04;
+public class WelcomeScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +25,7 @@ public class WelcomeScreen extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SkillActivty.class);
-                startActivityForResult(intent, SKILL_ACTIVITY);
+                startActivityForResult(intent, SgConstants.SKILL_ACTIVITY);
             }
         });
 
@@ -36,7 +34,7 @@ public class WelcomeScreen extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, StrainActivity.class);
-                startActivityForResult(intent, STRAIN_ACTIVITY);
+                startActivityForResult(intent, SgConstants.STRAIN_ACTIVITY);
             }
         });
 
@@ -45,7 +43,7 @@ public class WelcomeScreen extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfessionActivity.class);
-                startActivityForResult(intent, PROFESSION_ACTIVITY);
+                startActivityForResult(intent, SgConstants.PROFESSION_ACTIVITY);
             }
         });
 
@@ -54,7 +52,7 @@ public class WelcomeScreen extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CharacterActivity.class);
-                startActivityForResult(intent, CHARACTER_ACTIVITY);
+                startActivityForResult(intent, SgConstants.CHARACTER_ACTIVITY);
             }
         });
 

@@ -2,23 +2,23 @@ package beautifuldonkey.survivorsguide;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import beautifuldonkey.survivorsguide.Data.SgConstants;
 import beautifuldonkey.survivorsguide.Data.Skill;
 
 
-public class SkillDetailActivity extends ActionBarActivity {
-
-    public static String INTENT_SKILL = "SKILL";
+public class SkillDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skill_detail);
 
-        Skill skill = getIntent().getParcelableExtra(INTENT_SKILL);
+        Skill skill = getIntent().getParcelableExtra(SgConstants.INTENT_SKILL);
 
         TextView viewSkillName = (TextView) findViewById(R.id.skillName);
         viewSkillName.setText(skill.getName());
