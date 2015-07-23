@@ -27,16 +27,17 @@ public class CharacterExistingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_character_existing);
         Log.d("READCHAR", "initial open");
 
-        final String[] files = fileList();
+        String[] availFiles = fileList();
 
-        ArrayAdapter<String> fileListAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, files);
+        ArrayAdapter<String> fileListAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, availFiles);
         Spinner existingFiles = (Spinner) findViewById(R.id.existingFiles);
         existingFiles.setAdapter(fileListAdapter);
         existingFiles.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    FileInputStream fis = openFileInput(files[0]);
+                    String[] files = fileList();
+                    FileInputStream fis = openFileInput(files[position]);
                     BufferedInputStream bis = new BufferedInputStream(fis);
                     StringBuffer b = new StringBuffer();
                     Log.d("READCHAR", "file opened & buffers created");
@@ -48,7 +49,6 @@ public class CharacterExistingActivity extends AppCompatActivity {
                     fis.close();
                     Log.d("READCHAR", "buffers closed");
 
-                    //TODO Fix error thrown by below line: Value Enter of type java.lang.String cannot be converted to JSONArray
                     JSONArray data = new JSONArray(b.toString());
 
                     Log.d("READCHAR", "building string");

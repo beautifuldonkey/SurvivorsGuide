@@ -103,16 +103,13 @@ public class CharacterNewActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                File newCharacter = new File(context.getFilesDir(), characterName);
-                String path = newCharacter.getAbsolutePath();
-
-                String text = charName.getText().toString();
+                String text = data.toString();
 
                 try {
                     FileOutputStream fos = openFileOutput(characterName, MODE_PRIVATE);
                     fos.write(text.getBytes());
                     fos.close();
-                    Log.d("FILEWRITTEN", "File written to local storage!");
+                    Log.d("FILEWRITTEN", "File written to local storage!\n"+data.toString());
                 }catch (Exception ex){
                     ex.printStackTrace();
                 }
