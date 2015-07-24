@@ -22,11 +22,25 @@
         android:layout_below="@+id/existingFiles"/>
 
     <TextView
+        android:text="@string/character_strain"
+        android:id="@+id/existingCharStrain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/existingCharName"/>
+
+    <TextView
+        android:text="@string/character_profession"
+        android:id="@+id/existingCharProfession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/existingCharStrain"/>
+
+    <TextView
         android:text="@string/character_infection"
         android:id="@+id/existingCharInfection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/existingCharName"/>
+        android:layout_below="@+id/existingCharProfession"/>
 
     <TextView
         android:text="@string/character_body"
