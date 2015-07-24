@@ -22,6 +22,8 @@
     <string name="btn_character">Character</string>
     <string name="btn_new_character">New Character</string>
     <string name="btn_existing_character">Existing Character</string>
+    <string name="btn_add">+</string>
+    <string name="btn_subtract">-</string>
 
     <string name="strain_name">Name</string>
     <string name="strain_skill">Strain Skill:</string>
