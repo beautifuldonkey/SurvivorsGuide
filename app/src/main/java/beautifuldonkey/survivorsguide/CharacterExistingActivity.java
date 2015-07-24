@@ -53,14 +53,46 @@ public class CharacterExistingActivity extends AppCompatActivity {
 
                     Log.d("READCHAR", "building string");
                     StringBuffer charBuffer = new StringBuffer();
+                    String charName = "";
+                    String charStrain = "";
+                    String charProfession = "";
+                    String charInfection = "";
+                    int charBody = 0;
+                    int charMind = 0;
+                    String charStrainSkills = "";
+                    String charProfSkills = "";
                     for (int i = 0; i < data.length(); i++) {
 
-                        String charName = data.getJSONObject(i).getString("name");
-                        charBuffer.append(charName);
+                        charName = data.getJSONObject(i).getString("name");
+                        //charInfection = data.getJSONObject(i).getInt("infection");
+                        charBody = data.getJSONObject(i).getInt("body");
+                        charMind = data.getJSONObject(i).getInt("mind");
+                        charStrain = data.getJSONObject(i).getString("strain");
+                        charProfession = data.getJSONObject(i).getString("professions");
                     }
                     Log.d("READCHAR", "built string now displaying");
-                    TextView existingChar = (TextView) findViewById(R.id.existingChar);
-                    existingChar.setText(charBuffer);
+
+                    //displaying existing character attributes
+                    TextView existingCharName = (TextView) findViewById(R.id.existingCharName);
+                    existingCharName.setText(charName);
+
+                    TextView existingCharStrain = (TextView) findViewById(R.id.existingCharStrain);
+                    existingCharStrain.setText(charStrain);
+
+                    TextView existingCharProfessions = (TextView) findViewById(R.id.existingCharProfession);
+                    existingCharProfessions.setText(charProfession);
+
+                    TextView existingCharInfection = (TextView) findViewById(R.id.existingCharInfection);
+                    existingCharInfection.setText(charInfection);
+
+                    TextView existingCharBody = (TextView) findViewById(R.id.existingCharBody);
+                    existingCharBody.setText(Integer.toString(charBody));
+
+                    TextView existingCharMind = (TextView) findViewById(R.id.existingCharMind);
+                    existingCharMind.setText(Integer.toString(charMind));
+
+                    ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
+
 
                 }catch (Exception ex){
                     ex.printStackTrace();
