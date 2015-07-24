@@ -16,45 +16,93 @@
 
     <TextView
         android:text="@string/character_name"
+        android:id="@+id/existingCharNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/existingFiles"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:text="@string/character_name"
         android:id="@+id/existingCharName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/existingFiles"/>
+        android:layout_below="@+id/existingFiles"
+        android:layout_toRightOf="@+id/existingCharNameLabel"/>
 
+    <TextView
+        android:text="@string/character_strain"
+        android:id="@+id/existingCharStrainLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/existingCharNameLabel"
+        android:layout_alignParentLeft="true"/>
     <TextView
         android:text="@string/character_strain"
         android:id="@+id/existingCharStrain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/existingCharName"/>
+        android:layout_below="@+id/existingCharName"
+        android:layout_toRightOf="@+id/existingCharStrainLabel"/>
 
+    <TextView
+        android:text="@string/character_profession"
+        android:id="@+id/existingCharProfessionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/existingCharStrainLabel"
+        android:layout_alignParentLeft="true"/>
     <TextView
         android:text="@string/character_profession"
         android:id="@+id/existingCharProfession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/existingCharStrain"/>
+        android:layout_below="@+id/existingCharStrain"
+        android:layout_toRightOf="@+id/existingCharProfessionLabel"/>
 
+    <TextView
+        android:text="@string/character_infection"
+        android:id="@+id/existingCharInfectionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/existingCharProfessionLabel"
+        android:layout_alignParentLeft="true"/>
     <TextView
         android:text="@string/character_infection"
         android:id="@+id/existingCharInfection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/existingCharProfession"/>
+        android:layout_below="@+id/existingCharProfession"
+        android:layout_toRightOf="@+id/existingCharInfectionLabel"/>
 
+    <TextView
+        android:text="@string/character_body"
+        android:id="@+id/existingCharBodyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/existingCharInfectionLabel"
+        android:layout_alignParentLeft="true"/>
     <TextView
         android:text="@string/character_body"
         android:id="@+id/existingCharBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/existingCharInfection"/>
+        android:layout_below="@+id/existingCharInfection"
+        android:layout_toRightOf="@+id/existingCharBodyLabel"/>
 
+    <TextView
+        android:text="@string/character_mind"
+        android:id="@+id/existingCharMindLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/existingCharBodyLabel"
+        android:layout_alignParentLeft="true"/>
     <TextView
         android:text="@string/character_mind"
         android:id="@+id/existingCharMind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/existingCharBody"/>
+        android:layout_below="@+id/existingCharBody"
+        android:layout_toRightOf="@+id/existingCharMindLabel"/>
 
     <ListView
         android:layout_width="wrap_content"
