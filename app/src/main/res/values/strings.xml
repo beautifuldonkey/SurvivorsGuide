@@ -11,6 +11,7 @@
     <string name="title_skill_detail_activity">Skill Details</string>
     <string name="title_character_activity">Character</string>
     <string name="title_character_new_activity">CharacterNewActivity</string>
+    <string name="title_activity_character_existing">CharacterExistingActivity</string>
 
     <string name="btn_done">Done</string>
     <string name="btn_change_name">Add/Change Name</string>
@@ -32,7 +33,9 @@
 
     <string name="profession_name">Name</string>
 
-    <string name="character_name">Name</string>
-    <string name="title_activity_character_existing">CharacterExistingActivity</string>
+    <string name="character_name">Character Name</string>
+    <string name="character_infection">Character Infection</string>
+    <string name="character_body">Character Body</string>
+    <string name="character_mind">Character Mind</string>
 
 </resources>
