@@ -92,7 +92,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 character = new JSONObject();
                 try {
                     character.put("name", characterName);
-                    character.put("health", charStrain.getBody());
+                    character.put("body", charStrain.getBody());
                     character.put("mind", charStrain.getMind());
                     character.put("strain", charStrain.getName());
                     character.put("professions", charProfession.getName());
