@@ -61,6 +61,8 @@ public class CharacterNewActivity extends AppCompatActivity {
         charName.setText("Enter character name");
         charName.setTextColor(Color.BLACK);
 
+        final TextView charInfection = (TextView) findViewById(R.id.newCharacterInfection);
+
         Button btn_addBody = (Button) findViewById(R.id.btn_newCharMoreBody);
         btn_addBody.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,6 +182,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                     strainSkills = charStrain.getSkills();
                 }
                 updateAvailableSkillList(context, profSkills, strainSkills, true);
+                charInfection.setText(String.valueOf(charStrain.getInfection()));
             }
 
             @Override
