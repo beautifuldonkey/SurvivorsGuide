@@ -61,6 +61,50 @@ public class CharacterNewActivity extends AppCompatActivity {
         charName.setText("Enter character name");
         charName.setTextColor(Color.BLACK);
 
+        Button btn_addBody = (Button) findViewById(R.id.btn_newCharMoreBody);
+        btn_addBody.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView textBody = (TextView) findViewById(R.id.newCharacterBody);
+                Integer currentBody = Integer.parseInt(textBody.getText().toString());
+                currentBody = currentBody + 1;
+                textBody.setText(String.valueOf(currentBody));
+            }
+        });
+
+        Button btn_subBody = (Button) findViewById(R.id.btn_newCharLessBody);
+        btn_subBody.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView textBody = (TextView) findViewById(R.id.newCharacterBody);
+                Integer currentBody = Integer.parseInt(textBody.getText().toString());
+                currentBody = currentBody - 1;
+                textBody.setText(String.valueOf(currentBody));
+            }
+        });
+
+        Button btn_addMind = (Button) findViewById(R.id.btn_newCharMoreMind);
+        btn_addMind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView textMind = (TextView) findViewById(R.id.newCharacterMind);
+                Integer currentMind = Integer.parseInt(textMind.getText().toString());
+                currentMind = currentMind+1;
+                textMind.setText(String.valueOf(currentMind));
+            }
+        });
+
+        Button btn_subMind = (Button) findViewById(R.id.btn_newCharLessMind);
+        btn_subMind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView textMind = (TextView) findViewById(R.id.newCharacterMind);
+                Integer currentMind = Integer.parseInt(textMind.getText().toString());
+                currentMind = currentMind-1;
+                textMind.setText(String.valueOf(currentMind));
+            }
+        });
+
         Button btn_charNameDone = (Button) findViewById(R.id.btn_charName_done);
         btn_charNameDone.setOnClickListener(new View.OnClickListener() {
             @Override
