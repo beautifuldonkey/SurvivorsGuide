@@ -62,15 +62,16 @@ public class CharacterNewActivity extends AppCompatActivity {
         charName.setTextColor(Color.BLACK);
 
         final TextView charInfection = (TextView) findViewById(R.id.newCharacterInfection);
+        final TextView charBody = (TextView) findViewById(R.id.newCharacterBody);
+        final TextView charMind = (TextView) findViewById(R.id.newCharacterMind);
 
         Button btn_addBody = (Button) findViewById(R.id.btn_newCharMoreBody);
         btn_addBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView textBody = (TextView) findViewById(R.id.newCharacterBody);
-                Integer currentBody = Integer.parseInt(textBody.getText().toString());
+                Integer currentBody = Integer.parseInt(charBody.getText().toString());
                 currentBody = currentBody + 1;
-                textBody.setText(String.valueOf(currentBody));
+                charBody.setText(String.valueOf(currentBody));
             }
         });
 
@@ -78,10 +79,9 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_subBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView textBody = (TextView) findViewById(R.id.newCharacterBody);
-                Integer currentBody = Integer.parseInt(textBody.getText().toString());
+                Integer currentBody = Integer.parseInt(charBody.getText().toString());
                 currentBody = currentBody - 1;
-                textBody.setText(String.valueOf(currentBody));
+                charBody.setText(String.valueOf(currentBody));
             }
         });
 
@@ -89,10 +89,9 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_addMind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView textMind = (TextView) findViewById(R.id.newCharacterMind);
-                Integer currentMind = Integer.parseInt(textMind.getText().toString());
+                Integer currentMind = Integer.parseInt(charMind.getText().toString());
                 currentMind = currentMind+1;
-                textMind.setText(String.valueOf(currentMind));
+                charMind.setText(String.valueOf(currentMind));
             }
         });
 
@@ -100,10 +99,9 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_subMind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView textMind = (TextView) findViewById(R.id.newCharacterMind);
-                Integer currentMind = Integer.parseInt(textMind.getText().toString());
+                Integer currentMind = Integer.parseInt(charMind.getText().toString());
                 currentMind = currentMind-1;
-                textMind.setText(String.valueOf(currentMind));
+                charMind.setText(String.valueOf(currentMind));
             }
         });
 
@@ -183,6 +181,8 @@ public class CharacterNewActivity extends AppCompatActivity {
                 }
                 updateAvailableSkillList(context, profSkills, strainSkills, true);
                 charInfection.setText(String.valueOf(charStrain.getInfection()));
+                charBody.setText(String.valueOf(charStrain.getBody()));
+                charMind.setText(String.valueOf(charStrain.getMind()));
             }
 
             @Override
