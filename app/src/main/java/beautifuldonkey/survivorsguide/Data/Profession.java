@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
+ * defines the properties of professions characters can choose
  * Created by user on 6/15/2015.
  */
 public class Profession implements Parcelable {
@@ -12,12 +13,14 @@ public class Profession implements Parcelable {
     private String description;
     private String skills;
     private String strainReqs;
+    private String skillCost;
 
-    public Profession (String profName, String profDesc, String profSkills, String profStrainReqs){
+    public Profession (String profName, String profDesc, String profSkills, String profStrainReqs, String profSkillCost){
         this.name = profName;
         this.description = profDesc;
         this.skills = profSkills;
         this.strainReqs = profStrainReqs;
+        this.skillCost = profSkillCost;
     }
 
     public Profession(Parcel source){
@@ -25,6 +28,7 @@ public class Profession implements Parcelable {
         description = source.readString();
         skills = source.readString();
         strainReqs = source.readString();
+        skillCost = source.readString();
     }
 
     public static Creator<Profession> CREATOR = new Creator<Profession>() {
@@ -50,6 +54,7 @@ public class Profession implements Parcelable {
         dest.writeString(description);
         dest.writeString(skills);
         dest.writeString(strainReqs);
+        dest.writeString(skillCost);
     }
 
     public String getName() {
@@ -82,5 +87,13 @@ public class Profession implements Parcelable {
 
     public void setStrainReqs(String strainReqs) {
         this.strainReqs = strainReqs;
+    }
+
+    public String getSkillCost() {
+        return skillCost;
+    }
+
+    public void setSkillCost(String skillCost) {
+        this.skillCost = skillCost;
     }
 }
