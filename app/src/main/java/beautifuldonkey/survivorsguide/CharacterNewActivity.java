@@ -339,6 +339,15 @@ public class CharacterNewActivity extends AppCompatActivity {
 
                     if(newDisplayedSkills.get(position).getIsStrain()){
                         checkBoxStrainSkill.setChecked(true);
+                    }else{
+                        checkBoxStrainSkill.setVisibility(View.INVISIBLE);
+                        String[] allProfSkills = charProfession.getSkills().split(",");
+                        String[] profSkillCost = charProfession.getSkillCost().split(",");
+                        for(int i=0;i<allProfSkills.length;i++){
+                            if(allProfSkills[i].equals(newDisplayedSkills.get(position).getName())){
+                                textViewChkBoxLabel.setText("Build: "+profSkillCost[i]);
+                            }
+                        }
                     }
 
                     return view;
