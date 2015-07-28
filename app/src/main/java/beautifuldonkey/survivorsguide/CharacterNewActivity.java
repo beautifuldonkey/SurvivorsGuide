@@ -204,6 +204,8 @@ public class CharacterNewActivity extends AppCompatActivity {
                 charInfection.setText(String.valueOf(charStrain.getInfection()));
                 charBody.setText(String.valueOf(charStrain.getBody()));
                 charMind.setText(String.valueOf(charStrain.getMind()));
+                selectedSkills.clear();
+                displaySkillAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -231,6 +233,8 @@ public class CharacterNewActivity extends AppCompatActivity {
                     profSkills = charProfession.getSkills();
                 }
                 updateAvailableSkillList(context, profSkills, strainSkills, false);
+                selectedSkills.clear();
+                displaySkillAdapter.notifyDataSetChanged();
             }
 
             @Override
