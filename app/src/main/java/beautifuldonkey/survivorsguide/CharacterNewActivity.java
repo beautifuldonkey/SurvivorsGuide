@@ -256,8 +256,17 @@ public class CharacterNewActivity extends AppCompatActivity {
         availSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(!selectedSkills.contains(availSkills.getItemAtPosition(position))){
-                    selectedSkills.add((Skill)availSkills.getItemAtPosition(position));
+                Skill skillToAdd = (Skill) availSkills.getItemAtPosition(position);
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
+                if(!selectedSkills.contains(skillToAdd)){
+                    if(skillToAdd.getIsStrain() && currentBuild>=3) {
+                        selectedSkills.add(skillToAdd);
+                        currentBuild = currentBuild-3;
+                        charBuild.setText(String.valueOf(currentBuild));
+                    }else if(currentBuild>0){
+                        //TODO check cost of skill from profession, check if sheet has enough available build then add skill & subtract build
+                        selectedSkills.add(skillToAdd);
+                    }
                 }
 
                 if(displaySkillAdapter == null){
