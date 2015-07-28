@@ -61,6 +61,7 @@ public class CharacterNewActivity extends AppCompatActivity {
         charName.setText("Enter character name");
         charName.setTextColor(Color.BLACK);
 
+        final TextView charBuild = (TextView) findViewById(R.id.newCharacterBuild);
         final TextView charInfection = (TextView) findViewById(R.id.newCharacterInfection);
         final TextView charBody = (TextView) findViewById(R.id.newCharacterBody);
         final TextView charMind = (TextView) findViewById(R.id.newCharacterMind);
@@ -69,9 +70,14 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_addBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 Integer currentBody = Integer.parseInt(charBody.getText().toString());
-                currentBody = currentBody + 1;
-                charBody.setText(String.valueOf(currentBody));
+                if(currentBuild>0){
+                    currentBody = currentBody + 1;
+                    charBody.setText(String.valueOf(currentBody));
+                    currentBuild = currentBuild-1;
+                    charBuild.setText(String.valueOf(currentBuild));
+                }
             }
         });
 
@@ -79,9 +85,14 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_subBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 Integer currentBody = Integer.parseInt(charBody.getText().toString());
-                currentBody = currentBody - 1;
-                charBody.setText(String.valueOf(currentBody));
+                if(currentBody>charStrain.getBody()){
+                    currentBody = currentBody - 1;
+                    charBody.setText(String.valueOf(currentBody));
+                    currentBuild = currentBuild+1;
+                    charBuild.setText(String.valueOf(currentBuild));
+                }
             }
         });
 
@@ -89,9 +100,14 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_addMind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 Integer currentMind = Integer.parseInt(charMind.getText().toString());
-                currentMind = currentMind+1;
-                charMind.setText(String.valueOf(currentMind));
+                if(currentBuild>0){
+                    currentMind = currentMind+1;
+                    charMind.setText(String.valueOf(currentMind));
+                    currentBuild = currentBuild-1;
+                    charBuild.setText(String.valueOf(currentBuild));
+                }
             }
         });
 
@@ -99,9 +115,14 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_subMind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 Integer currentMind = Integer.parseInt(charMind.getText().toString());
-                currentMind = currentMind-1;
-                charMind.setText(String.valueOf(currentMind));
+                if(currentMind>charStrain.getMind()){
+                    currentMind = currentMind-1;
+                    charMind.setText(String.valueOf(currentMind));
+                    currentBuild = currentBuild+1;
+                    charBuild.setText(String.valueOf(currentBuild));
+                }
             }
         });
 
