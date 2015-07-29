@@ -183,7 +183,6 @@ public class CharacterNewActivity extends AppCompatActivity {
         //
         //Strain drop down
         //
-
         final List<Strain> strains = StrainList.getStrainList();
         String [] strainNames = new String[strains.size()];
         for(int i =0; i<strains.size(); i++){
@@ -200,6 +199,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                     strainSkills = charStrain.getSkills();
                 }
                 updateAvailableSkillList(context, profSkills, strainSkills, true);
+                charBuild.setText("13");
                 charInfection.setText(String.valueOf(charStrain.getInfection()));
                 charBody.setText(String.valueOf(charStrain.getBody()));
                 charMind.setText(String.valueOf(charStrain.getMind()));
@@ -230,6 +230,7 @@ public class CharacterNewActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 charProfession = professions.get(position);
+                charBuild.setText("13");
                 if (charProfession != null) {
                     profSkills = charProfession.getSkills();
                 }
@@ -302,7 +303,6 @@ public class CharacterNewActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     public void updateAvailableSkillList(final Context context, String profSkills, String strainSkills, Boolean strainFlag){
