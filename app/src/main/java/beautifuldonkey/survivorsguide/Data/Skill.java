@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
+ * Defines Skill class
  * Created by user on 6/15/2015.
  */
 public class Skill implements Parcelable {
@@ -12,12 +13,14 @@ public class Skill implements Parcelable {
     private int mpCost;
     private String description;
     private Boolean isStrain;
+    private int buildCost;
 
-    public Skill (String skillName, int cost, String desc, Boolean isStrainSkill){
+    public Skill (String skillName, int cost, String desc, Boolean isStrainSkill, int build){
         this.name = skillName;
         this.mpCost = cost;
         this.description = desc;
         this.isStrain = isStrainSkill;
+        this.buildCost = build;
     }
 
     public Skill (Parcel source){
@@ -25,6 +28,7 @@ public class Skill implements Parcelable {
         mpCost = source.readInt();
         description = source.readString();
         isStrain = source.readByte() !=0;
+        buildCost = source.readInt();
     }
 
     @Override
@@ -33,6 +37,7 @@ public class Skill implements Parcelable {
         dest.writeInt(mpCost);
         dest.writeString(description);
         dest.writeByte((byte) (isStrain ? 1 : 0));
+        dest.writeInt(buildCost);
     }
 
     @Override
@@ -51,6 +56,14 @@ public class Skill implements Parcelable {
             return new Skill[size];
         }
     };
+
+    public int getBuildCost() {
+        return buildCost;
+    }
+
+    public void setBuildCost(int buildCost) {
+        this.buildCost = buildCost;
+    }
 
     public String getName() {
         return name;

@@ -48,7 +48,6 @@ public class CharacterNewActivity extends AppCompatActivity {
     String strainSkills = "";
     String profSkills = "";
     List<Skill> selectedSkills = new ArrayList<>();
-    Boolean isStrainSkill = false;
     ListView availSkills;
 
     @Override
@@ -204,8 +203,10 @@ public class CharacterNewActivity extends AppCompatActivity {
                 charInfection.setText(String.valueOf(charStrain.getInfection()));
                 charBody.setText(String.valueOf(charStrain.getBody()));
                 charMind.setText(String.valueOf(charStrain.getMind()));
-                selectedSkills.clear();
-                displaySkillAdapter.notifyDataSetChanged();
+                if(!selectedSkills.isEmpty()){
+                    selectedSkills.clear();
+                    displaySkillAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -233,8 +234,10 @@ public class CharacterNewActivity extends AppCompatActivity {
                     profSkills = charProfession.getSkills();
                 }
                 updateAvailableSkillList(context, profSkills, strainSkills, false);
-                selectedSkills.clear();
-                displaySkillAdapter.notifyDataSetChanged();
+                if(!selectedSkills.isEmpty()){
+                    selectedSkills.clear();
+                    displaySkillAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -247,8 +250,12 @@ public class CharacterNewActivity extends AppCompatActivity {
         displayedSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Skill skillToRemove = selectedSkills.get(position);
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 selectedSkills.remove(position);
                 displaySkillAdapter.notifyDataSetChanged();
+                currentBuild = currentBuild + skillToRemove.getBuildCost();
+                charBuild.setText(String.valueOf(currentBuild));
             }
         });
 
@@ -259,13 +266,10 @@ public class CharacterNewActivity extends AppCompatActivity {
                 Skill skillToAdd = (Skill) availSkills.getItemAtPosition(position);
                 Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 if(!selectedSkills.contains(skillToAdd)){
-                    if(skillToAdd.getIsStrain() && currentBuild>=3) {
+                    if(currentBuild>skillToAdd.getBuildCost()){
                         selectedSkills.add(skillToAdd);
-                        currentBuild = currentBuild-3;
+                        currentBuild = currentBuild-skillToAdd.getBuildCost();
                         charBuild.setText(String.valueOf(currentBuild));
-                    }else if(currentBuild>0){
-                        //TODO check cost of skill from profession, check if sheet has enough available build then add skill & subtract build
-                        selectedSkills.add(skillToAdd);
                     }
                 }
 
@@ -302,7 +306,6 @@ public class CharacterNewActivity extends AppCompatActivity {
     }
 
     public void updateAvailableSkillList(final Context context, String profSkills, String strainSkills, Boolean strainFlag){
-        isStrainSkill = strainFlag;
         List<Skill> incProfSkills = SkillList.getSkillsByName(profSkills);
         List<Skill> incStrainSkills = SkillList.getSkillsByName(strainSkills);
         final List<Skill> newDisplayedSkills = new ArrayList<>();
@@ -312,6 +315,10 @@ public class CharacterNewActivity extends AppCompatActivity {
                 if(incStrainSkills.get(i).getName().equals(incProfSkills.get(j).getName())){
                     incProfSkills.remove(j);
                     break;
+                }else{
+                    String[] profSkillCost = charProfession.getSkillCost().split(",");
+                    Integer skillBuild = Integer.parseInt(profSkillCost[j]);
+                    incProfSkills.get(j).setBuildCost(skillBuild);
                 }
             }
         }
@@ -341,13 +348,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                         checkBoxStrainSkill.setChecked(true);
                     }else{
                         checkBoxStrainSkill.setVisibility(View.INVISIBLE);
-                        String[] allProfSkills = charProfession.getSkills().split(",");
-                        String[] profSkillCost = charProfession.getSkillCost().split(",");
-                        for(int i=0;i<allProfSkills.length;i++){
-                            if(allProfSkills[i].equals(newDisplayedSkills.get(position).getName())){
-                                textViewChkBoxLabel.setText("Build: "+profSkillCost[i]);
-                            }
-                        }
+                        textViewChkBoxLabel.setText("Build: "+ newDisplayedSkills.get(position).getBuildCost());
                     }
 
                     return view;
