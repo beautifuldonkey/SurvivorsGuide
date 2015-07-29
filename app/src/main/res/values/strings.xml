@@ -41,5 +41,6 @@
     <string name="character_infection">Infection: </string>
     <string name="character_body">Body: </string>
     <string name="character_mind">Mind: </string>
+    <string name="character_build">Build: </string>
 
 </resources>

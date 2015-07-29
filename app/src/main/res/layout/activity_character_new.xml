@@ -31,16 +31,31 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/newCharacterBuildLabel"
+            android:text="@string/character_build"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/newCharacterBuild"
             android:text="13"
-            android:layout_alignParentLeft="true"
+            android:layout_toRightOf="@+id/newCharacterBuildLabel"
             android:layout_alignParentTop="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/newCharacterInfectionLabel"
+            android:text="@string/character_infection"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/newCharacterBuild" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/newCharacterInfection"
             android:text="0"
-            android:layout_alignParentLeft="true"
+            android:layout_toRightOf="@+id/newCharacterInfectionLabel"
             android:layout_below="@+id/newCharacterBuild" />
 
         <Button
@@ -53,9 +68,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/newCharacterBodyLabel"
+            android:text="@string/character_body"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/newCharacterInfection" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/newCharacterBody"
             android:text="0"
-            android:layout_toRightOf="@+id/btn_newCharLessBody"
+            android:layout_toRightOf="@+id/newCharacterBodyLabel"
             android:layout_below="@+id/newCharacterInfection" />
         <Button
             android:layout_width="50dp"
@@ -75,9 +97,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/newCharacterMindLabel"
+            android:text="@string/character_mind"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/btn_newCharLessBody" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/newCharacterMind"
             android:text="0"
-            android:layout_toRightOf="@+id/btn_newCharLessMind"
+            android:layout_toRightOf="@+id/newCharacterMindLabel"
             android:layout_below="@+id/btn_newCharLessBody" />
         <Button
             android:layout_width="50dp"
