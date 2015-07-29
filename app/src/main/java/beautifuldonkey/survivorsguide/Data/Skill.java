@@ -14,13 +14,17 @@ public class Skill implements Parcelable {
     private String description;
     private Boolean isStrain;
     private int buildCost;
+    private int currRank;
+    private int availRank;
 
-    public Skill (String skillName, int cost, String desc, Boolean isStrainSkill, int build){
+    public Skill (String skillName, int cost, String desc, Boolean isStrainSkill, int build, int currentRank, int availableRank){
         this.name = skillName;
         this.mpCost = cost;
         this.description = desc;
         this.isStrain = isStrainSkill;
         this.buildCost = build;
+        this.currRank = currentRank;
+        this.availRank = availableRank;
     }
 
     public Skill (Parcel source){
@@ -29,6 +33,8 @@ public class Skill implements Parcelable {
         description = source.readString();
         isStrain = source.readByte() !=0;
         buildCost = source.readInt();
+        currRank = source.readInt();
+        availRank = source.readInt();
     }
 
     @Override
@@ -38,6 +44,8 @@ public class Skill implements Parcelable {
         dest.writeString(description);
         dest.writeByte((byte) (isStrain ? 1 : 0));
         dest.writeInt(buildCost);
+        dest.writeInt(currRank);
+        dest.writeInt(availRank);
     }
 
     @Override
@@ -56,6 +64,22 @@ public class Skill implements Parcelable {
             return new Skill[size];
         }
     };
+
+    public int getCurrRank() {
+        return currRank;
+    }
+
+    public void setCurrRank(int currRank) {
+        this.currRank = currRank;
+    }
+
+    public int getAvailRank() {
+        return availRank;
+    }
+
+    public void setAvailRank(int availRank) {
+        this.availRank = availRank;
+    }
 
     public int getBuildCost() {
         return buildCost;
