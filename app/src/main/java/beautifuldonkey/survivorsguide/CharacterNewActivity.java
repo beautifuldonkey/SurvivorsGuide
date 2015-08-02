@@ -325,7 +325,7 @@ public class CharacterNewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Skill skillToAdd = (Skill) availSkills.getItemAtPosition(position);
                 Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
-                if(currentBuild>skillToAdd.getBuildCost()){
+                if(currentBuild>=skillToAdd.getBuildCost()){
                     if(selectedSkills.contains(skillToAdd)) {
                         for (int i = 0; i < selectedSkills.size(); i++) {
                             if (selectedSkills.get(i).getName().equals(skillToAdd.getName())) {
