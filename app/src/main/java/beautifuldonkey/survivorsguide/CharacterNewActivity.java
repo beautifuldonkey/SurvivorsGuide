@@ -45,7 +45,7 @@ public class CharacterNewActivity extends AppCompatActivity {
     Profession charProfession;
     Strain charStrain;
     ArrayAdapter<Skill> availSkillAdapter;
-    ArrayAdapter<Skill> displaySkillAdapter;
+    ArrayAdapter<Skill> selectedSkillAdapter;
     String strainSkills = "";
     String profSkills = "";
     List<Skill> selectedSkills = new ArrayList<>();
@@ -206,7 +206,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 charMind.setText(String.valueOf(charStrain.getMind()));
                 if(!selectedSkills.isEmpty()){
                     selectedSkills.clear();
-                    displaySkillAdapter.notifyDataSetChanged();
+                    selectedSkillAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -238,7 +238,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 updateAvailableSkillList(context, profSkills, strainSkills, false);
                 if(!selectedSkills.isEmpty()){
                     selectedSkills.clear();
-                    displaySkillAdapter.notifyDataSetChanged();
+                    selectedSkillAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -275,7 +275,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 }else{
                     skillToRemove.setCurrRank(skillToRemove.getCurrRank()-1);
                 }
-                displaySkillAdapter.notifyDataSetChanged();
+                selectedSkillAdapter.notifyDataSetChanged();
                 currentBuild = currentBuild + skillToRemove.getBuildCost();
                 charBuild.setText(String.valueOf(currentBuild));
             }
@@ -304,8 +304,8 @@ public class CharacterNewActivity extends AppCompatActivity {
                     charBuild.setText(String.valueOf(currentBuild));
                 }
 
-                if(displaySkillAdapter == null){
-                    displaySkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, selectedSkills){
+                if(selectedSkillAdapter == null){
+                    selectedSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, selectedSkills){
                         @Override
                         public View getView(int position, View convertView, ViewGroup parent) {
                             LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -330,9 +330,9 @@ public class CharacterNewActivity extends AppCompatActivity {
                             return view;
                         }
                     };
-                    displayedSkills.setAdapter(displaySkillAdapter);
+                    displayedSkills.setAdapter(selectedSkillAdapter);
                 }else{
-                    displaySkillAdapter.notifyDataSetChanged();
+                    selectedSkillAdapter.notifyDataSetChanged();
                 }
             }
         });
