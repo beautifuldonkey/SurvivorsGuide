@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -244,6 +245,22 @@ public class CharacterNewActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        //
+        // Second Profession Drop Down
+        //
+        final Spinner secondProfDropDown = (Spinner) findViewById(R.id.secondProfessionDropDown);
+        CheckBox secondProfToggle = (CheckBox) findViewById(R.id.addSecondProfession);
+        secondProfToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                int visible = View.INVISIBLE;
+                if (isChecked){
+                    visible = View.VISIBLE;
+                }
+                secondProfDropDown.setVisibility(visible);
             }
         });
 
