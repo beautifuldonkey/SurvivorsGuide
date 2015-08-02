@@ -48,6 +48,7 @@ public class CharacterNewActivity extends AppCompatActivity {
     ArrayAdapter<Skill> selectedSkillAdapter;
     String strainSkills = "";
     String profSkills = "";
+    String secondProfSkills = "";
     List<Skill> selectedSkills = new ArrayList<>();
     ListView availSkills;
 
@@ -251,7 +252,11 @@ public class CharacterNewActivity extends AppCompatActivity {
         //
         // Second Profession Drop Down
         //
+
         final Spinner secondProfDropDown = (Spinner) findViewById(R.id.secondProfessionDropDown);
+        final ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, professionNames);
+        secondProfDropDown.setAdapter(secondProfAdapter);
+
         CheckBox secondProfToggle = (CheckBox) findViewById(R.id.addSecondProfession);
         secondProfToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
