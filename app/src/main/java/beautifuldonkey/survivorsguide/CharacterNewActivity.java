@@ -262,8 +262,14 @@ public class CharacterNewActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int visible = View.INVISIBLE;
-                if (isChecked){
+                Integer availBuild = Integer.parseInt(charBuild.getText().toString());
+                if (isChecked && availBuild>=10){
+                    availBuild = availBuild-10;
+                    charBuild.setText(String.valueOf(availBuild));
                     visible = View.VISIBLE;
+                }else if(!isChecked){
+                    availBuild = availBuild+10;
+                    charBuild.setText(String.valueOf(availBuild));
                 }
                 secondProfDropDown.setVisibility(visible);
             }
