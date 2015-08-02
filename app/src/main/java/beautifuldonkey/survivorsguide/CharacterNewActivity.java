@@ -43,6 +43,7 @@ import beautifuldonkey.survivorsguide.Data.StrainList;
 public class CharacterNewActivity extends AppCompatActivity {
 
     Profession charProfession;
+    Profession secondCharProfession;
     Strain charStrain;
     ArrayAdapter<Skill> availSkillAdapter;
     ArrayAdapter<Skill> selectedSkillAdapter;
@@ -51,6 +52,7 @@ public class CharacterNewActivity extends AppCompatActivity {
     String secondProfSkills = "";
     List<Skill> selectedSkills = new ArrayList<>();
     ListView availSkills;
+    CheckBox secondProfToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,7 +202,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 if(charStrain != null){
                     strainSkills = charStrain.getSkills();
                 }
-                updateAvailableSkillList(context, profSkills, strainSkills, true);
+                updateAvailableSkillList(context, profSkills, strainSkills, secondProfSkills);
                 charBuild.setText("13");
                 charInfection.setText(String.valueOf(charStrain.getInfection()));
                 charBody.setText(String.valueOf(charStrain.getBody()));
@@ -236,7 +238,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 if (charProfession != null) {
                     profSkills = charProfession.getSkills();
                 }
-                updateAvailableSkillList(context, profSkills, strainSkills, false);
+                updateAvailableSkillList(context, profSkills, strainSkills, secondProfSkills);
                 if(!selectedSkills.isEmpty()){
                     selectedSkills.clear();
                     selectedSkillAdapter.notifyDataSetChanged();
@@ -256,8 +258,28 @@ public class CharacterNewActivity extends AppCompatActivity {
         final Spinner secondProfDropDown = (Spinner) findViewById(R.id.secondProfessionDropDown);
         final ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, professionNames);
         secondProfDropDown.setAdapter(secondProfAdapter);
+        secondProfDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                secondCharProfession = professions.get(position);
+                if (secondCharProfession != null) {
+                    secondProfSkills = secondCharProfession.getSkills();
+                }
+                updateAvailableSkillList(context, profSkills, strainSkills, secondProfSkills);
+                if(!selectedSkills.isEmpty()){
+                    charBuild.setText("13");
+                    selectedSkills.clear();
+                    selectedSkillAdapter.notifyDataSetChanged();
+                }
+            }
 
-        CheckBox secondProfToggle = (CheckBox) findViewById(R.id.addSecondProfession);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        secondProfToggle = (CheckBox) findViewById(R.id.addSecondProfession);
         secondProfToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -267,10 +289,15 @@ public class CharacterNewActivity extends AppCompatActivity {
                     availBuild = availBuild-10;
                     charBuild.setText(String.valueOf(availBuild));
                     visible = View.VISIBLE;
+                    if (secondCharProfession != null) {
+                        secondProfSkills = secondCharProfession.getSkills();
+                    }
                 }else if(!isChecked){
                     availBuild = availBuild+10;
                     charBuild.setText(String.valueOf(availBuild));
+                    secondProfSkills = "";
                 }
+                updateAvailableSkillList(context, profSkills, strainSkills, secondProfSkills);
                 secondProfDropDown.setVisibility(visible);
             }
         });
@@ -349,26 +376,53 @@ public class CharacterNewActivity extends AppCompatActivity {
         });
     }
 
-    public void updateAvailableSkillList(final Context context, String profSkills, String strainSkills, Boolean strainFlag){
+    public void updateAvailableSkillList(final Context context, String profSkills, String strainSkills, String secondProfSkills){
         List<Skill> incProfSkills = SkillList.getSkillsByName(profSkills);
+        List<Skill> incSecondProfSkills = SkillList.getSkillsByName(secondProfSkills);
         List<Skill> incStrainSkills = SkillList.getSkillsByName(strainSkills);
         final List<Skill> newDisplayedSkills = new ArrayList<>();
-        for(int i=0; i<incStrainSkills.size(); i++){
-            incStrainSkills.get(i).setIsStrain(true);
-            for(int j=0; j<incProfSkills.size(); j++){
-                if(incStrainSkills.get(i).getName().equals(incProfSkills.get(j).getName())){
-                    incProfSkills.remove(j);
-                    break;
-                }else{
-                    String[] profSkillCost = charProfession.getSkillCost().split(",");
-                    Integer skillBuild = Integer.parseInt(profSkillCost[j]);
-                    incProfSkills.get(j).setBuildCost(skillBuild);
+        if(secondProfToggle.isChecked()){
+            for(int i=0; i<incStrainSkills.size(); i++){
+                incStrainSkills.get(i).setIsStrain(true);
+                for(int j=0; j<incProfSkills.size(); j++){
+                    if(incStrainSkills.get(i).getName().equals(incProfSkills.get(j).getName())){
+                        incProfSkills.remove(j);
+                        break;
+                    }else{
+                        for(int k=0; k<incSecondProfSkills.size(); k++){
+                            String[] profSkillCost = charProfession.getSkillCost().split(",");
+                            Integer skillBuild = Integer.parseInt(profSkillCost[j]);
+                            if(incProfSkills.get(j).getName().equals(incSecondProfSkills.get(k).getName())){
+                                if(incProfSkills.get(j).getBuildCost()>incSecondProfSkills.get(k).getBuildCost()){
+                                    skillBuild = incSecondProfSkills.get(k).getBuildCost();
+                                }
+                                incSecondProfSkills.remove(k);
+                            }
+                            incProfSkills.get(j).setBuildCost(skillBuild);
+                        }
+                    }
+                }
+            }
+        }else{
+            for(int i=0; i<incStrainSkills.size(); i++){
+                incStrainSkills.get(i).setIsStrain(true);
+                for(int j=0; j<incProfSkills.size(); j++){
+                    if(incStrainSkills.get(i).getName().equals(incProfSkills.get(j).getName())){
+                        incProfSkills.remove(j);
+                        break;
+                    }else{
+                        String[] profSkillCost = charProfession.getSkillCost().split(",");
+                        Integer skillBuild = Integer.parseInt(profSkillCost[j]);
+                        incProfSkills.get(j).setBuildCost(skillBuild);
+                    }
                 }
             }
         }
 
+
         newDisplayedSkills.addAll(incStrainSkills);
         newDisplayedSkills.addAll(incProfSkills);
+        newDisplayedSkills.addAll(incSecondProfSkills);
 
         if(availSkillAdapter==null) {
             availSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, newDisplayedSkills) {
