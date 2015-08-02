@@ -136,6 +136,30 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/strainDropDown"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/secondProfessionLabel"
+        android:text="@string/character_second_profession"
+        android:layout_below="@+id/professionDropDown"
+        android:layout_toLeftOf="@+id/addSecondProfession"/>
+    <CheckBox
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/addSecondProfession"
+        android:checked="false"
+        android:layout_below="@+id/professionDropDown"
+        android:layout_toLeftOf="@+id/secondProfessionDropDown"/>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/secondProfessionDropDown"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/professionDropDown"
+        android:visibility="invisible"/>
+
     <ListView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -146,7 +170,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/availableSkills"
-        android:layout_below="@+id/professionDropDown"
+        android:layout_below="@+id/secondProfessionDropDown"
         android:layout_alignParentRight="true"/>
 
     <Button
