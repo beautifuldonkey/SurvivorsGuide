@@ -253,7 +253,11 @@ public class CharacterNewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Skill skillToRemove = selectedSkills.get(position);
                 Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
-                selectedSkills.remove(position);
+                if(skillToRemove.getCurrRank()==1){
+                    selectedSkills.remove(position);
+                }else{
+                    skillToRemove.setCurrRank(skillToRemove.getCurrRank()-1);
+                }
                 displaySkillAdapter.notifyDataSetChanged();
                 currentBuild = currentBuild + skillToRemove.getBuildCost();
                 charBuild.setText(String.valueOf(currentBuild));
@@ -266,12 +270,21 @@ public class CharacterNewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Skill skillToAdd = (Skill) availSkills.getItemAtPosition(position);
                 Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
-                if(!selectedSkills.contains(skillToAdd)){
-                    if(currentBuild>skillToAdd.getBuildCost()){
+                if(currentBuild>skillToAdd.getBuildCost()){
+                    if(selectedSkills.contains(skillToAdd)) {
+                        for (int i = 0; i < selectedSkills.size(); i++) {
+                            if (selectedSkills.get(i).getName().equals(skillToAdd.getName())) {
+                                Skill existingSkill = selectedSkills.get(i);
+                                if (existingSkill.getAvailRank() > existingSkill.getCurrRank()) {
+                                    existingSkill.setCurrRank(existingSkill.getCurrRank() + 1);
+                                }
+                            }
+                        }
+                    }else{
                         selectedSkills.add(skillToAdd);
-                        currentBuild = currentBuild-skillToAdd.getBuildCost();
-                        charBuild.setText(String.valueOf(currentBuild));
                     }
+                    currentBuild = currentBuild-skillToAdd.getBuildCost();
+                    charBuild.setText(String.valueOf(currentBuild));
                 }
 
                 if(displaySkillAdapter == null){
@@ -291,9 +304,12 @@ public class CharacterNewActivity extends AppCompatActivity {
                             CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
                             checkBoxStrainSkill.setTextColor(Color.BLACK);
 
-                            if(selectedSkills.get(position).getIsStrain()){
-                                checkBoxStrainSkill.setChecked(true);
-                            }
+//                            if(selectedSkills.get(position).getIsStrain()){
+//                                checkBoxStrainSkill.setChecked(true);
+//                            }
+                            checkBoxStrainSkill.setVisibility(View.INVISIBLE);
+                            textViewChkBoxLabel.setText("Rank: "+ selectedSkills.get(position).getCurrRank());
+
                             return view;
                         }
                     };
