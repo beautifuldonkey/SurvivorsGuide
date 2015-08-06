@@ -12,19 +12,29 @@ public class PlayerCharacter {
     private String health;
     private String mind;
     private String strain;
+    private String infection;
     private String professions;
     private String profSkills;
     private String strainSkills;
 
     public PlayerCharacter (String charName, String charHealth, String charMind, String charStrain
-            , String charProfs, String profSkills, String strainSkills){
+            , String charInfection, String charProfs, String profSkills, String strainSkills){
         this.name = charName;
         this.health = charHealth;
         this.mind = charMind;
         this.strain = charStrain;
+        this.infection = charInfection;
         this.professions = charProfs;
         this.profSkills = profSkills;
         this.strainSkills = strainSkills;
+    }
+
+    public String getInfection() {
+        return infection;
+    }
+
+    public void setInfection(String infection) {
+        this.infection = infection;
     }
 
     public String getName() {

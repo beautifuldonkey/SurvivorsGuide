@@ -1,5 +1,6 @@
 package beautifuldonkey.survivorsguide;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,9 @@ import org.json.JSONArray;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 
+import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
+import beautifuldonkey.survivorsguide.Manager.CharacterManager;
+
 
 public class CharacterExistingActivity extends AppCompatActivity {
 
@@ -26,6 +30,7 @@ public class CharacterExistingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_existing);
         Log.d("READCHAR", "initial open");
+        final Context context = getApplicationContext();
 
         String[] availFiles = fileList();
 
@@ -35,68 +40,29 @@ public class CharacterExistingActivity extends AppCompatActivity {
         existingFiles.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                try {
-                    String[] files = fileList();
-                    FileInputStream fis = openFileInput(files[position]);
-                    BufferedInputStream bis = new BufferedInputStream(fis);
-                    StringBuffer b = new StringBuffer();
-                    Log.d("READCHAR", "file opened & buffers created");
-                    while (bis.available() != 0) {
-                        char c = (char) bis.read();
-                        b.append(c);
-                    }
-                    bis.close();
-                    fis.close();
-                    Log.d("READCHAR", "buffers closed");
 
-                    JSONArray data = new JSONArray(b.toString());
+                PlayerCharacter loadedCharacter = CharacterManager.loadCharacter(position, context);
 
-                    Log.d("READCHAR", "building string");
-                    StringBuffer charBuffer = new StringBuffer();
-                    String charName = "";
-                    String charStrain = "";
-                    String charProfession = "";
-                    String charInfection = "";
-                    int charBody = 0;
-                    int charMind = 0;
-                    String charStrainSkills = "";
-                    String charProfSkills = "";
-                    for (int i = 0; i < data.length(); i++) {
+                //displaying existing character attributes
+                TextView existingCharName = (TextView) findViewById(R.id.existingCharName);
+                existingCharName.setText(loadedCharacter.getName());
 
-                        charName = data.getJSONObject(i).getString("name");
-                        //charInfection = data.getJSONObject(i).getInt("infection");
-                        charBody = data.getJSONObject(i).getInt("body");
-                        charMind = data.getJSONObject(i).getInt("mind");
-                        charStrain = data.getJSONObject(i).getString("strain");
-                        charProfession = data.getJSONObject(i).getString("professions");
-                    }
-                    Log.d("READCHAR", "built string now displaying");
+                TextView existingCharStrain = (TextView) findViewById(R.id.existingCharStrain);
+                existingCharStrain.setText(loadedCharacter.getStrain());
 
-                    //displaying existing character attributes
-                    TextView existingCharName = (TextView) findViewById(R.id.existingCharName);
-                    existingCharName.setText(charName);
+                TextView existingCharProfessions = (TextView) findViewById(R.id.existingCharProfession);
+                existingCharProfessions.setText(loadedCharacter.getProfessions());
 
-                    TextView existingCharStrain = (TextView) findViewById(R.id.existingCharStrain);
-                    existingCharStrain.setText(charStrain);
+                TextView existingCharInfection = (TextView) findViewById(R.id.existingCharInfection);
+                existingCharInfection.setText(loadedCharacter.getInfection());
 
-                    TextView existingCharProfessions = (TextView) findViewById(R.id.existingCharProfession);
-                    existingCharProfessions.setText(charProfession);
+                TextView existingCharBody = (TextView) findViewById(R.id.existingCharBody);
+                existingCharBody.setText(loadedCharacter.getHealth());
 
-                    TextView existingCharInfection = (TextView) findViewById(R.id.existingCharInfection);
-                    existingCharInfection.setText(charInfection);
+                TextView existingCharMind = (TextView) findViewById(R.id.existingCharMind);
+                existingCharMind.setText(loadedCharacter.getMind());
 
-                    TextView existingCharBody = (TextView) findViewById(R.id.existingCharBody);
-                    existingCharBody.setText(Integer.toString(charBody));
-
-                    TextView existingCharMind = (TextView) findViewById(R.id.existingCharMind);
-                    existingCharMind.setText(Integer.toString(charMind));
-
-                    ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
-
-
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
+                ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
             }
 
             @Override
