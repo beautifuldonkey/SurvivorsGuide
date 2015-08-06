@@ -6,7 +6,7 @@ import java.util.List;
  * Defines Character JSON structure saved to internal storage
  * Created by user on 6/15/2015.
  */
-public class Character {
+public class PlayerCharacter {
 
     private String name;
     private String health;
@@ -16,7 +16,7 @@ public class Character {
     private String profSkills;
     private String strainSkills;
 
-    public Character (String charName, String charHealth, String charMind, String charStrain
+    public PlayerCharacter (String charName, String charHealth, String charMind, String charStrain
             , String charProfs, String profSkills, String strainSkills){
         this.name = charName;
         this.health = charHealth;

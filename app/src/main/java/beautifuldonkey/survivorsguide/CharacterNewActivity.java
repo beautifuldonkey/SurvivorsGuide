@@ -32,12 +32,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
 
+import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
 import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.ProfessionList;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.StrainList;
+import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 
 public class CharacterNewActivity extends AppCompatActivity {
@@ -142,45 +144,8 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                JSONArray data = new JSONArray();
-                JSONObject character;
-                String charProfSkills = "";
-                String charStrainSkills = "";
-                String characterName = charName.getText().toString();
-                for(int i=0; i<selectedSkills.size(); i++){
-                    Skill skill = selectedSkills.get(i);
-                    if(skill.getIsStrain()){
-                        charStrainSkills = skill.getName()+",";
-                    }else{
-                        charProfSkills = skill.getName()+",";
-                    }
-                }
-
-                character = new JSONObject();
-                try {
-                    character.put("name", characterName);
-                    character.put("body", charStrain.getBody());
-                    character.put("mind", charStrain.getMind());
-                    character.put("strain", charStrain.getName());
-                    character.put("professions", charProfession.getName());
-                    character.put("profSkills", charProfSkills);
-                    character.put("strainSkills", charStrainSkills);
-                    data.put(character);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                String text = data.toString();
-
-                try {
-                    FileOutputStream fos = openFileOutput(characterName, MODE_PRIVATE);
-                    fos.write(text.getBytes());
-                    fos.close();
-                    Log.d("FILEWRITTEN", "File written to local storage!\n"+data.toString());
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
+                PlayerCharacter newCharacter = new PlayerCharacter("name","health","mind","strain","professions","profSkills","strainSkills");
+                CharacterManager.saveCharacter(newCharacter, context);
             }
         });
 
