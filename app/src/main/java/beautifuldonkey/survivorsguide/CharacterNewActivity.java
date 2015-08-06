@@ -144,7 +144,7 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PlayerCharacter newCharacter = new PlayerCharacter("name","health","mind","strain","professions","profSkills","strainSkills");
+                PlayerCharacter newCharacter = new PlayerCharacter("name","health","mind","strain","infection","professions","profSkills","strainSkills");
                 CharacterManager.saveCharacter(newCharacter, context);
             }
         });
