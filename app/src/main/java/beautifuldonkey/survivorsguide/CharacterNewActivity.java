@@ -46,6 +46,7 @@ public class CharacterNewActivity extends AppCompatActivity {
 
     Profession charProfession;
     Profession secondCharProfession;
+    Profession thirdCharProfession;
     Strain charStrain;
     ArrayAdapter<Skill> availSkillAdapter;
     ArrayAdapter<Skill> selectedSkillAdapter;
@@ -53,6 +54,7 @@ public class CharacterNewActivity extends AppCompatActivity {
     String profSkills = "";
     String secondProfSkills = "";
     List<Skill> selectedSkills = new ArrayList<>();
+    List<Skill> availableSkills = new ArrayList<>();
     ListView availSkills;
     CheckBox secondProfToggle;
 
@@ -167,7 +169,10 @@ public class CharacterNewActivity extends AppCompatActivity {
                 if(charStrain != null){
                     strainSkills = charStrain.getSkills();
                 }
-                updateAvailableSkillList(context, profSkills, strainSkills, secondProfSkills);
+                availableSkills.clear();
+                availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
+                availSkillAdapter.addAll(availableSkills);
+                availSkillAdapter.notifyDataSetChanged();
                 charBuild.setText("13");
                 charInfection.setText(String.valueOf(charStrain.getInfection()));
                 charBody.setText(String.valueOf(charStrain.getBody()));
@@ -203,7 +208,10 @@ public class CharacterNewActivity extends AppCompatActivity {
                 if (charProfession != null) {
                     profSkills = charProfession.getSkills();
                 }
-                updateAvailableSkillList(context, profSkills, strainSkills, secondProfSkills);
+                availableSkills.clear();
+                availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
+                availSkillAdapter.addAll(availableSkills);
+                availSkillAdapter.notifyDataSetChanged();
                 if(!selectedSkills.isEmpty()){
                     selectedSkills.clear();
                     selectedSkillAdapter.notifyDataSetChanged();
@@ -230,7 +238,10 @@ public class CharacterNewActivity extends AppCompatActivity {
                 if (secondCharProfession != null) {
                     secondProfSkills = secondCharProfession.getSkills();
                 }
-                updateAvailableSkillList(context, profSkills, strainSkills, secondProfSkills);
+                availableSkills.clear();
+                availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
+                availSkillAdapter.addAll(availableSkills);
+                availSkillAdapter.notifyDataSetChanged();
                 if(!selectedSkills.isEmpty()){
                     charBuild.setText("13");
                     selectedSkills.clear();
@@ -250,19 +261,22 @@ public class CharacterNewActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int visible = View.INVISIBLE;
                 Integer availBuild = Integer.parseInt(charBuild.getText().toString());
-                if (isChecked && availBuild>=10){
-                    availBuild = availBuild-10;
+                if (isChecked && availBuild >= 10) {
+                    availBuild = availBuild - 10;
                     charBuild.setText(String.valueOf(availBuild));
                     visible = View.VISIBLE;
                     if (secondCharProfession != null) {
                         secondProfSkills = secondCharProfession.getSkills();
                     }
-                }else if(!isChecked){
-                    availBuild = availBuild+10;
+                } else if (!isChecked) {
+                    availBuild = availBuild + 10;
                     charBuild.setText(String.valueOf(availBuild));
                     secondProfSkills = "";
                 }
-                updateAvailableSkillList(context, profSkills, strainSkills, secondProfSkills);
+                availableSkills.clear();
+                availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
+                availSkillAdapter.addAll(availableSkills);
+                availSkillAdapter.notifyDataSetChanged();
                 secondProfDropDown.setVisibility(visible);
             }
         });
@@ -285,6 +299,36 @@ public class CharacterNewActivity extends AppCompatActivity {
         });
 
         availSkills = (ListView) findViewById(R.id.availableSkills);
+        availSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, availableSkills) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+                View view = inflater.inflate(R.layout.item_character_skill, null);
+
+                TextView textView = (TextView) view.findViewById(R.id.skillName);
+                textView.setTextColor(Color.BLACK);
+
+                TextView textViewChkBoxLabel = (TextView) view.findViewById(R.id.skillStrainLabel);
+                textViewChkBoxLabel.setTextColor(Color.BLACK);
+
+                CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
+                checkBoxStrainSkill.setTextColor(Color.BLACK);
+
+                if(availableSkills.size()>position){
+                    textView.setText(availableSkills.get(position).getName());
+                    if(availableSkills.get(position).getIsStrain()){
+                        checkBoxStrainSkill.setChecked(true);
+                    }else{
+                        checkBoxStrainSkill.setVisibility(View.INVISIBLE);
+                        textViewChkBoxLabel.setText("Build: "+ availableSkills.get(position).getBuildCost());
+                    }
+                }
+
+                return view;
+            }
+        };
+        availSkills.setAdapter(availSkillAdapter);
         availSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -341,88 +385,88 @@ public class CharacterNewActivity extends AppCompatActivity {
         });
     }
 
-    public void updateAvailableSkillList(final Context context, String profSkills, String strainSkills, String secondProfSkills){
-        List<Skill> incProfSkills = SkillList.getSkillsByName(profSkills);
-        List<Skill> incSecondProfSkills = SkillList.getSkillsByName(secondProfSkills);
-        List<Skill> incStrainSkills = SkillList.getSkillsByName(strainSkills);
-        final List<Skill> newDisplayedSkills = new ArrayList<>();
-        if(secondProfToggle.isChecked()){
-            for(int i=0; i<incStrainSkills.size(); i++){
-                incStrainSkills.get(i).setIsStrain(true);
-                for(int j=0; j<incProfSkills.size(); j++){
-                    if(incStrainSkills.get(i).getName().equals(incProfSkills.get(j).getName())){
-                        incProfSkills.remove(j);
-                        break;
-                    }else{
-                        for(int k=0; k<incSecondProfSkills.size(); k++){
-                            String[] profSkillCost = charProfession.getSkillCost().split(",");
-                            Integer skillBuild = Integer.parseInt(profSkillCost[j]);
-                            if(incProfSkills.get(j).getName().equals(incSecondProfSkills.get(k).getName())){
-                                if(incProfSkills.get(j).getBuildCost()>incSecondProfSkills.get(k).getBuildCost()){
-                                    skillBuild = incSecondProfSkills.get(k).getBuildCost();
-                                }
-                                incSecondProfSkills.remove(k);
-                            }
-                            incProfSkills.get(j).setBuildCost(skillBuild);
-                        }
-                    }
-                }
-            }
-        }else{
-            for(int i=0; i<incStrainSkills.size(); i++){
-                incStrainSkills.get(i).setIsStrain(true);
-                for(int j=0; j<incProfSkills.size(); j++){
-                    if(incStrainSkills.get(i).getName().equals(incProfSkills.get(j).getName())){
-                        incProfSkills.remove(j);
-                        break;
-                    }else{
-                        String[] profSkillCost = charProfession.getSkillCost().split(",");
-                        Integer skillBuild = Integer.parseInt(profSkillCost[j]);
-                        incProfSkills.get(j).setBuildCost(skillBuild);
-                    }
-                }
-            }
-        }
-
-
-        newDisplayedSkills.addAll(incStrainSkills);
-        newDisplayedSkills.addAll(incProfSkills);
-        newDisplayedSkills.addAll(incSecondProfSkills);
-
-        if(availSkillAdapter==null) {
-            availSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, newDisplayedSkills) {
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-
-                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View view = inflater.inflate(R.layout.item_character_skill, null);
-
-                    TextView textView = (TextView) view.findViewById(R.id.skillName);
-                    textView.setTextColor(Color.BLACK);
-                    textView.setText(newDisplayedSkills.get(position).getName());
-
-                    TextView textViewChkBoxLabel = (TextView) view.findViewById(R.id.skillStrainLabel);
-                    textViewChkBoxLabel.setTextColor(Color.BLACK);
-
-                    CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
-                    checkBoxStrainSkill.setTextColor(Color.BLACK);
-
-                    if(newDisplayedSkills.get(position).getIsStrain()){
-                        checkBoxStrainSkill.setChecked(true);
-                    }else{
-                        checkBoxStrainSkill.setVisibility(View.INVISIBLE);
-                        textViewChkBoxLabel.setText("Build: "+ newDisplayedSkills.get(position).getBuildCost());
-                    }
-
-                    return view;
-                }
-            };
-            availSkills.setAdapter(availSkillAdapter);
-        }else{
-            availSkillAdapter.clear();
-            availSkillAdapter.addAll(newDisplayedSkills);
-            availSkillAdapter.notifyDataSetChanged();
-        }
+    public void updateAvailableSkillList23(final Context context, String profSkills, String strainSkills, String secondProfSkills){
+//        List<Skill> incProfSkills = SkillList.getSkillsByName(profSkills);
+//        List<Skill> incSecondProfSkills = SkillList.getSkillsByName(secondProfSkills);
+//        List<Skill> incStrainSkills = SkillList.getSkillsByName(strainSkills);
+//        final List<Skill> newDisplayedSkills = new ArrayList<>();
+//        if(secondProfToggle.isChecked()){
+//            for(int i=0; i<incStrainSkills.size(); i++){
+//                incStrainSkills.get(i).setIsStrain(true);
+//                for(int j=0; j<incProfSkills.size(); j++){
+//                    if(incStrainSkills.get(i).getName().equals(incProfSkills.get(j).getName())){
+//                        incProfSkills.remove(j);
+//                        break;
+//                    }else{
+//                        for(int k=0; k<incSecondProfSkills.size(); k++){
+//                            String[] profSkillCost = charProfession.getSkillCost().split(",");
+//                            Integer skillBuild = Integer.parseInt(profSkillCost[j]);
+//                            if(incProfSkills.get(j).getName().equals(incSecondProfSkills.get(k).getName())){
+//                                if(incProfSkills.get(j).getBuildCost()>incSecondProfSkills.get(k).getBuildCost()){
+//                                    skillBuild = incSecondProfSkills.get(k).getBuildCost();
+//                                }
+//                                incSecondProfSkills.remove(k);
+//                            }
+//                            incProfSkills.get(j).setBuildCost(skillBuild);
+//                        }
+//                    }
+//                }
+//            }
+//        }else{
+//            for(int i=0; i<incStrainSkills.size(); i++){
+//                incStrainSkills.get(i).setIsStrain(true);
+//                for(int j=0; j<incProfSkills.size(); j++){
+//                    if(incStrainSkills.get(i).getName().equals(incProfSkills.get(j).getName())){
+//                        incProfSkills.remove(j);
+//                        break;
+//                    }else{
+//                        String[] profSkillCost = charProfession.getSkillCost().split(",");
+//                        Integer skillBuild = Integer.parseInt(profSkillCost[j]);
+//                        incProfSkills.get(j).setBuildCost(skillBuild);
+//                    }
+//                }
+//            }
+//        }
+//
+//
+//        newDisplayedSkills.addAll(incStrainSkills);
+//        newDisplayedSkills.addAll(incProfSkills);
+//        newDisplayedSkills.addAll(incSecondProfSkills);
+//
+//        if(availSkillAdapter==null) {
+//            availSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, newDisplayedSkills) {
+//                @Override
+//                public View getView(int position, View convertView, ViewGroup parent) {
+//
+//                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+//                    View view = inflater.inflate(R.layout.item_character_skill, null);
+//
+//                    TextView textView = (TextView) view.findViewById(R.id.skillName);
+//                    textView.setTextColor(Color.BLACK);
+//                    textView.setText(newDisplayedSkills.get(position).getName());
+//
+//                    TextView textViewChkBoxLabel = (TextView) view.findViewById(R.id.skillStrainLabel);
+//                    textViewChkBoxLabel.setTextColor(Color.BLACK);
+//
+//                    CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
+//                    checkBoxStrainSkill.setTextColor(Color.BLACK);
+//
+//                    if(newDisplayedSkills.get(position).getIsStrain()){
+//                        checkBoxStrainSkill.setChecked(true);
+//                    }else{
+//                        checkBoxStrainSkill.setVisibility(View.INVISIBLE);
+//                        textViewChkBoxLabel.setText("Build: "+ newDisplayedSkills.get(position).getBuildCost());
+//                    }
+//
+//                    return view;
+//                }
+//            };
+//            availSkills.setAdapter(availSkillAdapter);
+//        }else{
+//            availSkillAdapter.clear();
+//            availSkillAdapter.addAll(newDisplayedSkills);
+//            availSkillAdapter.notifyDataSetChanged();
+//        }
     }
 
     @Override
