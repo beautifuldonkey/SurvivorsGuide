@@ -16,9 +16,10 @@ public class PlayerCharacter {
     private String professions;
     private String profSkills;
     private String strainSkills;
+    private String availBuild;
 
     public PlayerCharacter (String charName, String charHealth, String charMind, String charStrain
-            , String charInfection, String charProfs, String profSkills, String strainSkills){
+            , String charInfection, String charProfs, String profSkills, String strainSkills, String availBuild){
         this.name = charName;
         this.health = charHealth;
         this.mind = charMind;
@@ -27,6 +28,15 @@ public class PlayerCharacter {
         this.professions = charProfs;
         this.profSkills = profSkills;
         this.strainSkills = strainSkills;
+        this.availBuild = availBuild;
+    }
+
+    public String getAvailBuild() {
+        return availBuild;
+    }
+
+    public void setAvailBuild(String availBuild) {
+        this.availBuild = availBuild;
     }
 
     public String getInfection() {

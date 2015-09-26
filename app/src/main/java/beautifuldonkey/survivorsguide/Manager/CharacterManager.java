@@ -129,7 +129,7 @@ public class CharacterManager {
             String[] files = context.fileList();
             FileInputStream fis = context.openFileInput(files[position]);
             BufferedInputStream bis = new BufferedInputStream(fis);
-            StringBuffer b = new StringBuffer();
+            StringBuilder b = new StringBuilder();
             Log.d("READCHAR", "file opened & buffers created");
             while (bis.available() != 0) {
                 char c = (char) bis.read();
@@ -142,7 +142,7 @@ public class CharacterManager {
             JSONArray data = new JSONArray(b.toString());
 
             Log.d("READCHAR", "building string");
-            StringBuffer charBuffer = new StringBuffer();
+            StringBuilder charBuffer = new StringBuilder();
             String charName = "";
             String charStrain = "";
             String charProfession = "";
@@ -151,6 +151,7 @@ public class CharacterManager {
             String charMind = "";
             String charStrainSkills = "";
             String charProfSkills = "";
+            String charAvailBuild = "";
             for (int i = 0; i < data.length(); i++) {
 
                 charName = data.getJSONObject(i).getString("name");
@@ -162,8 +163,8 @@ public class CharacterManager {
             }
             Log.d("READCHAR", "built string now building character");
 
-            characterToLoad = new PlayerCharacter(charName, charBody, charMind,
-                    charStrain, charInfection, charProfession, charProfSkills, charStrainSkills);
+            characterToLoad = new PlayerCharacter(charName, charBody, charMind, charStrain,
+                     charInfection, charProfession, charProfSkills, charStrainSkills, charAvailBuild);
 
         }catch (Exception ex){
             ex.printStackTrace();

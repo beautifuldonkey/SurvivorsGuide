@@ -146,16 +146,24 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PlayerCharacter newCharacter = new PlayerCharacter("name","health","mind","strain","infection","professions","profSkills","strainSkills");
+                PlayerCharacter newCharacter = new PlayerCharacter("name","health","mind","strain","infection","professions","profSkills","strainSkills", "build");
 
+                String professions = charProfession.getName();
+                if(secondCharProfession != null && !secondCharProfession.getName().isEmpty()){
+                    professions = professions + ',' + secondCharProfession.getName();
+                }
+                if(thirdCharProfession != null && !thirdCharProfession.getName().isEmpty()){
+                    professions = professions + ',' + thirdCharProfession.getName();
+                }
                 newCharacter.setName(charName.getText().toString());
                 newCharacter.setInfection(charInfection.getText().toString());
                 newCharacter.setHealth(charBody.getText().toString());
                 newCharacter.setMind(charMind.getText().toString());
                 newCharacter.setStrain(charStrain.getName());
-                newCharacter.setProfessions(charProfession.getName());
+                newCharacter.setProfessions(professions);
                 newCharacter.setProfSkills(profSkills);
                 newCharacter.setStrainSkills(strainSkills);
+                newCharacter.setAvailBuild(charBuild.getText().toString());
 
                 CharacterManager.saveCharacter(newCharacter, context);
             }
