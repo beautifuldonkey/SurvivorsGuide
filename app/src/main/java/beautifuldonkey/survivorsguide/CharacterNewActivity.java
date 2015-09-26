@@ -435,61 +435,6 @@ public class CharacterNewActivity extends AppCompatActivity {
 
             }
         });
-//        availSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Skill skillToAdd = (Skill) availSkills.getItemAtPosition(position);
-//                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
-//                if(currentBuild>=skillToAdd.getBuildCost()){
-//                    if(selectedSkills.contains(skillToAdd)) {
-//                        for (int i = 0; i < selectedSkills.size(); i++) {
-//                            if (selectedSkills.get(i).getName().equals(skillToAdd.getName())) {
-//                                Skill existingSkill = selectedSkills.get(i);
-//                                if (existingSkill.getAvailRank() > existingSkill.getCurrRank()) {
-//                                    existingSkill.setCurrRank(existingSkill.getCurrRank() + 1);
-//                                }
-//                            }
-//                        }
-//                    }else{
-//                        selectedSkills.add(skillToAdd);
-//                    }
-//                    currentBuild = currentBuild-skillToAdd.getBuildCost();
-//                    charBuild.setText(String.valueOf(currentBuild));
-//                }
-//
-//                if(selectedSkillAdapter == null){
-//                    selectedSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, selectedSkills){
-//                        @Override
-//                        public View getView(int position, View convertView, ViewGroup parent) {
-//                            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-//                            View view = inflater.inflate(R.layout.item_character_skill, null);
-//
-//                            TextView textView = (TextView) view.findViewById(R.id.skillName);
-//                            textView.setTextColor(Color.BLACK);
-//                            textView.setText(selectedSkills.get(position).getName());
-//
-//                            TextView textViewChkBoxLabel = (TextView) view.findViewById(R.id.skillStrainLabel);
-//                            textViewChkBoxLabel.setTextColor(Color.BLACK);
-//
-//                            CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
-//                            checkBoxStrainSkill.setTextColor(Color.BLACK);
-//
-////                            if(selectedSkills.get(position).getIsStrain()){
-////                                checkBoxStrainSkill.setChecked(true);
-////                            }
-//                            checkBoxStrainSkill.setVisibility(View.INVISIBLE);
-//                            textViewChkBoxLabel.setText("Rank: "+ selectedSkills.get(position).getCurrRank());
-//
-//                            return view;
-//                        }
-//                    };
-//                    displayedSkills.setAdapter(selectedSkillAdapter);
-//                }else{
-//                    selectedSkillAdapter.notifyDataSetChanged();
-//                }
-//            }
-//        });
-
 
     }
 
