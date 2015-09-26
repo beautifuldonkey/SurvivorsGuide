@@ -147,6 +147,16 @@ public class CharacterNewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PlayerCharacter newCharacter = new PlayerCharacter("name","health","mind","strain","infection","professions","profSkills","strainSkills");
+
+                newCharacter.setName(charName.getText().toString());
+                newCharacter.setInfection(charInfection.getText().toString());
+                newCharacter.setHealth(charBody.getText().toString());
+                newCharacter.setMind(charMind.getText().toString());
+                newCharacter.setStrain(charStrain.getName());
+                newCharacter.setProfessions(charProfession.getName());
+                newCharacter.setProfSkills(profSkills);
+                newCharacter.setStrainSkills(strainSkills);
+
                 CharacterManager.saveCharacter(newCharacter, context);
             }
         });

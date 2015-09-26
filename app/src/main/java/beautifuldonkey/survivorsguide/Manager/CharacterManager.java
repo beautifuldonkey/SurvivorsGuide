@@ -91,17 +91,7 @@ public class CharacterManager {
         boolean saveSuccess = false;
         JSONArray data = new JSONArray();
         JSONObject character;
-        String charProfSkills = "";
-        String charStrainSkills = "";
         String characterName = myCharacter.getName();
-//        for(int i=0; i<selectedSkills.size(); i++){
-//            Skill skill = selectedSkills.get(i);
-//            if(skill.getIsStrain()){
-//                charStrainSkills = skill.getName()+",";
-//            }else{
-//                charProfSkills = skill.getName()+",";
-//            }
-//        }
 
         character = new JSONObject();
         try {
@@ -110,8 +100,8 @@ public class CharacterManager {
             character.put("mind", myCharacter.getMind());
             character.put("strain", myCharacter.getStrain());
             character.put("professions", myCharacter.getProfessions());
-//            character.put("profSkills", charProfSkills);
-//            character.put("strainSkills", charStrainSkills);
+            character.put("profSkills", myCharacter.getProfSkills());
+            character.put("strainSkills", myCharacter.getStrainSkills());
             data.put(character);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -120,7 +110,7 @@ public class CharacterManager {
         String text = data.toString();
 
         try {
-            FileOutputStream fos = context.openFileOutput(characterName, context.MODE_PRIVATE);
+            FileOutputStream fos = context.openFileOutput(characterName, android.content.Context.MODE_PRIVATE);
             fos.write(text.getBytes());
             fos.close();
             saveSuccess = true;
