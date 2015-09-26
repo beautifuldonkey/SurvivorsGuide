@@ -91,17 +91,18 @@ public class CharacterManager {
         boolean saveSuccess = false;
         JSONArray data = new JSONArray();
         JSONObject character;
-        String characterName = myCharacter.getName();
 
         character = new JSONObject();
         try {
-            character.put("name", characterName);
+            character.put("name", myCharacter.getName());
+            character.put("infection", myCharacter.getInfection());
             character.put("body", myCharacter.getHealth());
             character.put("mind", myCharacter.getMind());
             character.put("strain", myCharacter.getStrain());
             character.put("professions", myCharacter.getProfessions());
             character.put("profSkills", myCharacter.getProfSkills());
             character.put("strainSkills", myCharacter.getStrainSkills());
+            character.put("build", myCharacter.getAvailBuild());
             data.put(character);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -110,7 +111,7 @@ public class CharacterManager {
         String text = data.toString();
 
         try {
-            FileOutputStream fos = context.openFileOutput(characterName, android.content.Context.MODE_PRIVATE);
+            FileOutputStream fos = context.openFileOutput(myCharacter.getName(), android.content.Context.MODE_PRIVATE);
             fos.write(text.getBytes());
             fos.close();
             saveSuccess = true;
@@ -155,11 +156,14 @@ public class CharacterManager {
             for (int i = 0; i < data.length(); i++) {
 
                 charName = data.getJSONObject(i).getString("name");
-//                charInfection = data.getJSONObject(i).getString("infection");
-//                charBody = data.getJSONObject(i).getString("body");
-//                charMind = data.getJSONObject(i).getString("mind");
-//                charStrain = data.getJSONObject(i).getString("strain");
-//                charProfession = data.getJSONObject(i).getString("professions");
+                charInfection = data.getJSONObject(i).getString("infection");
+                charBody = data.getJSONObject(i).getString("body");
+                charMind = data.getJSONObject(i).getString("mind");
+                charStrain = data.getJSONObject(i).getString("strain");
+                charProfession = data.getJSONObject(i).getString("professions");
+                charProfSkills = data.getJSONObject(i).getString("profSkills");
+                charStrainSkills = data.getJSONObject(i).getString("strainSkills");
+                charAvailBuild = data.getJSONObject(i).getString("build");
             }
             Log.d("READCHAR", "built string now building character");
 

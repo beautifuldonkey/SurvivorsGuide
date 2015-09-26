@@ -166,18 +166,20 @@
         android:id="@+id/selectedSkills"
         android:layout_below="@+id/statsHolder" />
 
-    <ListView
-        android:layout_width="200dp"
+    <Spinner
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/availableSkills"
         android:layout_below="@+id/secondProfessionDropDown"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_save"
-        android:layout_below="@+id/selectedSkills"
+        android:layout_toRightOf="@+id/btn_charName_done"
         android:text="@string/btn_save"/>
 
     </RelativeLayout>

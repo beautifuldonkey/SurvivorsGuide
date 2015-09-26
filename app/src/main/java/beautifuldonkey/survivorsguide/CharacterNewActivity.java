@@ -55,7 +55,7 @@ public class CharacterNewActivity extends AppCompatActivity {
     String secondProfSkills = "";
     List<Skill> selectedSkills = new ArrayList<>();
     List<Skill> availableSkills = new ArrayList<>();
-    ListView availSkills;
+    Spinner availSkills;
     CheckBox secondProfToggle;
 
     @Override
@@ -149,7 +149,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 PlayerCharacter newCharacter = new PlayerCharacter("name","health","mind","strain","infection","professions","profSkills","strainSkills", "build");
 
                 String professions = charProfession.getName();
-                if(secondCharProfession != null && !secondCharProfession.getName().isEmpty()){
+                if(secondProfToggle.isChecked() && !secondCharProfession.getName().isEmpty()){
                     professions = professions + ',' + secondCharProfession.getName();
                 }
                 if(thirdCharProfession != null && !thirdCharProfession.getName().isEmpty()){
@@ -316,8 +316,37 @@ public class CharacterNewActivity extends AppCompatActivity {
             }
         });
 
-        availSkills = (ListView) findViewById(R.id.availableSkills);
-        availSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, availableSkills) {
+        availSkills = (Spinner) findViewById(R.id.availableSkills);
+        availSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, R.id.skillName, availableSkills) {
+
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+                View view = inflater.inflate(R.layout.item_character_skill, null);
+
+                TextView textView = (TextView) view.findViewById(R.id.skillName);
+                textView.setTextColor(Color.BLACK);
+
+                TextView textViewChkBoxLabel = (TextView) view.findViewById(R.id.skillStrainLabel);
+                textViewChkBoxLabel.setTextColor(Color.BLACK);
+
+                CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
+                checkBoxStrainSkill.setTextColor(Color.BLACK);
+
+                if(availableSkills.size()>position){
+                    textView.setText(availableSkills.get(position).getName());
+                    if(availableSkills.get(position).getIsStrain()){
+                        checkBoxStrainSkill.setChecked(true);
+                    }else{
+                        checkBoxStrainSkill.setVisibility(View.INVISIBLE);
+                        textViewChkBoxLabel.setText("Build: "+ availableSkills.get(position).getBuildCost());
+                    }
+                }
+
+                return view;
+            }
+
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -347,9 +376,9 @@ public class CharacterNewActivity extends AppCompatActivity {
             }
         };
         availSkills.setAdapter(availSkillAdapter);
-        availSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        availSkills.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Skill skillToAdd = (Skill) availSkills.getItemAtPosition(position);
                 Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 if(currentBuild>=skillToAdd.getBuildCost()){
@@ -400,7 +429,68 @@ public class CharacterNewActivity extends AppCompatActivity {
                     selectedSkillAdapter.notifyDataSetChanged();
                 }
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
+//        availSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Skill skillToAdd = (Skill) availSkills.getItemAtPosition(position);
+//                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
+//                if(currentBuild>=skillToAdd.getBuildCost()){
+//                    if(selectedSkills.contains(skillToAdd)) {
+//                        for (int i = 0; i < selectedSkills.size(); i++) {
+//                            if (selectedSkills.get(i).getName().equals(skillToAdd.getName())) {
+//                                Skill existingSkill = selectedSkills.get(i);
+//                                if (existingSkill.getAvailRank() > existingSkill.getCurrRank()) {
+//                                    existingSkill.setCurrRank(existingSkill.getCurrRank() + 1);
+//                                }
+//                            }
+//                        }
+//                    }else{
+//                        selectedSkills.add(skillToAdd);
+//                    }
+//                    currentBuild = currentBuild-skillToAdd.getBuildCost();
+//                    charBuild.setText(String.valueOf(currentBuild));
+//                }
+//
+//                if(selectedSkillAdapter == null){
+//                    selectedSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, selectedSkills){
+//                        @Override
+//                        public View getView(int position, View convertView, ViewGroup parent) {
+//                            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+//                            View view = inflater.inflate(R.layout.item_character_skill, null);
+//
+//                            TextView textView = (TextView) view.findViewById(R.id.skillName);
+//                            textView.setTextColor(Color.BLACK);
+//                            textView.setText(selectedSkills.get(position).getName());
+//
+//                            TextView textViewChkBoxLabel = (TextView) view.findViewById(R.id.skillStrainLabel);
+//                            textViewChkBoxLabel.setTextColor(Color.BLACK);
+//
+//                            CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
+//                            checkBoxStrainSkill.setTextColor(Color.BLACK);
+//
+////                            if(selectedSkills.get(position).getIsStrain()){
+////                                checkBoxStrainSkill.setChecked(true);
+////                            }
+//                            checkBoxStrainSkill.setVisibility(View.INVISIBLE);
+//                            textViewChkBoxLabel.setText("Rank: "+ selectedSkills.get(position).getCurrRank());
+//
+//                            return view;
+//                        }
+//                    };
+//                    displayedSkills.setAdapter(selectedSkillAdapter);
+//                }else{
+//                    selectedSkillAdapter.notifyDataSetChanged();
+//                }
+//            }
+//        });
+
+
     }
 
     @Override
