@@ -189,6 +189,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 }
                 availableSkills.clear();
                 availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
+                availSkillAdapter.clear();
                 availSkillAdapter.addAll(availableSkills);
                 availSkillAdapter.notifyDataSetChanged();
                 charBuild.setText("13");
@@ -228,6 +229,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 }
                 availableSkills.clear();
                 availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
+                availSkillAdapter.clear();
                 availSkillAdapter.addAll(availableSkills);
                 availSkillAdapter.notifyDataSetChanged();
                 if(!selectedSkills.isEmpty()){
@@ -258,6 +260,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 }
                 availableSkills.clear();
                 availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
+                availSkillAdapter.clear();
                 availSkillAdapter.addAll(availableSkills);
                 availSkillAdapter.notifyDataSetChanged();
                 if(!selectedSkills.isEmpty()){
@@ -293,6 +296,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 }
                 availableSkills.clear();
                 availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
+                availSkillAdapter.clear();
                 availSkillAdapter.addAll(availableSkills);
                 availSkillAdapter.notifyDataSetChanged();
                 secondProfDropDown.setVisibility(visible);
