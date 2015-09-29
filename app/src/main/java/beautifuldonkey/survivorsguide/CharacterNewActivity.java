@@ -290,9 +290,11 @@ public class CharacterNewActivity extends AppCompatActivity {
                         secondProfSkills = secondCharProfession.getSkills();
                     }
                 } else if (!isChecked) {
+                    //TODO make this not execute when screen loads or find a way to account for the added build
                     availBuild = availBuild + 10;
                     charBuild.setText(String.valueOf(availBuild));
                     secondProfSkills = "";
+                    secondCharProfession = null;
                 }
                 availableSkills.clear();
                 availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
