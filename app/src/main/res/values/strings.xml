@@ -38,7 +38,7 @@
     <string name="character_name">Name: </string>
     <string name="character_strain">Strain: </string>
     <string name="character_profession">Professions: </string>
-    <string name="character_second_profession">Add Second Profession</string>
+    <string name="character_second_profession">Second Profession:</string>
     <string name="character_infection">Infection: </string>
     <string name="character_body">Body: </string>
     <string name="character_mind">Mind: </string>
