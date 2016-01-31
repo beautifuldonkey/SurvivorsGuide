@@ -18,6 +18,8 @@
     <TextView
         android:text="@string/character_name"
         android:id="@+id/existingCharNameLabel"
+        android:textStyle="bold"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingFiles"
@@ -25,6 +27,7 @@
     <TextView
         android:text="@string/character_name"
         android:id="@+id/existingCharName"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingFiles"
@@ -33,6 +36,8 @@
     <TextView
         android:text="@string/character_strain"
         android:id="@+id/existingCharStrainLabel"
+        android:textStyle="bold"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharNameLabel"
@@ -40,6 +45,7 @@
     <TextView
         android:text="@string/character_strain"
         android:id="@+id/existingCharStrain"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharName"
@@ -48,6 +54,8 @@
     <TextView
         android:text="@string/character_profession"
         android:id="@+id/existingCharProfessionLabel"
+        android:textStyle="bold"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharStrainLabel"
@@ -55,6 +63,7 @@
     <TextView
         android:text="@string/character_profession"
         android:id="@+id/existingCharProfession"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharStrain"
@@ -63,6 +72,8 @@
     <TextView
         android:text="@string/character_infection"
         android:id="@+id/existingCharInfectionLabel"
+        android:textStyle="bold"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharProfessionLabel"
@@ -70,6 +81,7 @@
     <TextView
         android:text="@string/character_infection"
         android:id="@+id/existingCharInfection"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharProfession"
@@ -78,6 +90,8 @@
     <TextView
         android:text="@string/character_body"
         android:id="@+id/existingCharBodyLabel"
+        android:textStyle="bold"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharInfectionLabel"
@@ -85,6 +99,7 @@
     <TextView
         android:text="@string/character_body"
         android:id="@+id/existingCharBody"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharInfection"
@@ -93,6 +108,8 @@
     <TextView
         android:text="@string/character_mind"
         android:id="@+id/existingCharMindLabel"
+        android:textStyle="bold"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharBodyLabel"
@@ -100,6 +117,7 @@
     <TextView
         android:text="@string/character_mind"
         android:id="@+id/existingCharMind"
+        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharBody"
