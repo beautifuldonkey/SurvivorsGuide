@@ -2,10 +2,8 @@ package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,21 +20,13 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
 import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.ProfessionList;
 import beautifuldonkey.survivorsguide.Data.Skill;
-import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.StrainList;
 import beautifuldonkey.survivorsguide.Manager.CharacterManager;
@@ -217,7 +207,7 @@ public class CharacterNewActivity extends AppCompatActivity {
             professionNames[i] = professions.get(i).getName();
         }
         Spinner profDropDown = (Spinner) findViewById(R.id.professionDropDown);
-        ArrayAdapter<String> profAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, professionNames);
+        ArrayAdapter<String> profAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, professionNames);
         profDropDown.setAdapter(profAdapter);
         profDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

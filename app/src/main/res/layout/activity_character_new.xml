@@ -4,11 +4,11 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/sg_background_5"
     tools:context="beautifuldonkey.survivorsguide.CharacterNewActivity">
 
     <EditText
         android:id="@+id/characterName"
-        android:editable="true"
         android:text="@string/character_name"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -26,6 +26,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/newCharacterBuildLabel"
             android:text="@string/character_build"
+            android:textStyle="bold"
+            android:textSize="@dimen/charActivityText"
             android:layout_centerInParent="true"
             android:layout_alignParentTop="true" />
         <TextView
@@ -33,6 +35,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/newCharacterBuild"
             android:text="13"
+            android:textSize="@dimen/charActivityText"
             android:layout_toRightOf="@+id/newCharacterBuildLabel"
             android:layout_alignParentTop="true" />
 
@@ -41,6 +44,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/newCharacterInfectionLabel"
             android:text="@string/character_infection"
+            android:textStyle="bold"
+            android:textSize="@dimen/charActivityText"
             android:layout_centerInParent="true"
             android:layout_below="@+id/newCharacterBuild" />
         <TextView
@@ -48,6 +53,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/newCharacterInfection"
             android:text="0"
+            android:textSize="@dimen/charActivityText"
             android:layout_toRightOf="@+id/newCharacterInfectionLabel"
             android:layout_below="@+id/newCharacterBuild" />
 
@@ -67,12 +73,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/newCharacterBodyLabel"
                 android:text="@string/character_body"
+                android:textStyle="bold"
+                android:textSize="@dimen/charActivityText"
                 android:layout_centerInParent="true"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/newCharacterBody"
                 android:text="0"
+                android:textSize="@dimen/charActivityText"
                 android:layout_toRightOf="@+id/newCharacterBodyLabel"
                 android:layout_centerInParent="true"/>
             <Button
@@ -98,6 +107,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/newCharacterMindLabel"
+                android:textStyle="bold"
+                android:textSize="@dimen/charActivityText"
                 android:text="@string/character_mind"
                 android:layout_centerInParent="true"/>
             <TextView
@@ -105,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/newCharacterMind"
                 android:text="0"
+                android:textSize="@dimen/charActivityText"
                 android:layout_toRightOf="@+id/newCharacterMindLabel"
                 android:layout_centerInParent="true"/>
             <Button
@@ -146,6 +158,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/secondProfessionLabel"
+            android:textStyle="bold"
+            android:textSize="@dimen/charActivityText"
             android:text="@string/character_second_profession"
             android:layout_centerInParent="true"/>
         <CheckBox
