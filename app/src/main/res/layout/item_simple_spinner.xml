@@ -4,4 +4,5 @@
     android:layout_height="match_parent"
     android:textStyle="bold"
     android:textSize="@dimen/charActivityText"
+    android:padding="@dimen/spinner_padding"
     android:singleLine="true"/>

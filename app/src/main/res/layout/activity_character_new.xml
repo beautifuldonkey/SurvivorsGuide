@@ -188,7 +188,7 @@
         android:layout_below="@+id/statsHolder" />
 
     <Spinner
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/availableSkills"
         android:layout_below="@+id/secondProfessionDropDown"

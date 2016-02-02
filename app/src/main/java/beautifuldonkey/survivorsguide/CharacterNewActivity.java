@@ -168,7 +168,7 @@ public class CharacterNewActivity extends AppCompatActivity {
             strainNames[i] = strains.get(i).getName();
         }
         Spinner strainDropDown = (Spinner) findViewById(R.id.strainDropDown);
-        ArrayAdapter<String> strainAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, strainNames);
+        ArrayAdapter<String> strainAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, strainNames);
         strainDropDown.setAdapter(strainAdapter);
         strainDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -237,9 +237,8 @@ public class CharacterNewActivity extends AppCompatActivity {
         //
         // Second Profession Drop Down
         //
-
         final Spinner secondProfDropDown = (Spinner) findViewById(R.id.secondProfessionDropDown);
-        final ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, professionNames);
+        final ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, professionNames);
         secondProfDropDown.setAdapter(secondProfAdapter);
         secondProfDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
