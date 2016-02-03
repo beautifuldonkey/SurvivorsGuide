@@ -12,8 +12,10 @@
     <string name="title_character_activity">Character</string>
     <string name="title_character_new_activity">CharacterNewActivity</string>
     <string name="title_activity_character_existing">CharacterExistingActivity</string>
+    <string name="title_activity_character_edit_existing">CharacterEditExistingActivity</string>
 
     <string name="btn_done">Done</string>
+    <string name="btn_edit">Edit</string>
     <string name="btn_change_name">Add/Change Name</string>
     <string name="btn_skills">Skills</string>
     <string name="btn_strains">Strains</string>

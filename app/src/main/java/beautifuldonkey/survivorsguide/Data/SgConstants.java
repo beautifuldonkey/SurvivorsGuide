@@ -15,6 +15,8 @@ public class SgConstants {
     public static int PROFESSION_DETAIL_ACTIVITY = 12;
     public static int STRAIN_DETAIL_ACTIVITY = 13;
 
+    public static int CHARACTER_EDIT_ACTIVITY = 21;
+
     public static String INTENT_PROFESSION = "PROFESSION";
     public static String INTENT_SKILL = "SKILL";
     public static String INTENT_STRAIN = "STRAIN";

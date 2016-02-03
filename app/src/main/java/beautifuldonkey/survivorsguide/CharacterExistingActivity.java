@@ -1,6 +1,7 @@
 package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 
 import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
+import beautifuldonkey.survivorsguide.Data.SgConstants;
 import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 
@@ -34,7 +37,7 @@ public class CharacterExistingActivity extends AppCompatActivity {
 
         String[] availFiles = fileList();
 
-        ArrayAdapter<String> fileListAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, availFiles);
+        ArrayAdapter<String> fileListAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, availFiles);
         Spinner existingFiles = (Spinner) findViewById(R.id.existingFiles);
         existingFiles.setAdapter(fileListAdapter);
         existingFiles.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -68,6 +71,15 @@ public class CharacterExistingActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        Button btn_Edit = (Button) findViewById(R.id.btn_editExisting);
+        btn_Edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CharacterEditExistingActivity.class);
+                startActivityForResult(intent, SgConstants.CHARACTER_EDIT_ACTIVITY);
             }
         });
     }
