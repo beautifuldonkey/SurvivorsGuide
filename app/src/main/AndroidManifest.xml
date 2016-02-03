@@ -45,8 +45,7 @@
             android:label="@string/title_activity_character_existing"></activity>
         <activity
             android:name=".CharacterEditExistingActivity"
-            android:label="@string/title_activity_character_edit_existing"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_character_edit_existing"></activity>
     </application>
 
 </manifest>
