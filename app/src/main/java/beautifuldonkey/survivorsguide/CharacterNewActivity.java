@@ -394,31 +394,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 }
 
                 if(selectedSkillAdapter == null){
-                    selectedSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, selectedSkills){
-                        @Override
-                        public View getView(int position, View convertView, ViewGroup parent) {
-                            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                            View view = inflater.inflate(R.layout.item_character_skill, null);
-
-                            TextView textView = (TextView) view.findViewById(R.id.skillName);
-                            textView.setTextColor(Color.BLACK);
-                            textView.setText(selectedSkills.get(position).getName());
-
-                            TextView textViewChkBoxLabel = (TextView) view.findViewById(R.id.skillStrainLabel);
-                            textViewChkBoxLabel.setTextColor(Color.BLACK);
-
-                            CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
-                            checkBoxStrainSkill.setTextColor(Color.BLACK);
-
-//                            if(selectedSkills.get(position).getIsStrain()){
-//                                checkBoxStrainSkill.setChecked(true);
-//                            }
-                            checkBoxStrainSkill.setVisibility(View.INVISIBLE);
-                            textViewChkBoxLabel.setText("Rank: "+ selectedSkills.get(position).getCurrRank());
-
-                            return view;
-                        }
-                    };
+                    selectedSkillAdapter = CharacterManager.getSkillArrayAdapter(context,selectedSkills);
                     displayedSkills.setAdapter(selectedSkillAdapter);
                 }else{
                     selectedSkillAdapter.notifyDataSetChanged();

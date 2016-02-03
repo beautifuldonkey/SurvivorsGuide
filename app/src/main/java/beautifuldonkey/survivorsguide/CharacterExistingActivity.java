@@ -2,16 +2,20 @@ package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,9 +24,13 @@ import org.json.JSONArray;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
 import beautifuldonkey.survivorsguide.Data.SgConstants;
+import beautifuldonkey.survivorsguide.Data.Skill;
+import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 
@@ -65,7 +73,13 @@ public class CharacterExistingActivity extends AppCompatActivity {
                 TextView existingCharMind = (TextView) findViewById(R.id.existingCharMind);
                 existingCharMind.setText(loadedCharacter.getMind());
 
+                //TODO load all skills not just strain skills
+                //TODO ISSUE: wrong strain skills are load, incorrect number of skills, same number of skills for each character
+                final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getStrainSkills());
+
                 ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
+                ArrayAdapter<Skill> selectedSkillAdapter = CharacterManager.getSkillArrayAdapter(context,selectedSkills);
+                existingCharSkills.setAdapter(selectedSkillAdapter);
             }
 
             @Override
