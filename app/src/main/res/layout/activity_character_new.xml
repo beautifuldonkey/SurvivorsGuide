@@ -182,13 +182,13 @@
         android:visibility="invisible"/>
 
     <ListView
-        android:layout_width="200dp"
+        android:layout_width="@dimen/skill_list_item"
         android:layout_height="wrap_content"
         android:id="@+id/selectedSkills"
         android:layout_below="@+id/statsHolder" />
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/skill_list_item"
         android:layout_height="wrap_content"
         android:id="@+id/availableSkills"
         android:layout_below="@+id/secondProfessionDropDown"

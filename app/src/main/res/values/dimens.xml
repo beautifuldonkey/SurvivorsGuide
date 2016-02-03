@@ -4,4 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="charActivityText">20sp</dimen>
     <dimen name="spinner_padding">5dp</dimen>
+    <dimen name="skill_list_item">350dp</dimen>
 </resources>
