@@ -75,7 +75,7 @@ public class CharacterExistingActivity extends AppCompatActivity {
 
                 //TODO load all skills not just strain skills
                 //TODO ISSUE: wrong strain skills are load, incorrect number of skills, same number of skills for each character
-                final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getStrainSkills());
+                final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getSelectedSkills());
 
                 ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
                 ArrayAdapter<Skill> selectedSkillAdapter = CharacterManager.getSkillArrayAdapter(context,selectedSkills);

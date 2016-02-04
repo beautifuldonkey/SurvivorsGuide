@@ -127,9 +127,21 @@ public class CharacterManager {
 
         boolean saveSuccess = false;
         JSONArray data = new JSONArray();
-        JSONObject character;
+        JSONObject character = new JSONObject();
 
-        character = new JSONObject();
+        String TAG = "SAVE_CHAR";
+
+        Log.d(TAG, "saving character, displaying friendly output:");
+        Log.d(TAG, "Name: "+myCharacter.getName());
+        Log.d(TAG, "Body: "+myCharacter.getHealth());
+        Log.d(TAG, "Mind: "+myCharacter.getMind());
+        Log.d(TAG, "Inf: "+myCharacter.getInfection());
+        Log.d(TAG, "Strain: "+myCharacter.getStrain());
+        Log.d(TAG, "Profs: "+myCharacter.getProfessions());
+        Log.d(TAG, "Build: "+myCharacter.getAvailBuild());
+        Log.d(TAG, "Skills-----------------------");
+        Log.d(TAG, "skills: "+myCharacter.getSelectedSkills());
+
         try {
             character.put("name", myCharacter.getName());
             character.put("infection", myCharacter.getInfection());
@@ -137,8 +149,7 @@ public class CharacterManager {
             character.put("mind", myCharacter.getMind());
             character.put("strain", myCharacter.getStrain());
             character.put("professions", myCharacter.getProfessions());
-            character.put("profSkills", myCharacter.getProfSkills());
-            character.put("strainSkills", myCharacter.getStrainSkills());
+            character.put("selectedSkills", myCharacter.getSelectedSkills());
             character.put("build", myCharacter.getAvailBuild());
             data.put(character);
         } catch (JSONException e) {
@@ -152,7 +163,7 @@ public class CharacterManager {
             fos.write(text.getBytes());
             fos.close();
             saveSuccess = true;
-            Log.d("FILEWRITTEN", "File written to local storage!\n" + data.toString());
+            Log.d(TAG, "File written to local storage!\n" + data.toString());
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -162,24 +173,25 @@ public class CharacterManager {
 
     public static PlayerCharacter loadCharacter (int position, Context context){
         PlayerCharacter characterToLoad = null;
+        String TAG = "LOAD_CHAR";
 
         try {
             String[] files = context.fileList();
             FileInputStream fis = context.openFileInput(files[position]);
             BufferedInputStream bis = new BufferedInputStream(fis);
             StringBuilder b = new StringBuilder();
-            Log.d("READCHAR", "file opened & buffers created");
+            Log.d(TAG, "file opened & buffers created");
             while (bis.available() != 0) {
                 char c = (char) bis.read();
                 b.append(c);
             }
             bis.close();
             fis.close();
-            Log.d("READCHAR", "buffers closed");
+            Log.d(TAG, "buffers closed");
 
             JSONArray data = new JSONArray(b.toString());
 
-            Log.d("READCHAR", "building string");
+            Log.d(TAG, "building string");
             StringBuilder charBuffer = new StringBuilder();
             String charName = "";
             String charStrain = "";
@@ -187,8 +199,7 @@ public class CharacterManager {
             String charInfection = "";
             String charBody = "";
             String charMind = "";
-            String charStrainSkills = "";
-            String charProfSkills = "";
+            String charSkills = "";
             String charAvailBuild = "";
             for (int i = 0; i < data.length(); i++) {
 
@@ -198,14 +209,24 @@ public class CharacterManager {
                 charMind = data.getJSONObject(i).getString("mind");
                 charStrain = data.getJSONObject(i).getString("strain");
                 charProfession = data.getJSONObject(i).getString("professions");
-                charProfSkills = data.getJSONObject(i).getString("profSkills");
-                charStrainSkills = data.getJSONObject(i).getString("strainSkills");
+                charSkills = data.getJSONObject(i).getString("selectedSkills");
                 charAvailBuild = data.getJSONObject(i).getString("build");
             }
-            Log.d("READCHAR", "built string now building character");
+            Log.d(TAG, "built string now building character");
 
             characterToLoad = new PlayerCharacter(charName, charBody, charMind, charStrain,
-                     charInfection, charProfession, charProfSkills, charStrainSkills, charAvailBuild);
+                     charInfection, charProfession, charSkills, charAvailBuild);
+
+            Log.d(TAG, "character built, displaying friendly output:");
+            Log.d(TAG, "Name: "+characterToLoad.getName());
+            Log.d(TAG, "Body: "+characterToLoad.getHealth());
+            Log.d(TAG, "Mind: "+characterToLoad.getMind());
+            Log.d(TAG, "Inf: "+characterToLoad.getInfection());
+            Log.d(TAG, "Strain: "+characterToLoad.getStrain());
+            Log.d(TAG, "Profs: "+characterToLoad.getProfessions());
+            Log.d(TAG, "Build: "+characterToLoad.getAvailBuild());
+            Log.d(TAG, "Skills-----------------------");
+            Log.d(TAG, "skills: "+characterToLoad.getSelectedSkills());
 
         }catch (Exception ex){
             ex.printStackTrace();

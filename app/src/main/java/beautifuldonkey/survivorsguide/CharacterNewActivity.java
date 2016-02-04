@@ -136,7 +136,7 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PlayerCharacter newCharacter = new PlayerCharacter("name","health","mind","strain","infection","professions","profSkills","strainSkills", "build");
+                PlayerCharacter newCharacter = new PlayerCharacter("name","health","mind","strain","infection","professions", "strainSkills", "build");
 
                 String professions = charProfession.getName();
                 if(secondProfToggle.isChecked() && !secondCharProfession.getName().isEmpty()){
@@ -145,14 +145,18 @@ public class CharacterNewActivity extends AppCompatActivity {
                 if(thirdCharProfession != null && !thirdCharProfession.getName().isEmpty()){
                     professions = professions + ',' + thirdCharProfession.getName();
                 }
+
+                String characterSkillsSelected = "";
+                for(int i=0; i<selectedSkills.size(); i++){
+                    characterSkillsSelected += selectedSkills.get(i).getName()+",";
+                }
                 newCharacter.setName(charName.getText().toString());
                 newCharacter.setInfection(charInfection.getText().toString());
                 newCharacter.setHealth(charBody.getText().toString());
                 newCharacter.setMind(charMind.getText().toString());
                 newCharacter.setStrain(charStrain.getName());
                 newCharacter.setProfessions(professions);
-                newCharacter.setProfSkills(profSkills);
-                newCharacter.setStrainSkills(strainSkills);
+                newCharacter.setSelectedSkills(characterSkillsSelected);
                 newCharacter.setAvailBuild(charBuild.getText().toString());
 
                 CharacterManager.saveCharacter(newCharacter, context);

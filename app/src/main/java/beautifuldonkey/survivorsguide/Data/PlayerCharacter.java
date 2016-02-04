@@ -14,20 +14,18 @@ public class PlayerCharacter {
     private String strain;
     private String infection;
     private String professions;
-    private String profSkills;
-    private String strainSkills;
+    private String selectedSkills;
     private String availBuild;
 
     public PlayerCharacter (String charName, String charHealth, String charMind, String charStrain
-            , String charInfection, String charProfs, String profSkills, String strainSkills, String availBuild){
+            , String charInfection, String charProfs, String selectedSkills, String availBuild){
         this.name = charName;
         this.health = charHealth;
         this.mind = charMind;
         this.strain = charStrain;
         this.infection = charInfection;
         this.professions = charProfs;
-        this.profSkills = profSkills;
-        this.strainSkills = strainSkills;
+        this.selectedSkills = selectedSkills;
         this.availBuild = availBuild;
     }
 
@@ -87,19 +85,11 @@ public class PlayerCharacter {
         this.professions = professions;
     }
 
-    public String getProfSkills() {
-        return profSkills;
+    public String getSelectedSkills() {
+        return selectedSkills;
     }
 
-    public void setProfSkills(String profSkills) {
-        this.profSkills = profSkills;
-    }
-
-    public String getStrainSkills() {
-        return strainSkills;
-    }
-
-    public void setStrainSkills(String strainSkills) {
-        this.strainSkills = strainSkills;
+    public void setSelectedSkills(String selectedSkills) {
+        this.selectedSkills = selectedSkills;
     }
 }
