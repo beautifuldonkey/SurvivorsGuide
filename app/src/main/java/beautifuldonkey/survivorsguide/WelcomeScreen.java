@@ -24,7 +24,7 @@ public class WelcomeScreen extends AppCompatActivity {
         btn_Skills.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, SkillActivty.class);
+                Intent intent = new Intent(context, SkillActivity.class);
                 startActivityForResult(intent, SgConstants.SKILL_ACTIVITY);
             }
         });

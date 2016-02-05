@@ -17,11 +17,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SkillActivty"
-            android:label="@string/title_skill_activty"></activity>
+            android:name=".SkillActivity"
+            android:label="@string/title_skill_activity"></activity>
         <activity
             android:name=".StrainActivity"
-            android:label="@string/title_strain_activty"></activity>
+            android:label="@string/title_strain_activity"></activity>
         <activity
             android:name=".ProfessionActivity"
             android:label="@string/title_profession_activity"></activity>

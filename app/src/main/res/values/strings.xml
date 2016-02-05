@@ -3,8 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_skill_activty">Skill List</string>
-    <string name="title_strain_activty">Strains</string>
+    <string name="title_skill_activity">Skill List</string>
+    <string name="title_strain_activity">Strains</string>
     <string name="title_profession_activity">Professions</string>
     <string name="title_profession_detail_activity">Professions</string>
     <string name="title_strain_detail_activity">Strain Details</string>

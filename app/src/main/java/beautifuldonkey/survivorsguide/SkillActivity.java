@@ -22,9 +22,10 @@ import java.util.List;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Data.SgConstants;
+import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 
-public class SkillActivty extends AppCompatActivity {
+public class SkillActivity extends AppCompatActivity {
 
     protected List<Skill> skillList = new ArrayList<>();
 
@@ -33,9 +34,10 @@ public class SkillActivty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skill_activty);
+        Context context = getApplicationContext();
 
         skillList =  SkillList.getSkillList();
-        ArrayAdapter <Skill> adapter = new skillListAdapter(this, 0, skillList);
+        ArrayAdapter <Skill> adapter = CharacterManager.getSkillArrayAdapter(context, skillList);
         ListView viewSkillList = (ListView) findViewById(R.id.skillsList);
         viewSkillList.setAdapter(adapter);
 
@@ -50,38 +52,6 @@ public class SkillActivty extends AppCompatActivity {
             }
         });
     }
-
-   class skillListAdapter extends ArrayAdapter<Skill>{
-
-       Context context;
-       List<Skill> objects;
-
-       public skillListAdapter(Context context, int resource, List<Skill> objects) {
-           super(context, resource, objects);
-           this.context = context;
-           this.objects = objects;
-       }
-
-       @Override
-       public View getView(int position, View convertView, ViewGroup parent) {
-
-           Skill skill = objects.get(position);
-           LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-           View view = inflater.inflate(R.layout.item_skill, null);
-
-           TextView viewSkillName = (TextView) view.findViewById(R.id.skillName);
-           viewSkillName.setText(skill.getName());
-
-           TextView viewSkillCost = (TextView) view.findViewById(R.id.skillCost);
-           viewSkillCost.setText(String.valueOf(skill.getMpCost()));
-
-           TextView viewSkillDesc = (TextView) view.findViewById(R.id.skillDescription);
-           viewSkillDesc.setText(skill.getDescription());
-
-           return view;
-       }
-
-   }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

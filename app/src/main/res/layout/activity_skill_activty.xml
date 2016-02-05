@@ -7,7 +7,7 @@
     android:background="@drawable/sg_background_5"
     tools:context="beautifuldonkey.survivorsguide.SkillActivty">
 
-    <TextView android:text="@string/title_skill_activty"
+    <TextView android:text="@string/title_skill_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
