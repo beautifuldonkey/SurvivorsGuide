@@ -316,64 +316,7 @@ public class CharacterNewActivity extends AppCompatActivity {
         });
 
         availSkills = (Spinner) findViewById(R.id.availableSkills);
-        availSkillAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, R.id.skillName, availableSkills) {
-
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View view = inflater.inflate(R.layout.item_character_skill, null);
-
-                TextView textView = (TextView) view.findViewById(R.id.skillName);
-                textView.setTextColor(Color.BLACK);
-
-                TextView textViewChkBoxLabel = (TextView) view.findViewById(R.id.skillStrainLabel);
-                textViewChkBoxLabel.setTextColor(Color.BLACK);
-
-                CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
-                checkBoxStrainSkill.setTextColor(Color.BLACK);
-
-                if(availableSkills.size()>position){
-                    textView.setText(availableSkills.get(position).getName());
-                    if(availableSkills.get(position).getIsStrain()){
-                        checkBoxStrainSkill.setChecked(true);
-                    }else{
-                        checkBoxStrainSkill.setVisibility(View.INVISIBLE);
-                        textViewChkBoxLabel.setText("Build: "+ availableSkills.get(position).getBuildCost());
-                    }
-                }
-
-                return view;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View view = inflater.inflate(R.layout.item_character_skill, null);
-
-                TextView textView = (TextView) view.findViewById(R.id.skillName);
-                textView.setTextColor(Color.BLACK);
-
-                TextView textViewChkBoxLabel = (TextView) view.findViewById(R.id.skillStrainLabel);
-                textViewChkBoxLabel.setTextColor(Color.BLACK);
-
-                CheckBox checkBoxStrainSkill = (CheckBox) view.findViewById(R.id.isSkillStrain);
-                checkBoxStrainSkill.setTextColor(Color.BLACK);
-
-                if(availableSkills.size()>position){
-                    textView.setText(availableSkills.get(position).getName());
-                    if(availableSkills.get(position).getIsStrain()){
-                        checkBoxStrainSkill.setChecked(true);
-                    }else{
-                        checkBoxStrainSkill.setVisibility(View.INVISIBLE);
-                        textViewChkBoxLabel.setText("Build: "+ availableSkills.get(position).getBuildCost());
-                    }
-                }
-
-                return view;
-            }
-        };
+        availSkillAdapter = CharacterManager.getSkillArrayAdapter(context, availableSkills);
         availSkills.setAdapter(availSkillAdapter);
         availSkills.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
