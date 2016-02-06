@@ -6,4 +6,5 @@
     <dimen name="spinner_padding">5dp</dimen>
     <dimen name="skill_list_item">350dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="character_attribute_holder">200dp</dimen>
 </resources>
