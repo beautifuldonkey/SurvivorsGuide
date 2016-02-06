@@ -1,12 +1,15 @@
 package beautifuldonkey.survivorsguide.Data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
  * Defines Character JSON structure saved to internal storage
  * Created by user on 6/15/2015.
  */
-public class PlayerCharacter {
+public class PlayerCharacter implements Parcelable {
 
     private String name;
     private String health;
@@ -28,6 +31,44 @@ public class PlayerCharacter {
         this.selectedSkills = selectedSkills;
         this.availBuild = availBuild;
     }
+
+    public PlayerCharacter (Parcel source){
+        name = source.readString();
+        health = source.readString();
+        mind = source.readString();
+        strain = source.readString();
+        infection = source.readString();
+        professions = source.readString();
+        selectedSkills = source.readString();
+        availBuild = source.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(health);
+        dest.writeString(mind);
+        dest.writeString(strain);
+        dest.writeString(infection);
+        dest.writeString(professions);
+        dest.writeString(selectedSkills);
+        dest.writeString(availBuild);
+    }
+
+    @Override
+    public int describeContents() { return 0; }
+
+    public static Creator<PlayerCharacter> CREATOR = new Creator<PlayerCharacter>(){
+        @Override
+        public PlayerCharacter createFromParcel(Parcel source) {
+            return new PlayerCharacter(source);
+        }
+
+        @Override
+        public PlayerCharacter[] newArray(int size) {
+            return new PlayerCharacter[size];
+        }
+    };
 
     public String getAvailBuild() {
         return availBuild;
