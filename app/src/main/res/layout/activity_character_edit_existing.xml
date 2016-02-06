@@ -10,4 +10,6 @@
     android:background="@drawable/sg_background_5"
     tools:context="beautifuldonkey.survivorsguide.CharacterEditExistingActivity">
 
+    <include layout="@layout/item_character_attributes" />
+
 </RelativeLayout>
