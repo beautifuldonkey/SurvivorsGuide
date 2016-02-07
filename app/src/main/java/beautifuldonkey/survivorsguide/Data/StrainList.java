@@ -23,7 +23,7 @@ public class StrainList {
         strainList.add(new Strain("Merican", 13, 10, 2, "Bolt-Action,Brawling,Melee Weapon Large,Melee Weapon Two-Handed,Throwing,Throwing Javelins"));
         strainList.add(new Strain("Nation Of Accensor", 8, 8, 5, "Building Tomorrow,Challenge,Faith Healing,First Aide,Mind Resistance,Patch Job"));
         strainList.add(new Strain("Natural One", 10, 6, 4, "Cure Toxins,Melee Weapon Large,Melee Weapon Small,Melee Weapon Standard,Melee Weapon Two-Handed,Throwing,Throwing Javelins"));
-        strainList.add(new Strain("Pure Blood", 6, 12, 3, "Backstap,Bolt-Action,Charisma,Cheat,Check Value,Income,Literacy"));
+        strainList.add(new Strain("Pure Blood", 6, 12, 3, "Backstab,Bolt-Action,Charisma,Cheat,Check Value,Income,Literacy"));
         strainList.add(new Strain("Reclaimer", 8, 13, 2, "Balance,Carry,Charge,Melee Weapon Standard,Hunters Mark,Avoid"));
         strainList.add(new Strain("The Red Star", 6, 6, 6, "Avoid,Barricade,Bomb Awareness,Brewing,Fearful Glare,Frightening Force,Melee Weapon Large"));
         strainList.add(new Strain("Remnant", 5, 5, 6, "No Strain Skills"));
