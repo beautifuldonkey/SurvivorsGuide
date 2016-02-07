@@ -77,7 +77,7 @@ public class CharacterExistingActivity extends AppCompatActivity {
 
                 final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getSelectedSkills());
 
-                ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
+                ListView existingCharSkills = (ListView) findViewById(R.id.selectedSkills);
                 ArrayAdapter<Skill> selectedSkillAdapter = CharacterManager.getSkillArrayAdapter(context,selectedSkills);
                 existingCharSkills.setAdapter(selectedSkillAdapter);
             }
