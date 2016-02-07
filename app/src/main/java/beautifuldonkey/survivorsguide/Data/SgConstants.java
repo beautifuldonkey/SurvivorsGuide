@@ -20,6 +20,7 @@ public class SgConstants {
     public static String INTENT_PROFESSION = "PROFESSION";
     public static String INTENT_SKILL = "SKILL";
     public static String INTENT_STRAIN = "STRAIN";
+    public static String INTENT_EDIT_CHAR = "EDIT_CHARACTER";
 
 
 }

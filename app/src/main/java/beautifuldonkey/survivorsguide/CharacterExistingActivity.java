@@ -36,6 +36,8 @@ import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 public class CharacterExistingActivity extends AppCompatActivity {
 
+    PlayerCharacter loadedCharacter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,7 @@ public class CharacterExistingActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                PlayerCharacter loadedCharacter = CharacterManager.loadCharacter(position, context);
+                loadedCharacter = CharacterManager.loadCharacter(position, context);
 
                 //displaying existing character attributes
                 TextView existingCharName = (TextView) findViewById(R.id.existingCharName);
@@ -73,8 +75,6 @@ public class CharacterExistingActivity extends AppCompatActivity {
                 TextView existingCharMind = (TextView) findViewById(R.id.existingCharMind);
                 existingCharMind.setText(loadedCharacter.getMind());
 
-                //TODO load all skills not just strain skills
-                //TODO ISSUE: wrong strain skills are load, incorrect number of skills, same number of skills for each character
                 final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getSelectedSkills());
 
                 ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
@@ -92,8 +92,11 @@ public class CharacterExistingActivity extends AppCompatActivity {
         btn_Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CharacterEditExistingActivity.class);
-                startActivityForResult(intent, SgConstants.CHARACTER_EDIT_ACTIVITY);
+                if(loadedCharacter != null){
+                    Intent intent = new Intent(context, CharacterEditExistingActivity.class);
+                    intent.putExtra(SgConstants.INTENT_EDIT_CHAR, loadedCharacter);
+                    startActivityForResult(intent, SgConstants.CHARACTER_EDIT_ACTIVITY);
+                }
             }
         });
     }
