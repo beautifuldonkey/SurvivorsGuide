@@ -13,6 +13,18 @@ public class ProfessionList {
 
     public static List<Profession> getProfessionList(){ return professionList;}
 
+    public static Profession getProfessionByName(String name){
+        Profession foundProf = null;
+
+        for(int i=0; i<professionList.size(); i++){
+            if(professionList.get(i).getName().equals(name)){
+                foundProf = professionList.get(i);
+            }
+        }
+
+        return foundProf;
+    }
+
     static{
         professionList.add(new Profession("Soldier", "Melee badass", "Avoid,Break Shield,Charge,Double-Tap,Florentine,Force Barricade,Interfere,Melee Weapon Expert,Melee Weapon Large,Melee Weapon Standard,Nail,Sever,Shield,Throwing-Javelins", "N/A"
         ,"3,6,6,6,6,6,3,6,3,3,3,3,3,3"));

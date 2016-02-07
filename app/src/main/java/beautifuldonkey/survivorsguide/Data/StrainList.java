@@ -12,6 +12,17 @@ public class StrainList {
 
     public static List<Strain> getStrainList() { return strainList;}
 
+    public static Strain getStrainByName(String name){
+        Strain foundStrain = null;
+        for(int i=0; i<strainList.size(); i++){
+            if(strainList.get(i).getName().equals(name)){
+                foundStrain = strainList.get(i);
+                break;
+            }
+        }
+        return foundStrain;
+    }
+
     static{
 
         strainList.add(new Strain("Bay Walker", 8, 10, 4, "Analyze Creature,Double Tap,First Aide,Instruct,Literacy,Parry"));
