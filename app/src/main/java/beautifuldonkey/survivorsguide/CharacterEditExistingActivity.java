@@ -38,6 +38,12 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         TextView charName = (TextView) findViewById(R.id.characterName);
         charName.setText(charToEdit.getName());
 
+        TextView charStrainText = (TextView) findViewById(R.id.characterStrain);
+        charStrainText.setText(charToEdit.getStrain());
+
+        TextView charProfsText = (TextView) findViewById(R.id.characterProfessions);
+        charProfsText.setText(charToEdit.getProfessions());
+
         TextView charBuild = (TextView) findViewById(R.id.newCharacterBuild);
         charBuild.setText(charToEdit.getAvailBuild());
 

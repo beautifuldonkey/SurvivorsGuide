@@ -18,10 +18,28 @@
         android:textSize="@dimen/charActivityText"
         android:id="@+id/characterName"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/characterStrain"
+        android:text="@string/character_strain"
+        android:textStyle="bold"
+        android:textSize="@dimen/charActivityText"
+        android:layout_below="@+id/characterName"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/characterProfessions"
+        android:text="@string/character_profession"
+        android:textStyle="bold"
+        android:textSize="@dimen/charActivityText"
+        android:layout_below="@+id/characterStrain"/>
+
     <include layout="@layout/item_character_attributes"
         android:layout_width="@dimen/character_attribute_holder"
         android:layout_height="@dimen/character_attribute_holder"
-        android:layout_below="@+id/characterName"/>
+        android:layout_below="@+id/characterProfessions"/>
 
     <ListView
         android:layout_width="@dimen/skill_list_item"
