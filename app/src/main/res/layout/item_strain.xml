@@ -10,8 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"/>
+        style="@style/UiText"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -25,8 +24,7 @@
         android:id="@+id/strainMindLabel"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"/>
+        style="@style/UiText"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,8 +32,7 @@
         android:id="@+id/strainMind"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/strainMindLabel"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"/>
+        style="@style/UiText"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,8 +41,7 @@
         android:id="@+id/strainBodyLabel"
         android:layout_toRightOf="@id/strainMindLabel"
         android:paddingLeft="30dp"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"/>
+        style="@style/UiText"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,8 +49,7 @@
         android:id="@+id/strainBody"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/strainBodyLabel"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"/>
+        style="@style/UiText"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,8 +59,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/strainBodyLabel"
         android:paddingLeft="30dp"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"/>
+        style="@style/UiText"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,8 +67,7 @@
         android:id="@+id/strainInfection"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/strainInfectionLabel"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"/>
+        style="@style/UiText"/>
     </RelativeLayout>
 
 </RelativeLayout>

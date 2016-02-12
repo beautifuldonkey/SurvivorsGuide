@@ -24,115 +24,114 @@
     <TextView
         android:text="@string/character_name"
         android:id="@+id/existingCharNameLabel"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingFiles"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        style="@style/UiText"/>
     <TextView
         android:text="@string/character_name"
         android:id="@+id/existingCharName"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingFiles"
-        android:layout_toRightOf="@+id/existingCharNameLabel"/>
+        android:layout_toRightOf="@+id/existingCharNameLabel"
+        style="@style/UiText"/>
 
     <TextView
         android:text="@string/character_strain"
         android:id="@+id/existingCharStrainLabel"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharNameLabel"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        style="@style/UiText"/>
     <TextView
         android:text="@string/character_strain"
         android:id="@+id/existingCharStrain"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharName"
-        android:layout_toRightOf="@+id/existingCharStrainLabel"/>
+        android:layout_toRightOf="@+id/existingCharStrainLabel"
+        style="@style/UiText"/>
 
     <TextView
         android:text="@string/character_profession"
         android:id="@+id/existingCharProfessionLabel"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharStrainLabel"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        style="@style/UiText"/>
     <TextView
         android:text="@string/character_profession"
         android:id="@+id/existingCharProfession"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharStrain"
-        android:layout_toRightOf="@+id/existingCharProfessionLabel"/>
+        android:layout_toRightOf="@+id/existingCharProfessionLabel"
+        style="@style/UiText"/>
 
     <TextView
         android:text="@string/character_infection"
         android:id="@+id/existingCharInfectionLabel"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharProfessionLabel"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        style="@style/UiText"/>
     <TextView
         android:text="@string/character_infection"
         android:id="@+id/existingCharInfection"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharProfession"
-        android:layout_toRightOf="@+id/existingCharInfectionLabel"/>
+        android:layout_toRightOf="@+id/existingCharInfectionLabel"
+        style="@style/UiText"/>
 
     <TextView
         android:text="@string/character_body"
         android:id="@+id/existingCharBodyLabel"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharInfectionLabel"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        style="@style/UiText"/>
     <TextView
         android:text="@string/character_body"
         android:id="@+id/existingCharBody"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharInfection"
-        android:layout_toRightOf="@+id/existingCharBodyLabel"/>
+        android:layout_toRightOf="@+id/existingCharBodyLabel"
+        style="@style/UiText"/>
 
     <TextView
         android:text="@string/character_mind"
         android:id="@+id/existingCharMindLabel"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharBodyLabel"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        style="@style/UiText"/>
     <TextView
         android:text="@string/character_mind"
         android:id="@+id/existingCharMind"
-        android:textSize="@dimen/charActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/existingCharBody"
-        android:layout_toRightOf="@+id/existingCharMindLabel"/>
+        android:layout_toRightOf="@+id/existingCharMindLabel"
+        style="@style/UiText"/>
+
+    <View
+        style="@style/Divider"
+        android:id="@+id/skillDivider"
+        android:layout_below="@+id/existingCharMind"/>
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/existingCharSkills"
-        android:layout_below="@+id/existingCharMind"/>
+        android:layout_below="@+id/skillDivider"/>
 
 </RelativeLayout>

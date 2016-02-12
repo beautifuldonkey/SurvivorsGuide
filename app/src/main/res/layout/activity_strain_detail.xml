@@ -11,14 +11,16 @@
         android:id="@+id/strainName"
         android:text="@string/hello_world"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        style="@style/UiText"/>
 
     <TextView
         android:id="@+id/strainSkills"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/strainName"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        style="@style/UiText"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -32,14 +34,16 @@
             android:text="@string/strain_mind"
             android:id="@+id/strainMindLabel"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            style="@style/UiText"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/strain_mind"
             android:id="@+id/strainMind"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@id/strainMindLabel" />
+            android:layout_toRightOf="@id/strainMindLabel"
+            style="@style/UiText"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,14 +51,16 @@
             android:text="@string/strain_body"
             android:id="@+id/strainBodyLabel"
             android:layout_toRightOf="@id/strainMindLabel"
-            android:paddingLeft="30dp" />
+            android:paddingLeft="30dp"
+            style="@style/UiText"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/strain_body"
             android:id="@+id/strainBody"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@id/strainBodyLabel" />
+            android:layout_toRightOf="@id/strainBodyLabel"
+            style="@style/UiText"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,14 +69,16 @@
             android:id="@+id/strainInfectionLabel"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@id/strainBodyLabel"
-            android:paddingLeft="30dp"/>
+            android:paddingLeft="30dp"
+            style="@style/UiText"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/strain_infection"
             android:id="@+id/strainInfection"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@id/strainInfectionLabel" />
+            android:layout_toRightOf="@id/strainInfectionLabel"
+            style="@style/UiText"/>
     </RelativeLayout>
 
 </RelativeLayout>
