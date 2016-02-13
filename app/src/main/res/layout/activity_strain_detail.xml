@@ -14,12 +14,12 @@
         android:layout_height="wrap_content"
         style="@style/UiText"/>
 
-    <TextView
+    <ListView
         android:id="@+id/strainSkills"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/strainName"
-        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
         style="@style/UiText"/>
 
     <RelativeLayout

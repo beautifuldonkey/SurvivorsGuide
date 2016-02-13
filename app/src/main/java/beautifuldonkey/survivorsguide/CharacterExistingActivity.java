@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import beautifuldonkey.survivorsguide.Manager.AdapterManager;
 import org.json.JSONArray;
 
 import java.io.BufferedInputStream;
@@ -78,7 +79,7 @@ public class CharacterExistingActivity extends AppCompatActivity {
                 final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getSelectedSkills());
 
                 ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
-                ArrayAdapter<Skill> selectedSkillAdapter = CharacterManager.getSkillArrayAdapter(context,selectedSkills);
+                ArrayAdapter<Skill> selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context,selectedSkills);
                 existingCharSkills.setAdapter(selectedSkillAdapter);
             }
 

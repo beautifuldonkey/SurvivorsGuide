@@ -22,6 +22,7 @@ import java.util.List;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Data.SgConstants;
+import beautifuldonkey.survivorsguide.Manager.AdapterManager;
 import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 
@@ -37,7 +38,7 @@ public class SkillActivity extends AppCompatActivity {
         Context context = getApplicationContext();
 
         skillList =  SkillList.getSkillList();
-        ArrayAdapter <Skill> adapter = CharacterManager.getSkillArrayAdapter(context, skillList);
+        ArrayAdapter <Skill> adapter = AdapterManager.getCharacterSkillArrayAdapter(context, skillList);
         ListView viewSkillList = (ListView) findViewById(R.id.skillsList);
         viewSkillList.setAdapter(adapter);
 

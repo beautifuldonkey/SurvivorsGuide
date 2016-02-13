@@ -23,6 +23,7 @@ import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.StrainList;
+import beautifuldonkey.survivorsguide.Manager.AdapterManager;
 import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 public class CharacterEditExistingActivity extends AppCompatActivity {
@@ -59,7 +60,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         final List<Skill> selectedSkills = SkillList.getSkillsByName(charToEdit.getSelectedSkills());
 
         ListView selectedCharSkills = (ListView) findViewById(R.id.selectedSkills);
-        ArrayAdapter<Skill> selectedSkillAdapter = CharacterManager.getSkillArrayAdapter(context, selectedSkills);
+        ArrayAdapter<Skill> selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, selectedSkills);
         selectedCharSkills.setAdapter(selectedSkillAdapter);
 
         String[] profs = charToEdit.getProfessions().split(",");
@@ -76,7 +77,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
                 charProfs.size()>2 ? charProfs.get(2) : null,
                 charStrain);
         Spinner availSkills = (Spinner) findViewById(R.id.availableSkills);
-        ArrayAdapter<Skill> availSkillAdapter = CharacterManager.getSkillArrayAdapter(context, availableSkills);
+        ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, availableSkills);
         availSkills.setAdapter(availSkillAdapter);
 
     }

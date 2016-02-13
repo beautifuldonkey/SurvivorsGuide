@@ -22,6 +22,7 @@ import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.SgConstants;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
+import beautifuldonkey.survivorsguide.Manager.AdapterManager;
 
 
 public class ProfessionDetailActivity extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class ProfessionDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profession_detail);
+        Context context = getApplicationContext();
 
         Profession profession = getIntent().getParcelableExtra(SgConstants.INTENT_PROFESSION);
         final List<Skill> professionSkills = SkillList.getSkillsByName(profession.getSkills());
@@ -37,7 +39,7 @@ public class ProfessionDetailActivity extends AppCompatActivity {
         TextView viewProfessionName = (TextView) findViewById(R.id.professionName);
         viewProfessionName.setText(profession.getName());
 
-        ArrayAdapter <Skill> adapter = new professionSkillListAdapter(this, 0, professionSkills);
+        ArrayAdapter <Skill> adapter = AdapterManager.getSimpleSkillAdapter(context,professionSkills);
         ListView viewProfessionSkills = (ListView) findViewById(R.id.professionSkills);
         viewProfessionSkills.setAdapter(adapter);
 
@@ -51,33 +53,6 @@ public class ProfessionDetailActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    class professionSkillListAdapter extends ArrayAdapter<Skill>{
-
-        Context context;
-        List<Skill> objects;
-        public professionSkillListAdapter(Context context, int resource, List<Skill> objects) {
-            super(context, resource, objects);
-            this.context = context;
-            this.objects = objects;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            Skill skill = objects.get(position);
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.item_skill, null);
-
-            TextView viewSkillName = (TextView) view.findViewById(R.id.skillName);
-            viewSkillName.setText(skill.getName());
-
-            TextView viewSkillCost = (TextView) view.findViewById(R.id.skillCost);
-            viewSkillCost.setText(String.valueOf(skill.getMpCost()));
-
-            return view;
-        }
     }
 
     @Override

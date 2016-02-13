@@ -29,6 +29,7 @@ import beautifuldonkey.survivorsguide.Data.ProfessionList;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.StrainList;
+import beautifuldonkey.survivorsguide.Manager.AdapterManager;
 import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 
@@ -316,7 +317,7 @@ public class CharacterNewActivity extends AppCompatActivity {
         });
 
         availSkills = (Spinner) findViewById(R.id.availableSkills);
-        availSkillAdapter = CharacterManager.getSkillArrayAdapter(context, availableSkills);
+        availSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, availableSkills);
         availSkills.setAdapter(availSkillAdapter);
         availSkills.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -341,7 +342,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 }
 
                 if(selectedSkillAdapter == null){
-                    selectedSkillAdapter = CharacterManager.getSkillArrayAdapter(context,selectedSkills);
+                    selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context,selectedSkills);
                     displayedSkills.setAdapter(selectedSkillAdapter);
                 }else{
                     selectedSkillAdapter.notifyDataSetChanged();

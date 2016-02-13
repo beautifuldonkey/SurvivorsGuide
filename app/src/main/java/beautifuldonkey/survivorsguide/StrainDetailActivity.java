@@ -1,14 +1,22 @@
 package beautifuldonkey.survivorsguide;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import beautifuldonkey.survivorsguide.Data.Skill;
+import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.SgConstants;
+import beautifuldonkey.survivorsguide.Manager.AdapterManager;
+
+import java.util.List;
 
 
 public class StrainDetailActivity extends AppCompatActivity {
@@ -17,6 +25,7 @@ public class StrainDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_strain_detail);
+        Context context = getApplicationContext();
 
         //Intent intent
         Strain strain = getIntent().getParcelableExtra(SgConstants.INTENT_STRAIN);
@@ -33,8 +42,12 @@ public class StrainDetailActivity extends AppCompatActivity {
         TextView viewStrainInfection = (TextView) findViewById(R.id.strainInfection);
         viewStrainInfection.setText(String.valueOf(strain.getInfection()));
 
-        TextView viewStrainSkills = (TextView) findViewById(R.id.strainSkills);
-        viewStrainSkills.setText(strain.getSkills());
+        final List<Skill> strainSkills = SkillList.getSkillsByName(strain.getSkills());
+
+        ListView viewStrainSkills = (ListView) findViewById(R.id.strainSkills);
+        ArrayAdapter<Skill> adapter = AdapterManager.getSimpleSkillAdapter(context,strainSkills);
+        viewStrainSkills.setAdapter(adapter);
+//        viewStrainSkills.setText(strain.getSkills());
     }
 
     @Override
