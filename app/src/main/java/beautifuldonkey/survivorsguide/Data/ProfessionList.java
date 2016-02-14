@@ -8,7 +8,6 @@ import java.util.List;
  * Created by Jed on 6/19/2015.
  */
 
-//TODO write test to check validity of data
 public class ProfessionList {
 
     private static List<Profession> professionList = new ArrayList();
