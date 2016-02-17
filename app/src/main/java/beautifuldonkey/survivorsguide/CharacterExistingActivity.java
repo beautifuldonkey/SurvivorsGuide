@@ -46,9 +46,8 @@ public class CharacterExistingActivity extends AppCompatActivity {
         Log.d("READCHAR", "initial open");
         final Context context = getApplicationContext();
 
-        String[] availFiles = fileList();
-
-        ArrayAdapter<String> fileListAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, availFiles);
+        ArrayList<String> charFiles = CharacterManager.getCharacterFiles(context);
+        ArrayAdapter<String> fileListAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, charFiles);
         Spinner existingFiles = (Spinner) findViewById(R.id.existingFiles);
         existingFiles.setAdapter(fileListAdapter);
         existingFiles.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

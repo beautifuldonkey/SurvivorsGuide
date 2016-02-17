@@ -94,6 +94,17 @@ public class CharacterManager {
         return newDisplayedSkills;
     }
 
+    public static ArrayList<String> getCharacterFiles(Context context){
+        ArrayList<String> charFiles = new ArrayList<>();
+        String[] files = context.fileList();
+        for (String file: files) {
+            if(!file.startsWith("rList")){
+                charFiles.add(file);
+            }
+        }
+        return charFiles;
+    }
+
     public static boolean saveCharacter (PlayerCharacter myCharacter, Context context){
 
         boolean saveSuccess = false;
@@ -147,8 +158,8 @@ public class CharacterManager {
         String TAG = "LOAD_CHAR";
 
         try {
-            String[] files = context.fileList();
-            FileInputStream fis = context.openFileInput(files[position]);
+            ArrayList<String> charFiles = getCharacterFiles(context);
+            FileInputStream fis = context.openFileInput(charFiles.get(position));
             BufferedInputStream bis = new BufferedInputStream(fis);
             StringBuilder b = new StringBuilder();
             Log.d(TAG, "file opened & buffers created");
