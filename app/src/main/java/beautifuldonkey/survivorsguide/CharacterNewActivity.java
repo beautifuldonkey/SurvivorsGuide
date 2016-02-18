@@ -56,7 +56,6 @@ public class CharacterNewActivity extends AppCompatActivity {
         final Context context = getApplicationContext();
 
         final EditText charName = (EditText) findViewById(R.id.characterName);
-        charName.setText("Enter character name");
         charName.setTextColor(Color.BLACK);
 
         final TextView charBuild = (TextView) findViewById(R.id.newCharacterBuild);

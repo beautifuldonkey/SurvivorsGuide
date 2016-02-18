@@ -38,6 +38,7 @@
     <string name="profession_name">Name</string>
 
     <string name="character_name">Name: </string>
+    <string name="character_name_new">Name</string>
     <string name="character_strain">Strain: </string>
     <string name="character_profession">Professions: </string>
     <string name="character_second_profession">Second Profession:</string>

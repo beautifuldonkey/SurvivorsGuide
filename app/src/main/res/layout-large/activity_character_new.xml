@@ -112,4 +112,4 @@
         android:layout_toRightOf="@+id/btn_charName_done"
         android:text="@string/btn_save"/>
 
-</RelativeLayout>
+    </RelativeLayout>
