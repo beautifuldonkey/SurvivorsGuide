@@ -25,31 +25,29 @@
 
     // strain
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/strainDropDown"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_below="@+id/statsHolder"/>
 
     // first profession
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/professionDropDown"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/strainDropDown"/>
+        android:layout_below="@+id/statsHolder"
+        android:layout_toRightOf="@id/strainDropDown"/>
 
     // second profession selector
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/secondProfessionSelector"
-        android:layout_below="@+id/strainDropDown"
-        android:layout_toLeftOf="@+id/professionDropDown">
+        android:layout_above="@+id/strainDropDown">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,22 +76,22 @@
         android:layout_below="@id/professionDropDown"
         android:visibility="invisible"/>
 
-    // selected skills
-    <ListView
-        android:layout_width="@dimen/skill_list_item"
-        android:layout_height="wrap_content"
-        android:id="@+id/selectedSkills"
-        android:layout_below="@+id/statsHolder" />
-
     // available skills
     <Spinner
         android:layout_width="@dimen/skill_list_item"
         android:layout_height="wrap_content"
         android:id="@+id/availableSkills"
-        android:layout_below="@+id/secondProfessionDropDown"
+        android:layout_below="@+id/professionDropDown"
         android:layout_alignParentRight="true"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"/>
+
+    // selected skills
+    <ListView
+        android:layout_width="@dimen/skill_list_item"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectedSkills"
+        android:layout_below="@+id/availableSkills" />
 
     // done btn
     <Button
