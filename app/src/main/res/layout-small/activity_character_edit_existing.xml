@@ -44,18 +44,18 @@
         android:layout_height="@dimen/character_attribute_holder"
         android:layout_below="@+id/characterProfessions"/>
 
-    <ListView
-        android:layout_width="@dimen/skill_list_item"
-        android:layout_height="wrap_content"
-        android:id="@+id/selectedSkills"
-        android:layout_below="@+id/statsHolder" />
-
     <Spinner
         android:layout_width="@dimen/skill_list_item"
         android:layout_height="wrap_content"
         android:id="@+id/availableSkills"
-        android:layout_alignParentRight="true"
         android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"/>
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/statsHolder"/>
+
+    <ListView
+        android:layout_width="@dimen/skill_list_item"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectedSkills"
+        android:layout_below="@+id/availableSkills" />
 
 </RelativeLayout>
