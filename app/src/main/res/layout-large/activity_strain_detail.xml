@@ -18,16 +18,15 @@
         android:id="@+id/strainSkills"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/strainAttributes"
+        android:layout_below="@+id/strainName"
         android:layout_alignParentLeft="true"
         style="@style/UiText"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/strainAttributes"
-        android:layout_below="@+id/strainName"
-        android:layout_alignParentLeft="true">
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true">
 
         <TextView
             android:layout_width="wrap_content"
