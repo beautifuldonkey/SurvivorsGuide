@@ -48,21 +48,21 @@
         android:layout_height="wrap_content"
         android:id="@+id/secondProfessionSelector"
         android:layout_above="@+id/strainDropDown">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/secondProfessionLabel"
-                android:text="@string/character_second_profession"
-                android:layout_centerInParent="true"
-                style="@style/UiText"/>
-            <CheckBox
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/addSecondProfession"
-                android:checked="false"
-                android:textColor="#000000"
-                android:layout_centerInParent="true"
-                android:layout_toRightOf="@+id/secondProfessionLabel"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/secondProfessionLabel"
+            android:text="@string/character_second_profession"
+            android:layout_centerInParent="true"
+            style="@style/UiText"/>
+        <CheckBox
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/addSecondProfession"
+            android:checked="false"
+            android:textColor="#000000"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/secondProfessionLabel"/>
     </RelativeLayout>
 
     // second profession

@@ -1,6 +1,8 @@
 package beautifuldonkey.survivorsguide;
 
+import android.app.ActionBar;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsoluteLayout;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -56,7 +60,6 @@ public class CharacterNewActivity extends AppCompatActivity {
         final Context context = getApplicationContext();
 
         final EditText charName = (EditText) findViewById(R.id.characterName);
-        charName.setText("Enter character name");
         charName.setTextColor(Color.BLACK);
 
         final TextView charBuild = (TextView) findViewById(R.id.newCharacterBuild);
@@ -283,12 +286,30 @@ public class CharacterNewActivity extends AppCompatActivity {
                     if (secondCharProfession != null) {
                         secondProfSkills = secondCharProfession.getSkills();
                     }
+
+                    if(((getResources().getConfiguration().screenLayout &
+                            Configuration.SCREENLAYOUT_SIZE_MASK) ==
+                            Configuration.SCREENLAYOUT_SIZE_NORMAL) ||
+                            (getResources().getConfiguration().screenLayout &
+                            Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL){
+                        RelativeLayout.LayoutParams secondProfParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        secondProfParams.addRule(RelativeLayout.BELOW,R.id.secondProfessionDropDown);
+                        availSkills.setLayoutParams(secondProfParams);
+                    }
                 } else if (!isChecked) {
-                    //TODO make this not execute when screen loads or find a way to account for the added build
                     availBuild = availBuild + 10;
                     charBuild.setText(String.valueOf(availBuild));
                     secondProfSkills = "";
                     secondCharProfession = null;
+                    if(((getResources().getConfiguration().screenLayout &
+                            Configuration.SCREENLAYOUT_SIZE_MASK) ==
+                            Configuration.SCREENLAYOUT_SIZE_NORMAL) ||
+                            (getResources().getConfiguration().screenLayout &
+                                    Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL){
+                        RelativeLayout.LayoutParams secondProfParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        secondProfParams.addRule(RelativeLayout.BELOW,R.id.professionDropDown);
+                        availSkills.setLayoutParams(secondProfParams);
+                    }
                 }
                 availableSkills.clear();
                 availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
