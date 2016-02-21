@@ -30,8 +30,11 @@
     <string name="strain_name">Name</string>
     <string name="strain_skill">Strain Skill:</string>
     <string name="strain_mind">Mind: </string>
+    <string name="strain_mind_small">M: </string>
     <string name="strain_body">Body: </string>
+    <string name="strain_body_small">B: </string>
     <string name="strain_infection">Infection: </string>
+    <string name="strain_infection_small">I: </string>
 
     <string name="skill_cost">Mind: </string>
 

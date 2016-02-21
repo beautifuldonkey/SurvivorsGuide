@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strain_name"
+        android:id="@+id/strainName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        style="@style/UiText"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_mind_small"
+            android:id="@+id/strainMindLabel"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            style="@style/UiText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_mind"
+            android:id="@+id/strainMind"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/strainMindLabel"
+            style="@style/UiText"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_body_small"
+            android:id="@+id/strainBodyLabel"
+            android:layout_toRightOf="@id/strainMindLabel"
+            android:paddingLeft="30dp"
+            style="@style/UiText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_body"
+            android:id="@+id/strainBody"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/strainBodyLabel"
+            style="@style/UiText"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_infection_small"
+            android:id="@+id/strainInfectionLabel"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/strainBodyLabel"
+            android:paddingLeft="30dp"
+            style="@style/UiText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strain_infection"
+            android:id="@+id/strainInfection"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/strainInfectionLabel"
+            style="@style/UiText"/>
+    </RelativeLayout>
+
+</RelativeLayout>
