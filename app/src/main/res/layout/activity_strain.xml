@@ -7,11 +7,16 @@
     android:background="@drawable/sg_background_5"
     tools:context="beautifuldonkey.survivorsguide.StrainActivity">
 
+    <TextView android:text="@string/title_strain_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/strainListTitle"
+        style="@style/UiText"/>
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/strainList"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/strainListTitle"/>
 </RelativeLayout>

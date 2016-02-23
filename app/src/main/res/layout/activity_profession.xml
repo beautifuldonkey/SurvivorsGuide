@@ -7,11 +7,17 @@
     android:background="@drawable/sg_background_5"
     tools:context="beautifuldonkey.survivorsguide.ProfessionActivity">
 
+    <TextView android:text="@string/title_profession_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/professionListTitle"
+        style="@style/UiText"/>
+
     <ListView
         android:id="@+id/professionList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_below="@+id/professionListTitle"/>
 
 </RelativeLayout>

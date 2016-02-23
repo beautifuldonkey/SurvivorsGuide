@@ -2,19 +2,14 @@ package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +18,6 @@ import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Data.SgConstants;
 import beautifuldonkey.survivorsguide.Manager.AdapterManager;
-import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 
 public class SkillActivity extends AppCompatActivity {
@@ -34,7 +28,7 @@ public class SkillActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_skill_activty);
+        setContentView(R.layout.activity_skill);
         Context context = getApplicationContext();
 
         skillList =  SkillList.getSkillList();
