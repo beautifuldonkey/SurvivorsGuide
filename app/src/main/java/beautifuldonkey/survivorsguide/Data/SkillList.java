@@ -38,15 +38,37 @@ public class SkillList {
 
     static {
 
-        skillList.add(new Skill("Alert", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Analyze Compound", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Analyze Creature", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Animal Handler", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Attach", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Avoid", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Backstab", 5, "description", false,3,1,1));
+        /**
+         * Skill{
+         * name
+         * mpCost
+         * desc
+         * isStrain
+         * buildCost
+         * currRank
+         * availRank
+         * }
+         */
+
+        skillList.add(new Skill("Alert", 5, "Counters all stealth skills.",false,3,1,1));
+        skillList.add(new Skill("Analyze Compound", 1, "Counters disguise contents.",false,3,1,1));
+        skillList.add(new Skill("Analyze Creature", 1, "Countered by Disguise. To use point and " +
+                "say: Analyze Creature, what are you? Relevant details given per MP.",false,3,1,5));
+        skillList.add(new Skill("Animal Handler", 0, "Usable at home game only. During check " +
+                "in a character can receive one of: Scrap/Produce/Named Herb for each level" +
+                "possessed.", false,3,1,1));
+        skillList.add(new Skill("Attach", 5, "Countered by Bomb Awareness. Allows a character to " +
+                "mount and prime an existing Trap to go off. Can also be used to disarm visible " +
+                "traps.", false,3,1,1));
+        skillList.add(new Skill("Avoid", 5, "Counters Concentrated Fire, Destroy Shield, Destroy " +
+                "Weapon, Disarming Shot, Scatter Shot, Sniped Shot, Knockout, and any other " +
+                "successful ranted targeted attacks. Ineffective against area of effect skills.",
+                false,3,1,1));
+        skillList.add(new Skill("Backstab", 5, "When striking an enemy from behind with a small " +
+                "melee weapon, say: Backstab, X Body! The strike will slip past all armor and " +
+                "damage Body directly.", false,3,1,1));
         skillList.add(new Skill("Balance", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Bartender's Tongue", 5, "description", false,3,1,1));
+        skillList.add(new Skill("Bartender's Tongue", 0, "description", false,3,1,1));
         skillList.add(new Skill("Barricade", 5, "description", false,3,1,1));
         skillList.add(new Skill("Beg for Life", 5, "description", false,3,1,1));
         skillList.add(new Skill("Big Dig", 5, "description", false,3,1,1));
