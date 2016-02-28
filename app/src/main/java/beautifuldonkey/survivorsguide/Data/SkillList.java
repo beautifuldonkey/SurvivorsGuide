@@ -261,24 +261,49 @@ public class SkillList {
         skillList.add(new Skill("Gun Aficionado", 5, "Countered by Avoid or Bounce. Allows " +
                 "player to spend 5 Mind and deal 15 points of damage with a single firearm " +
                 "attack.", false,3,1,1));
-        skillList.add(new Skill("Head Shrink", 10, "", false,3,1,1));
-        skillList.add(new Skill("Healthy Feast", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Holy Rites", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Hunter's Mark", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Improved Armor/Shield", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Improved Pistol/Bow", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Improved Weapon", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Income", 5, "description", false,3,1,5));
-        skillList.add(new Skill("Instruct", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Interfere", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Interrogate", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Iron Fists", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Knock Down", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Knockout", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Lie", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Literacy", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Lore", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Mange Limb", 5, "description", false,3,1,1));
+        skillList.add(new Skill("Head Shrink", 10, "Allows player to remove a temporary " +
+                "derangement from a target (not yourself) after spending 10 Mind and 10 min. of " +
+                "roleplay. Permanent derangement's may be removed by spending 20 Mind and 30 " +
+                "min. of roleplay.", false,3,1,1));
+        skillList.add(new Skill("Healthy Feast", 0, "Allows player to prepare more potent Meals.",
+                false,3,1,1));
+        skillList.add(new Skill("Holy Rites", 0, "Required to be performed by priests of " +
+                "accepted faiths.", false,3,1,1));
+        skillList.add(new Skill("Hunter's Mark", 15, "Allows player to mark a target for the " +
+                "next 10 min. by striking with a white packet. While the effect lasts Chase, " +
+                "Alert, and Sniped Shot may be used on the target for 1 Mind.", false,3,1,1));
+        skillList.add(new Skill("Improved Armor/Shield", 5, "Allows a character to improve an " +
+                "existing armor or shield by 1 crafts level up to crafts level 5.", false,3,1,1));
+        skillList.add(new Skill("Improved Pistol/Bow", 5, "Allows a character to improve an " +
+                "existing shooter, thrown, bow, javelin by 1 crafts level up to crafts level 5.",
+                false,3,1,1));
+        skillList.add(new Skill("Improved Weapon", 5, "Allows a character to improve an " +
+                "existing weapon by 1 crafts level up to crafts level 5.", false,3,1,1));
+        skillList.add(new Skill("Income", 0, "Usable at home game only. Provides a player with " +
+                "fixed amount of local currency at check in.", false,3,1,5));
+        skillList.add(new Skill("Instruct", 1, "Allows a player to teach a known skill to a " +
+                "group of people.", false,3,1,1));
+        skillList.add(new Skill("Interfere", 0, "Allows player to declare Interfere! and " +
+                "immediately take the damage or effect the target would have taken provided they " +
+                "are within arm's reach.", false,3,1,1));
+        skillList.add(new Skill("Interrogate", 5, "Countered by Lie. Allows a player to declare " +
+                "Interrogate after spending 5 Mind and 5 min. of roleplaying questioning, the " +
+                "target is then forced to answer a direct question.", false,3,1,1));
+        skillList.add(new Skill("Iron Fists", 5, "Allows player with Brawling skill to no longer " +
+                "take damage when blocking.", false,3,1,1));
+        skillList.add(new Skill("Knock Down", 5, "Countered by Balance and Avoid. Allows a " +
+                "player to step forward with a shield and declare Knock Down against a target " +
+                "within melee range.", false,3,1,1));
+        skillList.add(new Skill("Knockout", 5, "Countered by Avoid and First Aide. Players that " +
+                "make a successful strike to the rear torso and declaring Knockout, out cold 5 " +
+                "minutes or until wounded! render the target unconscious.", false,3,1,1));
+        skillList.add(new Skill("Lie", 5, "Counters Interrogate and certain pscionic Skills. " +
+                "Allows a player to spend 5 Mind to tell an undetectable Lie.", false,3,1,1));
+        skillList.add(new Skill("Literacy", 0, "Allows player the basic skills to read and write.",
+                false,3,1,1));
+        skillList.add(new Skill("Lore", 0, "Shows that a player has an understanding of a subject."
+                ,false,3,1,1));
+        skillList.add(new Skill("Mangle Limb", 5, "description", false,3,1,1));
         skillList.add(new Skill("Master Craftsman", 5, "description", false,3,1,1));
         skillList.add(new Skill("Medical Assistance", 5, "description", false,3,1,1));
         skillList.add(new Skill("Medical Genius", 5, "description", false,3,1,1));
