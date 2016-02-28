@@ -205,24 +205,63 @@ public class SkillList {
         skillList.add(new Skill("Double-Tap", 1, "Allows player to execute a Killing Blow which " +
                 "negates any ability a creature may have that would cause it to get up again " +
                 "after receiving a Killing Blow.", false,3,1,1));
-        skillList.add(new Skill("Educated", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Entertain", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Escape", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Escape Bonds", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Fade In A Crowd", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Faith Healing", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Fearful Glare", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Feign Death", 5, "description", false,3,1,1));
-        skillList.add(new Skill("First Aide", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Fishing", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Fix Limb", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Florentine", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Force Barricade", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Forging the Future", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Frightening Force", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Guild Member", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Gun Aficionado", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Head Shrink", 5, "description", false,3,1,1));
+        skillList.add(new Skill("Educated", 0, "Allows player to reduce crafts time of: Building " +
+                "A Better Tomorrow, Transcribe, and Brewing by 10 min. Medical Genius is reduced " +
+                "to 2 min. Additionally a player may spend 10 Mind and 30 min. once per event " +
+                "and ask ST staff 3 questions regarding a possessed Lore skill.", false,3,1,1));
+        skillList.add(new Skill("Entertain", 1, "Allows player to provide a Private Showing in " +
+                "which their chosen talent is performed, at the conclusion targets regain 10 " +
+                "Mind. Usable and receivable once per twelves. Private Showings require a " +
+                "minimum of 30 minutes of uninterrupted roleplay, additional targets increase " +
+                "roleplay time by 5 minutes and costs 5 additional Mind.", false,3,1,1));
+        skillList.add(new Skill("Escape", 5, "Countered by Chase, and cannot be used if under " +
+                "the effects of Nail, have a Mangled leg or Tie Binds. Allows the player to " +
+                "declare Escape while spending 5 Mind and take 20 paces from combat, during " +
+                "which time the player cannot be targeted or pursued.", false,3,1,1));
+        skillList.add(new Skill("Escape Bonds", 5, "Counters Tie Binds. Each crafts level of the " +
+                "binding item increases Mind expenditure by 5.", false,3,1,1));
+        skillList.add(new Skill("Fade In A Crowd", 5, "Countered by Alert. Requires at least 6 " +
+                "other people in a four foot radius while the player is unhindered and does not " +
+                "interact with the environment to remain in effect. Allows player to travel " +
+                "unseen.", false,3,1,1));
+        skillList.add(new Skill("Faith Healing", 1, "By spending 5 min. pray, player may place " +
+                "both hands on a wounded target and heal the target's wounds. After 5 min. of " +
+                "roleplay the target is healed 2 Health for every 1 Mind spent. The player " +
+                "healing may not move while using this skill.", false,3,1,1));
+        skillList.add(new Skill("Fearful Glare", 5, "Countered by Refuse. Allows player to glare " +
+                "at an opponent so effectively while spending 5 Mind and calling FEAR, cannot " +
+                "attack me, 5 minutes and pointing at the target.", false,3,1,1));
+        skillList.add(new Skill("Feign Death", 1, "Countered by Check Status. Allows player to " +
+                "fall to the ground immediately after taking a hit from an opponent, spending 1 " +
+                "Mind and roleplaying death. Taking action ends the effect.", false,3,1,1));
+        skillList.add(new Skill("First Aide", 0, "Allows player to spend 2 min roleplaying " +
+                "stabilizing a target which halts the targets Bleed Out count and/or awaken an " +
+                "unconscious target.", false,3,1,1));
+        skillList.add(new Skill("Fishing", 5, "Allows user to spend 5 Mind and roleplay for 30 " +
+                "min. fishing a natural waterway. After the time Logistics will provide Named " +
+                "Consumables, a pole of some kind is required and the player must remain within " +
+                "10 paces.", false,3,1,1));
+        skillList.add(new Skill("Fix Limb", 5, "Allows player to roleplay fixing a mangled limb " +
+                "uninterrupted for 10 min. after which time the effect is removed.", false,3,1,1));
+        skillList.add(new Skill("Florentine", 0, "Allows the user to fight with two weapons at " +
+                "once, weapons must be of standard size or smaller.", false,3,1,1));
+        skillList.add(new Skill("Force Barricade", 1, "Counters Barricade. For every strike " +
+                "against a Barricade while spending 1 Mind and declaring Force Barricade a " +
+                "crafts level of the Barricade is destroyed.", false,3,1,1));
+        skillList.add(new Skill("Forging the Future", 10, "Allows player to take Scrap and build " +
+                "large projects called Augments, such as fortifications. Requires player to " +
+                "spend 10 Mind and roleplay for 1 hour, 30 min. at a Forge and 30 min. at the " +
+                "target structure. After the roleplay Logistics will provide the structure item " +
+                "card.", false,3,1,1));
+        skillList.add(new Skill("Frightening Force", 10, "Countered by Parry if delivered from " +
+                "the front. Strike is terrifying to all that witness it, deals 30 damage for a " +
+                "single melee swing.", false,3,1,1));
+        skillList.add(new Skill("Guild Member", 0, "Allows player contact with Murder " +
+                "Incorporated.", false,3,1,1));
+        skillList.add(new Skill("Gun Aficionado", 5, "Countered by Avoid or Bounce. Allows " +
+                "player to spend 5 Mind and deal 15 points of damage with a single firearm " +
+                "attack.", false,3,1,1));
+        skillList.add(new Skill("Head Shrink", 10, "", false,3,1,1));
         skillList.add(new Skill("Healthy Feast", 5, "description", false,3,1,1));
         skillList.add(new Skill("Holy Rites", 5, "description", false,3,1,1));
         skillList.add(new Skill("Hunter's Mark", 5, "description", false,3,1,1));
