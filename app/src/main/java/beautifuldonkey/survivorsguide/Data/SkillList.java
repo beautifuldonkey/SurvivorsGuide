@@ -303,24 +303,52 @@ public class SkillList {
                 false,3,1,1));
         skillList.add(new Skill("Lore", 0, "Shows that a player has an understanding of a subject."
                 ,false,3,1,1));
-        skillList.add(new Skill("Mangle Limb", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Master Craftsman", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Medical Assistance", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Medical Genius", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Melee Weapon Expert", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Melee Weapon Large", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Melee Weapon Small", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Melee Weapon Standard", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Melee Weapon Two-Handed", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Mind Resistance", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Murder Most Foul", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Nail", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Nerve Punch", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Parry", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Patch Job", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Pick Pockets", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Pistol Whip", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Prepare Meal", 5, "description", false,3,1,1));
+        skillList.add(new Skill("Mangle Limb", 5, "Countered by Parry if struck from the front. " +
+                "Allows player to strike the target limb after declaring Mangle Limb!, if " +
+                "successful the limb is rendered useless.", false,3,1,1));
+        skillList.add(new Skill("Master Craftsman", 0, "Allows player to improve crafts level 5 " +
+                "weapons and armor to crafts level 10.", false,3,1,1));
+        skillList.add(new Skill("Medical Assistance", 1, "Allows player to heal a target at a " +
+                "rate of 3 Health per 1 Mind spent, 5 min. of uninterrupted roleplay is required."
+                ,false,3,1,1));
+        skillList.add(new Skill("Medical Genius", 1, "Allows player to heal a target at a " +
+                "rate of 10 Health per 1 Mind spent, 5 min. of uninterrupted roleplay is required."
+                ,false,3,1,1));
+        skillList.add(new Skill("Melee Weapon Expert", 5, "Allows a player to add 2 damage per 5 " +
+                "Mind spend up to a maximum of 20 damage. Requires 30 seconds of preparation " +
+                "before activating, effect lasts 5 min.", false,3,1,1));
+        skillList.add(new Skill("Melee Weapon Large", 0, "Allows player to wield a melee weapon " +
+                "no smaller than 36 in. and no larger than 53 in.", false,3,1,1));
+        skillList.add(new Skill("Melee Weapon Small", 0, "Allows player to wield a melee weapon " +
+                "no smaller than 12 in. and no larger than 21 in.", false,3,1,1));
+        skillList.add(new Skill("Melee Weapon Standard", 0, "Allows player to wield a melee " +
+                "weapon no smaller than 18 in. and no larger than 39 in.", false,3,1,1));
+        skillList.add(new Skill("Melee Weapon Two-Handed", 0, "Allows player to wield a melee " +
+                "weapon no smaller than 50 in. and no larger than 63 in.", false,3,1,1));
+        skillList.add(new Skill("Mind Resistance", 10, "Counters psionic abilities or attacks, " +
+                "and Torture. Not usable during Bleed Out.", false,3,1,1));
+        skillList.add(new Skill("Murder Most Foul", 10, "Allows player to call Murder! and make " +
+                "a successful melee strike while spending 10 Mind, the strike does 10 damage. " +
+                "If the target skips Bleed Out if the strike begins the process.", false,3,1,1));
+        skillList.add(new Skill("Nail", 5, "Countered by Avoid and Bounce. Allows player to " +
+                "impale a target using a Bow or Javelin, if successful the target is rendered " +
+                "immobile for 5 min.", false,3,1,1));
+        skillList.add(new Skill("Nerve Punch", 5, "Countered by Parry if strike was made from " +
+                "the front. Successful strikes cause target to drop items held in both hands."
+                ,false,3,1,1));
+        skillList.add(new Skill("Parry", 5, "Counters all melee and brawling strikes delivered " +
+                "from the front.", false,3,1,1));
+        skillList.add(new Skill("Patch Job", 1, "Allows player to quickly replair Broken, " +
+                "Destroyed or Melted items without a Workbench. By spending 1 Mind and 30 " +
+                "seconds the crafts level is reduced by 1 and repaired.", false,3,1,1));
+        skillList.add(new Skill("Pick Pockets", 1, "Allows player to steal a held item from a " +
+                "target, must register attempt with ST staff.", false,3,1,1));
+        skillList.add(new Skill("Pistol Whip", 0, "Allows player to make an effective melee " +
+                "strike with a firearm. Players carry a small melee weapon to represent this " +
+                "ability, only Parry may be used while wielding a melee weapon in this manner.",
+                false,3,1,1));
+        skillList.add(new Skill("Prepare Meal", 5, "Allows player to create Meals from Herbs and " +
+                "Produce by spending 5 Mind and 30 min of roleplay at a Kitchen.", false,3,1,1));
         skillList.add(new Skill("Pray for Justice", 5, "description", false,3,1,1));
         skillList.add(new Skill("Psionic Skill: Basic", 5, "description", false,3,1,1));
         skillList.add(new Skill("Psionic Skill: Intermediate", 5, "description", false,3,1,1));
