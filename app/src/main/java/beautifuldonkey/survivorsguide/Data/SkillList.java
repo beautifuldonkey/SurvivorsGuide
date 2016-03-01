@@ -349,22 +349,49 @@ public class SkillList {
                 false,3,1,1));
         skillList.add(new Skill("Prepare Meal", 5, "Allows player to create Meals from Herbs and " +
                 "Produce by spending 5 Mind and 30 min of roleplay at a Kitchen.", false,3,1,1));
-        skillList.add(new Skill("Pray for Justice", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Psionic Skill: Basic", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Psionic Skill: Intermediate", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Psionic Skill: Advanced", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Refuse", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Repair", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Rescue", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Sailing", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Scatter Shot", 5, "description", false,3,1,1));
-        skillList.add(new Skill("SCIENCE!", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Scrounge", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Sever", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Shield", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Smelt", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Sniped Shot", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Society Membership", 5, "description", false,3,1,1));
+        skillList.add(new Skill("Pray for Justice", 5, "Countered by Avoid if used as a ranged " +
+                "attack. Causes the time for Faith Healing to be reduced to 2 min. allows the " +
+                "player to call for vengeance from their deity causing 10 Blessed damage or to " +
+                "Bless a weapon adding 10 Blessed (type) damage for the next 3 strikes."
+                ,false,3,1,1));
+        skillList.add(new Skill("Psionic Skill: Basic", 5, "Defended against with Mind Resist. " +
+                "Allows a Psionicist to permanently add one Basic skill from the Psionics Skill " +
+                "List.", false,3,1,1));
+        skillList.add(new Skill("Psionic Skill: Intermediate", 10, "Defended against with Mind Resist. " +
+                "Allows a Psionicist to permanently add one Intermediate skill from the Psionics " +
+                "Skill List.", false,3,1,1));
+        skillList.add(new Skill("Psionic Skill: Advanced", 15, "Defended against with Mind Resist. " +
+                "Allows a Psionicist to permanently add one Advanced skill from the Psionics " +
+                "Skill List.", false,3,1,1));
+        skillList.add(new Skill("Refuse", 1, "Counters Beg for Life, Challenge, Charisma, " +
+                "Entertain, and Fear. Does not protect against psionic powers.", false,3,1,1));
+        skillList.add(new Skill("Repair", 1, "Allows player to repair a Broken, Destroyed, or " +
+                "Melted item, also restores lost Armor Points to armor. Spend 1 Mind and 10 min " +
+                "per Crafts Level at a Workbench roleplaying repairing the item.", false,3,1,1));
+        skillList.add(new Skill("Rescue", 5, "Countered by Chase. Cannot use this skill while " +
+                "under the effects of Nail, Mangled Leg, or Tie Bonds. Must have one none " +
+                "Mangled Arm. Allows player to declare Rescue! and grab another player and take " +
+                "10 paces away from combat.", false,3,1,1));
+        skillList.add(new Skill("Sailing", 0, "Represents access to shipping lanes and ports of " +
+                "call, allowing player to swap materials for cash and operate boats."
+                ,false,3,1,1));
+        skillList.add(new Skill("Scatter Shot", 5, "Countered by Avoid and Bounce. Allows player " +
+                "to strike up to 6 targets with single ranged attack.", false,3,1,1));
+        skillList.add(new Skill("SCIENCE!", 1, "Represents greater understanding of scientific " +
+                "reasoning.", false,3,1,1));
+        skillList.add(new Skill("Scrounge", 1, "Allows player to pick up Scrounge cards from the " +
+                "ground.", false,3,1,1));
+        skillList.add(new Skill("Sever", 5, "Countered by Parry if strike is delivered from the " +
+                "front. By declaring Sever, spending 5 Mind and landing a successful melee " +
+                "strike 15 damage is dealt.", false,3,1,1));
+        skillList.add(new Skill("Shield", 0, "Allows player to wield a shield.", false,3,1,1));
+        skillList.add(new Skill("Smelt", 1, "Allows player to break down Scrap into components."
+                ,false,3,1,1));
+        skillList.add(new Skill("Sniped Shot", 5, "Countered by Avoid and Bounce. Allows player " +
+                "to make a single ranged shot without the need to actually make the attack."
+                ,false,3,1,1));
+        skillList.add(new Skill("Society Membership", 1, "Allows player to become a member of a " +
+                "closed group.", false,3,1,1));
         skillList.add(new Skill("Take Down", 5, "description", false,3,1,1));
         skillList.add(new Skill("Teach", 5, "description", false,3,1,1));
         skillList.add(new Skill("Throwing", 5, "description", false,3,1,1));
