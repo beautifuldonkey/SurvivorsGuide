@@ -392,18 +392,40 @@ public class SkillList {
                 ,false,3,1,1));
         skillList.add(new Skill("Society Membership", 1, "Allows player to become a member of a " +
                 "closed group.", false,3,1,1));
-        skillList.add(new Skill("Take Down", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Teach", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Throwing", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Throwing-Javelins", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Tie Bonds", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Torture", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Trade Ties", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Transcribe", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Trap Making", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Unlock", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Vanish", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Weld", 5, "description", false,3,1,1));
-        skillList.add(new Skill("Wide Strike", 5, "description", false,3,1,1));
+        skillList.add(new Skill("Take Down", 5, "Countered by Balance and Parry. Allows player " +
+                "to make a successful Brawling or 2-Handed strike which knocks the target off " +
+                "their feet.", false,3,1,1));
+        skillList.add(new Skill("Teach", 0, "Allows player to teach a known Skill or Profession " +
+                "to a single student. Requires 5 min of roleplay per experience point the " +
+                "student spends to a maximum of 30 min.", false,3,1,1));
+        skillList.add(new Skill("Throwing", 0, "Allows player to use throwing weapons under 12 " +
+                "in. in size.", false,3,1,1));
+        skillList.add(new Skill("Throwing-Javelins", 0, "Allows player to use throwing javelins " +
+                "between 12 and 50 in. in size.", false,3,1,1));
+        skillList.add(new Skill("Tie Bonds", 1, "Countered by Escape Bonds. Allows player to tie " +
+                "a bond on willing, Bleeding Out or unconscious targets.", false,3,1,1));
+        skillList.add(new Skill("Torture", 5, "Countered by Mind Resist. Allows player to " +
+                "forcefully extract information from a target, 10 min of roleplaying is required " +
+                "after which the target must answer a single question truthfully and completely."
+                ,false,3,1,1));
+        skillList.add(new Skill("Trade Ties", 0, "Represents access to bartering connections, " +
+                "allowing player to swap certain resources.", false,3,1,1));
+        skillList.add(new Skill("Transcribe", 5, "Allows player to copy Blueprint, Plan, Recipe, " +
+                "or other single page document by spending 5 Mind and 30 min. roleplay."
+                ,false,3,1,1));
+        skillList.add(new Skill("Trap Making", 2, "Allows player to take Scrap and build various " +
+                "Traps. Requires 2 Mind and 20 min roleplaying at a Workbench.", false,3,1,1));
+        skillList.add(new Skill("Unlock", 1, "Allows player to bypass Lock Gizmos. Requires 1 " +
+                "Mind per crafts level, and 1 min. plus an additional minute per crafts level " +
+                "roleplay time.", false,3,1,1));
+        skillList.add(new Skill("Vanish", 5, "Countered by Alert. Allows player to become " +
+                "invisible if they have 80% environmental cover and are unobserved while using " +
+                "the Skill.", false,3,1,1));
+        skillList.add(new Skill("Weld", 5, "Allows player to combine Scrap into more useful " +
+                "components. Requires player to spend 5 Mind and 10 min. roleplaying welding " +
+                "materials at a Forge.", false,3,1,1));
+        skillList.add(new Skill("Wide Strike", 10, "Countered by Parry. Allows player to spend " +
+                "10 Mind and declare Wide Strike and gesture at up to 6 targets within weapon's " +
+                "reach that take the damage unless countered. ", false,3,1,1));
     }
 }
