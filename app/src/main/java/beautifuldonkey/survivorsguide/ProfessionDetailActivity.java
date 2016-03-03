@@ -39,6 +39,9 @@ public class ProfessionDetailActivity extends AppCompatActivity {
         TextView viewProfessionName = (TextView) findViewById(R.id.professionName);
         viewProfessionName.setText(profession.getName());
 
+        TextView viewProfessionDesc = (TextView) findViewById(R.id.professionDesc);
+        viewProfessionDesc.setText(profession.getDescription());
+
         ArrayAdapter <Skill> adapter = AdapterManager.getSimpleSkillAdapter(context,professionSkills);
         ListView viewProfessionSkills = (ListView) findViewById(R.id.professionSkills);
         viewProfessionSkills.setAdapter(adapter);

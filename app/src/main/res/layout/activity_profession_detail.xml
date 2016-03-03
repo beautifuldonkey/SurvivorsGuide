@@ -20,12 +20,23 @@
         android:id="@+id/nameDivider"
         android:layout_below="@+id/professionName"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/professionDesc"
+        android:layout_below="@+id/nameDivider"
+        style="@style/UiText"/>
+
+    <View
+        style="@style/Divider"
+        android:id="@+id/descDivider"
+        android:layout_below="@+id/professionDesc"/>
+
     <ListView
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/professionSkills"
-        android:layout_below="@+id/nameDivider"
-        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/descDivider"
         style="@style/UiText"/>
 
 </RelativeLayout>
