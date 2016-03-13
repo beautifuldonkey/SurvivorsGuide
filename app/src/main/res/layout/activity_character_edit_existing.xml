@@ -14,30 +14,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/character_name"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"
-        android:textColor="#000000"
-        android:id="@+id/characterName"/>
+        android:id="@+id/characterName"
+        style="@style/UiText"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/characterStrain"
         android:text="@string/character_strain"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"
-        android:textColor="#000000"
-        android:layout_below="@+id/characterName"/>
+        android:layout_below="@+id/characterName"
+        style="@style/UiText"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/characterProfessions"
         android:text="@string/character_profession"
-        android:textStyle="bold"
-        android:textSize="@dimen/charActivityText"
-        android:textColor="#000000"
-        android:layout_below="@+id/characterStrain"/>
+        android:layout_below="@+id/characterStrain"
+        style="@style/UiText"/>
 
     <include layout="@layout/item_character_attributes"
         android:layout_width="@dimen/character_attribute_holder"

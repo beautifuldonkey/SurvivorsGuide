@@ -60,7 +60,6 @@ public class CharacterNewActivity extends AppCompatActivity {
         final Context context = getApplicationContext();
 
         final EditText charName = (EditText) findViewById(R.id.characterName);
-        charName.setTextColor(Color.BLACK);
 
         final TextView charBuild = (TextView) findViewById(R.id.newCharacterBuild);
         final TextView charInfection = (TextView) findViewById(R.id.newCharacterInfection);
