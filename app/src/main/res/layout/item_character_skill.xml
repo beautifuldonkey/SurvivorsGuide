@@ -12,7 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/skillStrainLabel"
         android:text="@string/character_name"
-        />
+        style="@style/UiText"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,7 +21,8 @@
         android:textStyle="bold"
         android:textSize="@dimen/charActivityText"
         android:layout_toLeftOf="@+id/isSkillStrain"
-        android:text="@string/strain_skill"/>
+        android:text="@string/strain_skill"
+        style="@style/UiText"/>
 
     <CheckBox
         android:layout_width="20dp"
@@ -30,6 +31,5 @@
         android:checked="false"
         android:layout_alignParentRight="true"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        />
+        android:focusableInTouchMode="false"/>
 </RelativeLayout>
