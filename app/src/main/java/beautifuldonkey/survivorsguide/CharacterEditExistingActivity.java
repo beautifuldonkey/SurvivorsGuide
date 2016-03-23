@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,6 +31,9 @@ import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 public class CharacterEditExistingActivity extends AppCompatActivity {
 
     ArrayAdapter<Skill> selectedSkillAdapter;
+    TextView charMind;
+    TextView charBody;
+    Strain charStrain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         TextView charName = (TextView) findViewById(R.id.characterName);
         charName.setText(charToEdit.getName());
 
+        charStrain = StrainList.getStrainByName(charToEdit.getStrain());
         TextView charStrainText = (TextView) findViewById(R.id.characterStrain);
         charStrainText.setText(charToEdit.getStrain());
 
@@ -54,11 +59,93 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         TextView charInfection = (TextView) findViewById(R.id.newCharacterInfection);
         charInfection.setText(charToEdit.getInfection());
 
-        TextView charBody = (TextView) findViewById(R.id.newCharacterBody);
+        charBody = (TextView) findViewById(R.id.newCharacterBody);
         charBody.setText(charToEdit.getHealth());
 
-        TextView charMind = (TextView) findViewById(R.id.newCharacterMind);
+        charMind = (TextView) findViewById(R.id.newCharacterMind);
         charMind.setText(charToEdit.getMind());
+
+        String[] profs = charToEdit.getProfessions().split(",");
+        List<Profession> charProfs = new ArrayList<>();
+        for(int i=0; i<profs.length; i++){
+            charProfs.add(ProfessionList.getProfessionByName(profs[i]));
+        }
+
+        List<Skill> availableSkills = CharacterManager.updateAvailableSkillList(
+                charProfs.get(0),
+                charProfs.size()>1 ? charProfs.get(1) : null,
+                charProfs.size()>2 ? charProfs.get(2) : null,
+                charStrain);
+
+        Button btn_addBuild = (Button) findViewById(R.id.btn_addCharacterBuild);
+        btn_addBuild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
+                charBuild.setText(String.valueOf(currentBuild+1));
+            }
+        });
+
+        Button btn_addBody = (Button) findViewById(R.id.btn_newCharMoreBody);
+        btn_addBody.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
+                Integer currentBody = Integer.parseInt(charBody.getText().toString());
+                if (currentBuild > 0) {
+                    currentBody = currentBody + 1;
+                    charBody.setText(String.valueOf(currentBody));
+                    currentBuild = currentBuild - 1;
+                    charBuild.setText(String.valueOf(currentBuild));
+                }
+            }
+        });
+
+        Button btn_subBody = (Button) findViewById(R.id.btn_newCharLessBody);
+        btn_subBody.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
+                Integer currentBody = Integer.parseInt(charBody.getText().toString());
+                if (currentBody > charStrain.getBody()) {
+                    currentBody = currentBody - 1;
+                    charBody.setText(String.valueOf(currentBody));
+                    currentBuild = currentBuild + 1;
+                    charBuild.setText(String.valueOf(currentBuild));
+                }
+            }
+        });
+
+        Button btn_addMind = (Button) findViewById(R.id.btn_newCharMoreMind);
+        btn_addMind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
+                Integer currentMind = Integer.parseInt(charMind.getText().toString());
+                if (currentBuild > 0) {
+                    currentMind = currentMind + 1;
+                    charMind.setText(String.valueOf(currentMind));
+                    currentBuild = currentBuild - 1;
+                    charBuild.setText(String.valueOf(currentBuild));
+                }
+            }
+        });
+
+        Button btn_subMind = (Button) findViewById(R.id.btn_newCharLessMind);
+        btn_subMind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
+                Integer currentMind = Integer.parseInt(charMind.getText().toString());
+                if (currentMind > charStrain.getMind()) {
+                    currentMind = currentMind - 1;
+                    charMind.setText(String.valueOf(currentMind));
+                    currentBuild = currentBuild + 1;
+                    charBuild.setText(String.valueOf(currentBuild));
+                }
+            }
+        });
+
 
         final List<Skill> selectedSkills = SkillList.getSkillsByName(charToEdit.getSelectedSkills());
         final ListView displayedSkills = (ListView) findViewById(R.id.selectedSkills);
@@ -80,19 +167,6 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
             }
         });
 
-        String[] profs = charToEdit.getProfessions().split(",");
-        List<Profession> charProfs = new ArrayList<>();
-        for(int i=0; i<profs.length; i++){
-            charProfs.add(ProfessionList.getProfessionByName(profs[i]));
-        }
-
-        Strain charStrain = StrainList.getStrainByName(charToEdit.getStrain());
-
-        List<Skill> availableSkills = CharacterManager.updateAvailableSkillList(
-                charProfs.get(0),
-                charProfs.size()>1 ? charProfs.get(1) : null,
-                charProfs.size()>2 ? charProfs.get(2) : null,
-                charStrain);
         final Spinner availSkills = (Spinner) findViewById(R.id.availableSkills);
         ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, availableSkills);
         availSkills.setAdapter(availSkillAdapter);
