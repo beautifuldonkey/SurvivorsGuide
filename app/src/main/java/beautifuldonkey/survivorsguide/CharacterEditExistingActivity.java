@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -28,11 +29,13 @@ import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 public class CharacterEditExistingActivity extends AppCompatActivity {
 
+    ArrayAdapter<Skill> selectedSkillAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_edit_existing);
-        Context context = getApplicationContext();
+        final Context context = getApplicationContext();
 
         PlayerCharacter charToEdit = getIntent().getParcelableExtra(SgConstants.INTENT_EDIT_CHAR);
 
@@ -45,7 +48,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         TextView charProfsText = (TextView) findViewById(R.id.characterProfessions);
         charProfsText.setText(charToEdit.getProfessions());
 
-        TextView charBuild = (TextView) findViewById(R.id.newCharacterBuild);
+        final TextView charBuild = (TextView) findViewById(R.id.newCharacterBuild);
         charBuild.setText(charToEdit.getAvailBuild());
 
         TextView charInfection = (TextView) findViewById(R.id.newCharacterInfection);
@@ -58,10 +61,24 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         charMind.setText(charToEdit.getMind());
 
         final List<Skill> selectedSkills = SkillList.getSkillsByName(charToEdit.getSelectedSkills());
-
-        ListView selectedCharSkills = (ListView) findViewById(R.id.selectedSkills);
-        ArrayAdapter<Skill> selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, selectedSkills);
-        selectedCharSkills.setAdapter(selectedSkillAdapter);
+        final ListView displayedSkills = (ListView) findViewById(R.id.selectedSkills);
+        selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, selectedSkills);
+        displayedSkills.setAdapter(selectedSkillAdapter);
+        displayedSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Skill skillToRemove = selectedSkills.get(position);
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
+                if (skillToRemove.getCurrRank() == 1) {
+                    selectedSkills.remove(position);
+                } else {
+                    skillToRemove.setCurrRank(skillToRemove.getCurrRank() - 1);
+                }
+                selectedSkillAdapter.notifyDataSetChanged();
+                currentBuild = currentBuild + skillToRemove.getBuildCost();
+                charBuild.setText(String.valueOf(currentBuild));
+            }
+        });
 
         String[] profs = charToEdit.getProfessions().split(",");
         List<Profession> charProfs = new ArrayList<>();
@@ -76,9 +93,44 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
                 charProfs.size()>1 ? charProfs.get(1) : null,
                 charProfs.size()>2 ? charProfs.get(2) : null,
                 charStrain);
-        Spinner availSkills = (Spinner) findViewById(R.id.availableSkills);
+        final Spinner availSkills = (Spinner) findViewById(R.id.availableSkills);
         ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, availableSkills);
         availSkills.setAdapter(availSkillAdapter);
+        availSkills.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Skill skillToAdd = (Skill) availSkills.getItemAtPosition(position);
+                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
+                if (currentBuild >= skillToAdd.getBuildCost()) {
+                    if (selectedSkills.contains(skillToAdd)) {
+                        for (int i = 0; i < selectedSkills.size(); i++) {
+                            if (selectedSkills.get(i).getName().equals(skillToAdd.getName())) {
+                                Skill existingSkill = selectedSkills.get(i);
+                                if (existingSkill.getAvailRank() > existingSkill.getCurrRank()) {
+                                    existingSkill.setCurrRank(existingSkill.getCurrRank() + 1);
+                                }
+                            }
+                        }
+                    } else {
+                        selectedSkills.add(skillToAdd);
+                    }
+                    currentBuild = currentBuild - skillToAdd.getBuildCost();
+                    charBuild.setText(String.valueOf(currentBuild));
+                }
+
+                if (selectedSkillAdapter == null) {
+                    selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, selectedSkills);
+                    displayedSkills.setAdapter(selectedSkillAdapter);
+                } else {
+                    selectedSkillAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
