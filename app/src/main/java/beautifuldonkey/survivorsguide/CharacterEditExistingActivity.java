@@ -56,7 +56,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         final TextView charBuild = (TextView) findViewById(R.id.newCharacterBuild);
         charBuild.setText(charToEdit.getAvailBuild());
 
-        TextView charInfection = (TextView) findViewById(R.id.newCharacterInfection);
+        final TextView charInfection = (TextView) findViewById(R.id.newCharacterInfection);
         charInfection.setText(charToEdit.getInfection());
 
         charBody = (TextView) findViewById(R.id.newCharacterBody);
@@ -83,6 +83,18 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 charBuild.setText(String.valueOf(currentBuild+1));
+            }
+        });
+
+        Button btn_subInf = (Button) findViewById(R.id.btn_newCharLessInf);
+        btn_subInf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer currentInf = (Integer.parseInt(charInfection.getText().toString()));
+                if(currentInf > 0){
+                    currentInf = currentInf - 1;
+                    charInfection.setText(String.valueOf(currentInf));
+                }
             }
         });
 

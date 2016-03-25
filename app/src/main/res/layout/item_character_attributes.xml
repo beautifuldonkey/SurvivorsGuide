@@ -32,28 +32,39 @@
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buildHolder"
+        android:id="@+id/infectionHolder">
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/btn_newCharLessInf"
+            android:text="@string/btn_subtract"
+            android:layout_alignParentLeft="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/newCharacterInfectionLabel"
+            android:text="@string/character_infection"
+            android:layout_centerInParent="true"
+            style="@style/UiText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/newCharacterInfection"
+            android:text="0"
+            android:layout_toRightOf="@+id/newCharacterInfectionLabel"
+            android:layout_centerInParent="true"
+            style="@style/UiText"/>
+    </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/newCharacterInfectionLabel"
-        android:text="@string/character_infection"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/buildHolder"
-        style="@style/UiText"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/newCharacterInfection"
-        android:text="0"
-        android:layout_toRightOf="@+id/newCharacterInfectionLabel"
-        android:layout_below="@+id/buildHolder"
-        style="@style/UiText"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newCharacterInfection"
+        android:layout_below="@+id/infectionHolder"
         android:id="@+id/bodyHolder">
         <Button
             android:layout_width="50dp"

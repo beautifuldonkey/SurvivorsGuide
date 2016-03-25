@@ -69,6 +69,9 @@ public class CharacterNewActivity extends AppCompatActivity {
         Button btn_addBuild = (Button) findViewById(R.id.btn_addCharacterBuild);
         btn_addBuild.setVisibility(View.INVISIBLE);
 
+        Button btn_subInf = (Button) findViewById(R.id.btn_newCharLessInf);
+        btn_subInf.setVisibility(View.INVISIBLE);
+
         Button btn_addBody = (Button) findViewById(R.id.btn_newCharMoreBody);
         btn_addBody.setOnClickListener(new View.OnClickListener() {
             @Override
