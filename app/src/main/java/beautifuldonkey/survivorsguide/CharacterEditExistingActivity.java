@@ -41,7 +41,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_character_edit_existing);
         final Context context = getApplicationContext();
 
-        PlayerCharacter charToEdit = getIntent().getParcelableExtra(SgConstants.INTENT_EDIT_CHAR);
+        final PlayerCharacter charToEdit = getIntent().getParcelableExtra(SgConstants.INTENT_EDIT_CHAR);
 
         TextView charName = (TextView) findViewById(R.id.characterName);
         charName.setText(charToEdit.getName());
@@ -64,6 +64,8 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
         charMind = (TextView) findViewById(R.id.newCharacterMind);
         charMind.setText(charToEdit.getMind());
+
+        final List<Skill> selectedSkills = SkillList.getSkillsByName(charToEdit.getSelectedSkills());
 
         String[] profs = charToEdit.getProfessions().split(",");
         List<Profession> charProfs = new ArrayList<>();
@@ -158,8 +160,24 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
             }
         });
 
+        Button btn_save = (Button) findViewById(R.id.btn_save);
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String updatedCharSkills = "";
+                for (int i = 0; i < selectedSkills.size(); i++) {
+                    updatedCharSkills += selectedSkills.get(i).getName() + ",";
+                }
 
-        final List<Skill> selectedSkills = SkillList.getSkillsByName(charToEdit.getSelectedSkills());
+                charToEdit.setInfection(charInfection.getText().toString());
+                charToEdit.setHealth(charBody.getText().toString());
+                charToEdit.setMind(charMind.getText().toString());
+                charToEdit.setSelectedSkills(updatedCharSkills);
+
+                CharacterManager.saveCharacter(charToEdit,context);
+            }
+        });
+
         final ListView displayedSkills = (ListView) findViewById(R.id.selectedSkills);
         selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, selectedSkills);
         displayedSkills.setAdapter(selectedSkillAdapter);
