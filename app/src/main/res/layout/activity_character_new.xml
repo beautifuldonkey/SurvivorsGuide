@@ -23,31 +23,12 @@
         android:layout_height="@dimen/character_attribute_holder"
         android:layout_below="@+id/characterName"/>
 
-    // strain
-    <Spinner
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/strainDropDown"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        android:layout_below="@+id/statsHolder"/>
-
-    // first profession
-    <Spinner
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/professionDropDown"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        android:layout_below="@+id/statsHolder"
-        android:layout_toRightOf="@id/strainDropDown"/>
-
     // second profession selector
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/secondProfessionSelector"
-        android:layout_above="@+id/strainDropDown">
+        android:layout_below="@+id/statsHolder">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,6 +45,25 @@
                 android:layout_centerInParent="true"
                 android:layout_toRightOf="@+id/secondProfessionLabel"/>
     </RelativeLayout>
+
+    // strain
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/strainDropDown"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/secondProfessionSelector"/>
+
+    // first profession
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/professionDropDown"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/secondProfessionSelector"
+        android:layout_toRightOf="@id/strainDropDown"/>
 
     // second profession
     <Spinner
