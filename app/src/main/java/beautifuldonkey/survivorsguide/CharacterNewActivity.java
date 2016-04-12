@@ -52,11 +52,13 @@ public class CharacterNewActivity extends AppCompatActivity {
     List<Skill> availableSkills = new ArrayList<>();
     Spinner availSkills;
     CheckBox secondProfToggle;
+    Integer spentBuild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_new);
+        spentBuild = 0;
         final Context context = getApplicationContext();
 
         final EditText charName = (EditText) findViewById(R.id.characterName);
@@ -83,6 +85,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                     charBody.setText(String.valueOf(currentBody));
                     currentBuild = currentBuild-1;
                     charBuild.setText(String.valueOf(currentBuild));
+                    spentBuild += 1;
                 }
             }
         });
@@ -98,6 +101,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                     charBody.setText(String.valueOf(currentBody));
                     currentBuild = currentBuild+1;
                     charBuild.setText(String.valueOf(currentBuild));
+                    spentBuild -= 1;
                 }
             }
         });
@@ -113,6 +117,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                     charMind.setText(String.valueOf(currentMind));
                     currentBuild = currentBuild-1;
                     charBuild.setText(String.valueOf(currentBuild));
+                    spentBuild += 1;
                 }
             }
         });
@@ -128,6 +133,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                     charMind.setText(String.valueOf(currentMind));
                     currentBuild = currentBuild+1;
                     charBuild.setText(String.valueOf(currentBuild));
+                    spentBuild -= 1;
                 }
             }
         });
@@ -145,7 +151,8 @@ public class CharacterNewActivity extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PlayerCharacter newCharacter = new PlayerCharacter("name","health","mind","strain","infection","professions", "strainSkills", "build");
+                PlayerCharacter newCharacter = new PlayerCharacter("name","health","mind","strain"
+                        ,"infection","professions", "strainSkills", "availBuild", "reqBuild");
 
                 String professions = charProfession.getName();
                 if(secondProfToggle.isChecked() && !secondCharProfession.getName().isEmpty()){
@@ -167,6 +174,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 newCharacter.setProfessions(professions);
                 newCharacter.setSelectedSkills(characterSkillsSelected);
                 newCharacter.setAvailBuild(charBuild.getText().toString());
+                newCharacter.setRequiredBuild(String.valueOf(spentBuild));
 
                 CharacterManager.saveCharacter(newCharacter, context);
             }
@@ -203,6 +211,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                     selectedSkills.clear();
                     selectedSkillAdapter.notifyDataSetChanged();
                 }
+                spentBuild = 0;
             }
 
             @Override
@@ -239,6 +248,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                     selectedSkills.clear();
                     selectedSkillAdapter.notifyDataSetChanged();
                 }
+                spentBuild = 0;
             }
 
             @Override
@@ -270,6 +280,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                     selectedSkills.clear();
                     selectedSkillAdapter.notifyDataSetChanged();
                 }
+                spentBuild = 0;
             }
 
             @Override
@@ -339,6 +350,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                 selectedSkillAdapter.notifyDataSetChanged();
                 currentBuild = currentBuild + skillToRemove.getBuildCost();
                 charBuild.setText(String.valueOf(currentBuild));
+                spentBuild -= skillToRemove.getBuildCost();
             }
         });
 
@@ -365,6 +377,7 @@ public class CharacterNewActivity extends AppCompatActivity {
                     }
                     currentBuild = currentBuild-skillToAdd.getBuildCost();
                     charBuild.setText(String.valueOf(currentBuild));
+                    spentBuild += skillToAdd.getBuildCost();
                 }
 
                 if(selectedSkillAdapter == null){

@@ -56,30 +56,32 @@ public class CharacterExistingActivity extends AppCompatActivity {
 
                 loadedCharacter = CharacterManager.loadCharacter(position, context);
 
-                //displaying existing character attributes
-                TextView existingCharName = (TextView) findViewById(R.id.existingCharName);
-                existingCharName.setText(loadedCharacter.getName());
+                if (loadedCharacter != null){
+                    //displaying existing character attributes
+                    TextView existingCharName = (TextView) findViewById(R.id.existingCharName);
+                    existingCharName.setText(loadedCharacter.getName());
 
-                TextView existingCharStrain = (TextView) findViewById(R.id.existingCharStrain);
-                existingCharStrain.setText(loadedCharacter.getStrain());
+                    TextView existingCharStrain = (TextView) findViewById(R.id.existingCharStrain);
+                    existingCharStrain.setText(loadedCharacter.getStrain());
 
-                TextView existingCharProfessions = (TextView) findViewById(R.id.existingCharProfession);
-                existingCharProfessions.setText(loadedCharacter.getProfessions());
+                    TextView existingCharProfessions = (TextView) findViewById(R.id.existingCharProfession);
+                    existingCharProfessions.setText(loadedCharacter.getProfessions());
 
-                TextView existingCharInfection = (TextView) findViewById(R.id.existingCharInfection);
-                existingCharInfection.setText(loadedCharacter.getInfection());
+                    TextView existingCharInfection = (TextView) findViewById(R.id.existingCharInfection);
+                    existingCharInfection.setText(loadedCharacter.getInfection());
 
-                TextView existingCharBody = (TextView) findViewById(R.id.existingCharBody);
-                existingCharBody.setText(loadedCharacter.getHealth());
+                    TextView existingCharBody = (TextView) findViewById(R.id.existingCharBody);
+                    existingCharBody.setText(loadedCharacter.getHealth());
 
-                TextView existingCharMind = (TextView) findViewById(R.id.existingCharMind);
-                existingCharMind.setText(loadedCharacter.getMind());
+                    TextView existingCharMind = (TextView) findViewById(R.id.existingCharMind);
+                    existingCharMind.setText(loadedCharacter.getMind());
 
-                final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getSelectedSkills());
+                    final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getSelectedSkills());
 
-                ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
-                ArrayAdapter<Skill> selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context,selectedSkills);
-                existingCharSkills.setAdapter(selectedSkillAdapter);
+                    ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
+                    ArrayAdapter<Skill> selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context,selectedSkills);
+                    existingCharSkills.setAdapter(selectedSkillAdapter);
+                }
             }
 
             @Override

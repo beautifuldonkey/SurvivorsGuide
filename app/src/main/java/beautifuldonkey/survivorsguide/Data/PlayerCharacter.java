@@ -19,9 +19,11 @@ public class PlayerCharacter implements Parcelable {
     private String professions;
     private String selectedSkills;
     private String availBuild;
+    private String requiredBuild;
 
     public PlayerCharacter (String charName, String charHealth, String charMind, String charStrain
-            , String charInfection, String charProfs, String selectedSkills, String availBuild){
+            , String charInfection, String charProfs, String selectedSkills, String availBuild
+            , String requiredBuild){
         this.name = charName;
         this.health = charHealth;
         this.mind = charMind;
@@ -30,6 +32,7 @@ public class PlayerCharacter implements Parcelable {
         this.professions = charProfs;
         this.selectedSkills = selectedSkills;
         this.availBuild = availBuild;
+        this.requiredBuild = requiredBuild;
     }
 
     public PlayerCharacter (Parcel source){
@@ -41,6 +44,7 @@ public class PlayerCharacter implements Parcelable {
         professions = source.readString();
         selectedSkills = source.readString();
         availBuild = source.readString();
+        requiredBuild = source.readString();
     }
 
     @Override
@@ -53,6 +57,7 @@ public class PlayerCharacter implements Parcelable {
         dest.writeString(professions);
         dest.writeString(selectedSkills);
         dest.writeString(availBuild);
+        dest.writeString(requiredBuild);
     }
 
     @Override
@@ -132,5 +137,13 @@ public class PlayerCharacter implements Parcelable {
 
     public void setSelectedSkills(String selectedSkills) {
         this.selectedSkills = selectedSkills;
+    }
+
+    public String getRequiredBuild() {
+        return requiredBuild;
+    }
+
+    public void setRequiredBuild(String requiredBuild) {
+        this.requiredBuild = requiredBuild;
     }
 }
