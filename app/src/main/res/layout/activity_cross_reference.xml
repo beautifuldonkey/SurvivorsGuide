@@ -10,4 +10,49 @@
     android:background="@drawable/sg_background_5"
     tools:context="beautifuldonkey.survivorsguide.CrossReference">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cr_intro"
+        android:text="@string/text_cr_intro"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        style="@style/UiText"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/skills"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/cr_intro"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_required_skills"
+        android:text="@string/text_cr_skills"
+        android:layout_below="@+id/skills"
+        style="@style/UiText"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/required_skills"
+        android:layout_below="@+id/text_required_skills"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_professions"
+        android:text="@string/text_cr_professions"
+        android:layout_below="@+id/required_skills"
+        style="@style/UiText"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/professions"
+        android:layout_below="@+id/text_professions"/>
+
 </RelativeLayout>

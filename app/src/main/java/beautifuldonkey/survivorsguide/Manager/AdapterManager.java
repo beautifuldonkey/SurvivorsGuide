@@ -22,7 +22,6 @@ public class AdapterManager {
     ArrayAdapter<Skill> skillArrayAdapter = new ArrayAdapter<Skill>(context, R.layout.item_character_skill, skills){
       @Override
       public View getDropDownView(int position, View convertView, ViewGroup parent) {
-
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_character_skill, null);
 
@@ -77,6 +76,21 @@ public class AdapterManager {
 
   public static ArrayAdapter<Skill> getSimpleSkillAdapter(final Context context, final List<Skill> skills){
     ArrayAdapter<Skill> adapter = new ArrayAdapter<Skill>(context, R.layout.item_skill, skills){
+      @Override
+      public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.item_skill, null);
+
+        TextView textView = (TextView) view.findViewById(R.id.skillName);
+        textView.setTextColor(Color.BLACK);
+
+        if(skills.size()>position){
+          textView.setText(skills.get(position).getName());
+        }
+
+        return view;
+      }
+
       @Override
       public View getView(int position, View convertView, ViewGroup parent) {
 
