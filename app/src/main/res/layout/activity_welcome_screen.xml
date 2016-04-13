@@ -38,4 +38,12 @@
         android:id="@+id/btn_character"
         android:layout_below="@+id/btn_professions"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_cross_ref"
+        android:id="@+id/btn_cross_ref"
+        android:layout_below="@+id/btn_character"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

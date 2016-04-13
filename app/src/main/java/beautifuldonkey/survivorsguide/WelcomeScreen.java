@@ -56,6 +56,15 @@ public class WelcomeScreen extends AppCompatActivity {
             }
         });
 
+        Button btn_CrossReference = (Button) findViewById(R.id.btn_cross_ref);
+        btn_CrossReference.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CrossReference.class);
+                startActivityForResult(intent, SgConstants.CROSS_REF_ACTIVITY);
+            }
+        });
+
     }
 
     @Override

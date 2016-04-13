@@ -10,6 +10,7 @@ public class SgConstants {
     public static int STRAIN_ACTIVITY = 2;
     public static int PROFESSION_ACTIVITY = 3;
     public static int CHARACTER_ACTIVITY = 4;
+    public static int CROSS_REF_ACTIVITY = 5;
 
     public static int SKILL_DETAIL_ACTIVITY = 11;
     public static int PROFESSION_DETAIL_ACTIVITY = 12;
