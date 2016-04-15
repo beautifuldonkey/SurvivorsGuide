@@ -12,56 +12,90 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
+import beautifuldonkey.survivorsguide.Data.Profession;
+import beautifuldonkey.survivorsguide.Data.ProfessionList;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Manager.AdapterManager;
 
 public class CrossReference extends AppCompatActivity {
 
-    List<Skill> requiredSkills;
-    ArrayAdapter<Skill> selectedSkillAdapter;
-    ListView selectedSkills;
-    Spinner availSkills;
+  List<Skill> requiredSkills;
+  List<Skill> skills;
+  List<Profession> availableProfessions;
+  List<Profession> professions;
+  ArrayAdapter<Profession> professionArrayAdapter;
+  ArrayAdapter<Skill> selectedSkillAdapter;
+  ListView selectedSkills;
+  ListView professionOptions;
+  Spinner availSkills;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cross_reference);
-        Context context = getApplicationContext();
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_cross_reference);
+    Context context = getApplicationContext();
 
-        requiredSkills = new ArrayList<>();
+    requiredSkills = new ArrayList<>();
+    skills = SkillList.getSkillList();
+    professions = ProfessionList.getProfessionList();
+    availableProfessions = professions;
 
-        List<Skill> skills = SkillList.getSkillList();
+    availSkills = (Spinner) findViewById(R.id.skills);
+    ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, skills);
+    availSkills.setAdapter(availSkillAdapter);
+    availSkills.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Skill newReqSkill = (Skill) availSkills.getItemAtPosition(position);
+        if(!requiredSkills.contains(newReqSkill)){
+          requiredSkills.add(newReqSkill);
+          selectedSkillAdapter.notifyDataSetChanged();
+          updateAvailableProfessions();
+        }
+      }
 
-        availSkills = (Spinner) findViewById(R.id.skills);
-        ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, skills);
-        availSkills.setAdapter(availSkillAdapter);
-        availSkills.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Skill newReqSkill = (Skill) availSkills.getItemAtPosition(position);
-                if(!requiredSkills.contains(newReqSkill)){
-                    requiredSkills.add(newReqSkill);
-                    selectedSkillAdapter.notifyDataSetChanged();
-                }
-            }
+      @Override
+      public void onNothingSelected(AdapterView<?> parent) {
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+      }
+    });
 
-            }
-        });
+    selectedSkills = (ListView) findViewById(R.id.required_skills);
+    selectedSkillAdapter = AdapterManager.getSimpleSkillAdapter(context, requiredSkills);
+    selectedSkills.setAdapter(selectedSkillAdapter);
+    selectedSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        requiredSkills.remove(position);
+        selectedSkillAdapter.notifyDataSetChanged();
+        updateAvailableProfessions();
+      }
+    });
 
-        selectedSkills = (ListView) findViewById(R.id.required_skills);
-        selectedSkillAdapter = AdapterManager.getSimpleSkillAdapter(context, requiredSkills);
-        selectedSkills.setAdapter(selectedSkillAdapter);
-        selectedSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                requiredSkills.remove(position);
-                selectedSkillAdapter.notifyDataSetChanged();
-            }
-        });
+    professionOptions = (ListView) findViewById(R.id.professions);
+    professionArrayAdapter = AdapterManager.getSimpleProfessionAdapter(context, availableProfessions);
+    professionOptions.setAdapter(professionArrayAdapter);
 
+  }
+
+  private void updateAvailableProfessions(){
+    for(int i=0; i<requiredSkills.size(); i++){
+      availableProfessions.clear();
+      for(int j=0; j<professions.size(); j++){
+        Boolean isProfAvail = false;
+        String[] profSkills = professions.get(j).getSkills().split(",");
+        for(int k=0; k<profSkills.length; k++){
+          if(requiredSkills.get(i).getName() == profSkills[k]){
+            availableProfessions.add(professions.get(j));
+            isProfAvail = true;
+          }
+        }
+        if(isProfAvail){
+          break;
+        }
+      }
     }
+    professionArrayAdapter.notifyDataSetChanged();
+  }
 }

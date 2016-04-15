@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.R;
 
@@ -107,8 +109,23 @@ public class AdapterManager {
         return view;
       }
     };
+    return adapter;
+  }
 
+  public static ArrayAdapter<Profession> getSimpleProfessionAdapter(final Context context, final List<Profession> profs){
+    ArrayAdapter<Profession> adapter = new ArrayAdapter<Profession>(context, R.layout.item_profession, profs){
+      @Override
+      public View getView(int position, View convertView, ViewGroup parent) {
+        Profession profession = profs.get(position);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.item_profession, null);
 
+        TextView viewProfName = (TextView) view.findViewById(R.id.professionName);
+        viewProfName.setText(profession.getName());
+
+        return view;
+      }
+    };
     return adapter;
   }
 }
