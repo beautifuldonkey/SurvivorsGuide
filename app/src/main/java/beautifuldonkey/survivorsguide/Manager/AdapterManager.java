@@ -95,17 +95,12 @@ public class AdapterManager {
 
       @Override
       public View getView(int position, View convertView, ViewGroup parent) {
-
         Skill skill = skills.get(position);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_skill, null);
 
         TextView viewSkillName = (TextView) view.findViewById(R.id.skillName);
         viewSkillName.setText(skill.getName());
-
-        TextView viewSkillCost = (TextView) view.findViewById(R.id.skillCost);
-        viewSkillCost.setText(String.valueOf(skill.getMpCost()));
-
         return view;
       }
     };

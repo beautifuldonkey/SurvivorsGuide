@@ -42,7 +42,7 @@ public class CrossReference extends AppCompatActivity {
     availableProfessions = new ArrayList<>(ProfessionList.getProfessionList());
 
     availSkills = (Spinner) findViewById(R.id.skills);
-    ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, skills);
+    ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getSimpleSkillAdapter(context, skills);
     availSkills.setAdapter(availSkillAdapter);
     availSkills.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
