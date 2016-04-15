@@ -18,7 +18,7 @@ import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Manager.AdapterManager;
 
-public class CrossReference extends AppCompatActivity {
+public class CrossReferenceActivity extends AppCompatActivity {
 
   List<Skill> requiredSkills;
   List<Skill> skills;

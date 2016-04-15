@@ -46,7 +46,7 @@
         <activity
             android:name=".CharacterEditExistingActivity"
             android:label="@string/title_activity_character_edit_existing" />
-        <activity android:name=".CrossReference"></activity>
+        <activity android:name=".CrossReferenceActivity"></activity>
     </application>
 
 </manifest>
