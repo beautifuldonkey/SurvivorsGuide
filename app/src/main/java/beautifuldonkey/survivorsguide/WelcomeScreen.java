@@ -2,7 +2,6 @@ package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -53,6 +52,15 @@ public class WelcomeScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(context, CharacterActivity.class);
                 startActivityForResult(intent, SgConstants.CHARACTER_ACTIVITY);
+            }
+        });
+
+        Button btn_CrossReference = (Button) findViewById(R.id.btn_cross_ref);
+        btn_CrossReference.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CrossReferenceActivity.class);
+                startActivityForResult(intent, SgConstants.CROSS_REF_ACTIVITY);
             }
         });
 

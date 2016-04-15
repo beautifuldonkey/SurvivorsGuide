@@ -18,34 +18,35 @@
         </activity>
         <activity
             android:name=".SkillActivity"
-            android:label="@string/title_skill_activity"></activity>
+            android:label="@string/title_skill_activity" />
         <activity
             android:name=".StrainActivity"
-            android:label="@string/title_strain_activity"></activity>
+            android:label="@string/title_strain_activity" />
         <activity
             android:name=".ProfessionActivity"
-            android:label="@string/title_profession_activity"></activity>
+            android:label="@string/title_profession_activity" />
         <activity
             android:name=".ProfessionDetailActivity"
-            android:label="@string/title_profession_detail_activity"></activity>
+            android:label="@string/title_profession_detail_activity" />
         <activity
             android:name=".StrainDetailActivity"
-            android:label="@string/title_strain_detail_activity"></activity>
+            android:label="@string/title_strain_detail_activity" />
         <activity
             android:name=".SkillDetailActivity"
-            android:label="@string/title_skill_detail_activity"></activity>
+            android:label="@string/title_skill_detail_activity" />
         <activity
             android:name=".CharacterActivity"
-            android:label="@string/title_character_activity"></activity>
+            android:label="@string/title_character_activity" />
         <activity
             android:name=".CharacterNewActivity"
-            android:label="@string/title_character_new_activity"></activity>
+            android:label="@string/title_character_new_activity" />
         <activity
             android:name=".CharacterExistingActivity"
-            android:label="@string/title_activity_character_existing"></activity>
+            android:label="@string/title_activity_character_existing" />
         <activity
             android:name=".CharacterEditExistingActivity"
-            android:label="@string/title_activity_character_edit_existing"></activity>
+            android:label="@string/title_activity_character_edit_existing" />
+        <activity android:name=".CrossReferenceActivity"></activity>
     </application>
 
 </manifest>

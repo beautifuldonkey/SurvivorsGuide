@@ -132,7 +132,8 @@ public class CharacterManager {
             character.put("strain", myCharacter.getStrain());
             character.put("professions", myCharacter.getProfessions());
             character.put("selectedSkills", myCharacter.getSelectedSkills());
-            character.put("build", myCharacter.getAvailBuild());
+            character.put("availBuild", myCharacter.getAvailBuild());
+            character.put("reqBuild", myCharacter.getRequiredBuild());
             data.put(character);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -183,6 +184,7 @@ public class CharacterManager {
             String charMind = "";
             String charSkills = "";
             String charAvailBuild = "";
+            String charRequiredBuild = "";
             for (int i = 0; i < data.length(); i++) {
 
                 charName = data.getJSONObject(i).getString("name");
@@ -192,12 +194,13 @@ public class CharacterManager {
                 charStrain = data.getJSONObject(i).getString("strain");
                 charProfession = data.getJSONObject(i).getString("professions");
                 charSkills = data.getJSONObject(i).getString("selectedSkills");
-                charAvailBuild = data.getJSONObject(i).getString("build");
+                charAvailBuild = data.getJSONObject(i).getString("availBuild");
+                charRequiredBuild = data.getJSONObject(i).getString("reqBuild");
             }
             Log.d(TAG, "built string now building character");
 
             characterToLoad = new PlayerCharacter(charName, charBody, charMind, charStrain,
-                     charInfection, charProfession, charSkills, charAvailBuild);
+                     charInfection, charProfession, charSkills, charAvailBuild, charRequiredBuild);
 
             Log.d(TAG, "character built, displaying friendly output:");
             Log.d(TAG, "Name: "+characterToLoad.getName());
@@ -206,7 +209,8 @@ public class CharacterManager {
             Log.d(TAG, "Inf: "+characterToLoad.getInfection());
             Log.d(TAG, "Strain: "+characterToLoad.getStrain());
             Log.d(TAG, "Profs: "+characterToLoad.getProfessions());
-            Log.d(TAG, "Build: "+characterToLoad.getAvailBuild());
+            Log.d(TAG, "Avail Build: "+characterToLoad.getAvailBuild());
+            Log.d(TAG, "Req Build: "+characterToLoad.getRequiredBuild());
             Log.d(TAG, "Skills-----------------------");
             Log.d(TAG, "skills: "+characterToLoad.getSelectedSkills());
 

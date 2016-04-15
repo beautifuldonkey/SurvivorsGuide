@@ -34,14 +34,16 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     TextView charMind;
     TextView charBody;
     Strain charStrain;
+    Integer spentBuild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_edit_existing);
         final Context context = getApplicationContext();
-
         final PlayerCharacter charToEdit = getIntent().getParcelableExtra(SgConstants.INTENT_EDIT_CHAR);
+
+        spentBuild = Integer.valueOf(charToEdit.getRequiredBuild());
 
         TextView charName = (TextView) findViewById(R.id.characterName);
         charName.setText(charToEdit.getName());
@@ -53,8 +55,11 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         TextView charProfsText = (TextView) findViewById(R.id.characterProfessions);
         charProfsText.setText(charToEdit.getProfessions());
 
+        TextView charBuildLabel = (TextView) findViewById(R.id.newCharacterBuildLabel);
+        charBuildLabel.setText("Build Req:");
+
         final TextView charBuild = (TextView) findViewById(R.id.newCharacterBuild);
-        charBuild.setText(charToEdit.getAvailBuild());
+        charBuild.setText(String.valueOf(spentBuild));
 
         final TextView charInfection = (TextView) findViewById(R.id.newCharacterInfection);
         charInfection.setText(charToEdit.getInfection());
@@ -79,15 +84,6 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
                 charProfs.size()>2 ? charProfs.get(2) : null,
                 charStrain);
 
-        Button btn_addBuild = (Button) findViewById(R.id.btn_addCharacterBuild);
-        btn_addBuild.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
-                charBuild.setText(String.valueOf(currentBuild+1));
-            }
-        });
-
         Button btn_subInf = (Button) findViewById(R.id.btn_newCharLessInf);
         btn_subInf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,14 +100,11 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         btn_addBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 Integer currentBody = Integer.parseInt(charBody.getText().toString());
-                if (currentBuild > 0) {
-                    currentBody = currentBody + 1;
-                    charBody.setText(String.valueOf(currentBody));
-                    currentBuild = currentBuild - 1;
-                    charBuild.setText(String.valueOf(currentBuild));
-                }
+                currentBody = currentBody + 1;
+                charBody.setText(String.valueOf(currentBody));
+                spentBuild += 1;
+                charBuild.setText(String.valueOf(spentBuild));
             }
         });
 
@@ -119,13 +112,12 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         btn_subBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 Integer currentBody = Integer.parseInt(charBody.getText().toString());
                 if (currentBody > charStrain.getBody()) {
                     currentBody = currentBody - 1;
                     charBody.setText(String.valueOf(currentBody));
-                    currentBuild = currentBuild + 1;
-                    charBuild.setText(String.valueOf(currentBuild));
+                    spentBuild -= 1;
+                    charBuild.setText(String.valueOf(spentBuild));
                 }
             }
         });
@@ -134,14 +126,11 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         btn_addMind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 Integer currentMind = Integer.parseInt(charMind.getText().toString());
-                if (currentBuild > 0) {
-                    currentMind = currentMind + 1;
-                    charMind.setText(String.valueOf(currentMind));
-                    currentBuild = currentBuild - 1;
-                    charBuild.setText(String.valueOf(currentBuild));
-                }
+                currentMind = currentMind + 1;
+                charMind.setText(String.valueOf(currentMind));
+                spentBuild += 1;
+                charBuild.setText(String.valueOf(spentBuild));
             }
         });
 
@@ -149,13 +138,12 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         btn_subMind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 Integer currentMind = Integer.parseInt(charMind.getText().toString());
                 if (currentMind > charStrain.getMind()) {
                     currentMind = currentMind - 1;
                     charMind.setText(String.valueOf(currentMind));
-                    currentBuild = currentBuild + 1;
-                    charBuild.setText(String.valueOf(currentBuild));
+                    spentBuild -= 1;
+                    charBuild.setText(String.valueOf(spentBuild));
                 }
             }
         });
@@ -185,15 +173,14 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Skill skillToRemove = selectedSkills.get(position);
-                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
                 if (skillToRemove.getCurrRank() == 1) {
                     selectedSkills.remove(position);
                 } else {
                     skillToRemove.setCurrRank(skillToRemove.getCurrRank() - 1);
                 }
                 selectedSkillAdapter.notifyDataSetChanged();
-                currentBuild = currentBuild + skillToRemove.getBuildCost();
-                charBuild.setText(String.valueOf(currentBuild));
+                spentBuild -= skillToRemove.getBuildCost();
+                charBuild.setText(String.valueOf(spentBuild));
             }
         });
 
@@ -204,23 +191,20 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Skill skillToAdd = (Skill) availSkills.getItemAtPosition(position);
-                Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
-                if (currentBuild >= skillToAdd.getBuildCost()) {
-                    if (selectedSkills.contains(skillToAdd)) {
-                        for (int i = 0; i < selectedSkills.size(); i++) {
-                            if (selectedSkills.get(i).getName().equals(skillToAdd.getName())) {
-                                Skill existingSkill = selectedSkills.get(i);
-                                if (existingSkill.getAvailRank() > existingSkill.getCurrRank()) {
-                                    existingSkill.setCurrRank(existingSkill.getCurrRank() + 1);
-                                }
+                if (selectedSkills.contains(skillToAdd)) {
+                    for (int i = 0; i < selectedSkills.size(); i++) {
+                        if (selectedSkills.get(i).getName().equals(skillToAdd.getName())) {
+                            Skill existingSkill = selectedSkills.get(i);
+                            if (existingSkill.getAvailRank() > existingSkill.getCurrRank()) {
+                                existingSkill.setCurrRank(existingSkill.getCurrRank() + 1);
                             }
                         }
-                    } else {
-                        selectedSkills.add(skillToAdd);
                     }
-                    currentBuild = currentBuild - skillToAdd.getBuildCost();
-                    charBuild.setText(String.valueOf(currentBuild));
+                } else {
+                    selectedSkills.add(skillToAdd);
                 }
+                spentBuild += skillToAdd.getBuildCost();
+                charBuild.setText(String.valueOf(spentBuild));
 
                 if (selectedSkillAdapter == null) {
                     selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, selectedSkills);

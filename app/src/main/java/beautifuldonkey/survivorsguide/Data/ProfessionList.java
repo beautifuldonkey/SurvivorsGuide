@@ -31,7 +31,7 @@ public class ProfessionList {
         professionList.add(new Profession("Assassin","Play an Assassin if you want to play a " +
                 "dedicated contract killer."
                 ,"Alert,Avoid,Backstab,Balance,Black Market Connections,Blinding,Choking Blow," +
-                "Cover of Night,Disguise,Fade In A Crowd,Guild Member, Melee Weapon Small,Murder " +
+                "Cover of Night,Disguise,Fade In A Crowd,Guild Member,Melee Weapon Small,Murder " +
                 "Most Foul,Parry,Throwing,Vanish","strainReqs"
         ,"3,3,3,3,6,3,3,3,3,3,6,3,6,3,3,3"));
         professionList.add(new Profession("Caravan Driver","Play a Caravan Driver if you want to " +

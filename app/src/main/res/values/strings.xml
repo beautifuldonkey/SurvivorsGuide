@@ -26,6 +26,7 @@
     <string name="btn_existing_character">Existing Character</string>
     <string name="btn_add">+</string>
     <string name="btn_subtract">-</string>
+    <string name="btn_cross_ref">Cross Reference</string>
 
     <string name="strain_name">Name</string>
     <string name="strain_skill">Strain Skill:</string>
@@ -49,5 +50,9 @@
     <string name="character_body">Body: </string>
     <string name="character_mind">Mind: </string>
     <string name="character_build">Build: </string>
+
+    <string name="text_cr_intro">Skill selections filter available Professions</string>
+    <string name="text_cr_professions">Professions:</string>
+    <string name="text_cr_skills">Required Skills:</string>
 
 </resources>
