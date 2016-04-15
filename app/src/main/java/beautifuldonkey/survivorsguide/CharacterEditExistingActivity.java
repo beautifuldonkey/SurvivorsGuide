@@ -55,6 +55,9 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         TextView charProfsText = (TextView) findViewById(R.id.characterProfessions);
         charProfsText.setText(charToEdit.getProfessions());
 
+        TextView charBuildLabel = (TextView) findViewById(R.id.newCharacterBuildLabel);
+        charBuildLabel.setText("Build Req:");
+
         final TextView charBuild = (TextView) findViewById(R.id.newCharacterBuild);
         charBuild.setText(String.valueOf(spentBuild));
 

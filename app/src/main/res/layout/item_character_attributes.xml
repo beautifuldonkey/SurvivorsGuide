@@ -5,7 +5,7 @@
     android:id="@+id/statsHolder">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buildHolder"
         android:layout_alignParentTop="true">
@@ -23,12 +23,6 @@
             android:layout_toRightOf="@+id/newCharacterBuildLabel"
             android:layout_centerInParent="true"
             style="@style/UiText"/>
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/btn_addCharacterBuild"
-            android:text="@string/btn_add"
-            android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
     <RelativeLayout

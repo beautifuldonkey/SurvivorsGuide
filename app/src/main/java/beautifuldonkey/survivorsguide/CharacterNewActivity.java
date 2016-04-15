@@ -68,9 +68,6 @@ public class CharacterNewActivity extends AppCompatActivity {
         final TextView charBody = (TextView) findViewById(R.id.newCharacterBody);
         final TextView charMind = (TextView) findViewById(R.id.newCharacterMind);
 
-        Button btn_addBuild = (Button) findViewById(R.id.btn_addCharacterBuild);
-        btn_addBuild.setVisibility(View.INVISIBLE);
-
         Button btn_subInf = (Button) findViewById(R.id.btn_newCharLessInf);
         btn_subInf.setVisibility(View.INVISIBLE);
 
