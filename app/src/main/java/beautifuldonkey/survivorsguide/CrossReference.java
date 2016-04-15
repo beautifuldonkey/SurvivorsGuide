@@ -38,8 +38,8 @@ public class CrossReference extends AppCompatActivity {
 
     requiredSkills = new ArrayList<>();
     skills = SkillList.getSkillList();
-    professions = ProfessionList.getProfessionList();
-    availableProfessions = professions;
+    professions = new ArrayList<>(ProfessionList.getProfessionList());
+    availableProfessions = new ArrayList<>(ProfessionList.getProfessionList());
 
     availSkills = (Spinner) findViewById(R.id.skills);
     ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, skills);
@@ -80,20 +80,24 @@ public class CrossReference extends AppCompatActivity {
   }
 
   private void updateAvailableProfessions(){
-    for(int i=0; i<requiredSkills.size(); i++){
-      availableProfessions.clear();
-      for(int j=0; j<professions.size(); j++){
-        Boolean isProfAvail = false;
-        String[] profSkills = professions.get(j).getSkills().split(",");
+    availableProfessions.clear();
+    for(int i=0; i<professions.size(); i++){
+      Boolean isProfAvail = true;
+      String[] profSkills = professions.get(i).getSkills().split(",");
+      for(int j=0; j<requiredSkills.size(); j++){
+        Boolean profHasSkill = false;
         for(int k=0; k<profSkills.length; k++){
-          if(requiredSkills.get(i).getName() == profSkills[k]){
-            availableProfessions.add(professions.get(j));
-            isProfAvail = true;
+          if(requiredSkills.get(j).getName().equals(profSkills[k])){
+            profHasSkill = true;
+            break;
           }
         }
-        if(isProfAvail){
-          break;
+        if(!profHasSkill){
+          isProfAvail = false;
         }
+      }
+      if(isProfAvail){
+        availableProfessions.add(professions.get(i));
       }
     }
     professionArrayAdapter.notifyDataSetChanged();
