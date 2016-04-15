@@ -10,7 +10,7 @@
     // character name
     <EditText
         android:id="@+id/characterName"
-        android:text="@string/character_name_new"
+        android:hint="@string/character_name_new"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
