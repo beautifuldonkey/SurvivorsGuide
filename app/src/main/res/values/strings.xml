@@ -55,5 +55,6 @@
     <string name="text_cr_intro">Skill selections filter available Professions</string>
     <string name="text_cr_professions">Professions:</string>
     <string name="text_cr_skills">Required Skills:</string>
+    <string name="text_size">Text Size: </string>
 
 </resources>
