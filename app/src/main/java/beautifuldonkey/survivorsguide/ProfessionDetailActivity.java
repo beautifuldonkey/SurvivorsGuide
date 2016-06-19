@@ -27,56 +27,58 @@ import beautifuldonkey.survivorsguide.Manager.AdapterManager;
 
 public class ProfessionDetailActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profession_detail);
+  List<Skill> professionSkills;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_profession_detail);
+    Context context = getApplicationContext();
+
+    Profession profession = getIntent().getParcelableExtra(SgConstants.INTENT_PROFESSION);
+    professionSkills = SkillList.getSkillsByNameSetCost(profession.getSkills(),profession.getSkillCost());
+
+    TextView viewProfessionName = (TextView) findViewById(R.id.professionName);
+    viewProfessionName.setText(profession.getName());
+
+    TextView viewProfessionDesc = (TextView) findViewById(R.id.professionDesc);
+    viewProfessionDesc.setText(profession.getDescription());
+
+    ArrayAdapter <Skill> adapter = AdapterManager.getSimpleSkillAdapter(context,professionSkills);
+    ListView viewProfessionSkills = (ListView) findViewById(R.id.professionSkills);
+    viewProfessionSkills.setAdapter(adapter);
+
+    viewProfessionSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Context context = getApplicationContext();
+        Intent intent = new Intent(context, SkillDetailActivity.class);
+        intent.putExtra(SgConstants.INTENT_SKILL, professionSkills.get(position));
+        startActivityForResult(intent, SgConstants.SKILL_DETAIL_ACTIVITY);
+      }
+    });
 
-        Profession profession = getIntent().getParcelableExtra(SgConstants.INTENT_PROFESSION);
-        final List<Skill> professionSkills = SkillList.getSkillsByName(profession.getSkills());
+  }
 
-        TextView viewProfessionName = (TextView) findViewById(R.id.professionName);
-        viewProfessionName.setText(profession.getName());
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.menu_profession_detail, menu);
+    return true;
+  }
 
-        TextView viewProfessionDesc = (TextView) findViewById(R.id.professionDesc);
-        viewProfessionDesc.setText(profession.getDescription());
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle action bar item clicks here. The action bar will
+    // automatically handle clicks on the Home/Up button, so long
+    // as you specify a parent activity in AndroidManifest.xml.
+    int id = item.getItemId();
 
-        ArrayAdapter <Skill> adapter = AdapterManager.getSimpleSkillAdapter(context,professionSkills);
-        ListView viewProfessionSkills = (ListView) findViewById(R.id.professionSkills);
-        viewProfessionSkills.setAdapter(adapter);
-
-        viewProfessionSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Context context = getApplicationContext();
-                Intent intent = new Intent(context, SkillDetailActivity.class);
-                intent.putExtra(SgConstants.INTENT_SKILL, professionSkills.get(position));
-                startActivityForResult(intent, SgConstants.SKILL_DETAIL_ACTIVITY);
-            }
-        });
-
+    //noinspection SimplifiableIfStatement
+    if (id == R.id.action_settings) {
+      return true;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_profession_detail, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+    return super.onOptionsItemSelected(item);
+  }
 }
