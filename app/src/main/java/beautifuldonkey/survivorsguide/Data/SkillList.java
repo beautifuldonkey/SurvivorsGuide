@@ -102,7 +102,7 @@ public class SkillList {
         "and 2 Min. of roleplay a Barricade with a crafts level equal to every 2 Mind " +
         "spent is created. Crafting process may be repeated to add to this level.",
         false,3,1,1));
-    skillList.add(new Skill("Beg for Life", 1, "Counters Killing Blows, can be countered by " +
+    skillList.add(new Skill("Beg For Life", 1, "Counters Killing Blows, can be countered by " +
         "Refuse. Unusable if under the effects of Choking Blow. Prevents any Killing " +
         "Blows from being called and lasts 2 min. or until the user takes any action " +
         "other than groveling.", false,3,1,1));
@@ -186,7 +186,7 @@ public class SkillList {
     skillList.add(new Skill("Check Your Sleeves", 1, "Counters Cheat. Does not imply that " +
         "you have caught the cheater but that they were unable to sneak loaded dice or " +
         "marked cards into the game.", false,3,1,1));
-    skillList.add(new Skill("Chocking Blow", 5, "Allows player to strike the front or back " +
+    skillList.add(new Skill("Choking Blow", 5, "Allows player to strike the front or back " +
         "of the torso with a small melee, thrown, or brawling weapon. If successful the " +
         "target cannot speak for 2 min.", false,3,1,1));
     skillList.add(new Skill("Chop", 1, "Allows player to spend 1 Mind to trade a broken item " +
@@ -241,10 +241,10 @@ public class SkillList {
         "minimum of 30 minutes of uninterrupted roleplay, additional targets increase " +
         "roleplay time by 5 minutes and costs 5 additional Mind.", false,3,1,1));
     skillList.add(new Skill("Escape", 5, "Countered by Chase, and cannot be used if under " +
-        "the effects of Nail, have a Mangled leg or Tie Binds. Allows the player to " +
+        "the effects of Nail, have a Mangled leg or Tie Bonds. Allows the player to " +
         "declare Escape while spending 5 Mind and take 20 paces from combat, during " +
         "which time the player cannot be targeted or pursued.", false,3,1,1));
-    skillList.add(new Skill("Escape Bonds", 5, "Counters Tie Binds. Each crafts level of the " +
+    skillList.add(new Skill("Escape Bonds", 5, "Counters Tie Bonds. Each crafts level of the " +
         "binding item increases Mind expenditure by 5.", false,3,1,1));
     skillList.add(new Skill("Fade In A Crowd", 5, "Countered by Alert. Requires at least 6 " +
         "other people in a four foot radius while the player is unhindered and does not " +
@@ -375,7 +375,7 @@ public class SkillList {
         false,3,1,1));
     skillList.add(new Skill("Prepare Meal", 5, "Allows player to create Meals from Herbs and " +
         "Produce by spending 5 Mind and 30 min of roleplay at a Kitchen.", false,3,1,1));
-    skillList.add(new Skill("Pray for Justice", 5, "Countered by Avoid if used as a ranged " +
+    skillList.add(new Skill("Pray For Justice", 5, "Countered by Avoid if used as a ranged " +
         "attack. Causes the time for Faith Healing to be reduced to 2 min. allows the " +
         "player to call for vengeance from their deity causing 10 Blessed damage or to " +
         "Bless a weapon adding 10 Blessed (type) damage for the next 3 strikes."

@@ -43,13 +43,13 @@ public class ProfessionList {
         professionList.add(new Profession("Charlatan","Play a Charlatan if you enjoy playing a " +
                 "silver-tongued huckster."
                 ,"Alert,Avoid,Beg For Life,Charisma,Cheat,Cure Toxins,Educated,Escape Bonds," +
-                "Interrogate,Melee Weapon Small,Mind Resistance,Tie Binds,Torture,Unlock"
+                "Interrogate,Melee Weapon Small,Mind Resistance,Tie Bonds,Torture,Unlock"
                 ,"strainReqs"
         ,"3,6,6,3,3,6,3,6,3,3,6,3,3,3"));
         professionList.add(new Profession("Cook","Play a Cook if you enjoy playing a crafter " +
                 "whose food keeps other survivors at peak performance."
                 ,"Analyze Compound,Charisma,Disguise Contents,Educated,Healthy Feast,Income," +
-                "Instruct,Literay,Nail,Prepare Meal,Rescue,Scrounge,Teach,Throwing","strainReqs"
+                "Instruct,Literacy,Nail,Prepare Meal,Rescue,Scrounge,Teach,Throwing","strainReqs"
         ,"3,6,3,3,3,3,3,3,3,3,3,6,0,3"));
         professionList.add(new Profession("Distiller","Play a Distiller if you enjoy playing a " +
                 "crafter whose brews restore, relax and enhance your fellow survivors."
@@ -59,7 +59,7 @@ public class ProfessionList {
         ,"3,6,3,6,6,3,3,6,3,3,3,3,3,0"));
         professionList.add(new Profession("Doctor","Play a Doctor if you want to be a versatile " +
                 "and powerful healer."
-                ,"Bolt Action,Check Status,Cure Toxins,Education,First Aide,Fix Limb,Income," +
+                ,"Bolt Action,Check Status,Cure Toxins,Educated,First Aide,Fix Limb,Income," +
                 "Literacy,Mangle Limb,Medical Assistance,Medical Genius,Melee Weapon Small,Sever," +
                 "Teach,Torture","strainReqs"
         ,"3,6,6,6,3,3,3,3,3,6,6,3,3,0,3"));
@@ -119,21 +119,21 @@ public class ProfessionList {
         ,"3,6,3,3,3,6,6,6,6,3,3,3,6,3"));
         professionList.add(new Profession("Jones","Play a Jones if you like being an action " +
                 "archaeologist, relic in one hand and pistol in the other."
-                ,"Attach,Balance,Big Dig,Bolt-Action,Bomb Awareness,Brawling,Concentrated Fire," +
+                ,"Attach,Balance,Big Dig,Bolt Action,Bomb Awareness,Brawling,Concentrated Fire," +
                 "Disarming Shot,Double-Tap,Escape Bonds,Literacy,Pistol Whip,Scrounge,Teach,Unlock"
                 ,"strainReqs"
         ,"3,3,3,6,3,6,6,3,6,3,3,6,3,6,6"));
         professionList.add(new Profession("Mad Scientist","Play a Mad Scientist if you enjoy " +
                 "playing a slightly shady craftsman."
-                ,"Black Market Connection,Bomb Awareness,Building Tomorrow,First Aide,Income," +
+                ,"Black Market Connections,Bomb Awareness,Building Tomorrow,First Aide,Income," +
                 "Literacy,Melee Weapon Two-Handed,Mind Resistance,Patch Job,Repair,SCIENCE!," +
                 "Scrounge,Teach,Torture","strainReqs"
-        ,"6,3,3,3,3,6,3,6,6,3,6,3,6"));
+        ,"6,6,6,3,6,3,3,6,3,3,6,3,0,3"));
         professionList.add(new Profession("Martial Artist","Play a Martial Artist if you enjoy " +
                 "being able to use a combination of brawling attacks and exotic special moves to " +
                 "destroy your enemies."
                 ,"Avoid,Balance,Bow,Brawling,Carry,Choking Blow,Escape Bonds,Iron Fists,Knockout," +
-                "Literacy,Nerve Punch,Takedown,Wide Strike","strainReqs"
+                "Literacy,Nerve Punch,Take Down,Wide Strike","strainReqs"
         ,"6,3,3,3,3,6,3,6,6,3,6,3,6"));
         professionList.add(new Profession("Merchant","Play a Merchant if you like being the one " +
                 "who always has a stack of goods to sell and a taller stack of money from doing it."
@@ -150,7 +150,7 @@ public class ProfessionList {
         professionList.add(new Profession("Politician","Play a Politician if you like being a " +
                 "key player in personal and political intrigue."
                 ,"Avoid,Backstab,Bartender's Tongue,Beg For Life,Charisma,Cheat,Check Your " +
-                "Sleeves,Edcuated,Entertain,Escape,Escape Bonds,Literacy,Melee Weapon Small," +
+                "Sleeves,Educated,Entertain,Escape,Escape Bonds,Literacy,Melee Weapon Small," +
                 "Income,Lie","strainReqs"
         ,"3,6,6,3,3,3,6,3,6,3,3,3,3,3,6"));
         professionList.add(new Profession("Priest","Play a priest if you want to play a powerful " +
@@ -162,21 +162,21 @@ public class ProfessionList {
         professionList.add(new Profession("Primitive","Play a Primitive if you want to play the " +
                 "savage warrior who's deadly with all manner of primitive weapons."
                 ,"Analyze Creature,Avoid,Bounce,Bow,Brawling,Challenge,Chase,Chop,Mangle Limb," +
-                "Melee Weapon Two-Handed,Melee Weapon Expert,Shield,Throwing,Tie Binds,Wide " +
+                "Melee Weapon Two-Handed,Melee Weapon Expert,Shield,Throwing,Tie Bonds,Wide " +
                 "Strike","strainReqs"
         ,"3,6,6,3,3,6,3,3,6,3,3,3,3,3,6"));
         professionList.add(new Profession("Printer","Play a Printer if you want to play a " +
                 "well-connected craftsman who provides a vital service for every other crafter " +
                 "in town."
-                ,"Bartender's Tongue,Black Market Connections,Bolt Action Charisma,Educated," +
+                ,"Bartender's Tongue,Black Market Connections,Bolt Action,Charisma,Educated," +
                 "Escape,Fade In A Crowd,Income,Instruct,Literacy,Mind Resistance,Teach," +
                 "Transcribe","strainReqs"
         ,"3,3,3,6,3,6,3,3,3,3,3,0,3"));
         professionList.add(new Profession("Psionist","Play a Psionist if you want to play a " +
                 "dangerous freak with seriously badass psychic powers."
                 ,"Alert,Blind Fighting,Blinding,Chase,Double-Tap,Lie,Literacy,Melee Weapon Small," +
-                "Mind Resistance,Psionic Basic Skill,Psionic Intermediate Skill,Psionic Advanced " +
-                "Skill,Refuse,Throwing","strainReqs"
+                "Mind Resistance,Psionic Skill: Basic,Psionic Skill: Intermediate,Psionic Skill: Advanced" +
+                ",Refuse,Throwing","strainReqs"
         ,"6,6,6,3,6,3,3,3,3,3,6,6,3,3"));
         professionList.add(new Profession("Publican","Play a Publican if you want to be the " +
                 "proprietor of a pleasure business in a grim world."
@@ -188,7 +188,7 @@ public class ProfessionList {
                 "tough-as-nails bare-knuckle brawler, perhaps with a few shady connections on " +
                 "the side."
                 ,"Black Market Connections,Blind Fighting,Brawling,Challenge,Charge,First Aide," +
-                "Income,Iron Fists,Knockout,Nerve Punch,Parry,Pick Pockets,Takedown,Teach," +
+                "Income,Iron Fists,Knockout,Nerve Punch,Parry,Pick Pockets,Take Down,Teach," +
                 "Torture","strainReqs"
         ,"6,6,3,6,3,3,3,6,6,3,3,6,3,0,6"));
         professionList.add(new Profession("Ring Leader","Play a Ring Leader if you want to be a " +
@@ -257,7 +257,7 @@ public class ProfessionList {
         professionList.add(new Profession("Tinker","Play a Tinker if you want to be the best " +
                 "around at building, repairing and improving weapons, armor and other essential " +
                 "items."
-                ,"Analyze Compound,Building Tomorrow,Check Quality,Chop,Educated,Improved Armor," +
+                ,"Analyze Compound,Building Tomorrow,Check Quality,Chop,Educated,Improved Armor/Shield," +
                 "Improved Pistol/Bow,Improved Weapon,Income,Literacy,Master Craftsman,Patch Job," +
                 "Repair,SCIENCE!","strainReqs"
         ,"3,6,3,3,3,6,6,6,3,3,6,3,3,6"));
