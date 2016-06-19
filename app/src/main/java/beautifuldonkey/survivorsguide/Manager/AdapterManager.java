@@ -16,6 +16,7 @@ import beautifuldonkey.survivorsguide.R;
 import java.util.List;
 
 /**
+ * Provides ArrayAdapter implementations for classes
  * Created by jaw_m on 2/12/2016.
  */
 public class AdapterManager {
@@ -83,11 +84,12 @@ public class AdapterManager {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_skill, null);
 
-        TextView textView = (TextView) view.findViewById(R.id.skillName);
-        textView.setTextColor(Color.BLACK);
+        TextView txtName = (TextView) view.findViewById(R.id.skillName);
+        TextView txtCost = (TextView) view.findViewById(R.id.skillCost);
 
         if(skills.size()>position){
-          textView.setText(skills.get(position).getName());
+          txtName.setText(skills.get(position).getName());
+          txtCost.setText(skills.get(position).getBuildCost());
         }
 
         return view;
@@ -99,8 +101,12 @@ public class AdapterManager {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_skill, null);
 
-        TextView viewSkillName = (TextView) view.findViewById(R.id.skillName);
-        viewSkillName.setText(skill.getName());
+        TextView txtName = (TextView) view.findViewById(R.id.skillName);
+        TextView txtCost = (TextView) view.findViewById(R.id.skillCost);
+
+        txtName.setText(skill.getName());
+        txtCost.setText(String.valueOf(skill.getBuildCost()));
+
         return view;
       }
     };
