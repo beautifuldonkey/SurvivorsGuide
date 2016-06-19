@@ -27,6 +27,7 @@
     <string name="btn_add">+</string>
     <string name="btn_subtract">-</string>
     <string name="btn_cross_ref">Cross Reference</string>
+    <string name="btn_options">Options</string>
 
     <string name="strain_name">Name</string>
     <string name="strain_skill">Strain Skill:</string>
