@@ -32,6 +32,7 @@
       android:layout_height="wrap_content"
       android:id="@+id/textSize"
       android:layout_toRightOf="@id/textSizeLabel"
+      android:layout_centerInParent="true"
       style="@style/UiText"/>
     <Button
       android:layout_width="50dp"
