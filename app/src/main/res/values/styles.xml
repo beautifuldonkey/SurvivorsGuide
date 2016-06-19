@@ -25,9 +25,9 @@
         <item name="android:textSize">@dimen/charActivityText</item>
         <item name="android:textStyle">bold</item>
         <item name="android:shadowColor">#66ff33</item>
-        <item name="android:shadowDx">1</item>
-        <item name="android:shadowDy">1</item>
-        <item name="android:shadowRadius">1</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">2</item>
     </style>
 
 </resources>

@@ -64,6 +64,15 @@ public class WelcomeScreen extends AppCompatActivity {
             }
         });
 
+        Button btn_Options = (Button) findViewById(R.id.btn_options);
+        btn_Options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OptionsActivity.class);
+                startActivityForResult(intent, SgConstants.OPTIONS_ACTIVITY);
+            }
+        });
+
     }
 
     @Override
