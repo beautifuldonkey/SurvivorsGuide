@@ -3,13 +3,18 @@ package beautifuldonkey.survivorsguide;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
@@ -28,6 +33,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
   ArrayAdapter<Skill> selectedSkillAdapter;
   TextView charMind;
   TextView charBody;
+  TextView charProfsText;
   Strain charStrain;
   Integer spentBuild;
 
@@ -47,8 +53,18 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     TextView charStrainText = (TextView) findViewById(R.id.characterStrain);
     charStrainText.setText(charToEdit.getStrain());
 
-    TextView charProfsText = (TextView) findViewById(R.id.characterProfessions);
+    charProfsText = (TextView) findViewById(R.id.characterProfessions);
     charProfsText.setText(charToEdit.getProfessions());
+    charProfsText.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View charProfsPopup = inflater.inflate(R.layout.popup_char_profs, null, false);
+        final PopupWindow popupWindow = new PopupWindow(charProfsPopup, 600, 800, true);
+        popupWindow.setContentView(charProfsPopup);
+        popupWindow.showAtLocation(charProfsText, Gravity.CENTER, 10, 10);
+      }
+    });
 
     TextView charBuildLabel = (TextView) findViewById(R.id.newCharacterBuildLabel);
     charBuildLabel.setText("Build Req:");
