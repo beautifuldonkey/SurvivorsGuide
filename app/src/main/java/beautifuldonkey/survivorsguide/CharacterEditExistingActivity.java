@@ -1,5 +1,6 @@
 package beautifuldonkey.survivorsguide;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -36,12 +37,13 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
   TextView charProfsText;
   Strain charStrain;
   Integer spentBuild;
+  Context context;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_character_edit_existing);
-    final Context context = getApplicationContext();
+    context = getApplicationContext();
     final PlayerCharacter charToEdit = getIntent().getParcelableExtra(SgConstants.INTENT_EDIT_CHAR);
 
     spentBuild = Integer.valueOf(charToEdit.getRequiredBuild());
@@ -59,18 +61,23 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View charProfsPopup = inflater.inflate(R.layout.popup_char_profs, null, false);
-        final PopupWindow popupWindow = new PopupWindow(charProfsPopup, 600, 800, true);
-        popupWindow.setContentView(charProfsPopup);
-        popupWindow.showAtLocation(charProfsText, Gravity.CENTER, 10, 10);
+        View charProfsPopup = inflater.inflate(R.layout.popup_char_profs, null, false);
+//        PopupWindow popupWindow = new PopupWindow(charProfsPopup, 600, 800, true);
+//        popupWindow.setContentView(charProfsPopup);
+//        popupWindow.showAtLocation(charProfsText, Gravity.CENTER, 10, 10);
+
+//        Dialog dialog = new Dialog(context);
+        Dialog dialog = new Dialog(CharacterEditExistingActivity.this);
+        dialog.setContentView(charProfsPopup);
+        dialog.show();
 
         final List<Profession> professions = ProfessionList.getProfessionList();
         String[] profNames = new String[professions.size()];
         for(int i = 0; i<professions.size(); i++){
           profNames[i] = professions.get(i).getName();
         }
-        Spinner firstProf = (Spinner) charProfsPopup.findViewById(R.id.firstProfession);
-        ArrayAdapter<String> firstProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
+        Spinner firstProf = (Spinner) dialog.findViewById(R.id.firstProfession);
+        ArrayAdapter<String> firstProfAdapter = new ArrayAdapter<>(CharacterEditExistingActivity.this,R.layout.item_simple_spinner,profNames);
         firstProf.setAdapter(firstProfAdapter);
         firstProf.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
@@ -84,35 +91,35 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
           }
         });
 
-        Spinner secondProf = (Spinner) charProfsPopup.findViewById(R.id.secondProfession);
-        ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
-        secondProf.setAdapter(secondProfAdapter);
-        secondProf.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-          @Override
-          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-          }
-
-          @Override
-          public void onNothingSelected(AdapterView<?> parent) {
-
-          }
-        });
-
-        Spinner thirdProf = (Spinner) charProfsPopup.findViewById(R.id.thirdProfession);
-        ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
-        thirdProf.setAdapter(thirdProfAdapter);
-        thirdProf.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-          @Override
-          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-          }
-
-          @Override
-          public void onNothingSelected(AdapterView<?> parent) {
-
-          }
-        });
+//        Spinner secondProf = (Spinner) charProfsPopup.findViewById(R.id.secondProfession);
+//        ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
+//        secondProf.setAdapter(secondProfAdapter);
+//        secondProf.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//          @Override
+//          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//          }
+//
+//          @Override
+//          public void onNothingSelected(AdapterView<?> parent) {
+//
+//          }
+//        });
+//
+//        Spinner thirdProf = (Spinner) charProfsPopup.findViewById(R.id.thirdProfession);
+//        ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
+//        thirdProf.setAdapter(thirdProfAdapter);
+//        thirdProf.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//          @Override
+//          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//          }
+//
+//          @Override
+//          public void onNothingSelected(AdapterView<?> parent) {
+//
+//          }
+//        });
 
       }
     });
