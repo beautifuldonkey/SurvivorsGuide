@@ -63,6 +63,57 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         final PopupWindow popupWindow = new PopupWindow(charProfsPopup, 600, 800, true);
         popupWindow.setContentView(charProfsPopup);
         popupWindow.showAtLocation(charProfsText, Gravity.CENTER, 10, 10);
+
+        final List<Profession> professions = ProfessionList.getProfessionList();
+        String[] profNames = new String[professions.size()];
+        for(int i = 0; i<professions.size(); i++){
+          profNames[i] = professions.get(i).getName();
+        }
+        Spinner firstProf = (Spinner) charProfsPopup.findViewById(R.id.firstProfession);
+        ArrayAdapter<String> firstProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
+        firstProf.setAdapter(firstProfAdapter);
+        firstProf.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {
+
+          }
+        });
+
+        Spinner secondProf = (Spinner) charProfsPopup.findViewById(R.id.secondProfession);
+        ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
+        secondProf.setAdapter(secondProfAdapter);
+        secondProf.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {
+
+          }
+        });
+
+        Spinner thirdProf = (Spinner) charProfsPopup.findViewById(R.id.thirdProfession);
+        ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
+        thirdProf.setAdapter(thirdProfAdapter);
+        thirdProf.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {
+
+          }
+        });
+
       }
     });
 

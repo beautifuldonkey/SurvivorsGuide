@@ -2,10 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-  <TextView
+              android:layout_height="match_parent"
+              android:padding="5dp">
+  <Spinner
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/text_cost"
-    style="@style/UiText"/>
+    android:id="@+id/firstProfession"
+    android:background="@android:drawable/btn_dropdown"
+    android:spinnerMode="dropdown"
+    android:layout_centerInParent="true"/>
+
+  <Spinner
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/secondProfession"
+    android:background="@android:drawable/btn_dropdown"
+    android:spinnerMode="dropdown"
+    android:layout_below="@+id/firstProfession"/>
+
+  <Spinner
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/thirdProfession"
+    android:background="@android:drawable/btn_dropdown"
+    android:spinnerMode="dropdown"
+    android:layout_centerInParent="true"
+    android:layout_below="@+id/secondProfession"/>
 </RelativeLayout>
