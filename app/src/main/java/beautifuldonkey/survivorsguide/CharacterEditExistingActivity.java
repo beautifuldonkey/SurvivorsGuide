@@ -33,6 +33,8 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
   ArrayAdapter<Skill> selectedSkillAdapter;
   List<Skill> selectedSkills;
+  List<Skill> availableSkills;
+  List<Profession> charProfs;
   TextView charMind;
   TextView charBody;
   TextView charProfsText;
@@ -69,75 +71,6 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
     charProfsText = (TextView) findViewById(R.id.characterProfessions);
     charProfsText.setText(charToEdit.getProfessions());
-    charProfsText.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View charProfsPopup = inflater.inflate(R.layout.popup_char_profs, null, false);
-        Dialog dialog = new Dialog(CharacterEditExistingActivity.this);
-        dialog.setContentView(charProfsPopup);
-        dialog.show();
-
-        final List<Profession> professions = ProfessionList.getProfessionList();
-        final String[] profNames = new String[professions.size()];
-        for(int i = 0; i<professions.size(); i++){
-          profNames[i] = professions.get(i).getName();
-        }
-        final Spinner firstProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.firstProfession);
-        ArrayAdapter<String> firstProfAdapter = new ArrayAdapter<>(CharacterEditExistingActivity.this,R.layout.item_simple_spinner,profNames);
-        firstProfSpinner.setAdapter(firstProfAdapter);
-        firstProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-          @Override
-          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            firstProf = ProfessionList.getProfessionByName(profNames[position]);
-            String updatedProfessions = firstProf.getName();
-            if(secondProf != null){
-              updatedProfessions += ","+secondProf.getName();
-            }
-            if(thirdProf!=null){
-              updatedProfessions += ","+thirdProf.getName();
-            }
-            charToEdit.setProfessions(updatedProfessions);
-          }
-
-          @Override
-          public void onNothingSelected(AdapterView<?> parent) {
-
-          }
-        });
-
-        Spinner secondProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.secondProfession);
-        ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
-        secondProfSpinner.setAdapter(secondProfAdapter);
-        secondProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-          @Override
-          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-          }
-
-          @Override
-          public void onNothingSelected(AdapterView<?> parent) {
-
-          }
-        });
-
-        Spinner thirdProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.thirdProfession);
-        ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
-        thirdProfSpinner.setAdapter(thirdProfAdapter);
-        thirdProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-          @Override
-          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-          }
-
-          @Override
-          public void onNothingSelected(AdapterView<?> parent) {
-
-          }
-        });
-
-      }
-    });
 
     TextView charBuildLabel = (TextView) findViewById(R.id.newCharacterBuildLabel);
     charBuildLabel.setText("Build Req:");
@@ -157,12 +90,12 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     selectedSkills = SkillList.getSkillsByName(charToEdit.getSelectedSkills());
 
     String[] profs = charToEdit.getProfessions().split(",");
-    List<Profession> charProfs = new ArrayList<>();
+    charProfs = new ArrayList<>();
     for(int i=0; i<profs.length; i++){
       charProfs.add(ProfessionList.getProfessionByName(profs[i]));
     }
 
-    List<Skill> availableSkills = CharacterManager.updateAvailableSkillList(
+    availableSkills = CharacterManager.updateAvailableSkillList(
         charProfs.get(0),
         charProfs.size()>1 ? charProfs.get(1) : null,
         charProfs.size()>2 ? charProfs.get(2) : null,
@@ -224,6 +157,83 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
       }
     });
 
+    charProfsText.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View charProfsPopup = inflater.inflate(R.layout.popup_char_profs, null, false);
+        Dialog dialog = new Dialog(CharacterEditExistingActivity.this);
+        dialog.setContentView(charProfsPopup);
+        dialog.show();
+
+        final List<Profession> professions = ProfessionList.getProfessionList();
+        final String[] profNames = new String[professions.size()];
+        for(int i = 0; i<professions.size(); i++){
+          profNames[i] = professions.get(i).getName();
+        }
+        final Spinner firstProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.firstProfession);
+        ArrayAdapter<String> firstProfAdapter = new ArrayAdapter<>(CharacterEditExistingActivity.this,R.layout.item_simple_spinner,profNames);
+        firstProfSpinner.setAdapter(firstProfAdapter);
+        firstProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            firstProf = ProfessionList.getProfessionByName(profNames[position]);
+            String updatedProfessions = firstProf.getName();
+            if(secondProf != null){
+              updatedProfessions += ","+secondProf.getName();
+            }
+            if(thirdProf!=null){
+              updatedProfessions += ","+thirdProf.getName();
+            }
+            charToEdit.setProfessions(updatedProfessions);
+
+            availableSkills = CharacterManager.updateAvailableSkillList(
+                firstProf,
+                secondProf!=null ? secondProf : null,
+                thirdProf!=null ? thirdProf : null,
+                charStrain);
+
+            selectedSkillAdapter.notifyDataSetChanged();
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {
+
+          }
+        });
+
+        Spinner secondProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.secondProfession);
+        ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
+        secondProfSpinner.setAdapter(secondProfAdapter);
+        secondProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {
+
+          }
+        });
+
+        Spinner thirdProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.thirdProfession);
+        ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
+        thirdProfSpinner.setAdapter(thirdProfAdapter);
+        thirdProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {
+
+          }
+        });
+
+      }
+    });
   }
 
   private void setupButtons(){
@@ -309,5 +319,4 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
       }
     });
   }
-
 }
