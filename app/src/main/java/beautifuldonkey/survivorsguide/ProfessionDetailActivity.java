@@ -2,21 +2,17 @@ package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.SgConstants;
@@ -36,7 +32,7 @@ public class ProfessionDetailActivity extends AppCompatActivity {
     Context context = getApplicationContext();
 
     Profession profession = getIntent().getParcelableExtra(SgConstants.INTENT_PROFESSION);
-    professionSkills = SkillList.getSkillsByNameSetCost(profession.getSkills(),profession.getSkillCost());
+    professionSkills = SkillList.getSkillsByNameSetCost(profession.getSkills(), profession.getSkillCost());
 
     TextView viewProfessionName = (TextView) findViewById(R.id.professionName);
     viewProfessionName.setText(profession.getName());
@@ -44,7 +40,7 @@ public class ProfessionDetailActivity extends AppCompatActivity {
     TextView viewProfessionDesc = (TextView) findViewById(R.id.professionDesc);
     viewProfessionDesc.setText(profession.getDescription());
 
-    ArrayAdapter <Skill> adapter = AdapterManager.getSimpleSkillAdapter(context,professionSkills);
+    ArrayAdapter<Skill> adapter = AdapterManager.getSimpleSkillAdapter(context, professionSkills);
     ListView viewProfessionSkills = (ListView) findViewById(R.id.professionSkills);
     viewProfessionSkills.setAdapter(adapter);
 

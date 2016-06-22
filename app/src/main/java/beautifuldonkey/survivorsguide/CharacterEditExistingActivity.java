@@ -4,20 +4,18 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
 import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.ProfessionList;
@@ -92,14 +90,14 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
     String[] profs = charToEdit.getProfessions().split(",");
     charProfs = new ArrayList<>();
-    for(int i=0; i<profs.length; i++){
+    for (int i = 0; i < profs.length; i++) {
       charProfs.add(ProfessionList.getProfessionByName(profs[i]));
     }
 
     availableSkills = CharacterManager.updateAvailableSkillList(
         charProfs.get(0),
-        charProfs.size()>1 ? charProfs.get(1) : null,
-        charProfs.size()>2 ? charProfs.get(2) : null,
+        charProfs.size() > 1 ? charProfs.get(1) : null,
+        charProfs.size() > 2 ? charProfs.get(2) : null,
         charStrain);
 
     setupButtons();
@@ -169,14 +167,14 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
         final List<Profession> professions = ProfessionList.getProfessionList();
         final String[] profNames = new String[professions.size()];
-        final String[] profNamesWithPlaceholder = new String[professions.size()+1];
+        final String[] profNamesWithPlaceholder = new String[professions.size() + 1];
         profNamesWithPlaceholder[0] = "Please Select";
-        for(int i = 0; i<professions.size(); i++){
+        for (int i = 0; i < professions.size(); i++) {
           profNames[i] = professions.get(i).getName();
-          profNamesWithPlaceholder[i+1] = professions.get(i).getName();
+          profNamesWithPlaceholder[i + 1] = professions.get(i).getName();
         }
         final Spinner firstProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.firstProfession);
-        ArrayAdapter<String> firstProfAdapter = new ArrayAdapter<>(CharacterEditExistingActivity.this,R.layout.item_simple_spinner,profNames);
+        ArrayAdapter<String> firstProfAdapter = new ArrayAdapter<>(CharacterEditExistingActivity.this, R.layout.item_simple_spinner, profNames);
         firstProfSpinner.setAdapter(firstProfAdapter);
         firstProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
@@ -192,7 +190,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         });
 
         Spinner secondProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.secondProfession);
-        ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNamesWithPlaceholder);
+        ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context, R.layout.item_simple_spinner, profNamesWithPlaceholder);
         secondProfSpinner.setAdapter(secondProfAdapter);
         secondProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
@@ -208,7 +206,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         });
 
         Spinner thirdProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.thirdProfession);
-        ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNamesWithPlaceholder);
+        ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context, R.layout.item_simple_spinner, profNamesWithPlaceholder);
         thirdProfSpinner.setAdapter(thirdProfAdapter);
         thirdProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
@@ -227,21 +225,21 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     });
   }
 
-  private void updateProfessionsAndAvailSkills(){
+  private void updateProfessionsAndAvailSkills() {
     String updatedProfessions = firstProf.getName();
-    if(secondProf != null){
-      updatedProfessions += ","+secondProf.getName();
+    if (secondProf != null) {
+      updatedProfessions += "," + secondProf.getName();
     }
-    if(thirdProf!=null){
-      updatedProfessions += ","+thirdProf.getName();
+    if (thirdProf != null) {
+      updatedProfessions += "," + thirdProf.getName();
     }
     charToEdit.setProfessions(updatedProfessions);
 
     availableSkills.clear();
     availableSkills = CharacterManager.updateAvailableSkillList(
         firstProf,
-        secondProf!=null ? secondProf : null,
-        thirdProf!=null ? thirdProf : null,
+        secondProf != null ? secondProf : null,
+        thirdProf != null ? thirdProf : null,
         charStrain);
 
     availSkillAdapter.clear();
@@ -251,13 +249,13 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     charProfsText.setText(charToEdit.getProfessions());
   }
 
-  private void setupButtons(){
+  private void setupButtons() {
     Button btn_subInf = (Button) findViewById(R.id.btn_newCharLessInf);
     btn_subInf.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         Integer currentInf = (Integer.parseInt(charInfection.getText().toString()));
-        if(currentInf > 0){
+        if (currentInf > 0) {
           currentInf = currentInf - 1;
           charInfection.setText(String.valueOf(currentInf));
         }
@@ -330,7 +328,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         charToEdit.setMind(charMind.getText().toString());
         charToEdit.setSelectedSkills(updatedCharSkills);
 
-        CharacterManager.saveCharacter(charToEdit,context);
+        CharacterManager.saveCharacter(charToEdit, context);
       }
     });
   }

@@ -4,95 +4,96 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
+ * defines Strain class
  * Created by user on 6/15/2015.
  */
 public class Strain implements Parcelable {
 
-    private String name;
-    private int body;
-    private int mind;
-    private int infection;
-    private String skills;
+  private String name;
+  private int body;
+  private int mind;
+  private int infection;
+  private String skills;
 
-    public Strain (String strainName, int strainBody, int strainMind, int strainInfection, String strainSkills){
-        name        = strainName;
-        body        = strainBody;
-        mind        = strainMind;
-        infection   = strainInfection;
-        skills      = strainSkills;
-    }
+  public Strain(String strainName, int strainBody, int strainMind, int strainInfection, String strainSkills) {
+    name = strainName;
+    body = strainBody;
+    mind = strainMind;
+    infection = strainInfection;
+    skills = strainSkills;
+  }
 
-    public Strain (Parcel source){
-        name        = source.readString();
-        body        = source.readInt();
-        mind        = source.readInt();
-        infection   = source.readInt();
-        skills      = source.readString();
+  public Strain(Parcel source) {
+    name = source.readString();
+    body = source.readInt();
+    mind = source.readInt();
+    infection = source.readInt();
+    skills = source.readString();
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(name);
+    dest.writeInt(body);
+    dest.writeInt(mind);
+    dest.writeInt(infection);
+    dest.writeString(skills);
+  }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  public static final Creator<Strain> CREATOR = new Creator<Strain>() {
+    @Override
+    public Strain createFromParcel(Parcel source) {
+      return new Strain(source);
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeInt(body);
-        dest.writeInt(mind);
-        dest.writeInt(infection);
-        dest.writeString(skills);
+    public Strain[] newArray(int size) {
+      return new Strain[size];
     }
+  };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public static final Creator<Strain> CREATOR = new Creator<Strain>() {
-        @Override
-        public Strain createFromParcel(Parcel source) {
-            return new Strain(source);
-        }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-        @Override
-        public Strain[] newArray(int size) {
-            return new Strain[size];
-        }
-    };
+  public int getBody() {
+    return body;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setBody(int health) {
+    this.body = health;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public int getMind() {
+    return mind;
+  }
 
-    public int getBody() {
-        return body;
-    }
+  public void setMind(int mind) {
+    this.mind = mind;
+  }
 
-    public void setBody(int health) {
-        this.body = health;
-    }
+  public int getInfection() {
+    return infection;
+  }
 
-    public int getMind() {
-        return mind;
-    }
+  public void setInfection(int infection) {
+    this.infection = infection;
+  }
 
-    public void setMind(int mind) {
-        this.mind = mind;
-    }
+  public String getSkills() {
+    return skills;
+  }
 
-    public int getInfection() {
-        return infection;
-    }
-
-    public void setInfection(int infection) {
-        this.infection = infection;
-    }
-
-    public String getSkills() {
-        return skills;
-    }
-
-    public void setSkills(String skills) {
-        this.skills = skills;
-    }
+  public void setSkills(String skills) {
+    this.skills = skills;
+  }
 }
