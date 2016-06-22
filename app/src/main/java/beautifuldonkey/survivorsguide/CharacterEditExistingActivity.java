@@ -169,8 +169,11 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
         final List<Profession> professions = ProfessionList.getProfessionList();
         final String[] profNames = new String[professions.size()];
+        final String[] profNamesWithPlaceholder = new String[professions.size()+1];
+        profNamesWithPlaceholder[0] = "Please Select";
         for(int i = 0; i<professions.size(); i++){
           profNames[i] = professions.get(i).getName();
+          profNamesWithPlaceholder[i+1] = professions.get(i).getName();
         }
         final Spinner firstProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.firstProfession);
         ArrayAdapter<String> firstProfAdapter = new ArrayAdapter<>(CharacterEditExistingActivity.this,R.layout.item_simple_spinner,profNames);
@@ -189,12 +192,12 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         });
 
         Spinner secondProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.secondProfession);
-        ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
+        ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNamesWithPlaceholder);
         secondProfSpinner.setAdapter(secondProfAdapter);
         secondProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            secondProf = ProfessionList.getProfessionByName(profNames[position]);
+            secondProf = ProfessionList.getProfessionByName(profNamesWithPlaceholder[position]);
             updateProfessionsAndAvailSkills();
           }
 
@@ -205,12 +208,12 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         });
 
         Spinner thirdProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.thirdProfession);
-        ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNames);
+        ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context,R.layout.item_simple_spinner,profNamesWithPlaceholder);
         thirdProfSpinner.setAdapter(thirdProfAdapter);
         thirdProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            thirdProf = ProfessionList.getProfessionByName(profNames[position]);
+            thirdProf = ProfessionList.getProfessionByName(profNamesWithPlaceholder[position]);
             updateProfessionsAndAvailSkills();
           }
 
