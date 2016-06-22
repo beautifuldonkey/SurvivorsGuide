@@ -32,6 +32,7 @@ import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 public class CharacterEditExistingActivity extends AppCompatActivity {
 
   ArrayAdapter<Skill> selectedSkillAdapter;
+  ArrayAdapter<Skill> availSkillAdapter;
   List<Skill> selectedSkills;
   List<Skill> availableSkills;
   List<Profession> charProfs;
@@ -122,7 +123,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     });
 
     final Spinner availSkills = (Spinner) findViewById(R.id.availableSkills);
-    ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, availableSkills);
+    availSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, availableSkills);
     availSkills.setAdapter(availSkillAdapter);
     availSkills.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
@@ -178,22 +179,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
           @Override
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             firstProf = ProfessionList.getProfessionByName(profNames[position]);
-            String updatedProfessions = firstProf.getName();
-            if(secondProf != null){
-              updatedProfessions += ","+secondProf.getName();
-            }
-            if(thirdProf!=null){
-              updatedProfessions += ","+thirdProf.getName();
-            }
-            charToEdit.setProfessions(updatedProfessions);
-
-            availableSkills = CharacterManager.updateAvailableSkillList(
-                firstProf,
-                secondProf!=null ? secondProf : null,
-                thirdProf!=null ? thirdProf : null,
-                charStrain);
-
-            selectedSkillAdapter.notifyDataSetChanged();
+            updateProfessionsAndAvailSkills();
           }
 
           @Override
@@ -208,7 +194,8 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         secondProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+            secondProf = ProfessionList.getProfessionByName(profNames[position]);
+            updateProfessionsAndAvailSkills();
           }
 
           @Override
@@ -223,7 +210,8 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         thirdProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+            thirdProf = ProfessionList.getProfessionByName(profNames[position]);
+            updateProfessionsAndAvailSkills();
           }
 
           @Override
@@ -234,6 +222,30 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
       }
     });
+  }
+
+  private void updateProfessionsAndAvailSkills(){
+    String updatedProfessions = firstProf.getName();
+    if(secondProf != null){
+      updatedProfessions += ","+secondProf.getName();
+    }
+    if(thirdProf!=null){
+      updatedProfessions += ","+thirdProf.getName();
+    }
+    charToEdit.setProfessions(updatedProfessions);
+
+    availableSkills.clear();
+    availableSkills = CharacterManager.updateAvailableSkillList(
+        firstProf,
+        secondProf!=null ? secondProf : null,
+        thirdProf!=null ? thirdProf : null,
+        charStrain);
+
+    availSkillAdapter.clear();
+    availSkillAdapter.addAll(availableSkills);
+    availSkillAdapter.notifyDataSetChanged();
+
+    charProfsText.setText(charToEdit.getProfessions());
   }
 
   private void setupButtons(){
