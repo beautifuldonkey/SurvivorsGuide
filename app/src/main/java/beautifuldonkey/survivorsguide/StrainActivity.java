@@ -2,7 +2,6 @@ package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -25,85 +24,85 @@ import beautifuldonkey.survivorsguide.Data.StrainList;
 
 public class StrainActivity extends AppCompatActivity {
 
-    protected List<Strain> strainList = new ArrayList<>();
+  protected List<Strain> strainList = new ArrayList<>();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_strain);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_strain);
 
-        strainList = StrainList.getStrainList();
-        ArrayAdapter<Strain> adapter = new strainListAdapter(this, 0, strainList);
-        ListView strainListView = (ListView) findViewById(R.id.strainList);
-        strainListView.setAdapter(adapter);
+    strainList = StrainList.getStrainList();
+    ArrayAdapter<Strain> adapter = new strainListAdapter(this, 0, strainList);
+    ListView strainListView = (ListView) findViewById(R.id.strainList);
+    strainListView.setAdapter(adapter);
 
-        strainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    strainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Context context = getApplicationContext();
-                Strain strain = strainList.get(position);
-                Intent intent = new Intent(context, StrainDetailActivity.class);
-                intent.putExtra(SgConstants.INTENT_STRAIN, strain);
-                startActivityForResult(intent, SgConstants.STRAIN_DETAIL_ACTIVITY);
-            }
-        });
+        Context context = getApplicationContext();
+        Strain strain = strainList.get(position);
+        Intent intent = new Intent(context, StrainDetailActivity.class);
+        intent.putExtra(SgConstants.INTENT_STRAIN, strain);
+        startActivityForResult(intent, SgConstants.STRAIN_DETAIL_ACTIVITY);
+      }
+    });
 
-    }
+  }
 
-    class strainListAdapter extends ArrayAdapter<Strain>{
+  class strainListAdapter extends ArrayAdapter<Strain> {
 
-        Context context;
-        List<Strain> objects;
+    Context context;
+    List<Strain> objects;
 
-        public strainListAdapter(Context context, int resource, List<Strain> objects) {
-            super(context, resource, objects);
-            this.context = context;
-            this.objects = objects;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            Strain strain = objects.get(position);
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.item_strain, null);
-
-            TextView viewStrainName = (TextView) view.findViewById(R.id.strainName);
-            viewStrainName.setText(strain.getName());
-
-            TextView viewStrainBody = (TextView) view.findViewById(R.id.strainBody);
-            viewStrainBody.setText(String.valueOf(strain.getBody()));
-
-            TextView viewStrainMind = (TextView) view.findViewById(R.id.strainMind);
-            viewStrainMind.setText(String.valueOf(strain.getMind()));
-
-            TextView viewStrainInfection = (TextView) view.findViewById(R.id.strainInfection);
-            viewStrainInfection.setText(String.valueOf(strain.getInfection()));
-
-            return view;
-        }
+    public strainListAdapter(Context context, int resource, List<Strain> objects) {
+      super(context, resource, objects);
+      this.context = context;
+      this.objects = objects;
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_strain, menu);
-        return true;
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+      Strain strain = objects.get(position);
+      LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+      View view = inflater.inflate(R.layout.item_strain, null);
+
+      TextView viewStrainName = (TextView) view.findViewById(R.id.strainName);
+      viewStrainName.setText(strain.getName());
+
+      TextView viewStrainBody = (TextView) view.findViewById(R.id.strainBody);
+      viewStrainBody.setText(String.valueOf(strain.getBody()));
+
+      TextView viewStrainMind = (TextView) view.findViewById(R.id.strainMind);
+      viewStrainMind.setText(String.valueOf(strain.getMind()));
+
+      TextView viewStrainInfection = (TextView) view.findViewById(R.id.strainInfection);
+      viewStrainInfection.setText(String.valueOf(strain.getInfection()));
+
+      return view;
+    }
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.menu_strain, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle action bar item clicks here. The action bar will
+    // automatically handle clicks on the Home/Up button, so long
+    // as you specify a parent activity in AndroidManifest.xml.
+    int id = item.getItemId();
+
+    //noinspection SimplifiableIfStatement
+    if (id == R.id.action_settings) {
+      return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+    return super.onOptionsItemSelected(item);
+  }
 }

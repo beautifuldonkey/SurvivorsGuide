@@ -13,78 +13,78 @@ import beautifuldonkey.survivorsguide.Data.SgConstants;
 
 public class WelcomeScreen extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome_screen);
-        final Context context = getApplicationContext();
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_welcome_screen);
+    final Context context = getApplicationContext();
 
-        Button btn_Skills = (Button) findViewById(R.id.btn_skills);
-        btn_Skills.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, SkillActivity.class);
-                startActivityForResult(intent, SgConstants.SKILL_ACTIVITY);
-            }
-        });
+    Button btn_Skills = (Button) findViewById(R.id.btn_skills);
+    btn_Skills.setOnClickListener(new Button.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(context, SkillActivity.class);
+        startActivityForResult(intent, SgConstants.SKILL_ACTIVITY);
+      }
+    });
 
-        Button btn_Strain = (Button) findViewById(R.id.btn_strains);
-        btn_Strain.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, StrainActivity.class);
-                startActivityForResult(intent, SgConstants.STRAIN_ACTIVITY);
-            }
-        });
+    Button btn_Strain = (Button) findViewById(R.id.btn_strains);
+    btn_Strain.setOnClickListener(new Button.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(context, StrainActivity.class);
+        startActivityForResult(intent, SgConstants.STRAIN_ACTIVITY);
+      }
+    });
 
-        Button btn_Profession = (Button) findViewById(R.id.btn_professions);
-        btn_Profession.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ProfessionActivity.class);
-                startActivityForResult(intent, SgConstants.PROFESSION_ACTIVITY);
-            }
-        });
+    Button btn_Profession = (Button) findViewById(R.id.btn_professions);
+    btn_Profession.setOnClickListener(new Button.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(context, ProfessionActivity.class);
+        startActivityForResult(intent, SgConstants.PROFESSION_ACTIVITY);
+      }
+    });
 
-        Button btn_Character = (Button) findViewById(R.id.btn_character);
-        btn_Character.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, CharacterActivity.class);
-                startActivityForResult(intent, SgConstants.CHARACTER_ACTIVITY);
-            }
-        });
+    Button btn_Character = (Button) findViewById(R.id.btn_character);
+    btn_Character.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(context, CharacterActivity.class);
+        startActivityForResult(intent, SgConstants.CHARACTER_ACTIVITY);
+      }
+    });
 
-        Button btn_CrossReference = (Button) findViewById(R.id.btn_cross_ref);
-        btn_CrossReference.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, CrossReferenceActivity.class);
-                startActivityForResult(intent, SgConstants.CROSS_REF_ACTIVITY);
-            }
-        });
+    Button btn_CrossReference = (Button) findViewById(R.id.btn_cross_ref);
+    btn_CrossReference.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(context, CrossReferenceActivity.class);
+        startActivityForResult(intent, SgConstants.CROSS_REF_ACTIVITY);
+      }
+    });
 
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.menu_welcome_screen, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle action bar item clicks here. The action bar will
+    // automatically handle clicks on the Home/Up button, so long
+    // as you specify a parent activity in AndroidManifest.xml.
+    int id = item.getItemId();
+
+    //noinspection SimplifiableIfStatement
+    if (id == R.id.action_settings) {
+      return true;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_welcome_screen, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+    return super.onOptionsItemSelected(item);
+  }
 }

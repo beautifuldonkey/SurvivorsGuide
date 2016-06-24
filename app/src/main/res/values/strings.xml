@@ -1,58 +1,60 @@
 <resources>
-    <string name="app_name">"SurvivorsGuide "</string>
+  <string name="app_name">"SurvivorsGuide "</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_skill_activity">Skill List</string>
-    <string name="title_strain_activity">Strains</string>
-    <string name="title_profession_activity">Professions</string>
-    <string name="title_profession_detail_activity">Professions</string>
-    <string name="title_strain_detail_activity">Strain Details</string>
-    <string name="title_skill_detail_activity">Skill Details</string>
-    <string name="title_character_activity">Character</string>
-    <string name="title_character_new_activity">CharacterNewActivity</string>
-    <string name="title_activity_character_existing">CharacterExistingActivity</string>
-    <string name="title_activity_character_edit_existing">CharacterEditExistingActivity</string>
+  <string name="hello_world">Hello world!</string>
+  <string name="action_settings">Settings</string>
+  <string name="title_skill_activity">Skill List</string>
+  <string name="title_strain_activity">Strains</string>
+  <string name="title_profession_activity">Professions</string>
+  <string name="title_profession_detail_activity">Professions</string>
+  <string name="title_strain_detail_activity">Strain Details</string>
+  <string name="title_skill_detail_activity">Skill Details</string>
+  <string name="title_character_activity">Character</string>
+  <string name="title_character_new_activity">CharacterNewActivity</string>
+  <string name="title_activity_character_existing">CharacterExistingActivity</string>
+  <string name="title_activity_character_edit_existing">CharacterEditExistingActivity</string>
 
-    <string name="btn_done">Done</string>
-    <string name="btn_edit">Edit</string>
-    <string name="btn_change_name">Add/Change Name</string>
-    <string name="btn_skills">Skills</string>
-    <string name="btn_strains">Strains</string>
-    <string name="btn_save">Save</string>
-    <string name="btn_professions">Professions</string>
-    <string name="btn_character">Character</string>
-    <string name="btn_new_character">New Character</string>
-    <string name="btn_existing_character">Existing Character</string>
-    <string name="btn_add">+</string>
-    <string name="btn_subtract">-</string>
-    <string name="btn_cross_ref">Cross Reference</string>
+  <string name="btn_done">Done</string>
+  <string name="btn_edit">Edit</string>
+  <string name="btn_change_name">Add/Change Name</string>
+  <string name="btn_skills">Skills</string>
+  <string name="btn_strains">Strains</string>
+  <string name="btn_save">Save</string>
+  <string name="btn_professions">Professions</string>
+  <string name="btn_character">Character</string>
+  <string name="btn_new_character">New Character</string>
+  <string name="btn_existing_character">Existing Character</string>
+  <string name="btn_add">+</string>
+  <string name="btn_subtract">-</string>
+  <string name="btn_cross_ref">Cross Reference</string>
 
-    <string name="strain_name">Name</string>
-    <string name="strain_skill">Strain Skill:</string>
-    <string name="strain_mind">Mind: </string>
-    <string name="strain_mind_small">M: </string>
-    <string name="strain_body">Body: </string>
-    <string name="strain_body_small">B: </string>
-    <string name="strain_infection">Infection: </string>
-    <string name="strain_infection_small">I: </string>
+  <string name="strain_name">Name</string>
+  <string name="strain_skill">Strain Skill:</string>
+  <string name="strain_mind">Mind: </string>
+  <string name="strain_mind_small">M: </string>
+  <string name="strain_body">Body: </string>
+  <string name="strain_body_small">B: </string>
+  <string name="strain_infection">Infection: </string>
+  <string name="strain_infection_small">I: </string>
 
-    <string name="skill_cost">MP Cost: </string>
+  <string name="skill_cost">MP Cost: </string>
 
-    <string name="profession_name">Name</string>
+  <string name="profession_name">Name</string>
 
-    <string name="character_name">Name: </string>
-    <string name="character_name_new">Name</string>
-    <string name="character_strain">Strain: </string>
-    <string name="character_profession">Professions: </string>
-    <string name="character_second_profession">Second Profession:</string>
-    <string name="character_infection">Infection: </string>
-    <string name="character_body">Body: </string>
-    <string name="character_mind">Mind: </string>
-    <string name="character_build">Build: </string>
+  <string name="character_name">Name: </string>
+  <string name="character_name_new">Name</string>
+  <string name="character_strain">Strain: </string>
+  <string name="character_profession">Professions: </string>
+  <string name="character_second_profession">Second Profession:</string>
+  <string name="character_infection">Infection: </string>
+  <string name="character_body">Body: </string>
+  <string name="character_mind">Mind: </string>
+  <string name="character_build">Build: </string>
 
-    <string name="text_cr_intro">Skill selections filter available Professions</string>
-    <string name="text_cr_professions">Professions:</string>
-    <string name="text_cr_skills">Required Skills:</string>
+  <string name="text_cr_intro">Skill selections filter available Professions</string>
+  <string name="text_cr_professions">Professions:</string>
+  <string name="text_cr_skills">Required Skills:</string>
+
+  <string name="text_cost">Cost:</string>
 
 </resources>

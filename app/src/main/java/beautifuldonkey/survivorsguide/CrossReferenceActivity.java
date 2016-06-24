@@ -1,8 +1,8 @@
 package beautifuldonkey.survivorsguide;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,7 +48,7 @@ public class CrossReferenceActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Skill newReqSkill = (Skill) availSkills.getItemAtPosition(position);
-        if(!requiredSkills.contains(newReqSkill)){
+        if (!requiredSkills.contains(newReqSkill)) {
           requiredSkills.add(newReqSkill);
           selectedSkillAdapter.notifyDataSetChanged();
           updateAvailableProfessions();
@@ -79,24 +79,24 @@ public class CrossReferenceActivity extends AppCompatActivity {
 
   }
 
-  private void updateAvailableProfessions(){
+  private void updateAvailableProfessions() {
     availableProfessions.clear();
-    for(int i=0; i<professions.size(); i++){
+    for (int i = 0; i < professions.size(); i++) {
       Boolean isProfAvail = true;
       String[] profSkills = professions.get(i).getSkills().split(",");
-      for(int j=0; j<requiredSkills.size(); j++){
+      for (int j = 0; j < requiredSkills.size(); j++) {
         Boolean profHasSkill = false;
-        for(int k=0; k<profSkills.length; k++){
-          if(requiredSkills.get(j).getName().equals(profSkills[k])){
+        for (int k = 0; k < profSkills.length; k++) {
+          if (requiredSkills.get(j).getName().equals(profSkills[k])) {
             profHasSkill = true;
             break;
           }
         }
-        if(!profHasSkill){
+        if (!profHasSkill) {
           isProfAvail = false;
         }
       }
-      if(isProfAvail){
+      if (isProfAvail) {
         availableProfessions.add(professions.get(i));
       }
     }
