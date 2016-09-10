@@ -89,7 +89,7 @@ public class AdapterManager {
 
         if (skills.size() > position) {
           txtName.setText(skills.get(position).getName());
-          txtCost.setText(skills.get(position).getBuildCost());
+          txtCost.setText(String.valueOf(skills.get(position).getBuildCost()));
         }
 
         return view;

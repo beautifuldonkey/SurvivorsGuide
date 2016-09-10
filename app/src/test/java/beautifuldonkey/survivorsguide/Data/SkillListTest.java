@@ -28,7 +28,12 @@ public class SkillListTest {
 
     @Test
     public void getSkillListTest() {
-        assertThat(testSkillList.getSkillList().size(),is(134));
+        List<Skill> skills = testSkillList.getSkillList();
+        assertThat(skills.size(),is(134));
+      for (Skill skill: skills ) {
+        assertThat(skill.getBuildCost(),notNullValue());
+        assertThat(skill.getBuildCost(),not(0));
+      }
     }
 
     @Test
