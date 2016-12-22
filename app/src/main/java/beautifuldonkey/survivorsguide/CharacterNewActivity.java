@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -169,7 +170,12 @@ public class CharacterNewActivity extends AppCompatActivity {
         newCharacter.setAvailBuild(charBuild.getText().toString());
         newCharacter.setRequiredBuild(String.valueOf(spentBuild));
 
-        CharacterManager.saveCharacter(newCharacter, context);
+        if(CharacterManager.saveCharacter(newCharacter, context)){
+          Toast.makeText(context,"Character saved.",Toast.LENGTH_SHORT).show();
+        }else{
+          Toast.makeText(context,"Character save failed.",Toast.LENGTH_SHORT).show();
+        }
+
       }
     });
 
