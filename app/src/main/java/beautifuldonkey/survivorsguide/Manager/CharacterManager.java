@@ -92,7 +92,7 @@ public class CharacterManager {
     ArrayList<String> charFiles = new ArrayList<>();
     String[] files = context.fileList();
     for (String file : files) {
-      if (!file.startsWith("rList")) {
+      if (!file.startsWith("rList") && !"instant-run".equals(file)) {
         charFiles.add(file);
       }
     }
