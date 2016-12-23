@@ -76,6 +76,10 @@ public class CharacterNewActivity extends AppCompatActivity {
     btn_subInf.setVisibility(View.INVISIBLE);
 
     strains = StrainList.getStrainList();
+    String[] strainNames = new String[strains.size()];
+    for (int i = 0; i < strains.size(); i++) {
+      strainNames[i] = strains.get(i).getName();
+    }
 
     setupAttributeButtons();
 
@@ -129,11 +133,6 @@ public class CharacterNewActivity extends AppCompatActivity {
     //
     //Strain drop down
     //
-
-    String[] strainNames = new String[strains.size()];
-    for (int i = 0; i < strains.size(); i++) {
-      strainNames[i] = strains.get(i).getName();
-    }
     Spinner strainDropDown = (Spinner) findViewById(R.id.strainDropDown);
     ArrayAdapter<String> strainAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, strainNames);
     strainDropDown.setAdapter(strainAdapter);
@@ -141,30 +140,10 @@ public class CharacterNewActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         charStrain = strains.get(position);
-        if (charStrain != null) {
-          strainSkills = charStrain.getSkills();
-        }
-        availableSkills.clear();
-        availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
-        availSkillAdapter.clear();
-        availSkillAdapter.addAll(availableSkills);
-        availSkillAdapter.notifyDataSetChanged();
-        charBuild.setText("13");
-        charInfection.setText(String.valueOf(charStrain.getInfection()));
-        charBody.setText(String.valueOf(charStrain.getBody()));
-        charMind.setText(String.valueOf(charStrain.getMind()));
-        if (!selectedSkills.isEmpty()) {
-          selectedSkills.clear();
-          selectedSkillAdapter.notifyDataSetChanged();
-        }
-        spentBuild = 0;
-        setupAttributeButtons();
+        updateSkills();
       }
-
       @Override
-      public void onNothingSelected(AdapterView<?> parent) {
-
-      }
+      public void onNothingSelected(AdapterView<?> parent) { }
     });
 
     //
@@ -182,20 +161,7 @@ public class CharacterNewActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         charProfession = professions.get(position);
-        charBuild.setText("13");
-        if (charProfession != null) {
-          profSkills = charProfession.getSkills();
-        }
-        availableSkills.clear();
-        availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
-        availSkillAdapter.clear();
-        availSkillAdapter.addAll(availableSkills);
-        availSkillAdapter.notifyDataSetChanged();
-        if (!selectedSkills.isEmpty()) {
-          selectedSkills.clear();
-          selectedSkillAdapter.notifyDataSetChanged();
-        }
-        spentBuild = 0;
+        updateSkills();
       }
 
       @Override
@@ -214,20 +180,7 @@ public class CharacterNewActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         secondCharProfession = professions.get(position);
-        if (secondCharProfession != null) {
-          secondProfSkills = secondCharProfession.getSkills();
-        }
-        availableSkills.clear();
-        availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
-        availSkillAdapter.clear();
-        availSkillAdapter.addAll(availableSkills);
-        availSkillAdapter.notifyDataSetChanged();
-        if (!selectedSkills.isEmpty()) {
-          charBuild.setText("13");
-          selectedSkills.clear();
-          selectedSkillAdapter.notifyDataSetChanged();
-        }
-        spentBuild = 0;
+        updateSkills();
       }
 
       @Override
@@ -363,6 +316,25 @@ public class CharacterNewActivity extends AppCompatActivity {
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  public void updateSkills(){
+    strainSkills = charStrain.getSkills();
+    availableSkills.clear();
+    availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
+    availSkillAdapter.clear();
+    availSkillAdapter.addAll(availableSkills);
+    availSkillAdapter.notifyDataSetChanged();
+    charBuild.setText("13");
+    charInfection.setText(String.valueOf(charStrain.getInfection()));
+    charBody.setText(String.valueOf(charStrain.getBody()));
+    charMind.setText(String.valueOf(charStrain.getMind()));
+    if (!selectedSkills.isEmpty()) {
+      selectedSkills.clear();
+      selectedSkillAdapter.notifyDataSetChanged();
+    }
+    spentBuild = 0;
+    setupAttributeButtons();
   }
 
   /**
