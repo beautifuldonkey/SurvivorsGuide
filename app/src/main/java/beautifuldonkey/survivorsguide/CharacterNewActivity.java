@@ -193,6 +193,7 @@ public class CharacterNewActivity extends AppCompatActivity {
     secondProfToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        int layoutOption = 0;
         int visible = View.INVISIBLE;
         Integer availBuild = Integer.parseInt(charBuild.getText().toString());
         if (isChecked && availBuild >= 10) {
@@ -202,29 +203,22 @@ public class CharacterNewActivity extends AppCompatActivity {
           if (secondCharProfession != null) {
             secondProfSkills = secondCharProfession.getSkills();
           }
-
-          if (((getResources().getConfiguration().screenLayout &
-              Configuration.SCREENLAYOUT_SIZE_MASK) ==
-              Configuration.SCREENLAYOUT_SIZE_NORMAL) ||
-              (getResources().getConfiguration().screenLayout &
-                  Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
-            RelativeLayout.LayoutParams secondProfParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            secondProfParams.addRule(RelativeLayout.BELOW, R.id.secondProfessionDropDown);
-            availSkills.setLayoutParams(secondProfParams);
-          }
+          layoutOption = R.id.secondProfessionDropDown;
         } else if (!isChecked) {
           availBuild = availBuild + 10;
           charBuild.setText(String.valueOf(availBuild));
           secondProfSkills = "";
           secondCharProfession = null;
-          if (((getResources().getConfiguration().screenLayout &
-              Configuration.SCREENLAYOUT_SIZE_MASK) ==
-              Configuration.SCREENLAYOUT_SIZE_NORMAL) ||
-              (getResources().getConfiguration().screenLayout &
-                  Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
-            RelativeLayout.LayoutParams secondProfParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            secondProfParams.addRule(RelativeLayout.BELOW, R.id.professionDropDown);
-            availSkills.setLayoutParams(secondProfParams);
+          layoutOption = R.id.professionDropDown;
+        }
+
+        // checking screen size before changing position of second prof dropdown
+        if (((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) ||
+            (getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
+          RelativeLayout.LayoutParams secondProfParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+          availSkills.setLayoutParams(secondProfParams);
+          if(layoutOption!=0){
+            secondProfParams.addRule(RelativeLayout.BELOW, layoutOption);
           }
         }
         availableSkills.clear();
