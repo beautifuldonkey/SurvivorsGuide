@@ -31,6 +31,7 @@ import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.StrainList;
 import beautifuldonkey.survivorsguide.Manager.AdapterManager;
+import beautifuldonkey.survivorsguide.Manager.ButtonManager;
 import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 
@@ -50,87 +51,33 @@ public class CharacterNewActivity extends AppCompatActivity {
   Spinner availSkills;
   CheckBox secondProfToggle;
   Integer spentBuild;
+  TextView charBuild;
+  TextView charInfection;
+  TextView charBody;
+  TextView charMind;
+  List<Strain> strains;
+  EditText charName;
+  Context context;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_character_new);
     spentBuild = 0;
-    final Context context = getApplicationContext();
 
-    final EditText charName = (EditText) findViewById(R.id.characterName);
-
-    final TextView charBuild = (TextView) findViewById(R.id.newCharacterBuild);
-    final TextView charInfection = (TextView) findViewById(R.id.newCharacterInfection);
-    final TextView charBody = (TextView) findViewById(R.id.newCharacterBody);
-    final TextView charMind = (TextView) findViewById(R.id.newCharacterMind);
+    context = getApplicationContext();
+    charName = (EditText) findViewById(R.id.characterName);
+    charBuild = (TextView) findViewById(R.id.newCharacterBuild);
+    charInfection = (TextView) findViewById(R.id.newCharacterInfection);
+    charBody = (TextView) findViewById(R.id.newCharacterBody);
+    charMind = (TextView) findViewById(R.id.newCharacterMind);
 
     Button btn_subInf = (Button) findViewById(R.id.btn_newCharLessInf);
     btn_subInf.setVisibility(View.INVISIBLE);
 
-    Button btn_addBody = (Button) findViewById(R.id.btn_newCharMoreBody);
-    btn_addBody.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
-        Integer currentBody = Integer.parseInt(charBody.getText().toString());
-        if (currentBuild > 0) {
-          currentBody = currentBody + 1;
-          charBody.setText(String.valueOf(currentBody));
-          currentBuild = currentBuild - 1;
-          charBuild.setText(String.valueOf(currentBuild));
-          spentBuild += 1;
-        }
-      }
-    });
+    strains = StrainList.getStrainList();
 
-    Button btn_subBody = (Button) findViewById(R.id.btn_newCharLessBody);
-    btn_subBody.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
-        Integer currentBody = Integer.parseInt(charBody.getText().toString());
-        if (currentBody > charStrain.getBody()) {
-          currentBody = currentBody - 1;
-          charBody.setText(String.valueOf(currentBody));
-          currentBuild = currentBuild + 1;
-          charBuild.setText(String.valueOf(currentBuild));
-          spentBuild -= 1;
-        }
-      }
-    });
-
-    Button btn_addMind = (Button) findViewById(R.id.btn_newCharMoreMind);
-    btn_addMind.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
-        Integer currentMind = Integer.parseInt(charMind.getText().toString());
-        if (currentBuild > 0) {
-          currentMind = currentMind + 1;
-          charMind.setText(String.valueOf(currentMind));
-          currentBuild = currentBuild - 1;
-          charBuild.setText(String.valueOf(currentBuild));
-          spentBuild += 1;
-        }
-      }
-    });
-
-    Button btn_subMind = (Button) findViewById(R.id.btn_newCharLessMind);
-    btn_subMind.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
-        Integer currentMind = Integer.parseInt(charMind.getText().toString());
-        if (currentMind > charStrain.getMind()) {
-          currentMind = currentMind - 1;
-          charMind.setText(String.valueOf(currentMind));
-          currentBuild = currentBuild + 1;
-          charBuild.setText(String.valueOf(currentBuild));
-          spentBuild -= 1;
-        }
-      }
-    });
+    setupAttributeButtons();
 
     Button btn_charNameDone = (Button) findViewById(R.id.btn_charName_done);
     btn_charNameDone.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +129,7 @@ public class CharacterNewActivity extends AppCompatActivity {
     //
     //Strain drop down
     //
-    final List<Strain> strains = StrainList.getStrainList();
+
     String[] strainNames = new String[strains.size()];
     for (int i = 0; i < strains.size(); i++) {
       strainNames[i] = strains.get(i).getName();
@@ -211,6 +158,7 @@ public class CharacterNewActivity extends AppCompatActivity {
           selectedSkillAdapter.notifyDataSetChanged();
         }
         spentBuild = 0;
+        setupAttributeButtons();
       }
 
       @Override
@@ -415,5 +363,21 @@ public class CharacterNewActivity extends AppCompatActivity {
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  /**
+   * Sets up buttons used to adjust the character attributes
+   */
+  public void setupAttributeButtons(){
+    ButtonManager btnMgr = new ButtonManager();
+
+    if(charStrain == null){
+      charStrain = strains.get(0);
+    }
+
+    btnMgr.characterAddBody(R.id.btn_newCharMoreBody,charBuild,charBody,this);
+    btnMgr.characterSubtractBody(R.id.btn_newCharLessBody,charBuild,charBody,this,charStrain.getBody());
+    btnMgr.characterAddMind(R.id.btn_newCharMoreMind,charBuild,charMind,this);
+    btnMgr.characterSubtractMind(R.id.btn_newCharLessMind,charBuild,charMind,this,charStrain.getMind());
   }
 }
