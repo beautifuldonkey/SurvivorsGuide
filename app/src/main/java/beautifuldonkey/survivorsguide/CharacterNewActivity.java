@@ -221,11 +221,7 @@ public class CharacterNewActivity extends AppCompatActivity {
             secondProfParams.addRule(RelativeLayout.BELOW, layoutOption);
           }
         }
-        availableSkills.clear();
-        availableSkills = CharacterManager.updateAvailableSkillList(charProfession, secondCharProfession, thirdCharProfession, charStrain);
-        availSkillAdapter.clear();
-        availSkillAdapter.addAll(availableSkills);
-        availSkillAdapter.notifyDataSetChanged();
+        updateSkills();
         secondProfDropDown.setVisibility(visible);
       }
     });
