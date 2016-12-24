@@ -27,6 +27,7 @@ import java.util.List;
 import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
 import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.ProfessionList;
+import beautifuldonkey.survivorsguide.Data.SgConstants;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.StrainList;
@@ -44,7 +45,6 @@ public class CharacterNewActivity extends AppCompatActivity {
   ArrayAdapter<Skill> availSkillAdapter;
   ArrayAdapter<Skill> selectedSkillAdapter;
   String strainSkills = "";
-  String profSkills = "";
   String secondProfSkills = "";
   List<Skill> selectedSkills = new ArrayList<>();
   List<Skill> availableSkills = new ArrayList<>();
@@ -315,7 +315,7 @@ public class CharacterNewActivity extends AppCompatActivity {
     availSkillAdapter.clear();
     availSkillAdapter.addAll(availableSkills);
     availSkillAdapter.notifyDataSetChanged();
-    charBuild.setText("13");
+    charBuild.setText(SgConstants.CHARACTER_INITIAL_BUILD);
     charInfection.setText(String.valueOf(charStrain.getInfection()));
     charBody.setText(String.valueOf(charStrain.getBody()));
     charMind.setText(String.valueOf(charStrain.getMind()));

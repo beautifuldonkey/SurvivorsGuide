@@ -23,5 +23,7 @@ public class SgConstants {
   public static String INTENT_STRAIN = "STRAIN";
   public static String INTENT_EDIT_CHAR = "EDIT_CHARACTER";
 
+  public static String CHARACTER_INITIAL_BUILD = "13";
+
 
 }
