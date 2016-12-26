@@ -3,6 +3,9 @@ package beautifuldonkey.survivorsguide.Manager;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,6 +13,7 @@ import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,6 +108,7 @@ public class CharacterManager {
     boolean saveSuccess = false;
     JSONArray data = new JSONArray();
     JSONObject character = new JSONObject();
+    Gson gson = new Gson();
 
     String TAG = "SAVE_CHAR";
 
@@ -124,8 +129,8 @@ public class CharacterManager {
       character.put("body", myCharacter.getHealth());
       character.put("mind", myCharacter.getMind());
       character.put("strain", myCharacter.getStrain());
-      character.put("professions", myCharacter.getProfessions());
-      character.put("selectedSkills", myCharacter.getSelectedSkills());
+      character.put("professions", gson.toJson( myCharacter.getProfessions()) );
+      character.put("selectedSkills", gson.toJson( myCharacter.getSelectedSkills()) );
       character.put("availBuild", myCharacter.getAvailBuild());
       character.put("reqBuild", myCharacter.getRequiredBuild());
       data.put(character);
@@ -151,6 +156,7 @@ public class CharacterManager {
   public static PlayerCharacter loadCharacter(int position, Context context) {
     PlayerCharacter characterToLoad = null;
     String TAG = "LOAD_CHAR";
+    Gson gson = new Gson();
 
     try {
       ArrayList<String> charFiles = getCharacterFiles(context);
@@ -172,13 +178,20 @@ public class CharacterManager {
       StringBuilder charBuffer = new StringBuilder();
       String charName = "";
       String charStrain = "";
-      String charProfession = "";
+      List<Profession> charProfession = new ArrayList<>();
       String charInfection = "";
       String charBody = "";
       String charMind = "";
-      String charSkills = "";
+      List<Skill> charSkills = new ArrayList<>();
+
       String charAvailBuild = "";
       String charRequiredBuild = "";
+
+//  TODO fix reading of character professions & skills
+      JSONArray profs = new JSONArray();
+
+      Type type = new TypeToken<List<Profession>>(){}.getType();
+
       for (int i = 0; i < data.length(); i++) {
 
         charName = data.getJSONObject(i).getString("name");
@@ -186,8 +199,13 @@ public class CharacterManager {
         charBody = data.getJSONObject(i).getString("body");
         charMind = data.getJSONObject(i).getString("mind");
         charStrain = data.getJSONObject(i).getString("strain");
-        charProfession = data.getJSONObject(i).getString("professions");
-        charSkills = data.getJSONObject(i).getString("selectedSkills");
+        profs = data.getJSONObject(i).getJSONArray("professions");
+//        charProfession = gson.fromJson(data.getJSONObject(i).get("professions"),List<Profession>);
+//        charSkills = (ArrayList) data.getJSONObject(i).get("selectedSkills");
+//        charProfession = data.getJSONObject(i).get("professions");
+//        charProfession = data.getJSONObject(i).getJSONArray("professions");
+//        charProfession = data.getJSONObject(i).getString("professions");
+//        charSkills = data.getJSONObject(i).getString("selectedSkills");
         charAvailBuild = data.getJSONObject(i).getString("availBuild");
         charRequiredBuild = data.getJSONObject(i).getString("reqBuild");
       }

@@ -3,6 +3,9 @@ package beautifuldonkey.survivorsguide.Data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Defines Character JSON structure saved to internal storage
  * Created by user on 6/15/2015.
@@ -14,13 +17,13 @@ public class PlayerCharacter implements Parcelable {
   private String mind;
   private String strain;
   private String infection;
-  private String professions;
-  private String selectedSkills;
+  private List<Profession> professions;
+  private List<Skill> selectedSkills;
   private String availBuild;
   private String requiredBuild;
 
   public PlayerCharacter(String charName, String charHealth, String charMind, String charStrain
-      , String charInfection, String charProfs, String selectedSkills, String availBuild
+      , String charInfection, List<Profession> charProfs, List<Skill> selectedSkills, String availBuild
       , String requiredBuild) {
     this.name = charName;
     this.health = charHealth;
@@ -39,8 +42,10 @@ public class PlayerCharacter implements Parcelable {
     mind = source.readString();
     strain = source.readString();
     infection = source.readString();
-    professions = source.readString();
-    selectedSkills = source.readString();
+    professions = new ArrayList<>();
+    selectedSkills = new ArrayList<>();
+    source.readTypedList(professions,Profession.CREATOR);
+    source.readTypedList(selectedSkills,Skill.CREATOR);
     availBuild = source.readString();
     requiredBuild = source.readString();
   }
@@ -52,8 +57,10 @@ public class PlayerCharacter implements Parcelable {
     dest.writeString(mind);
     dest.writeString(strain);
     dest.writeString(infection);
-    dest.writeString(professions);
-    dest.writeString(selectedSkills);
+//    professions = new ArrayList<>();
+//    selectedSkills = new ArrayList<>();
+    dest.writeTypedList(professions);
+    dest.writeTypedList(selectedSkills);
     dest.writeString(availBuild);
     dest.writeString(requiredBuild);
   }
@@ -123,19 +130,19 @@ public class PlayerCharacter implements Parcelable {
     this.strain = strain;
   }
 
-  public String getProfessions() {
+  public List<Profession> getProfessions() {
     return professions;
   }
 
-  public void setProfessions(String professions) {
+  public void setProfessions(List<Profession> professions) {
     this.professions = professions;
   }
 
-  public String getSelectedSkills() {
+  public List<Skill> getSelectedSkills() {
     return selectedSkills;
   }
 
-  public void setSelectedSkills(String selectedSkills) {
+  public void setSelectedSkills(List<Skill> selectedSkills) {
     this.selectedSkills = selectedSkills;
   }
 

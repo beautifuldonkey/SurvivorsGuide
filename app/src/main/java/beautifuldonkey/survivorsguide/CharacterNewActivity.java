@@ -55,9 +55,13 @@ public class CharacterNewActivity extends AppCompatActivity {
   TextView charInfection;
   TextView charBody;
   TextView charMind;
-  List<Strain> strains;
+  List<Strain> strainList;
   EditText charName;
   Context context;
+  ButtonManager btnMgr;
+  PlayerCharacter newCharacter;
+  List<Profession> professionList;
+  List<Profession> newCharacterProfessionList = new ArrayList<>(2);
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +76,28 @@ public class CharacterNewActivity extends AppCompatActivity {
     charBody = (TextView) findViewById(R.id.newCharacterBody);
     charMind = (TextView) findViewById(R.id.newCharacterMind);
 
+    charProfession = new Profession();
+    newCharacterProfessionList.add(0,charProfession);
+
+    btnMgr = new ButtonManager();
+
+    newCharacter = new PlayerCharacter("name", "health", "mind", "strain"
+        , "infection", newCharacterProfessionList, selectedSkills, "availBuild", "reqBuild");
+
+    strainList = StrainList.getStrainList();
+    String[] strainNames = new String[strainList.size()];
+    for (int i = 0; i < strainList.size(); i++) {
+      strainNames[i] = strainList.get(i).getName();
+    }
+
+    professionList = ProfessionList.getProfessionList();
+    String[] professionNames = new String[professionList.size()];
+    for (int i = 0; i < professionList.size(); i++) {
+      professionNames[i] = professionList.get(i).getName();
+    }
+
     Button btn_subInf = (Button) findViewById(R.id.btn_newCharLessInf);
     btn_subInf.setVisibility(View.INVISIBLE);
-
-    strains = StrainList.getStrainList();
-    String[] strainNames = new String[strains.size()];
-    for (int i = 0; i < strains.size(); i++) {
-      strainNames[i] = strains.get(i).getName();
-    }
 
     setupAttributeButtons();
 
@@ -96,37 +114,8 @@ public class CharacterNewActivity extends AppCompatActivity {
     btn_save.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        PlayerCharacter newCharacter = new PlayerCharacter("name", "health", "mind", "strain"
-            , "infection", "professions", "strainSkills", "availBuild", "reqBuild");
-
-        String professions = charProfession.getName();
-        if (secondProfToggle.isChecked() && !secondCharProfession.getName().isEmpty()) {
-          professions = professions + ',' + secondCharProfession.getName();
-        }
-        if (thirdCharProfession != null && !thirdCharProfession.getName().isEmpty()) {
-          professions = professions + ',' + thirdCharProfession.getName();
-        }
-
-        String characterSkillsSelected = "";
-        for (int i = 0; i < selectedSkills.size(); i++) {
-          characterSkillsSelected += selectedSkills.get(i).getName() + ",";
-        }
         newCharacter.setName(charName.getText().toString());
-        newCharacter.setInfection(charInfection.getText().toString());
-        newCharacter.setHealth(charBody.getText().toString());
-        newCharacter.setMind(charMind.getText().toString());
-        newCharacter.setStrain(charStrain.getName());
-        newCharacter.setProfessions(professions);
-        newCharacter.setSelectedSkills(characterSkillsSelected);
-        newCharacter.setAvailBuild(charBuild.getText().toString());
-        newCharacter.setRequiredBuild(String.valueOf(spentBuild));
-
-        if(CharacterManager.saveCharacter(newCharacter, context)){
-          Toast.makeText(context,"Character saved.",Toast.LENGTH_SHORT).show();
-        }else{
-          Toast.makeText(context,"Character save failed.",Toast.LENGTH_SHORT).show();
-        }
-
+        btnMgr.characterSave(context,newCharacter);
       }
     });
 
@@ -139,7 +128,7 @@ public class CharacterNewActivity extends AppCompatActivity {
     strainDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        charStrain = strains.get(position);
+        charStrain = strainList.get(position);
         updateSkills();
       }
       @Override
@@ -149,19 +138,14 @@ public class CharacterNewActivity extends AppCompatActivity {
     //
     //Profession Drop Down
     //
-    final List<Profession> professions = ProfessionList.getProfessionList();
-    String[] professionNames = new String[professions.size()];
-    for (int i = 0; i < professions.size(); i++) {
-      professionNames[i] = professions.get(i).getName();
-    }
     Spinner profDropDown = (Spinner) findViewById(R.id.professionDropDown);
     ArrayAdapter<String> profAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, professionNames);
     profDropDown.setAdapter(profAdapter);
     profDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        charProfession = professions.get(position);
-        updateSkills();
+        charProfession = professionList.get(position);
+        updateCharProfessions(0,charProfession);
       }
 
       @Override
@@ -179,7 +163,7 @@ public class CharacterNewActivity extends AppCompatActivity {
     secondProfDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        secondCharProfession = professions.get(position);
+        secondCharProfession = professionList.get(position);
         updateSkills();
       }
 
@@ -331,15 +315,18 @@ public class CharacterNewActivity extends AppCompatActivity {
    * Sets up buttons used to adjust the character attributes
    */
   public void setupAttributeButtons(){
-    ButtonManager btnMgr = new ButtonManager();
-
     if(charStrain == null){
-      charStrain = strains.get(0);
+      charStrain = strainList.get(0);
     }
-
     btnMgr.characterAddBody(R.id.btn_newCharMoreBody,charBuild,charBody,this);
     btnMgr.characterSubtractBody(R.id.btn_newCharLessBody,charBuild,charBody,this,charStrain.getBody());
     btnMgr.characterAddMind(R.id.btn_newCharMoreMind,charBuild,charMind,this);
     btnMgr.characterSubtractMind(R.id.btn_newCharLessMind,charBuild,charMind,this,charStrain.getMind());
+  }
+
+  public void updateCharProfessions(int profToUpdate, Profession profToAdd){
+    newCharacterProfessionList.add(profToUpdate, profToAdd);
+    newCharacter.setProfessions(newCharacterProfessionList);
+    updateSkills();
   }
 }

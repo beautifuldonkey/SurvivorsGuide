@@ -56,7 +56,7 @@ public class CharacterExistingActivity extends AppCompatActivity {
           existingCharStrain.setText(loadedCharacter.getStrain());
 
           TextView existingCharProfessions = (TextView) findViewById(R.id.existingCharProfession);
-          existingCharProfessions.setText(loadedCharacter.getProfessions());
+          existingCharProfessions.setText(loadedCharacter.getProfessions().get(0).getName());
 
           TextView existingCharInfection = (TextView) findViewById(R.id.existingCharInfection);
           existingCharInfection.setText(loadedCharacter.getInfection());
@@ -67,7 +67,7 @@ public class CharacterExistingActivity extends AppCompatActivity {
           TextView existingCharMind = (TextView) findViewById(R.id.existingCharMind);
           existingCharMind.setText(loadedCharacter.getMind());
 
-          final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getSelectedSkills());
+          final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getSelectedSkills().get(0).getName());
 
           ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
           ArrayAdapter<Skill> selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, selectedSkills);
