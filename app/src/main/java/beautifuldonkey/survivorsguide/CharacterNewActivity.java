@@ -115,6 +115,8 @@ public class CharacterNewActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         newCharacter.setName(charName.getText().toString());
+        newCharacter.setHealth(charBody.getText().toString());
+        newCharacter.setMind(charMind.getText().toString());
         btnMgr.characterSave(context,newCharacter);
       }
     });
@@ -129,6 +131,8 @@ public class CharacterNewActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         charStrain = strainList.get(position);
+        newCharacter.setStrain(charStrain.getName());
+        newCharacter.setInfection(String.valueOf(charStrain.getInfection()));
         updateSkills();
       }
       @Override
