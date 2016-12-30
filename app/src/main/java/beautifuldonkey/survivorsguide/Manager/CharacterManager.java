@@ -175,7 +175,6 @@ public class CharacterManager {
       JSONArray data = new JSONArray(b.toString());
 
       Log.d(TAG, "building string");
-      StringBuilder charBuffer = new StringBuilder();
       String charName = "";
       String charStrain = "";
       List<Profession> charProfession = new ArrayList<>();
@@ -187,10 +186,8 @@ public class CharacterManager {
       String charAvailBuild = "";
       String charRequiredBuild = "";
 
-//  TODO fix reading of character professions & skills
-      JSONArray profs = new JSONArray();
-
-      Type type = new TypeToken<List<Profession>>(){}.getType();
+      Type typeProfList = new TypeToken<List<Profession>>(){}.getType();
+      Type typeSkillList = new TypeToken<List<Skill>>(){}.getType();
 
       for (int i = 0; i < data.length(); i++) {
 
@@ -199,13 +196,8 @@ public class CharacterManager {
         charBody = data.getJSONObject(i).getString("body");
         charMind = data.getJSONObject(i).getString("mind");
         charStrain = data.getJSONObject(i).getString("strain");
-        profs = data.getJSONObject(i).getJSONArray("professions");
-//        charProfession = gson.fromJson(data.getJSONObject(i).get("professions"),List<Profession>);
-//        charSkills = (ArrayList) data.getJSONObject(i).get("selectedSkills");
-//        charProfession = data.getJSONObject(i).get("professions");
-//        charProfession = data.getJSONObject(i).getJSONArray("professions");
-//        charProfession = data.getJSONObject(i).getString("professions");
-//        charSkills = data.getJSONObject(i).getString("selectedSkills");
+        charProfession = gson.fromJson(data.getJSONObject(i).getString("professions"),typeProfList);
+        charSkills = gson.fromJson(data.getJSONObject(i).getString("selectedSkills"),typeSkillList);
         charAvailBuild = data.getJSONObject(i).getString("availBuild");
         charRequiredBuild = data.getJSONObject(i).getString("reqBuild");
       }
