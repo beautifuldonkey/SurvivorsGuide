@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
+import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.SgConstants;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
@@ -55,8 +56,15 @@ public class CharacterExistingActivity extends AppCompatActivity {
           TextView existingCharStrain = (TextView) findViewById(R.id.existingCharStrain);
           existingCharStrain.setText(loadedCharacter.getStrain());
 
+          String existingProfs = "";
+          for(Profession prof : loadedCharacter.getProfessions()){
+            if(prof.getName()!=null){
+              existingProfs += prof.getName()+", ";
+            }
+          }
+
           TextView existingCharProfessions = (TextView) findViewById(R.id.existingCharProfession);
-          existingCharProfessions.setText(loadedCharacter.getProfessions().get(0).getName());
+          existingCharProfessions.setText(existingProfs);
 
           TextView existingCharInfection = (TextView) findViewById(R.id.existingCharInfection);
           existingCharInfection.setText(loadedCharacter.getInfection());
@@ -67,7 +75,8 @@ public class CharacterExistingActivity extends AppCompatActivity {
           TextView existingCharMind = (TextView) findViewById(R.id.existingCharMind);
           existingCharMind.setText(loadedCharacter.getMind());
 
-          final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getSelectedSkills().get(0).getName());
+//          final List<Skill> selectedSkills = SkillList.getSkillsByName(loadedCharacter.getSelectedSkills().get(0).getName());
+          final List<Skill> selectedSkills = loadedCharacter.getSelectedSkills();
 
           ListView existingCharSkills = (ListView) findViewById(R.id.existingCharSkills);
           ArrayAdapter<Skill> selectedSkillAdapter = AdapterManager.getCharacterSkillArrayAdapter(context, selectedSkills);
