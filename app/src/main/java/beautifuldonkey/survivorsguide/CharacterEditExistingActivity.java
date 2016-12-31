@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
@@ -59,8 +60,10 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     btnMgr = new ButtonManager();
 
     String[] existingProfessions = new String[2];
+    String existingProfessionsString = "";
 
     for(int i=0; i<charToEdit.getProfessions().size()-1; i++){
+      existingProfessionsString += charToEdit.getProfessions().get(i).getName() + ", ";
       existingProfessions[i] = charToEdit.getProfessions().get(i).getName();
     }
 
@@ -78,7 +81,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     charStrainText.setText(charToEdit.getStrain());
 
     charProfsText = (TextView) findViewById(R.id.characterProfessions);
-    charProfsText.setText(charToEdit.getProfessions().get(0).getName());
+    charProfsText.setText(existingProfessionsString);
 
     TextView charBuildLabel = (TextView) findViewById(R.id.newCharacterBuildLabel);
     charBuildLabel.setText("Build Req:");
@@ -232,14 +235,21 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
   }
 
   private void updateProfessionsAndAvailSkills() {
-    String updatedProfessions = firstProf.getName();
-    if (secondProf != null) {
-      updatedProfessions += "," + secondProf.getName();
+    List<Profession> updatedProfessions = new ArrayList<>();
+
+    updatedProfessions.add(firstProf);
+    String updatedProfessionsString = firstProf.getName();
+    if (secondProf != null && secondProf.getName() != null) {
+      updatedProfessionsString += ", " + secondProf.getName();
+      updatedProfessions.add(secondProf);
     }
-    if (thirdProf != null) {
-      updatedProfessions += "," + thirdProf.getName();
+    if (thirdProf != null && thirdProf.getName() != null) {
+      updatedProfessionsString += ", " + thirdProf.getName();
+      updatedProfessions.add(thirdProf);
     }
-//    charToEdit.setProfessions(updatedProfessions);
+
+    charToEdit.setProfessions(updatedProfessions);
+    charProfsText.setText(updatedProfessionsString);
 
     availableSkills.clear();
     availableSkills = CharacterManager.updateAvailableSkillList(
@@ -251,8 +261,6 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     availSkillAdapter.clear();
     availSkillAdapter.addAll(availableSkills);
     availSkillAdapter.notifyDataSetChanged();
-
-    charProfsText.setText(charToEdit.getProfessions().get(0).getName());
   }
 
   private void setupButtons() {
