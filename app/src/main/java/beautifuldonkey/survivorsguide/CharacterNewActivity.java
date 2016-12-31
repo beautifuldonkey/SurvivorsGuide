@@ -117,6 +117,7 @@ public class CharacterNewActivity extends AppCompatActivity {
         newCharacter.setName(charName.getText().toString());
         newCharacter.setHealth(charBody.getText().toString());
         newCharacter.setMind(charMind.getText().toString());
+        newCharacter.setRequiredBuild(charBuild.getText().toString());
         btnMgr.characterSave(context,newCharacter);
       }
     });
