@@ -150,7 +150,7 @@ public class CharacterNewActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         charProfession = professionList.get(position);
-        updateCharProfessions(0,charProfession);
+        updateCharProfessions();
       }
 
       @Override
@@ -162,14 +162,24 @@ public class CharacterNewActivity extends AppCompatActivity {
     //
     // Second Profession Drop Down
     //
+    String[] secondProfessionNames = new String[professionNames.length+1];
+    for(int i=0; i<secondProfessionNames.length; i++){
+      if(i==0){
+        secondProfessionNames[i] = "Please Select";
+      }else{
+        secondProfessionNames[i] = professionNames[i-1];
+      }
+    }
     final Spinner secondProfDropDown = (Spinner) findViewById(R.id.secondProfessionDropDown);
-    final ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, professionNames);
+    final ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, secondProfessionNames);
     secondProfDropDown.setAdapter(secondProfAdapter);
     secondProfDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        secondCharProfession = professionList.get(position);
-        updateSkills();
+        if(position>0){
+          secondCharProfession = professionList.get(position-1);
+          updateCharProfessions();
+        }
       }
 
       @Override
@@ -210,7 +220,7 @@ public class CharacterNewActivity extends AppCompatActivity {
             secondProfParams.addRule(RelativeLayout.BELOW, layoutOption);
           }
         }
-        updateSkills();
+        updateCharProfessions();
         secondProfDropDown.setVisibility(visible);
       }
     });
@@ -329,8 +339,11 @@ public class CharacterNewActivity extends AppCompatActivity {
     btnMgr.characterSubtractMind(R.id.btn_newCharLessMind,charBuild,charMind,this,charStrain.getMind());
   }
 
-  public void updateCharProfessions(int profToUpdate, Profession profToAdd){
-    newCharacterProfessionList.add(profToUpdate, profToAdd);
+  public void updateCharProfessions(){
+    newCharacterProfessionList.clear();
+    newCharacterProfessionList.add(charProfession);
+    newCharacterProfessionList.add(secondCharProfession);
+    newCharacterProfessionList.add(thirdCharProfession);
     newCharacter.setProfessions(newCharacterProfessionList);
     updateSkills();
   }
