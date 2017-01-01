@@ -60,7 +60,7 @@ public class CharacterExistingActivity extends AppCompatActivity {
 
           String existingProfs = "";
           for(Profession prof : loadedCharacter.getProfessions()){
-            if(prof.getName()!=null){
+            if(prof != null && prof.getName()!=null){
               existingProfs += prof.getName()+", ";
             }
           }
