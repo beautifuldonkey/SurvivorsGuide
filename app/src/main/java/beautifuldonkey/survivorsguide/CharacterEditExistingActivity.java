@@ -48,6 +48,9 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
   Strain charStrain;
   Integer spentBuild;
   Context context;
+  List<Profession> professions;
+  String[] profNames;
+  String[] profNamesWithPlaceholder;
 
   ButtonManager btnMgr;
 
@@ -67,9 +70,9 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
       existingProfessions[i] = charToEdit.getProfessions().get(i).getName();
     }
 
-    firstProf = ProfessionList.getProfessionByName(existingProfessions[0]);
-    secondProf = ProfessionList.getProfessionByName(existingProfessions.length > 1 ? existingProfessions[1] : "");
-    thirdProf = ProfessionList.getProfessionByName(existingProfessions.length > 2 ? existingProfessions[2] : "");
+    firstProf = charToEdit.getProfessions().get(0);
+    secondProf = charToEdit.getProfessions().get(1);
+    thirdProf = charToEdit.getProfessions().get(2);
 
     spentBuild = Integer.valueOf(charToEdit.getRequiredBuild());
 
@@ -174,15 +177,27 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         dialog.setContentView(charProfsPopup);
         dialog.show();
 
-        final List<Profession> professions = ProfessionList.getProfessionList();
-        final String[] profNames = new String[professions.size()];
-        final String[] profNamesWithPlaceholder = new String[professions.size() + 1];
+        int firstProfSelection = 0;
+        int secondProfSelection = 0;
+        int thirdProfSelection = 0;
+
+        professions = ProfessionList.getProfessionList();
+        profNames = new String[professions.size()];
+        profNamesWithPlaceholder = new String[professions.size() + 1];
         profNamesWithPlaceholder[0] = "Please Select";
         for (int i = 0; i < professions.size(); i++) {
+          if(charProfs.get(0).getName().equals(professions.get(i).getName())){
+            firstProfSelection = i;
+          }else if(charProfs.get(1) != null && charProfs.get(1).getName().equals(professions.get(i).getName())){
+            secondProfSelection = i+1;
+          }else if(charProfs.get(2) != null && charProfs.get(2).getName().equals(professions.get(i).getName())){
+            thirdProfSelection = i+1;
+          }
           profNames[i] = professions.get(i).getName();
           profNamesWithPlaceholder[i + 1] = professions.get(i).getName();
         }
-        final Spinner firstProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.firstProfession);
+
+        Spinner firstProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.firstProfession);
         ArrayAdapter<String> firstProfAdapter = new ArrayAdapter<>(CharacterEditExistingActivity.this, R.layout.item_simple_spinner, profNames);
         firstProfSpinner.setAdapter(firstProfAdapter);
         firstProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -197,6 +212,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
           }
         });
+        firstProfSpinner.setSelection(firstProfSelection);
 
         Spinner secondProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.secondProfession);
         ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context, R.layout.item_simple_spinner, profNamesWithPlaceholder);
@@ -213,6 +229,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
           }
         });
+        secondProfSpinner.setSelection(secondProfSelection);
 
         Spinner thirdProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.thirdProfession);
         ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context, R.layout.item_simple_spinner, profNamesWithPlaceholder);
@@ -229,6 +246,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
           }
         });
+        thirdProfSpinner.setSelection(thirdProfSelection);
 
       }
     });
