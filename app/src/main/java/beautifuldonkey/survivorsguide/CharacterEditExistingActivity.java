@@ -298,10 +298,10 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
       }
     });
 
-    btnMgr.characterAddBody(R.id.btn_newCharMoreBody,charBuild,charBody,this);
-    btnMgr.characterSubtractBody(R.id.btn_newCharLessBody,charBuild,charBody,this,charStrain.getBody());
-    btnMgr.characterAddMind(R.id.btn_newCharMoreMind,charBuild,charMind,this);
-    btnMgr.characterSubtractMind(R.id.btn_newCharLessMind,charBuild,charMind,this,charStrain.getMind());
+    btnMgr.characterAddBody(R.id.btn_newCharMoreBody,charBuild,charBody,this,SgConstants.BTN_EDIT_ADD_BODY);
+    btnMgr.characterSubtractBody(R.id.btn_newCharLessBody,charBuild,charBody,this,charStrain.getBody(),SgConstants.BTN_EDIT_SUB_BODY);
+    btnMgr.characterAddMind(R.id.btn_newCharMoreMind,charBuild,charMind,this,SgConstants.BTN_EDIT_ADD_MIND);
+    btnMgr.characterSubtractMind(R.id.btn_newCharLessMind,charBuild,charMind,this,charStrain.getMind(),SgConstants.BTN_EDIT_SUB_MIND);
 
     Button btn_save = (Button) findViewById(R.id.btn_save);
     btn_save.setOnClickListener(new View.OnClickListener() {

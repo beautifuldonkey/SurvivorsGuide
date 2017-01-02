@@ -8,9 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
-import beautifuldonkey.survivorsguide.Data.Profession;
-
-import static beautifuldonkey.survivorsguide.R.id.selectedSkills;
+import beautifuldonkey.survivorsguide.Data.SgConstants;
 
 /**
  * Provides character attribute buttons
@@ -23,6 +21,10 @@ public class ButtonManager {
   private TextView charMind;
   private int minBody;
   private int minMind;
+  private int addMindCondition;
+  private int subMindCondition;
+  private int addBodyCondition;
+  private int subBodyCondition;
 
   /**
    * Sets up button that will add body to a character
@@ -31,9 +33,10 @@ public class ButtonManager {
    * @param body TextView for character body
    * @param activity Activity setting up the button
    */
-  public void characterAddBody(int id, TextView build, TextView body, Activity activity){
+  public void characterAddBody(int id, TextView build, TextView body, Activity activity, int incCondition){
     charBuild = build;
     charBody = body;
+    addBodyCondition = incCondition;
 
     Button button = (Button) activity.findViewById(id);
     button.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +46,7 @@ public class ButtonManager {
         Integer currentStatValue = Integer.parseInt(charBody.getText().toString());
         if (currentBuild > 0) {
           currentStatValue += 1;
-          currentBuild -= 1;
+          currentBuild = handleBuild(currentBuild, addBodyCondition);
           charBody.setText(String.valueOf(currentStatValue));
           charBuild.setText(String.valueOf(currentBuild));
         }
@@ -58,9 +61,10 @@ public class ButtonManager {
    * @param mind TextView for character mind
    * @param activity Activity setting up the button
    */
-  public void characterAddMind(int id, TextView build, TextView mind, Activity activity){
+  public void characterAddMind(int id, TextView build, TextView mind, Activity activity, int incCondition){
     charBuild = build;
     charMind = mind;
+    addMindCondition = incCondition;
 
     Button button = (Button) activity.findViewById(id);
     button.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +74,7 @@ public class ButtonManager {
         Integer currentStatValue = Integer.parseInt(charMind.getText().toString());
         if (currentBuild > 0) {
           currentStatValue += 1;
-          currentBuild -= 1;
+          currentBuild = handleBuild(currentBuild, addMindCondition);
           charMind.setText(String.valueOf(currentStatValue));
           charBuild.setText(String.valueOf(currentBuild));
         }
@@ -86,10 +90,11 @@ public class ButtonManager {
    * @param activity Activity setting up the button
    * @param minVal Minimum value based on character strain
    */
-  public void characterSubtractBody(int id, TextView build, TextView body, Activity activity, int minVal){
+  public void characterSubtractBody(int id, TextView build, TextView body, Activity activity, int minVal, int incCondition){
     charBuild = build;
     charBody = body;
     minBody = minVal;
+    subBodyCondition = incCondition;
 
     Button button = (Button) activity.findViewById(id);
     button.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +104,7 @@ public class ButtonManager {
         Integer currentStatValue = Integer.parseInt(charBody.getText().toString());
         if (currentStatValue > minBody) {
           currentStatValue -= 1;
-          currentBuild += 1;
+          currentBuild = handleBuild(currentBuild, subBodyCondition);
           charBody.setText(String.valueOf(currentStatValue));
           charBuild.setText(String.valueOf(currentBuild));
         }
@@ -115,10 +120,11 @@ public class ButtonManager {
    * @param activity Activity setting up the button
    * @param minVal Minimum value based on character strain
    */
-  public void characterSubtractMind(int id, TextView build, TextView mind, Activity activity, int minVal){
+  public void characterSubtractMind(int id, TextView build, TextView mind, Activity activity, int minVal, int incCondition){
     charBuild = build;
     charMind = mind;
     minMind = minVal;
+    subMindCondition = incCondition;
 
     Button button = (Button) activity.findViewById(id);
     button.setOnClickListener(new View.OnClickListener() {
@@ -128,12 +134,26 @@ public class ButtonManager {
         Integer currentStatValue = Integer.parseInt(charMind.getText().toString());
         if (currentStatValue > minMind) {
           currentStatValue -= 1;
-          currentBuild += 1;
+          currentBuild = handleBuild(currentBuild,subMindCondition);
           charMind.setText(String.valueOf(currentStatValue));
           charBuild.setText(String.valueOf(currentBuild));
         }
       }
     });
+  }
+
+  private int handleBuild(int build, int btnCase){
+    if (btnCase == SgConstants.BTN_NEW_ADD_BODY || btnCase == SgConstants.BTN_NEW_ADD_MIND) {
+      build -= 1;
+    } else if(btnCase == SgConstants.BTN_NEW_SUB_BODY || btnCase == SgConstants.BTN_NEW_SUB_MIND){
+      build += 1;
+    } else if(btnCase == SgConstants.BTN_EDIT_ADD_BODY || btnCase == SgConstants.BTN_EDIT_ADD_MIND){
+      build += 1;
+    } else if(btnCase == SgConstants.BTN_EDIT_SUB_BODY || btnCase == SgConstants.BTN_EDIT_SUB_MIND){
+      build -= 1;
+    }
+
+    return build;
   }
 
   public void characterSave(Context context, PlayerCharacter charObj){

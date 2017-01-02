@@ -333,10 +333,10 @@ public class CharacterNewActivity extends AppCompatActivity {
     if(charStrain == null){
       charStrain = strainList.get(0);
     }
-    btnMgr.characterAddBody(R.id.btn_newCharMoreBody,charBuild,charBody,this);
-    btnMgr.characterSubtractBody(R.id.btn_newCharLessBody,charBuild,charBody,this,charStrain.getBody());
-    btnMgr.characterAddMind(R.id.btn_newCharMoreMind,charBuild,charMind,this);
-    btnMgr.characterSubtractMind(R.id.btn_newCharLessMind,charBuild,charMind,this,charStrain.getMind());
+    btnMgr.characterAddBody(R.id.btn_newCharMoreBody,charBuild,charBody,this,SgConstants.BTN_NEW_ADD_BODY);
+    btnMgr.characterSubtractBody(R.id.btn_newCharLessBody,charBuild,charBody,this,charStrain.getBody(),SgConstants.BTN_NEW_SUB_BODY);
+    btnMgr.characterAddMind(R.id.btn_newCharMoreMind,charBuild,charMind,this,SgConstants.BTN_NEW_ADD_MIND);
+    btnMgr.characterSubtractMind(R.id.btn_newCharLessMind,charBuild,charMind,this,charStrain.getMind(),SgConstants.BTN_NEW_SUB_MIND);
   }
 
   public void updateCharProfessions(){
