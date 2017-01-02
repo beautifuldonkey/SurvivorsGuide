@@ -26,6 +26,7 @@ import beautifuldonkey.survivorsguide.Data.SkillList;
 import beautifuldonkey.survivorsguide.Data.Strain;
 import beautifuldonkey.survivorsguide.Data.StrainList;
 import beautifuldonkey.survivorsguide.Manager.AdapterManager;
+import beautifuldonkey.survivorsguide.Manager.ButtonManager;
 import beautifuldonkey.survivorsguide.Manager.CharacterManager;
 
 public class CharacterEditExistingActivity extends AppCompatActivity {
@@ -47,6 +48,11 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
   Strain charStrain;
   Integer spentBuild;
   Context context;
+  List<Profession> professions;
+  String[] profNames;
+  String[] profNamesWithPlaceholder;
+
+  ButtonManager btnMgr;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +60,19 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     setContentView(R.layout.activity_character_edit_existing);
     context = getApplicationContext();
     charToEdit = getIntent().getParcelableExtra(SgConstants.INTENT_EDIT_CHAR);
+    btnMgr = new ButtonManager();
 
-    String[] existingProfessions = charToEdit.getProfessions().split(",");
-    firstProf = ProfessionList.getProfessionByName(existingProfessions[0]);
-    secondProf = ProfessionList.getProfessionByName(existingProfessions.length > 1 ? existingProfessions[1] : "");
-    thirdProf = ProfessionList.getProfessionByName(existingProfessions.length > 2 ? existingProfessions[2] : "");
+    String[] existingProfessions = new String[2];
+    String existingProfessionsString = "";
+
+    for(int i=0; i<charToEdit.getProfessions().size()-1; i++){
+      existingProfessionsString += charToEdit.getProfessions().get(i).getName() + ", ";
+      existingProfessions[i] = charToEdit.getProfessions().get(i).getName();
+    }
+
+    firstProf = charToEdit.getProfessions().get(0);
+    secondProf = charToEdit.getProfessions().get(1);
+    thirdProf = charToEdit.getProfessions().get(2);
 
     spentBuild = Integer.valueOf(charToEdit.getRequiredBuild());
 
@@ -70,7 +84,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     charStrainText.setText(charToEdit.getStrain());
 
     charProfsText = (TextView) findViewById(R.id.characterProfessions);
-    charProfsText.setText(charToEdit.getProfessions());
+    charProfsText.setText(existingProfessionsString);
 
     TextView charBuildLabel = (TextView) findViewById(R.id.newCharacterBuildLabel);
     charBuildLabel.setText("Build Req:");
@@ -87,13 +101,9 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     charMind = (TextView) findViewById(R.id.newCharacterMind);
     charMind.setText(charToEdit.getMind());
 
-    selectedSkills = SkillList.getSkillsByName(charToEdit.getSelectedSkills());
+    selectedSkills = SkillList.getSkillsByName(charToEdit.getSelectedSkills().get(0).getName());
 
-    String[] profs = charToEdit.getProfessions().split(",");
-    charProfs = new ArrayList<>();
-    for (int i = 0; i < profs.length; i++) {
-      charProfs.add(ProfessionList.getProfessionByName(profs[i]));
-    }
+    charProfs = charToEdit.getProfessions();
 
     availableSkills = CharacterManager.updateAvailableSkillList(
         charProfs.get(0),
@@ -167,15 +177,27 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         dialog.setContentView(charProfsPopup);
         dialog.show();
 
-        final List<Profession> professions = ProfessionList.getProfessionList();
-        final String[] profNames = new String[professions.size()];
-        final String[] profNamesWithPlaceholder = new String[professions.size() + 1];
+        int firstProfSelection = 0;
+        int secondProfSelection = 0;
+        int thirdProfSelection = 0;
+
+        professions = ProfessionList.getProfessionList();
+        profNames = new String[professions.size()];
+        profNamesWithPlaceholder = new String[professions.size() + 1];
         profNamesWithPlaceholder[0] = "Please Select";
         for (int i = 0; i < professions.size(); i++) {
+          if(charProfs.get(0).getName().equals(professions.get(i).getName())){
+            firstProfSelection = i;
+          }else if(charProfs.get(1) != null && charProfs.get(1).getName().equals(professions.get(i).getName())){
+            secondProfSelection = i+1;
+          }else if(charProfs.get(2) != null && charProfs.get(2).getName().equals(professions.get(i).getName())){
+            thirdProfSelection = i+1;
+          }
           profNames[i] = professions.get(i).getName();
           profNamesWithPlaceholder[i + 1] = professions.get(i).getName();
         }
-        final Spinner firstProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.firstProfession);
+
+        Spinner firstProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.firstProfession);
         ArrayAdapter<String> firstProfAdapter = new ArrayAdapter<>(CharacterEditExistingActivity.this, R.layout.item_simple_spinner, profNames);
         firstProfSpinner.setAdapter(firstProfAdapter);
         firstProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -190,6 +212,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
           }
         });
+        firstProfSpinner.setSelection(firstProfSelection);
 
         Spinner secondProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.secondProfession);
         ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context, R.layout.item_simple_spinner, profNamesWithPlaceholder);
@@ -206,6 +229,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
           }
         });
+        secondProfSpinner.setSelection(secondProfSelection);
 
         Spinner thirdProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.thirdProfession);
         ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context, R.layout.item_simple_spinner, profNamesWithPlaceholder);
@@ -222,20 +246,28 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
           }
         });
+        thirdProfSpinner.setSelection(thirdProfSelection);
 
       }
     });
   }
 
   private void updateProfessionsAndAvailSkills() {
-    String updatedProfessions = firstProf.getName();
-    if (secondProf != null) {
-      updatedProfessions += "," + secondProf.getName();
+    List<Profession> updatedProfessions = new ArrayList<>();
+
+    updatedProfessions.add(firstProf);
+    String updatedProfessionsString = firstProf.getName();
+    if (secondProf != null && secondProf.getName() != null) {
+      updatedProfessionsString += ", " + secondProf.getName();
+      updatedProfessions.add(secondProf);
     }
-    if (thirdProf != null) {
-      updatedProfessions += "," + thirdProf.getName();
+    if (thirdProf != null && thirdProf.getName() != null) {
+      updatedProfessionsString += ", " + thirdProf.getName();
+      updatedProfessions.add(thirdProf);
     }
+
     charToEdit.setProfessions(updatedProfessions);
+    charProfsText.setText(updatedProfessionsString);
 
     availableSkills.clear();
     availableSkills = CharacterManager.updateAvailableSkillList(
@@ -247,8 +279,6 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     availSkillAdapter.clear();
     availSkillAdapter.addAll(availableSkills);
     availSkillAdapter.notifyDataSetChanged();
-
-    charProfsText.setText(charToEdit.getProfessions());
   }
 
   private void setupButtons() {
@@ -264,57 +294,10 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
       }
     });
 
-    Button btn_addBody = (Button) findViewById(R.id.btn_newCharMoreBody);
-    btn_addBody.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Integer currentBody = Integer.parseInt(charBody.getText().toString());
-        currentBody = currentBody + 1;
-        charBody.setText(String.valueOf(currentBody));
-        spentBuild += 1;
-        charBuild.setText(String.valueOf(spentBuild));
-      }
-    });
-
-    Button btn_subBody = (Button) findViewById(R.id.btn_newCharLessBody);
-    btn_subBody.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Integer currentBody = Integer.parseInt(charBody.getText().toString());
-        if (currentBody > charStrain.getBody()) {
-          currentBody = currentBody - 1;
-          charBody.setText(String.valueOf(currentBody));
-          spentBuild -= 1;
-          charBuild.setText(String.valueOf(spentBuild));
-        }
-      }
-    });
-
-    Button btn_addMind = (Button) findViewById(R.id.btn_newCharMoreMind);
-    btn_addMind.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Integer currentMind = Integer.parseInt(charMind.getText().toString());
-        currentMind = currentMind + 1;
-        charMind.setText(String.valueOf(currentMind));
-        spentBuild += 1;
-        charBuild.setText(String.valueOf(spentBuild));
-      }
-    });
-
-    Button btn_subMind = (Button) findViewById(R.id.btn_newCharLessMind);
-    btn_subMind.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Integer currentMind = Integer.parseInt(charMind.getText().toString());
-        if (currentMind > charStrain.getMind()) {
-          currentMind = currentMind - 1;
-          charMind.setText(String.valueOf(currentMind));
-          spentBuild -= 1;
-          charBuild.setText(String.valueOf(spentBuild));
-        }
-      }
-    });
+    btnMgr.characterAddBody(R.id.btn_newCharMoreBody,charBuild,charBody,this);
+    btnMgr.characterSubtractBody(R.id.btn_newCharLessBody,charBuild,charBody,this,charStrain.getBody());
+    btnMgr.characterAddMind(R.id.btn_newCharMoreMind,charBuild,charMind,this);
+    btnMgr.characterSubtractMind(R.id.btn_newCharLessMind,charBuild,charMind,this,charStrain.getMind());
 
     Button btn_save = (Button) findViewById(R.id.btn_save);
     btn_save.setOnClickListener(new View.OnClickListener() {
@@ -328,7 +311,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         charToEdit.setInfection(charInfection.getText().toString());
         charToEdit.setHealth(charBody.getText().toString());
         charToEdit.setMind(charMind.getText().toString());
-        charToEdit.setSelectedSkills(updatedCharSkills);
+//        charToEdit.setSelectedSkills(updatedCharSkills);
 
         CharacterManager.saveCharacter(charToEdit, context);
       }

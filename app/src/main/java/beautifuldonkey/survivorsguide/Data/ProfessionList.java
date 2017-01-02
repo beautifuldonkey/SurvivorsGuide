@@ -17,7 +17,7 @@ public class ProfessionList {
   }
 
   public static Profession getProfessionByName(String name) {
-    Profession foundProf = null;
+    Profession foundProf = new Profession();
 
     for (int i = 0; i < professionList.size(); i++) {
       if (professionList.get(i).getName().equals(name)) {
