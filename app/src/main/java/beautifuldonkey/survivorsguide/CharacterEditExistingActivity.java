@@ -182,6 +182,10 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         int thirdProfSelection = 0;
 
         professions = ProfessionList.getProfessionList();
+        List<Profession> professionsWithPlaceholder = ProfessionList.getProfessionList();
+        Profession emptyProfession = new Profession();
+        emptyProfession.setName("Please Select");
+        professionsWithPlaceholder.add(0,emptyProfession);
         profNames = new String[professions.size()];
         profNamesWithPlaceholder = new String[professions.size() + 1];
         profNamesWithPlaceholder[0] = "Please Select";
@@ -189,16 +193,16 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
           if(charProfs.get(0).getName().equals(professions.get(i).getName())){
             firstProfSelection = i;
           }else if(charProfs.get(1) != null && charProfs.get(1).getName().equals(professions.get(i).getName())){
-            secondProfSelection = i+1;
+            secondProfSelection = i;
           }else if(charProfs.get(2) != null && charProfs.get(2).getName().equals(professions.get(i).getName())){
-            thirdProfSelection = i+1;
+            thirdProfSelection = i;
           }
           profNames[i] = professions.get(i).getName();
           profNamesWithPlaceholder[i + 1] = professions.get(i).getName();
         }
 
         Spinner firstProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.firstProfession);
-        ArrayAdapter<String> firstProfAdapter = new ArrayAdapter<>(CharacterEditExistingActivity.this, R.layout.item_simple_spinner, profNames);
+        ArrayAdapter<Profession> firstProfAdapter = AdapterManager.getSimpleProfessionAdapter(context,professions);
         firstProfSpinner.setAdapter(firstProfAdapter);
         firstProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
@@ -215,12 +219,12 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         firstProfSpinner.setSelection(firstProfSelection);
 
         Spinner secondProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.secondProfession);
-        ArrayAdapter<String> secondProfAdapter = new ArrayAdapter<>(context, R.layout.item_simple_spinner, profNamesWithPlaceholder);
+        ArrayAdapter<Profession> secondProfAdapter = AdapterManager.getSimpleProfessionAdapter(context, professionsWithPlaceholder);
         secondProfSpinner.setAdapter(secondProfAdapter);
         secondProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            secondProf = ProfessionList.getProfessionByName(profNamesWithPlaceholder[position]);
+            secondProf = ProfessionList.getProfessionByName(profNamesWithPlaceholder[position+1]);
             updateProfessionsAndAvailSkills();
           }
 
@@ -232,12 +236,12 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         secondProfSpinner.setSelection(secondProfSelection);
 
         Spinner thirdProfSpinner = (Spinner) charProfsPopup.findViewById(R.id.thirdProfession);
-        ArrayAdapter<String> thirdProfAdapter = new ArrayAdapter<>(context, R.layout.item_simple_spinner, profNamesWithPlaceholder);
+        ArrayAdapter<Profession> thirdProfAdapter = AdapterManager.getSimpleProfessionAdapter(context, professionsWithPlaceholder);
         thirdProfSpinner.setAdapter(thirdProfAdapter);
         thirdProfSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
           @Override
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            thirdProf = ProfessionList.getProfessionByName(profNamesWithPlaceholder[position]);
+            thirdProf = ProfessionList.getProfessionByName(profNamesWithPlaceholder[position+1]);
             updateProfessionsAndAvailSkills();
           }
 
@@ -257,11 +261,11 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
 
     updatedProfessions.add(firstProf);
     String updatedProfessionsString = firstProf.getName();
-    if (secondProf != null && secondProf.getName() != null) {
+    if (secondProf != null && secondProf.getName() != null && !"Please Select".equals(secondProf.getName())) {
       updatedProfessionsString += ", " + secondProf.getName();
       updatedProfessions.add(secondProf);
     }
-    if (thirdProf != null && thirdProf.getName() != null) {
+    if (thirdProf != null && thirdProf.getName() != null && !"Please Select".equals(thirdProf.getName()) ) {
       updatedProfessionsString += ", " + thirdProf.getName();
       updatedProfessions.add(thirdProf);
     }
