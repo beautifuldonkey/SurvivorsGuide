@@ -66,8 +66,10 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     String existingProfessionsString = "";
 
     for(int i=0; i<charToEdit.getProfessions().size()-1; i++){
-      existingProfessionsString += charToEdit.getProfessions().get(i).getName() + ", ";
-      existingProfessions[i] = charToEdit.getProfessions().get(i).getName();
+      if(charToEdit.getProfessions().get(i) != null && charToEdit.getProfessions().get(i).getName() != null){
+        existingProfessionsString += charToEdit.getProfessions().get(i).getName() + ", ";
+        existingProfessions[i] = charToEdit.getProfessions().get(i).getName();
+      }
     }
 
     firstProf = charToEdit.getProfessions().get(0);
