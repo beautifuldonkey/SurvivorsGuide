@@ -53,14 +53,22 @@ public class StrainList {
     strainList.add(new Strain("The Red Star", 6, 6, 6, "Avoid,Barricade,Bomb Awareness,Brewing,Fearful Glare,Frightening Force,Melee Weapon Large",
         "Members of the Red Star cells will not betray each other, regardless of skills used against them or death. They cannot posses currency and will not charge for services. They may not have the following professions: Caravan Driver, Charlatan, Entertainer, Gambler, or Priest. Additionally they can not benefit from faith powered Skills."));
     strainList.add(new Strain("Remnant", 5, 5, 6, "No Strain Skills",
-        "Start with two professions instead of one but have no strain skills available. They must maintain membership with a faith or lose access to their second profession."));
-    strainList.add(new Strain("Retrograde", 10, 10, 4, "Barricade,Cover of Night,Disguise,Escape Bonds,Feign Death,Melee Weapon Standard,Scrounge",""));
-    strainList.add(new Strain("Rover", 8, 8, 4, "Bartender's Tongue,Check Your Sleeves,Head Shrink,Melee Weapon Small,Refuse,Scrounge",""));
-    strainList.add(new Strain("Salt Wise", 13, 8, 3, "Sailing,Fishing,Lore: Aquatic,Melee Weapon Small,Guild Membership,Lie,Escape Bonds",""));
-    strainList.add(new Strain("Semper Mort", 10, 10, 3, "Brawling,Charisma,Chase,Iron Fists,Nerve Punch,Tie Binds",""));
-    strainList.add(new Strain("Solestros", 6, 6, 4, "Income,Deep Pockets,Literacy,Charisma,Balance,Melee Weapon Standard,Refuse",""));
-    strainList.add(new Strain("Unborn of Teixiptla", 4, 4, 7, "Melee Weapon Two-Handed,Psionic Basic Skill,Throwing Javelins",""));
-    strainList.add(new Strain("Vegasian", 5, 10, 5, "Backstab,Black Market Connections,Cheat,Entertain,Lie,Literacy",""));
-    strainList.add(new Strain("Yorker", 15, 5, 4, "Barricade,Bomb Awareness,Chase,Entertain,Interfere,Melee Weapon Standard",""));
+        "Start with two professions instead of one but have no strain skills available. They must maintain belief in a faith or lose access to their second profession."));
+    strainList.add(new Strain("Retrograde", 10, 10, 4, "Barricade,Cover of Night,Disguise,Escape Bonds,Feign Death,Melee Weapon Standard,Scrounge",
+        "Take half damage from all radiation. They are hideously mutated and must spend extra mind when using Charisma and not wearing a mask."));
+    strainList.add(new Strain("Rover", 8, 8, 4, "Bartender's Tongue,Check Your Sleeves,Head Shrink,Melee Weapon Small,Refuse,Scrounge",
+        "Rovers feel a deep sense of responsibility for guests they've shared food and drink with. Additionally they are bound by their word and will do everything they can to keep it or make up for a broken promise."));
+    strainList.add(new Strain("Salt Wise", 13, 8, 3, "Sailing,Fishing,Lore: Aquatic,Melee Weapon Small,Guild Membership,Lie,Escape Bonds",
+        "Expert fishers that can also breath underwater. They are bound to the ocean and do not feel refreshed when to far away from it. Most either owe debt to Murder Inc. or have family that do."));
+    strainList.add(new Strain("Semper Mort", 10, 10, 3, "Brawling,Charisma,Chase,Iron Fists,Nerve Punch,Tie Binds",
+        "All Semper Mort have twisted hands with pronounced nails that can be developed into dangerous weapons. They can heal by drinking blood but not ingested brews or meals. They can never learn the profession Pugilist, cannot begin with Martial Artist, and can never use Knucks."));
+    strainList.add(new Strain("Solestros", 6, 6, 4, "Income,Deep Pockets,Literacy,Charisma,Balance,Melee Weapon Standard,Refuse",
+        "Solestros have evolved to be some of the most charismatic managers in the wastelands, giving them unique benefits with the Charisma skill. They can not use Charisma, Cheat, Fear, and Lie against Pure Bloods, and must make extra effort to generate income."));
+    strainList.add(new Strain("Unborn of Teixiptla", 4, 4, 7, "Melee Weapon Two-Handed,Psionic Basic Skill,Throwing Javelins",
+        "Immune to Poison, Diseases, and Radiation sickness. They are banned from ever having the following professions: Engineer, Mad Scientist, or Psionist. During bleed out they become eerily calm and will not call out for help, inject themselves, or use gizmos to stabilize themselves."));
+    strainList.add(new Strain("Vegasian", 5, 10, 5, "Backstab,Black Market Connections,Cheat,Entertain,Lie,Literacy",
+        "Vegasians can gain entrance to slave camp communities as a free slave owner. They are born cowards that have a unique ability to avoid taking damage in a fight. They are never allowed to have the following professions: Guard, Gun Slinger, Martial Artist, or Officer."));
+    strainList.add(new Strain("Yorker", 15, 5, 4, "Barricade,Bomb Awareness,Chase,Entertain,Interfere,Melee Weapon Standard",
+        "Yorkers have a mean streak that becomes especially apparent if they are put into Bleed Out and stabilized. They have a hard time trusting others, and can never have the following professions: Charlatan, Officer, or Politician."));
   }
 }
