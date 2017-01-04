@@ -43,12 +43,17 @@ public class StrainList {
     strainList.add(new Strain("Merican", 13, 10, 2, "Bolt-Action,Brawling,Melee Weapon Large,Melee Weapon Two-Handed,Throwing,Throwing Javelins",
         "Despite being incapable of knowing when they are intruding, Mericans know how to really enjoy a party with other Mericans in attendance. They can never have the following professions: Martial Artist, or Spy"));
     strainList.add(new Strain("Nation Of Accensor", 8, 8, 5, "Building Tomorrow,Challenge,Faith Healing,First Aide,Mind Resistance,Patch Job",
-        ""));
-    strainList.add(new Strain("Natural One", 10, 6, 4, "Cure Toxins,Melee Weapon Large,Melee Weapon Small,Melee Weapon Standard,Melee Weapon Two-Handed,Throwing,Throwing Javelins",""));
-    strainList.add(new Strain("Pure Blood", 6, 12, 3, "Backstab,Bolt-Action,Charisma,Cheat,Check Value,Income,Literacy",""));
-    strainList.add(new Strain("Reclaimer", 8, 13, 2, "Balance,Carry,Charge,Melee Weapon Standard,Hunters Mark,Avoid",""));
-    strainList.add(new Strain("The Red Star", 6, 6, 6, "Avoid,Barricade,Bomb Awareness,Brewing,Fearful Glare,Frightening Force,Melee Weapon Large",""));
-    strainList.add(new Strain("Remnant", 5, 5, 6, "No Strain Skills",""));
+        "Capable of deep meditation that refuels themselves, Accensorites can also enter game baptized into a major faith. They adhere to a strict moral code and will put the well being of others from their faith ahead of their own."));
+    strainList.add(new Strain("Natural One", 10, 6, 4, "Cure Toxins,Melee Weapon Large,Melee Weapon Small,Melee Weapon Standard,Melee Weapon Two-Handed,Throwing,Throwing Javelins",
+        "Incredibly skilled warriors that deal extra damage with most weapon types, though all ranged skills that require technology are more difficult to learn. Anyone that does not belong to their tribal structure is not trusted. Can not start with the following professions: Mad Scientist, Engineer, or Gun Slinger"));
+    strainList.add(new Strain("Pure Blood", 6, 12, 3, "Backstab,Bolt-Action,Charisma,Cheat,Check Value,Income,Literacy",
+        "Pure Bloods can generate extra income. They are weak to radiation and have to pay extra for Charisma or Refuse (used against Charisma from another Pure Blood) cost double. "));
+    strainList.add(new Strain("Reclaimer", 8, 13, 2, "Balance,Carry,Charge,Melee Weapon Standard,Hunters Mark,Avoid",
+        "Along with the Skills available to their Strain, Reclaimers can also avoid Sunder or Mangle Limb. However they have trouble opening up to outsiders which causes Charisma and Entertain to cost extra when targeting non-Reclaimers"));
+    strainList.add(new Strain("The Red Star", 6, 6, 6, "Avoid,Barricade,Bomb Awareness,Brewing,Fearful Glare,Frightening Force,Melee Weapon Large",
+        "Members of the Red Star cells will not betray each other, regardless of skills used against them or death. They cannot posses currency and will not charge for services. They may not have the following professions: Caravan Driver, Charlatan, Entertainer, Gambler, or Priest. Additionally they can not benefit from faith powered Skills."));
+    strainList.add(new Strain("Remnant", 5, 5, 6, "No Strain Skills",
+        "Start with two professions instead of one but have no strain skills available. They must maintain membership with a faith or lose access to their second profession."));
     strainList.add(new Strain("Retrograde", 10, 10, 4, "Barricade,Cover of Night,Disguise,Escape Bonds,Feign Death,Melee Weapon Standard,Scrounge",""));
     strainList.add(new Strain("Rover", 8, 8, 4, "Bartender's Tongue,Check Your Sleeves,Head Shrink,Melee Weapon Small,Refuse,Scrounge",""));
     strainList.add(new Strain("Salt Wise", 13, 8, 3, "Sailing,Fishing,Lore: Aquatic,Melee Weapon Small,Guild Membership,Lie,Escape Bonds",""));
