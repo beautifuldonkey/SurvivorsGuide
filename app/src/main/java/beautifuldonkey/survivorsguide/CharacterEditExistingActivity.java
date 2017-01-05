@@ -103,8 +103,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     charMind = (TextView) findViewById(R.id.newCharacterMind);
     charMind.setText(charToEdit.getMind());
 
-    selectedSkills = SkillList.getSkillsByName(charToEdit.getSelectedSkills().get(0).getName());
-
+    selectedSkills = charToEdit.getSelectedSkills();
     charProfs = charToEdit.getProfessions();
 
     availableSkills = CharacterManager.updateAvailableSkillList(
@@ -140,6 +139,9 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Skill skillToAdd = (Skill) availSkills.getItemAtPosition(position);
+        if(skillToAdd.getName().equals("Please Select")){
+          return;
+        }
         if (selectedSkills.contains(skillToAdd)) {
           for (int i = 0; i < selectedSkills.size(); i++) {
             if (selectedSkills.get(i).getName().equals(skillToAdd.getName())) {

@@ -250,6 +250,9 @@ public class CharacterNewActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Skill skillToAdd = (Skill) availSkills.getItemAtPosition(position);
+        if(skillToAdd.getName().equals("Please Select")){
+          return;
+        }
         Integer currentBuild = Integer.parseInt(charBuild.getText().toString());
         if (currentBuild >= skillToAdd.getBuildCost()) {
           if (selectedSkills.contains(skillToAdd)) {
