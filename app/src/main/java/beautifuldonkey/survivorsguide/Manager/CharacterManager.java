@@ -224,4 +224,30 @@ public class CharacterManager {
 
     return characterToLoad;
   }
+
+  public static Boolean isCharacterValid(PlayerCharacter character){
+    Boolean isValid = true;
+
+    if(character != null){
+      if(character.getName() == null || "".equals(character.getName())){
+        isValid = false;
+      }
+      if(character.getStrain() == null || "".equals(character.getStrain())){
+        isValid = false;
+      }
+      if(character.getProfessions() == null || "".equals(character.getProfessions().get(0).getName())){
+        isValid = false;
+      }
+      if(character.getMind() == null || "".equals(character.getMind())){
+        isValid = false;
+      }
+      if(character.getHealth() == null || "".equals(character.getHealth())){
+        isValid = false;
+      }
+    }else{
+      isValid = false;
+    }
+
+    return isValid;
+  }
 }

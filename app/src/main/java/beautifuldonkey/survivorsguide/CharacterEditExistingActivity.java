@@ -319,7 +319,7 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         charToEdit.setMind(charMind.getText().toString());
 //        charToEdit.setSelectedSkills(updatedCharSkills);
 
-        CharacterManager.saveCharacter(charToEdit, context);
+        btnMgr.handleSaving(context,charToEdit);
       }
     });
   }

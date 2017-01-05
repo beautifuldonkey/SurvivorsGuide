@@ -156,47 +156,19 @@ public class ButtonManager {
     return build;
   }
 
-  public void characterSave(Context context, PlayerCharacter charObj){
-    Boolean isValid = true;
+  public void handleSaving(Context context, PlayerCharacter charObj){
 
-    if(charObj == null){
-      isValid = false;
-    }
-
-    if(isValid){
+    if(CharacterManager.isCharacterValid(charObj)){
       try{
         CharacterManager.saveCharacter(charObj, context);
         Toast.makeText(context,"Character saved.",Toast.LENGTH_SHORT).show();
       }catch (Exception ex){
         Toast.makeText(context,"Character save failed.",Toast.LENGTH_SHORT).show();
       }
-
     }else{
-      //TODO improve error message to call out missing info
       Toast.makeText(context,"Character is not valid.",Toast.LENGTH_SHORT).show();
     }
 
-//    TODO change this to validation, expect a full PlayerCharacter object
-//
-//
-//    String characterSkillsSelected = "";
-//    for (int i = 0; i < selectedSkills.size(); i++) {
-//      characterSkillsSelected += selectedSkills.get(i).getName() + ",";
-//    }
-//
-//    newCharacter.setInfection(charInfection.getText().toString());
-//    newCharacter.setHealth(charBody.getText().toString());
-//    newCharacter.setMind(charMind.getText().toString());
-//    newCharacter.setStrain(charStrain.getName());
-//    newCharacter.setSelectedSkills(characterSkillsSelected);
-//    newCharacter.setAvailBuild(charBuild.getText().toString());
-//    newCharacter.setRequiredBuild(String.valueOf(spentBuild));
-
-//    if(CharacterManager.saveCharacter(newCharacter, context)){
-//
-//    }else{
-//
-//    }
   }
 
 }
