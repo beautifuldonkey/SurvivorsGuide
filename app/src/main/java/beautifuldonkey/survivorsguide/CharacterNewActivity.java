@@ -117,7 +117,13 @@ public class CharacterNewActivity extends AppCompatActivity {
         newCharacter.setName(charName.getText().toString());
         newCharacter.setHealth(charBody.getText().toString());
         newCharacter.setMind(charMind.getText().toString());
-        newCharacter.setRequiredBuild(charBuild.getText().toString());
+        int spentBuild = 0;
+        for(int i =0; i < selectedSkills.size(); i++){
+          spentBuild += selectedSkills.get(i).getBuildCost();
+        }
+        spentBuild += Integer.valueOf(charBody.getText().toString()) - charStrain.getBody();
+        spentBuild += Integer.valueOf(charMind.getText().toString()) - charStrain.getMind();
+        newCharacter.setRequiredBuild(String.valueOf(spentBuild));
         btnMgr.handleSaving(context,newCharacter);
       }
     });
