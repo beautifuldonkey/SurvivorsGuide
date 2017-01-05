@@ -319,8 +319,13 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
         charToEdit.setInfection(charInfection.getText().toString());
         charToEdit.setHealth(charBody.getText().toString());
         charToEdit.setMind(charMind.getText().toString());
-//        charToEdit.setSelectedSkills(updatedCharSkills);
-
+        int spentBuild = 0;
+        for(int i =0; i < selectedSkills.size(); i++){
+          spentBuild += selectedSkills.get(i).getBuildCost();
+        }
+        spentBuild += Integer.valueOf(charBody.getText().toString()) - charStrain.getBody();
+        spentBuild += Integer.valueOf(charMind.getText().toString()) - charStrain.getMind();
+        charToEdit.setRequiredBuild(String.valueOf(spentBuild));
         btnMgr.handleSaving(context,charToEdit);
       }
     });
