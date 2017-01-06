@@ -15,27 +15,21 @@ public class SkillList {
     return skillList;
   }
 
-  public static List<Skill> getSkillsByName(String skillName) {
-    List<Skill> skills = new ArrayList<>();
+  public static List<Skill> getSkillsByName(String skills) {
+    List<Skill> list = new ArrayList<>();
 
-    if (skillName.contains(",")) {
-      String[] skillNames = skillName.split(",");
-      for (int i = 0; i < skillNames.length; i++) {
-        for (int j = 0; j < skillList.size(); j++) {
-          if (skillNames[i].equals(skillList.get(j).getName())) {
-            skills.add(skillList.get(j));
+    if (skills!=null && skills.contains(",")) {
+      String[] skillNames = skills.split(",");
+      for (String skillName: skillNames) {
+        for (Skill skill: skillList ) {
+          if (skillName.equals(skill.getName())) {
+            list.add(skill);
           }
-        }
-      }
-    } else {
-      for (int j = 0; j < skillList.size(); j++) {
-        if (skillName.equals(skillList.get(j).getName())) {
-          skills.add(skillList.get(j));
         }
       }
     }
 
-    return skills;
+    return list;
   }
 
   public static List<Skill> getSkillsByNameSetCost(String skillName, String skillCost) {

@@ -23,5 +23,16 @@ public class SgConstants {
   public static String INTENT_STRAIN = "STRAIN";
   public static String INTENT_EDIT_CHAR = "EDIT_CHARACTER";
 
+  public static String CHARACTER_INITIAL_BUILD = "13";
+
+  public static int BTN_NEW_ADD_BODY = 50;
+  public static int BTN_NEW_SUB_BODY = 51;
+  public static int BTN_EDIT_ADD_BODY = 52;
+  public static int BTN_EDIT_SUB_BODY = 53;
+  public static int BTN_NEW_ADD_MIND = 54;
+  public static int BTN_NEW_SUB_MIND = 55;
+  public static int BTN_EDIT_ADD_MIND = 56;
+  public static int BTN_EDIT_SUB_MIND = 57;
+
 
 }

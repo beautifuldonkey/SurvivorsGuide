@@ -116,6 +116,19 @@ public class AdapterManager {
   public static ArrayAdapter<Profession> getSimpleProfessionAdapter(final Context context, final List<Profession> profs) {
     ArrayAdapter<Profession> adapter = new ArrayAdapter<Profession>(context, R.layout.item_profession, profs) {
       @Override
+      public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        Profession profession = profs.get(position);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.item_profession,null);
+        view.setBackgroundColor(Color.LTGRAY);
+
+        TextView viewProfName = (TextView) view.findViewById(R.id.professionName);
+        viewProfName.setText(profession.getName());
+
+        return view;
+      }
+
+      @Override
       public View getView(int position, View convertView, ViewGroup parent) {
         Profession profession = profs.get(position);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);

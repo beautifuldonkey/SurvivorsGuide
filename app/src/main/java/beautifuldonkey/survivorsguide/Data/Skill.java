@@ -17,6 +17,8 @@ public class Skill implements Parcelable {
   private int currRank;
   private int availRank;
 
+  public Skill (){}
+
   public Skill(String skillName, int cost, String desc, Boolean isStrainSkill, int build, int currentRank, int availableRank) {
     this.name = skillName;
     this.mpCost = cost;

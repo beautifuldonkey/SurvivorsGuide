@@ -9,17 +9,8 @@
 
     <TextView
         android:id="@+id/strainName"
-        android:text="@string/hello_world"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/UiText"/>
-
-    <ListView
-        android:id="@+id/strainSkills"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/strainAttributes"
-        android:layout_alignParentLeft="true"
         style="@style/UiText"/>
 
     <RelativeLayout
@@ -81,5 +72,27 @@
             android:layout_toRightOf="@id/strainInfectionLabel"
             style="@style/UiText"/>
     </RelativeLayout>
+
+    <ListView
+      android:id="@+id/strainSkills"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/strainAttributes"
+      android:layout_alignParentLeft="true"
+      style="@style/UiText"/>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/strainDescriptionLabel"
+      android:text="@string/strain_description"
+      android:layout_below="@+id/strainSkills"
+      style="@style/UiText"/>
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/strainDescription"
+      android:layout_below="@+id/strainDescriptionLabel"
+      style="@style/UiText"/>
 
 </RelativeLayout>

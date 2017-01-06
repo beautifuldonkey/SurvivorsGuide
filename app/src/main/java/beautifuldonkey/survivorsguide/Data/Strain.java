@@ -14,13 +14,15 @@ public class Strain implements Parcelable {
   private int mind;
   private int infection;
   private String skills;
+  private String description;
 
-  public Strain(String strainName, int strainBody, int strainMind, int strainInfection, String strainSkills) {
+  public Strain(String strainName, int strainBody, int strainMind, int strainInfection, String strainSkills, String strainDesc) {
     name = strainName;
     body = strainBody;
     mind = strainMind;
     infection = strainInfection;
     skills = strainSkills;
+    description = strainDesc;
   }
 
   public Strain(Parcel source) {
@@ -29,6 +31,7 @@ public class Strain implements Parcelable {
     mind = source.readInt();
     infection = source.readInt();
     skills = source.readString();
+    description = source.readString();
   }
 
   @Override
@@ -38,6 +41,7 @@ public class Strain implements Parcelable {
     dest.writeInt(mind);
     dest.writeInt(infection);
     dest.writeString(skills);
+    dest.writeString(description);
   }
 
   @Override
@@ -56,6 +60,14 @@ public class Strain implements Parcelable {
       return new Strain[size];
     }
   };
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
   public String getName() {
     return name;

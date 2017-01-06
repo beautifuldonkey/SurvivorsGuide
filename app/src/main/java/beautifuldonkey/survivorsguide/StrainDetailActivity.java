@@ -46,7 +46,9 @@ public class StrainDetailActivity extends AppCompatActivity {
     ListView viewStrainSkills = (ListView) findViewById(R.id.strainSkills);
     ArrayAdapter<Skill> adapter = AdapterManager.getSimpleSkillAdapter(context, strainSkills);
     viewStrainSkills.setAdapter(adapter);
-//        viewStrainSkills.setText(strain.getSkills());
+
+    TextView viewStrainDesc = (TextView) findViewById(R.id.strainDescription);
+    viewStrainDesc.setText(strain.getDescription());
   }
 
   @Override
