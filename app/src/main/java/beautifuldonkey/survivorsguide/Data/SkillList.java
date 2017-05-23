@@ -10,6 +10,16 @@ import java.util.List;
 public class SkillList {
 
   private static List<Skill> skillList = new ArrayList<>();
+  private static List<Skill> openSkillList = new ArrayList<>();
+
+  public static List<Skill> getOpenSkills(){
+    if(openSkillList.size()==0){
+      String openSkillNames = "Avoid,Barricade,Bolt Action,Brawling,Check Quality,Check Value,First Aide,Force Barricade,Literacy,Lore,Melee Weapon Small,Melee Weapon Standard,Melee Weapon Two-Handed,Parry,Pistol Whip,Shield,Society Membership,Teach,Throwing,Throwing-Javelins,Tie Bonds";
+      String openSkillCosts = "9,9,9,9,9,9,9,9,6,6,6,6,6,6,9,6,0,1,6,6,6";
+      openSkillList = getSkillsByNameSetCost(openSkillNames,openSkillCosts);
+    }
+    return openSkillList;
+  }
 
   public static List<Skill> getSkillList() {
     return skillList;

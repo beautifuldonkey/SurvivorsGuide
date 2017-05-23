@@ -35,7 +35,7 @@ public class CharacterManager {
     List<Skill> incSecondProfSkills;
     List<Skill> incThirdProfSkills;
     List<Skill> incStrainSkills = new ArrayList<>();
-    List<Skill> allProfSkills = new ArrayList<>();
+    List<Skill> allProfSkills = SkillList.getOpenSkills();
     List<Skill> newDisplayedSkills = new ArrayList<>();
 
     if (charStrain != null) {
