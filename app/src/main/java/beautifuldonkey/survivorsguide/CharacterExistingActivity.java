@@ -91,6 +91,14 @@ public class CharacterExistingActivity extends AppCompatActivity {
       }
     });
 
+    Button btn_Delete = (Button) findViewById(R.id.btn_delete);
+    btn_Delete.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        // TODO delete character file
+      }
+    });
+
     Button btn_Edit = (Button) findViewById(R.id.btn_editExisting);
     btn_Edit.setOnClickListener(new View.OnClickListener() {
       @Override
