@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,8 @@ public class CharacterExistingActivity extends AppCompatActivity {
   Context context;
   List<Skill> selectedSkills;
   int selectedCharPosition;
+  ArrayList<String> charFiles;
+  ArrayAdapter<String> fileListAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +44,14 @@ public class CharacterExistingActivity extends AppCompatActivity {
     setContentView(R.layout.activity_character_existing);
     context = getApplicationContext();
 
-    ArrayList<String> charFiles = CharacterManager.getCharacterFiles(context);
-    ArrayAdapter<String> fileListAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, charFiles);
+    charFiles = CharacterManager.getCharacterFiles(context);
+    fileListAdapter = new ArrayAdapter<>(this, R.layout.item_simple_spinner, charFiles);
     Spinner existingFiles = (Spinner) findViewById(R.id.existingFiles);
     existingFiles.setAdapter(fileListAdapter);
     existingFiles.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        selectedCharPosition = position;
         loadedCharacter = CharacterManager.loadCharacter(position, context);
 
         if (loadedCharacter != null) {
@@ -97,9 +100,18 @@ public class CharacterExistingActivity extends AppCompatActivity {
       @Override
       public void onClick(View view) {
         if(selectedCharPosition>-1){
-          CharacterManager.deleteCharacter(context,selectedCharPosition);
-        }
+          if(CharacterManager.deleteCharacter(context,selectedCharPosition)){
+            selectedCharPosition = -1;
+            Toast.makeText(context,"Character successfully deleted.",Toast.LENGTH_SHORT).show();
 
+            charFiles = CharacterManager.getCharacterFiles(context);
+            fileListAdapter.clear();
+            fileListAdapter.addAll(charFiles);
+            fileListAdapter.notifyDataSetChanged();
+          }else{
+            Toast.makeText(context,"Character delete failed.",Toast.LENGTH_SHORT).show();
+          }
+        }
       }
     });
 
