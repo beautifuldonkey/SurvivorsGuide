@@ -32,12 +32,13 @@ public class CharacterExistingActivity extends AppCompatActivity {
   PlayerCharacter loadedCharacter;
   Context context;
   List<Skill> selectedSkills;
+  int selectedCharPosition;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    selectedCharPosition = -1;
     setContentView(R.layout.activity_character_existing);
-    Log.d("READCHAR", "initial open");
     context = getApplicationContext();
 
     ArrayList<String> charFiles = CharacterManager.getCharacterFiles(context);
@@ -95,7 +96,10 @@ public class CharacterExistingActivity extends AppCompatActivity {
     btn_Delete.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        // TODO delete character file
+        if(selectedCharPosition>-1){
+          CharacterManager.deleteCharacter(context,selectedCharPosition);
+        }
+
       }
     });
 

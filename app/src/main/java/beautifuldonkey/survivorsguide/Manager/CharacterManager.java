@@ -142,6 +142,11 @@ public class CharacterManager {
     return saveSuccess;
   }
 
+  public static Boolean deleteCharacter(Context context, int listPos){
+    ArrayList<String> charFiles = getCharacterFiles(context);
+    return context.deleteFile(charFiles.get(listPos));
+  }
+
   public static PlayerCharacter loadCharacter(int position, Context context) {
     PlayerCharacter characterToLoad = null;
     String TAG = "LOAD_CHAR";
