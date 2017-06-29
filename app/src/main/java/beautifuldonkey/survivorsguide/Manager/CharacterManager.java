@@ -142,6 +142,11 @@ public class CharacterManager {
     return saveSuccess;
   }
 
+  public static Boolean deleteCharacter(Context context, int listPos){
+    ArrayList<String> charFiles = getCharacterFiles(context);
+    return context.deleteFile(charFiles.get(listPos));
+  }
+
   public static PlayerCharacter loadCharacter(int position, Context context) {
     PlayerCharacter characterToLoad = null;
     String TAG = "LOAD_CHAR";
@@ -208,7 +213,7 @@ public class CharacterManager {
       if(character.getStrain() == null || "".equals(character.getStrain())){
         isValid = false;
       }
-      if(character.getProfessions() == null || "".equals(character.getProfessions().get(0).getName())){
+      if(character.getProfessions() == null || character.getProfessions().size() == 0 || "".equals(character.getProfessions().get(0).getName())){
         isValid = false;
       }
       if(character.getMind() == null || "".equals(character.getMind())){
