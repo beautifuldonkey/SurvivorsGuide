@@ -7,19 +7,12 @@
     android:background="@drawable/sg_background_5"
     tools:context="beautifuldonkey.survivorsguide.CharacterExistingActivity">
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/existingFiles"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        android:layout_alignParentLeft="true"/>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_edit"
-        android:id="@+id/btn_editExisting"
-        android:layout_toRightOf="@+id/existingFiles"/>
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/btn_edit"
+      android:id="@+id/btn_editExisting"
+      android:layout_alignParentLeft="true"/>
 
     <Button
       android:layout_width="wrap_content"
@@ -27,6 +20,14 @@
       android:text="@string/btn_delete"
       android:id="@+id/btn_delete"
       android:layout_toRightOf="@+id/btn_editExisting"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/existingFiles"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_toRightOf="@+id/btn_delete"/>
 
     <TextView
         android:text="@string/character_name"
