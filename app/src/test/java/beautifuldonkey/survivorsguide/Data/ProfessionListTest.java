@@ -43,4 +43,27 @@ public class ProfessionListTest {
       System.out.println("Profession passed");
     }
   }
+
+  @Test
+  public void testProfession(){
+    String testName = "name";
+    String testDescription = "desc";
+    String testSkills = "Alert";
+    String testStrainReqs = "reqs";
+    String testSkillCost = "cost";
+
+    Profession testProf = new Profession();
+
+    testProf.setName(testName);
+    testProf.setDescription(testDescription);
+    testProf.setSkills(testSkills);
+    testProf.setStrainReqs(testStrainReqs);
+    testProf.setSkillCost(testSkillCost);
+
+    assertThat(testProf.getName(),is(testName));
+    assertThat(testProf.getDescription(),is(testDescription));
+    assertThat(testProf.getSkills(),is(testSkills));
+    assertThat(testProf.getStrainReqs(),is(testStrainReqs));
+    assertThat(testProf.getSkillCost(),is(testSkillCost));
+  }
 }
