@@ -28,7 +28,14 @@ import beautifuldonkey.survivorsguide.Data.Strain;
  * Created by jaw_m on 8/4/2015.
  */
 public class CharacterManager {
-
+  /**
+   * Provides list of available Skills based on Professions / Strains
+   * @param primeProfession Profession to fetch associated Skills when evaluating availability
+   * @param secondProfession Profession to fetch associated Skills when evaluating availability
+   * @param thirdProfession Profession to fetch associated Skills when evaluating availability
+   * @param charStrain Strain to fetch associated Skills when evaluating availability
+   * @return List of Skills available to a character
+   */
   public static List<Skill> updateAvailableSkillList(Profession primeProfession, Profession secondProfession, Profession thirdProfession, Strain charStrain) {
 
     List<Skill> incProfSkills;
@@ -94,7 +101,11 @@ public class CharacterManager {
 
     return newDisplayedSkills;
   }
-
+  /**
+   * Fetches PlayerCharacter files
+   * @param context Current application context
+   * @return List of PlayerCharacter files
+   */
   public static ArrayList<String> getCharacterFiles(Context context) {
     ArrayList<String> charFiles = new ArrayList<>();
     String[] files = context.fileList();
@@ -105,7 +116,12 @@ public class CharacterManager {
     }
     return charFiles;
   }
-
+  /**
+   * Saves PlayerCharacter to file
+   * @param myCharacter Character to be saved to a file
+   * @param context Current application context
+   * @return Truthy evaluation of saving
+   */
   public static boolean saveCharacter(PlayerCharacter myCharacter, Context context) {
 
     boolean saveSuccess = false;
@@ -141,12 +157,22 @@ public class CharacterManager {
 
     return saveSuccess;
   }
-
+  /**
+   * Deletes selected PlayerCharacter file
+   * @param context Current application context
+   * @param listPos Integer value of the file from file list to delete
+   * @return Truthy evaluation of deletion
+   */
   public static Boolean deleteCharacter(Context context, int listPos){
     ArrayList<String> charFiles = getCharacterFiles(context);
     return context.deleteFile(charFiles.get(listPos));
   }
-
+  /**
+   * Loads selected PlayerCharacter
+   * @param position Integer value of the file from file list to load
+   * @param context Current application context
+   * @return Loaded character
+   */
   public static PlayerCharacter loadCharacter(int position, Context context) {
     PlayerCharacter characterToLoad = null;
     String TAG = "LOAD_CHAR";
@@ -202,7 +228,11 @@ public class CharacterManager {
 
     return characterToLoad;
   }
-
+  /**
+   * Checks validity of PlayerCharacter
+   * @param character PlayerCharacter to be validated
+   * @return Truthy evaluation of received PlayerCharacter
+   */
   public static Boolean isCharacterValid(PlayerCharacter character){
     Boolean isValid = true;
 
