@@ -37,6 +37,13 @@ public class SkillList {
           }
         }
       }
+    }else if(skills!=null && skills.length()>0){
+      for(Skill skill : skillList){
+        if(skills.equals(skill.getName())){
+          list.add(skill);
+          break;
+        }
+      }
     }
 
     return list;
