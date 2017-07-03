@@ -12,10 +12,19 @@ public class ProfessionList {
 
   private static List<Profession> professionList = new ArrayList<>();
 
+  /**
+   * Provides complete list of available professions
+   * @return list of available professions
+   */
   public static List<Profession> getProfessionList() {
     return professionList;
   }
 
+  /**
+   * Provides profession if match is found for received name
+   * @param name profession name to match
+   * @return matched or empty profession
+   */
   public static Profession getProfessionByName(String name) {
     Profession foundProf = new Profession();
 
