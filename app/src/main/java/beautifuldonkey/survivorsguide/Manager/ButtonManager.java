@@ -53,7 +53,6 @@ public class ButtonManager {
       }
     });
   }
-
   /**
    * Sets up button that will add mind to a character
    * @param id id of the button element
@@ -81,7 +80,6 @@ public class ButtonManager {
       }
     });
   }
-
   /**
    * Sets up button that will remove body from a character
    * @param id id of the button element
@@ -111,7 +109,6 @@ public class ButtonManager {
       }
     });
   }
-
   /**
    * Sets up button that will remove mind from a character
    * @param id id of the button element
@@ -141,21 +138,11 @@ public class ButtonManager {
       }
     });
   }
-
-  private int handleBuild(int build, int btnCase){
-    if (btnCase == SgConstants.BTN_NEW_ADD_BODY || btnCase == SgConstants.BTN_NEW_ADD_MIND) {
-      build -= 1;
-    } else if(btnCase == SgConstants.BTN_NEW_SUB_BODY || btnCase == SgConstants.BTN_NEW_SUB_MIND){
-      build += 1;
-    } else if(btnCase == SgConstants.BTN_EDIT_ADD_BODY || btnCase == SgConstants.BTN_EDIT_ADD_MIND){
-      build += 1;
-    } else if(btnCase == SgConstants.BTN_EDIT_SUB_BODY || btnCase == SgConstants.BTN_EDIT_SUB_MIND){
-      build -= 1;
-    }
-
-    return build;
-  }
-
+  /**
+   * Handles the saving event
+   * @param context Current application context
+   * @param charObj PlayerCharacter object to save
+   */
   public void handleSaving(Context context, PlayerCharacter charObj){
 
     if(CharacterManager.isCharacterValid(charObj)){
@@ -171,4 +158,17 @@ public class ButtonManager {
 
   }
 
+  private int handleBuild(int build, int btnCase){
+    if (btnCase == SgConstants.BTN_NEW_ADD_BODY || btnCase == SgConstants.BTN_NEW_ADD_MIND) {
+      build -= 1;
+    } else if(btnCase == SgConstants.BTN_NEW_SUB_BODY || btnCase == SgConstants.BTN_NEW_SUB_MIND){
+      build += 1;
+    } else if(btnCase == SgConstants.BTN_EDIT_ADD_BODY || btnCase == SgConstants.BTN_EDIT_ADD_MIND){
+      build += 1;
+    } else if(btnCase == SgConstants.BTN_EDIT_SUB_BODY || btnCase == SgConstants.BTN_EDIT_SUB_MIND){
+      build -= 1;
+    }
+
+    return build;
+  }
 }
