@@ -16,6 +16,8 @@ public class Strain implements Parcelable {
   private String skills;
   private String description;
 
+  public Strain(){}
+
   public Strain(String strainName, int strainBody, int strainMind, int strainInfection, String strainSkills, String strainDesc) {
     name = strainName;
     body = strainBody;
