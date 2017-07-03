@@ -1,16 +1,29 @@
 package beautifuldonkey.survivorsguide.Manager;
 
+import android.content.Context;
+
+import static junit.framework.Assert.fail;
+import static org.hamcrest.CoreMatchers.any;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNot.not;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
 import beautifuldonkey.survivorsguide.Data.Profession;
@@ -26,6 +39,31 @@ public class CharacterManagerTest {
 
   @Mock
   CharacterManager testCharMgr;
+
+  @Mock
+  Context context;
+
+  @Mock
+  FileOutputStream fileOutputStream;
+
+  @Mock
+  JSONObject jsonObject;
+
+  @Test
+  public void saveCharacterTest(){
+    PlayerCharacter playerCharacter = new PlayerCharacter();
+    try{
+      when(context.openFileOutput(anyString(),anyInt())).thenReturn(fileOutputStream);
+
+      testCharMgr.saveCharacter(playerCharacter,context);
+
+      verify(context, times(1)).openFileOutput(anyString(),anyInt());
+    }catch (FileNotFoundException ex){
+      ex.printStackTrace();
+      fail();
+    }
+
+  }
 
   @Test
   public void updateAvailableSkillListTest(){
