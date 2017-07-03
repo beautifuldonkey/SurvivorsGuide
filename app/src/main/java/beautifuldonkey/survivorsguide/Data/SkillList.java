@@ -63,7 +63,7 @@ public class SkillList {
           }
         }
       }
-    } else {
+    } else if(skillName!=null && skillName.length()>0){
       for (int j = 0; j < skillList.size(); j++) {
         if (skillName.equals(skillList.get(j).getName())) {
           skillList.get(j).setBuildCost(Integer.valueOf(skillCost));
