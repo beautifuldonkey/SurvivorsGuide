@@ -12,6 +12,10 @@ public class SkillList {
   private static List<Skill> skillList = new ArrayList<>();
   private static List<Skill> openSkillList = new ArrayList<>();
 
+  /**
+   * Provides access to the open skill list
+   * @return list of skills available to all characters
+   */
   public static List<Skill> getOpenSkills(){
     if(openSkillList.size()==0){
       String openSkillNames = "Avoid,Barricade,Bolt Action,Brawling,Check Quality,Check Value,First Aide,Force Barricade,Literacy,Lore,Melee Weapon Small,Melee Weapon Standard,Melee Weapon Two-Handed,Parry,Pistol Whip,Shield,Society Membership,Teach,Throwing,Throwing-Javelins,Tie Bonds";
@@ -20,11 +24,18 @@ public class SkillList {
     }
     return openSkillList;
   }
-
+  /**
+   * Provides the complete skill list
+   * @return complete list of skills
+   */
   public static List<Skill> getSkillList() {
     return skillList;
   }
-
+  /**
+   * Retrieves skills that match received comma separated names
+   * @param skills string of comma separated names
+   * @return list of skills that matched received names
+   */
   public static List<Skill> getSkillsByName(String skills) {
     List<Skill> list = new ArrayList<>();
 
@@ -49,6 +60,12 @@ public class SkillList {
     return list;
   }
 
+  /**
+   * Retrieves skills that match comma separated name names and applies build cost
+   * @param skillName string of comma separated names
+   * @param skillCost string of comma separated costs
+   * @return list of skills that matched received names & cost the received values
+   */
   public static List<Skill> getSkillsByNameSetCost(String skillName, String skillCost) {
     List<Skill> skills = new ArrayList<>();
 
