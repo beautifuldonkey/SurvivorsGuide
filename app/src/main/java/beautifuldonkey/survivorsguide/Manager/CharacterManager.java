@@ -28,6 +28,8 @@ import beautifuldonkey.survivorsguide.Data.Strain;
  * Created by jaw_m on 8/4/2015.
  */
 public class CharacterManager {
+  protected static JSONObject character = new JSONObject();
+
   /**
    * Provides list of available Skills based on Professions / Strains
    * @param primeProfession Profession to fetch associated Skills when evaluating availability
@@ -109,9 +111,11 @@ public class CharacterManager {
   public static ArrayList<String> getCharacterFiles(Context context) {
     ArrayList<String> charFiles = new ArrayList<>();
     String[] files = context.fileList();
-    for (String file : files) {
-      if (!file.startsWith("rList") && !"instant-run".equals(file)) {
-        charFiles.add(file);
+    if(files != null){
+      for (String file : files) {
+        if (!file.startsWith("rList") && !"instant-run".equals(file)) {
+          charFiles.add(file);
+        }
       }
     }
     return charFiles;
@@ -122,13 +126,29 @@ public class CharacterManager {
    * @param context Current application context
    * @return Truthy evaluation of saving
    */
-  public static boolean saveCharacter(PlayerCharacter myCharacter, Context context) {
-
+  protected static boolean saveCharacter(PlayerCharacter myCharacter, Context context) {
     boolean saveSuccess = false;
-    JSONArray data = new JSONArray();
-    JSONObject character = new JSONObject();
-    Gson gson = new Gson();
+    JSONArray data = buildCharacterJson(myCharacter);
+    String text = data.toString();
+    try {
+      FileOutputStream fos = context.openFileOutput(myCharacter.getName(), android.content.Context.MODE_PRIVATE);
+      fos.write(text.getBytes());
+      fos.close();
+      saveSuccess = true;
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
 
+    return saveSuccess;
+  }
+  /**
+   * Coverts PlayerCharacter into json to be saved
+   * @param myCharacter PlayerCharacter to be converted for saving
+   * @return converted PlayerCharacter as json
+   */
+  private static JSONArray buildCharacterJson(PlayerCharacter myCharacter){
+    JSONArray data = new JSONArray();
+    Gson gson = new Gson();
     try {
       character.put("name", myCharacter.getName());
       character.put("infection", myCharacter.getInfection());
@@ -143,19 +163,7 @@ public class CharacterManager {
     } catch (JSONException e) {
       e.printStackTrace();
     }
-
-    String text = data.toString();
-
-    try {
-      FileOutputStream fos = context.openFileOutput(myCharacter.getName(), android.content.Context.MODE_PRIVATE);
-      fos.write(text.getBytes());
-      fos.close();
-      saveSuccess = true;
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    }
-
-    return saveSuccess;
+    return data;
   }
   /**
    * Deletes selected PlayerCharacter file
@@ -233,7 +241,7 @@ public class CharacterManager {
    * @param character PlayerCharacter to be validated
    * @return Truthy evaluation of received PlayerCharacter
    */
-  public static Boolean isCharacterValid(PlayerCharacter character){
+  protected static Boolean isCharacterValid(PlayerCharacter character){
     Boolean isValid = true;
 
     if(character != null){
