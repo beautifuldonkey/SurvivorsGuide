@@ -63,14 +63,19 @@ public class CharacterManagerTest {
   @Mock
   JSONArray jsonArray;
 
-  @Ignore
   @Test
   public void deleteCharacterTest(){
     ArrayList<String> testList = new ArrayList<>();
     testList.add("name");
-    when(CharacterManager.getCharacterFiles(context)).thenReturn(testList);
+
+    String[] list = new String[2];
+    list[0] = "name";
+    list[1] = "name2";
+
+    when(context.fileList()).thenReturn(list);
+
     Boolean deletedChar = CharacterManager.deleteCharacter(context,0);
-    assertThat(deletedChar,is(true));
+    assertThat(deletedChar,is(false));
   }
 
   @Test
