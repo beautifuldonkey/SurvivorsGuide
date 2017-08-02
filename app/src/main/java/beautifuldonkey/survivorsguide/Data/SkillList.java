@@ -41,20 +41,15 @@ public class SkillList {
 
     if (skills!=null && skills.contains(",")) {
       String[] skillNames = skills.split(",");
-      for (String skillName: skillNames) {
-        for (Skill skill: skillList ) {
-          if (skillName.equals(skill.getName())) {
-            list.add(skill);
-          }
-        }
+      for (String skillName : skillNames) {
+        System.out.println("Adding: "+skillName);
+        list.add(searchSkillList(skillList,0,skillList.size(),skillName));
+        System.out.println("Added.");
       }
     }else if(skills!=null && skills.length()>0){
-      for(Skill skill : skillList){
-        if(skills.equals(skill.getName())){
-          list.add(skill);
-          break;
-        }
-      }
+      System.out.println("Adding: "+skills);
+      list.add(searchSkillList(skillList,0,skillList.size(),skills));
+      System.out.println("Added.");
     }
 
     return list;
@@ -90,6 +85,20 @@ public class SkillList {
     }
 
     return skills;
+  }
+
+  private static Skill searchSkillList(List<Skill> skills, int start, int end, String name){
+    int mid = (start + end) / 2;
+
+    if(skills.get(mid).getName().equals(name)){
+      return skills.get(mid);
+    }
+
+    if(name.compareTo(skills.get(mid).getName()) < 0){
+      return searchSkillList(skills,start,mid-1,name);
+    }else{
+      return searchSkillList(skills,mid+1,end,name);
+    }
   }
 
   static {
@@ -394,7 +403,7 @@ public class SkillList {
         , false, 3, 1, 1));
     skillList.add(new Skill("Parry", 5, "Counters all melee and brawling strikes delivered " +
         "from the front.", false, 3, 1, 1));
-    skillList.add(new Skill("Patch Job", 1, "Allows player to quickly replair Broken, " +
+    skillList.add(new Skill("Patch Job", 1, "Allows player to quickly repair Broken, " +
         "Destroyed or Melted items without a Workbench. By spending 1 Mind and 30 " +
         "seconds the crafts level is reduced by 1 and repaired.", false, 3, 1, 1));
     skillList.add(new Skill("Pick Pockets", 1, "Allows player to steal a held item from a " +
