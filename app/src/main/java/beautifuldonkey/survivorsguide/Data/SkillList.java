@@ -42,14 +42,10 @@ public class SkillList {
     if (skills!=null && skills.contains(",")) {
       String[] skillNames = skills.split(",");
       for (String skillName : skillNames) {
-        System.out.println("Adding: "+skillName);
         list.add(searchSkillList(skillList,0,skillList.size(),skillName));
-        System.out.println("Added.");
       }
     }else if(skills!=null && skills.length()>0){
-      System.out.println("Adding: "+skills);
       list.add(searchSkillList(skillList,0,skillList.size(),skills));
-      System.out.println("Added.");
     }
 
     return list;
@@ -68,20 +64,14 @@ public class SkillList {
       String[] skillNames = skillName.split(",");
       String[] skillCosts = skillCost.split(",");
       for (int i = 0; i < skillNames.length; i++) {
-        for (int j = 0; j < skillList.size(); j++) {
-          if (skillNames[i].equals(skillList.get(j).getName())) {
-            skillList.get(j).setBuildCost(Integer.valueOf(skillCosts[i]));
-            skills.add(skillList.get(j));
-          }
-        }
+        Skill foundSkill = searchSkillList(skillList,0,skillList.size(),skillNames[i]);
+        foundSkill.setBuildCost(Integer.valueOf(skillCosts[i]));
+        skills.add(foundSkill);
       }
     } else if(skillName!=null && skillName.length()>0){
-      for (int j = 0; j < skillList.size(); j++) {
-        if (skillName.equals(skillList.get(j).getName())) {
-          skillList.get(j).setBuildCost(Integer.valueOf(skillCost));
-          skills.add(skillList.get(j));
-        }
-      }
+      Skill foundSkill = searchSkillList(skillList,0,skillList.size(),skillName);
+      foundSkill.setBuildCost(Integer.valueOf(skillCost));
+      skills.add(foundSkill);
     }
 
     return skills;
@@ -102,19 +92,6 @@ public class SkillList {
   }
 
   static {
-
-    /**
-     * Skill{
-     * name
-     * mpCost
-     * desc
-     * isStrain
-     * buildCost
-     * currRank
-     * availRank
-     * }
-     */
-
     skillList.add(new Skill("Alert", 5, "Counters all stealth skills.", false, 3, 1, 1));
     skillList.add(new Skill("Analyze Compound", 1, "Counters disguise contents.", false, 3, 1, 1));
     skillList.add(new Skill("Analyze Creature", 1, "Countered by Disguise. To use point and " +

@@ -47,6 +47,7 @@ public class SkillListTest {
       String testCosts = "5,5,5,5";
       List<Skill> testList = SkillList.getSkillsByNameSetCost(testSkills,testCosts);
       for(Skill skill : testList){
+        assertThat(skill.getName(),notNullValue());
         assertThat(skill.getBuildCost(),is(5));
       }
 
