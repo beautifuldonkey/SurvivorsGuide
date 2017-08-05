@@ -15,9 +15,42 @@
         android:layout_height="wrap_content"
         android:id="@+id/cr_intro"
         android:text="@string/text_cr_intro"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         style="@style/UiText"/>
+
+    <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/selector_layout"
+      android:layout_below="@id/cr_intro">
+      <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chk_profs"
+        android:layout_alignParentStart="true"/>
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profs_label"
+        android:text="@string/text_cr_prof_label"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/chk_profs"
+        style="@style/UiText"/>
+      <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chk_strains"
+        android:layout_toEndOf="@+id/profs_label"/>
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/strains_label"
+        android:text="@string/text_cr_strain_label"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/chk_strains"
+        style="@style/UiText"/>
+    </RelativeLayout>
 
     <Spinner
         android:layout_width="wrap_content"
@@ -25,7 +58,7 @@
         android:id="@+id/skills"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        android:layout_below="@+id/cr_intro"/>
+        android:layout_below="@+id/selector_layout"/>
 
     <TextView
         android:layout_width="wrap_content"
