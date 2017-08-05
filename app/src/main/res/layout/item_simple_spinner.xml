@@ -3,5 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/spinner_padding"
+    android:id="@+id/item_text"
     android:singleLine="true"
     style="@style/UiText"/>

@@ -2,6 +2,8 @@ package beautifuldonkey.survivorsguide.Manager;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import beautifuldonkey.survivorsguide.Data.Profession;
+import beautifuldonkey.survivorsguide.Data.SgSpinnerItem;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.R;
 
@@ -156,5 +159,29 @@ public class AdapterManager {
       }
     };
     return adapter;
+  }
+  /**
+   * Provides ArrayAdapter that implements generic application list item
+   * @param context Current application context
+   * @param list Source data - list of spinner items to be displayed
+   * @return ArrayAdapter with spinner item info mapped
+   */
+  public static ArrayAdapter<SgSpinnerItem> getSimpleSgSpinner(final Context context, final List<SgSpinnerItem> list){
+    ArrayAdapter<SgSpinnerItem> adapterSg = new ArrayAdapter<SgSpinnerItem>(context, R.layout.item_simple_spinner, list){
+      @NonNull
+      @Override
+      public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.item_simple_spinner,null);
+
+        SgSpinnerItem item = list.get(position);
+
+        TextView itemText = (TextView) view.findViewById(R.id.item_text);
+        itemText.setText(item.getItemText());
+
+        return view;
+      }
+    };
+    return adapterSg;
   }
 }
