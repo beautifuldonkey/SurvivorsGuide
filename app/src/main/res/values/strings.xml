@@ -54,7 +54,8 @@
   <string name="character_build">Build: </string>
 
   <string name="text_cr_intro">Skill selections filter available:</string>
-  <string name="text_cr_professions">Professions with Skills:</string>
+  <string name="text_cr_prof_options">Professions with Skills:</string>
+  <string name="text_cr_strain_options">Strains with Skills:</string>
   <string name="text_cr_skills">Desired Skills:</string>
   <string name="text_cr_prof_label">Professions</string>
   <string name="text_cr_strain_label">Strains</string>

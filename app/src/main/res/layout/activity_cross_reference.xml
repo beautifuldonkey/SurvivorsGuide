@@ -29,12 +29,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/chk_profs"
-        android:text="@string/text_cr_prof_label"/>
+        android:text="@string/text_cr_prof_label"
+        style="@style/UiText"/>
       <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/chk_strains"
-        android:text="@string/text_cr_strain_label"/>
+        android:text="@string/text_cr_strain_label"
+        style="@style/UiText"/>
     </RadioGroup>
 
     <Spinner
@@ -68,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/text_professions"
-        android:text="@string/text_cr_professions"
+        android:text="@string/text_cr_prof_options"
         android:layout_below="@+id/skill_divider"
         style="@style/UiText"/>
 

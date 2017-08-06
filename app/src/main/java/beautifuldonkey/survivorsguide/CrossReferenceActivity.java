@@ -10,6 +10,8 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 import beautifuldonkey.survivorsguide.Data.Profession;
@@ -33,6 +35,8 @@ public class CrossReferenceActivity extends AppCompatActivity {
   private RadioButton chkStrains;
   private Spinner availSkills;
 
+  private TextView txtOptionsLabel;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -44,6 +48,8 @@ public class CrossReferenceActivity extends AppCompatActivity {
     strains = StrainList.getStrainList();
     availableItems = new ArrayList<>();
 
+    txtOptionsLabel = (TextView) findViewById(R.id.text_professions);
+
     chkProfessions = (RadioButton) findViewById(R.id.chk_profs);
     chkProfessions.setChecked(true);
     chkProfessions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -51,6 +57,7 @@ public class CrossReferenceActivity extends AppCompatActivity {
       public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
         if(chkProfessions.isChecked()){
           updateAvailableProfessions();
+          txtOptionsLabel.setText(R.string.text_cr_prof_options);
         }
       }
     });
@@ -61,6 +68,7 @@ public class CrossReferenceActivity extends AppCompatActivity {
       public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
         if(chkStrains.isChecked()){
           updateAvailableStrains();
+          txtOptionsLabel.setText(R.string.text_cr_strain_options);
         }
       }
     });
