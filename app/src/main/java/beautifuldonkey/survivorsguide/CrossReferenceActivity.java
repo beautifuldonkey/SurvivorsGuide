@@ -57,14 +57,19 @@ public class CrossReferenceActivity extends AppCompatActivity {
     chkProfessions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-    }
+        if(chkProfessions.isChecked()){
+          updateAvailableProfessions();
+        }
+      }
     });
 
     chkStrains = (RadioButton) findViewById(R.id.chk_strains);
     chkStrains.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
+        if(chkStrains.isChecked()){
+          updateAvailableStrains();
+        }
       }
     });
 
