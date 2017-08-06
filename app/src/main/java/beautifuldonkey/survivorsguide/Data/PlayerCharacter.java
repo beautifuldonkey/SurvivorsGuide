@@ -22,6 +22,8 @@ public class PlayerCharacter implements Parcelable {
   private String availBuild;
   private String requiredBuild;
 
+  public PlayerCharacter(){}
+
   public PlayerCharacter(String charName, String charHealth, String charMind, String charStrain
       , String charInfection, List<Profession> charProfs, List<Skill> selectedSkills, String availBuild
       , String requiredBuild) {

@@ -28,7 +28,16 @@ import beautifuldonkey.survivorsguide.Data.Strain;
  * Created by jaw_m on 8/4/2015.
  */
 public class CharacterManager {
+  protected static JSONObject character = new JSONObject();
 
+  /**
+   * Provides list of available Skills based on Professions / Strains
+   * @param primeProfession Profession to fetch associated Skills when evaluating availability
+   * @param secondProfession Profession to fetch associated Skills when evaluating availability
+   * @param thirdProfession Profession to fetch associated Skills when evaluating availability
+   * @param charStrain Strain to fetch associated Skills when evaluating availability
+   * @return List of Skills available to a character
+   */
   public static List<Skill> updateAvailableSkillList(Profession primeProfession, Profession secondProfession, Profession thirdProfession, Strain charStrain) {
 
     List<Skill> incProfSkills;
@@ -94,25 +103,52 @@ public class CharacterManager {
 
     return newDisplayedSkills;
   }
-
+  /**
+   * Fetches PlayerCharacter files
+   * @param context Current application context
+   * @return List of PlayerCharacter files
+   */
   public static ArrayList<String> getCharacterFiles(Context context) {
     ArrayList<String> charFiles = new ArrayList<>();
     String[] files = context.fileList();
-    for (String file : files) {
-      if (!file.startsWith("rList") && !"instant-run".equals(file)) {
-        charFiles.add(file);
+    if(files != null){
+      for (String file : files) {
+        if (!file.startsWith("rList") && !"instant-run".equals(file)) {
+          charFiles.add(file);
+        }
       }
     }
     return charFiles;
   }
-
-  public static boolean saveCharacter(PlayerCharacter myCharacter, Context context) {
-
+  /**
+   * Saves PlayerCharacter to file
+   * @param myCharacter Character to be saved to a file
+   * @param context Current application context
+   * @return Truthy evaluation of saving
+   */
+  protected static boolean saveCharacter(PlayerCharacter myCharacter, Context context) {
     boolean saveSuccess = false;
-    JSONArray data = new JSONArray();
-    JSONObject character = new JSONObject();
-    Gson gson = new Gson();
+    JSONArray data = buildCharacterJson(myCharacter);
+    String text = data.toString();
+    try {
+      FileOutputStream fos = context.openFileOutput(myCharacter.getName(), android.content.Context.MODE_PRIVATE);
+      fos.write(text.getBytes());
+      fos.close();
+      saveSuccess = true;
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
 
+    return saveSuccess;
+  }
+  /**
+   * Coverts PlayerCharacter into json to be saved
+   * @param myCharacter PlayerCharacter to be converted for saving
+   * @return converted PlayerCharacter as json
+   */
+  private static JSONArray buildCharacterJson(PlayerCharacter myCharacter){
+    JSONArray data = new JSONArray();
+    Gson gson = new Gson();
     try {
       character.put("name", myCharacter.getName());
       character.put("infection", myCharacter.getInfection());
@@ -127,26 +163,24 @@ public class CharacterManager {
     } catch (JSONException e) {
       e.printStackTrace();
     }
-
-    String text = data.toString();
-
-    try {
-      FileOutputStream fos = context.openFileOutput(myCharacter.getName(), android.content.Context.MODE_PRIVATE);
-      fos.write(text.getBytes());
-      fos.close();
-      saveSuccess = true;
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    }
-
-    return saveSuccess;
+    return data;
   }
-
+  /**
+   * Deletes selected PlayerCharacter file
+   * @param context Current application context
+   * @param listPos Integer value of the file from file list to delete
+   * @return Truthy evaluation of deletion
+   */
   public static Boolean deleteCharacter(Context context, int listPos){
     ArrayList<String> charFiles = getCharacterFiles(context);
     return context.deleteFile(charFiles.get(listPos));
   }
-
+  /**
+   * Loads selected PlayerCharacter
+   * @param position Integer value of the file from file list to load
+   * @param context Current application context
+   * @return Loaded character
+   */
   public static PlayerCharacter loadCharacter(int position, Context context) {
     PlayerCharacter characterToLoad = null;
     String TAG = "LOAD_CHAR";
@@ -202,8 +236,12 @@ public class CharacterManager {
 
     return characterToLoad;
   }
-
-  public static Boolean isCharacterValid(PlayerCharacter character){
+  /**
+   * Checks validity of PlayerCharacter
+   * @param character PlayerCharacter to be validated
+   * @return Truthy evaluation of received PlayerCharacter
+   */
+  protected static Boolean isCharacterValid(PlayerCharacter character){
     Boolean isValid = true;
 
     if(character != null){

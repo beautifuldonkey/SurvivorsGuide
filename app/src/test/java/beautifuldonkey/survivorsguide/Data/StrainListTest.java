@@ -15,16 +15,42 @@ import beautifuldonkey.survivorsguide.Data.StrainList;
 @RunWith(MockitoJUnitRunner.class)
 public class StrainListTest {
 
-    @Mock
-    StrainList testStrainList;
+  @Mock
+  StrainList testStrainList;
 
-    @Test
-    public void getStrainListTest(){
-        assertThat(testStrainList.getStrainList().size(),is(21));
-    }
+  @Test
+  public void getStrainListTest(){
+    assertThat(testStrainList.getStrainList().size(),is(21));
+  }
 
-    @Test
-    public void getStrainByNameTest(){
-        assertThat(testStrainList.getStrainByName("Genjian").getName(), is("Genjian"));
-    }
+  @Test
+  public void getStrainByNameTest(){
+    assertThat(testStrainList.getStrainByName("Genjian").getName(), is("Genjian"));
+  }
+
+  @Test
+  public void strainTest(){
+    String testName = "name";
+    int testBody = 1;
+    int testMind = 2;
+    int testInf = 3;
+    String testSkills = "skills";
+    String testDesc = "desc";
+
+    Strain testStrain = new Strain();
+
+    testStrain.setName(testName);
+    testStrain.setBody(testBody);
+    testStrain.setMind(testMind);
+    testStrain.setInfection(testInf);
+    testStrain.setSkills(testSkills);
+    testStrain.setDescription(testDesc);
+
+    assertThat(testStrain.getName(),is(testName));
+    assertThat(testStrain.getBody(),is(testBody));
+    assertThat(testStrain.getMind(),is(testMind));
+    assertThat(testStrain.getInfection(),is(testInf));
+    assertThat(testStrain.getSkills(),is(testSkills));
+    assertThat(testStrain.getDescription(),is(testDesc));
+  }
 }
