@@ -15,9 +15,29 @@
         android:layout_height="wrap_content"
         android:id="@+id/cr_intro"
         android:text="@string/text_cr_intro"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         style="@style/UiText"/>
+
+    <RadioGroup
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/selector_layout"
+      android:orientation="horizontal"
+      android:layout_below="@id/cr_intro">
+      <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chk_profs"
+        android:text="@string/text_cr_prof_label"
+        style="@style/UiText"/>
+      <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chk_strains"
+        android:text="@string/text_cr_strain_label"
+        style="@style/UiText"/>
+    </RadioGroup>
 
     <Spinner
         android:layout_width="wrap_content"
@@ -25,7 +45,7 @@
         android:id="@+id/skills"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        android:layout_below="@+id/cr_intro"/>
+        android:layout_below="@+id/selector_layout"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/text_professions"
-        android:text="@string/text_cr_professions"
+        android:text="@string/text_cr_prof_options"
         android:layout_below="@+id/skill_divider"
         style="@style/UiText"/>
 
