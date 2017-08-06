@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -36,8 +37,8 @@ public class CrossReferenceActivity extends AppCompatActivity {
   ListView availableOptions;
   Spinner availSkills;
 
-  CheckBox chkProfessions;
-  CheckBox chkStrains;
+  RadioButton chkProfessions;
+  RadioButton chkStrains;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -51,24 +52,19 @@ public class CrossReferenceActivity extends AppCompatActivity {
     strains = StrainList.getStrainList();
     availableItems = new ArrayList<>();
 
-    chkProfessions = (CheckBox) findViewById(R.id.chk_profs);
+    chkProfessions = (RadioButton) findViewById(R.id.chk_profs);
     chkProfessions.setChecked(true);
     chkProfessions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        if(chkStrains != null){
-          chkStrains.setChecked(false);
-        }
-      }
+    }
     });
 
-    chkStrains = (CheckBox) findViewById(R.id.chk_strains);
+    chkStrains = (RadioButton) findViewById(R.id.chk_strains);
     chkStrains.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        if(chkProfessions != null){
-          chkProfessions.setChecked(false);
-        }
+
       }
     });
 
