@@ -6,15 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.ProfessionList;
 import beautifuldonkey.survivorsguide.Data.SgSpinnerItem;
@@ -26,19 +23,15 @@ import beautifuldonkey.survivorsguide.Manager.AdapterManager;
 
 public class CrossReferenceActivity extends AppCompatActivity {
 
-  List<Skill> requiredSkills;
-  List<Skill> skills;
-  List<SgSpinnerItem> availableItems;
-  List<Profession> professions;
-  List<Strain> strains;
-  ArrayAdapter<SgSpinnerItem> itemArrayAdapter;
-  ArrayAdapter<Skill> selectedSkillAdapter;
-  ListView selectedSkills;
-  ListView availableOptions;
-  Spinner availSkills;
-
-  RadioButton chkProfessions;
-  RadioButton chkStrains;
+  private ArrayAdapter<SgSpinnerItem> itemArrayAdapter;
+  private ArrayAdapter<Skill> selectedSkillAdapter;
+  private List<Profession> professions;
+  private List<SgSpinnerItem> availableItems;
+  private List<Skill> requiredSkills;
+  private List<Strain> strains;
+  private RadioButton chkProfessions;
+  private RadioButton chkStrains;
+  private Spinner availSkills;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +40,6 @@ public class CrossReferenceActivity extends AppCompatActivity {
     Context context = getApplicationContext();
 
     requiredSkills = new ArrayList<>();
-    skills = SkillList.getSkillList();
     professions = ProfessionList.getProfessionList();
     strains = StrainList.getStrainList();
     availableItems = new ArrayList<>();
@@ -74,7 +66,7 @@ public class CrossReferenceActivity extends AppCompatActivity {
     });
 
     availSkills = (Spinner) findViewById(R.id.skills);
-    ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getSimpleSkillAdapter(context, skills);
+    ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getSimpleSkillAdapter(context, SkillList.getSkillList());
     availSkills.setAdapter(availSkillAdapter);
     availSkills.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
@@ -98,7 +90,7 @@ public class CrossReferenceActivity extends AppCompatActivity {
       }
     });
 
-    selectedSkills = (ListView) findViewById(R.id.required_skills);
+    ListView selectedSkills = (ListView) findViewById(R.id.required_skills);
     selectedSkillAdapter = AdapterManager.getSimpleSkillAdapter(context, requiredSkills);
     selectedSkills.setAdapter(selectedSkillAdapter);
     selectedSkills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -115,7 +107,7 @@ public class CrossReferenceActivity extends AppCompatActivity {
       }
     });
 
-    availableOptions = (ListView) findViewById(R.id.professions);
+    ListView availableOptions = (ListView) findViewById(R.id.professions);
     itemArrayAdapter = AdapterManager.getSimpleSgSpinner(context, availableItems);
     availableOptions.setAdapter(itemArrayAdapter);
 
