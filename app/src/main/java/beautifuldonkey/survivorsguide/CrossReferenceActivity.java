@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -14,21 +16,28 @@ import java.util.List;
 
 import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.ProfessionList;
+import beautifuldonkey.survivorsguide.Data.SgSpinnerItem;
 import beautifuldonkey.survivorsguide.Data.Skill;
 import beautifuldonkey.survivorsguide.Data.SkillList;
+import beautifuldonkey.survivorsguide.Data.Strain;
+import beautifuldonkey.survivorsguide.Data.StrainList;
 import beautifuldonkey.survivorsguide.Manager.AdapterManager;
 
 public class CrossReferenceActivity extends AppCompatActivity {
 
   List<Skill> requiredSkills;
   List<Skill> skills;
-  List<Profession> availableProfessions;
+  List<SgSpinnerItem> availableItems;
   List<Profession> professions;
-  ArrayAdapter<Profession> professionArrayAdapter;
+  List<Strain> strains;
+  ArrayAdapter<SgSpinnerItem> itemArrayAdapter;
   ArrayAdapter<Skill> selectedSkillAdapter;
   ListView selectedSkills;
-  ListView professionOptions;
+  ListView availableOptions;
   Spinner availSkills;
+
+  CheckBox chkProfessions;
+  CheckBox chkStrains;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +47,30 @@ public class CrossReferenceActivity extends AppCompatActivity {
 
     requiredSkills = new ArrayList<>();
     skills = SkillList.getSkillList();
-    professions = new ArrayList<>(ProfessionList.getProfessionList());
-    availableProfessions = new ArrayList<>(ProfessionList.getProfessionList());
+    professions = ProfessionList.getProfessionList();
+    strains = StrainList.getStrainList();
+    availableItems = new ArrayList<>();
+
+    chkProfessions = (CheckBox) findViewById(R.id.chk_profs);
+    chkProfessions.setChecked(true);
+    chkProfessions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      @Override
+      public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        if(chkStrains != null){
+          chkStrains.setChecked(false);
+        }
+      }
+    });
+
+    chkStrains = (CheckBox) findViewById(R.id.chk_strains);
+    chkStrains.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      @Override
+      public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        if(chkProfessions != null){
+          chkProfessions.setChecked(false);
+        }
+      }
+    });
 
     availSkills = (Spinner) findViewById(R.id.skills);
     ArrayAdapter<Skill> availSkillAdapter = AdapterManager.getSimpleSkillAdapter(context, skills);
@@ -51,7 +82,12 @@ public class CrossReferenceActivity extends AppCompatActivity {
         if (!requiredSkills.contains(newReqSkill)) {
           requiredSkills.add(newReqSkill);
           selectedSkillAdapter.notifyDataSetChanged();
-          updateAvailableProfessions();
+          if(chkProfessions.isChecked()){
+            updateAvailableProfessions();
+          }
+          if(chkStrains.isChecked()){
+            updateAvailableStrains();
+          }
         }
       }
 
@@ -69,18 +105,23 @@ public class CrossReferenceActivity extends AppCompatActivity {
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         requiredSkills.remove(position);
         selectedSkillAdapter.notifyDataSetChanged();
-        updateAvailableProfessions();
+        if(chkProfessions.isChecked()){
+          updateAvailableProfessions();
+        }
+        if(chkStrains.isChecked()){
+          updateAvailableStrains();
+        }
       }
     });
 
-    professionOptions = (ListView) findViewById(R.id.professions);
-    professionArrayAdapter = AdapterManager.getSimpleProfessionAdapter(context, availableProfessions);
-    professionOptions.setAdapter(professionArrayAdapter);
+    availableOptions = (ListView) findViewById(R.id.professions);
+    itemArrayAdapter = AdapterManager.getSimpleSgSpinner(context, availableItems);
+    availableOptions.setAdapter(itemArrayAdapter);
 
   }
 
   private void updateAvailableProfessions() {
-    availableProfessions.clear();
+    availableItems.clear();
     for (int i = 0; i < professions.size(); i++) {
       Boolean isProfAvail = true;
       String[] profSkills = professions.get(i).getSkills().split(",");
@@ -97,9 +138,34 @@ public class CrossReferenceActivity extends AppCompatActivity {
         }
       }
       if (isProfAvail) {
-        availableProfessions.add(professions.get(i));
+        availableItems.add(new SgSpinnerItem(professions.get(i).getName()));
       }
     }
-    professionArrayAdapter.notifyDataSetChanged();
+    itemArrayAdapter.notifyDataSetChanged();
+  }
+
+  private void updateAvailableStrains() {
+    availableItems.clear();
+    for(Strain strain : strains){
+      Boolean isStrainAvail = true;
+      String[] strainSkills = strain.getSkills().split(",");
+
+      for(Skill reqSkill : requiredSkills){
+        Boolean strainHasSkill = false;
+        for(String strainSkill : strainSkills){
+          if(reqSkill.getName().equals(strainSkill)){
+            strainHasSkill = true;
+            break;
+          }
+        }
+        if(!strainHasSkill){
+          isStrainAvail = false;
+        }
+      }
+      if(isStrainAvail){
+        availableItems.add(new SgSpinnerItem(strain.getName()));
+      }
+    }
+    itemArrayAdapter.notifyDataSetChanged();
   }
 }
