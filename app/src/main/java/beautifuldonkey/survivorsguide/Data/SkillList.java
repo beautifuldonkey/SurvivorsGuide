@@ -41,11 +41,20 @@ public class SkillList {
 
     if (skills!=null && skills.contains(",")) {
       String[] skillNames = skills.split(",");
-      for (String skillName : skillNames) {
-        list.add(searchSkillList(skillList,0,skillList.size(),skillName));
+      for (String skillName: skillNames) {
+        for (Skill skill: skillList ) {
+          if (skillName.equals(skill.getName())) {
+            list.add(skill);
+          }
+        }
       }
     }else if(skills!=null && skills.length()>0){
-      list.add(searchSkillList(skillList,0,skillList.size(),skills));
+      for(Skill skill : skillList){
+        if(skills.equals(skill.getName())){
+          list.add(skill);
+          break;
+        }
+      }
     }
 
     return list;
@@ -64,34 +73,39 @@ public class SkillList {
       String[] skillNames = skillName.split(",");
       String[] skillCosts = skillCost.split(",");
       for (int i = 0; i < skillNames.length; i++) {
-        Skill foundSkill = searchSkillList(skillList,0,skillList.size(),skillNames[i]);
-        foundSkill.setBuildCost(Integer.valueOf(skillCosts[i]));
-        skills.add(foundSkill);
+        for (int j = 0; j < skillList.size(); j++) {
+          if (skillNames[i].equals(skillList.get(j).getName())) {
+            skillList.get(j).setBuildCost(Integer.valueOf(skillCosts[i]));
+            skills.add(skillList.get(j));
+          }
+        }
       }
     } else if(skillName!=null && skillName.length()>0){
-      Skill foundSkill = searchSkillList(skillList,0,skillList.size(),skillName);
-      foundSkill.setBuildCost(Integer.valueOf(skillCost));
-      skills.add(foundSkill);
+      for (int j = 0; j < skillList.size(); j++) {
+        if (skillName.equals(skillList.get(j).getName())) {
+          skillList.get(j).setBuildCost(Integer.valueOf(skillCost));
+          skills.add(skillList.get(j));
+        }
+      }
     }
 
     return skills;
   }
 
-  private static Skill searchSkillList(List<Skill> skills, int start, int end, String name){
-    int mid = (start + end) / 2;
-
-    if(skills.get(mid).getName().equals(name)){
-      return skills.get(mid);
-    }
-
-    if(name.compareTo(skills.get(mid).getName()) < 0){
-      return searchSkillList(skills,start,mid-1,name);
-    }else{
-      return searchSkillList(skills,mid+1,end,name);
-    }
-  }
-
   static {
+
+    /**
+     * Skill{
+     * name
+     * mpCost
+     * desc
+     * isStrain
+     * buildCost
+     * currRank
+     * availRank
+     * }
+     */
+
     skillList.add(new Skill("Alert", 5, "Counters all stealth skills.", false, 3, 1, 1));
     skillList.add(new Skill("Analyze Compound", 1, "Counters disguise contents.", false, 3, 1, 1));
     skillList.add(new Skill("Analyze Creature", 1, "Countered by Disguise. To use point and " +
@@ -380,7 +394,7 @@ public class SkillList {
         , false, 3, 1, 1));
     skillList.add(new Skill("Parry", 5, "Counters all melee and brawling strikes delivered " +
         "from the front.", false, 3, 1, 1));
-    skillList.add(new Skill("Patch Job", 1, "Allows player to quickly repair Broken, " +
+    skillList.add(new Skill("Patch Job", 1, "Allows player to quickly replair Broken, " +
         "Destroyed or Melted items without a Workbench. By spending 1 Mind and 30 " +
         "seconds the crafts level is reduced by 1 and repaired.", false, 3, 1, 1));
     skillList.add(new Skill("Pick Pockets", 1, "Allows player to steal a held item from a " +

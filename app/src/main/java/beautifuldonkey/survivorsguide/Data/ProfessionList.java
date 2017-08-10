@@ -26,23 +26,15 @@ public class ProfessionList {
    * @return matched or empty profession
    */
   public static Profession getProfessionByName(String name) {
-    return searchProfessionList(professionList, 0, professionList.size(),name);
-  }
+    Profession foundProf = new Profession();
 
-  private static Profession searchProfessionList(List<Profession> professions, int start, int end,String name){
-    int mid = (start + end) / 2;
-
-    if(professions.get(mid).getName().equals(name)){
-      return professions.get(mid);
+    for (int i = 0; i < professionList.size(); i++) {
+      if (professionList.get(i).getName().equals(name)) {
+        foundProf = professionList.get(i);
+      }
     }
 
-    if(name.compareTo(professions.get(mid).getName()) < 0){
-//      left side - profession exists earlier in the prof list
-      return searchProfessionList(professions,start,mid-1,name);
-    }else{
-//      right side - profession exists later in the prof list
-      return searchProfessionList(professions,mid+1,end,name);
-    }
+    return foundProf;
   }
 
   static {
