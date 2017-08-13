@@ -40,15 +40,15 @@ public class StrainList {
         "All Iron Slaves have a distinctly red glow to them, can speed up projects for other builds, and start out being able to carry more than other Strains. They cannot ever use the following skills: Cover of Night, Disguise, Fade in a Crowd, or Vanish. They cannot start with the following professions: Caravan Driver, Distiller, Doctor, Gambler, Hook-up, Mad Scientist, Martial Artist, Psionist, Sniper, Spy, or Tinker."));
     strainList.add(new Strain("Lascarian", 10, 5, 5, "Alert,Blind Fighting,Chase,Chop,Force Barricade,Melee Weapon Small,Scrounge,Take Down",
         "Scavengers and survivors by nature, A Lascarian can regain health by consuming the flesh of dead humanoids. They are sensitive to light and cannot ever have the following professions: Charlatan, Entertainer, Gambler, Hook-Up, Merchant, Officer, Politician, or Ring Leader."));
-    strainList.add(new Strain("Merican", 13, 10, 2, "Bolt-Action,Brawling,Melee Weapon Large,Melee Weapon Two-Handed,Throwing,Throwing Javelins",
+    strainList.add(new Strain("Merican", 13, 10, 2, "Bolt Action,Brawling,Melee Weapon Large,Melee Weapon Two-Handed,Throwing,Throwing Javelins",
         "Despite being incapable of knowing when they are intruding, Mericans know how to really enjoy a party with other Mericans in attendance. They can never have the following professions: Martial Artist, or Spy"));
     strainList.add(new Strain("Nation Of Accensor", 8, 8, 5, "Building Tomorrow,Challenge,Faith Healing,First Aide,Mind Resistance,Patch Job",
         "Capable of deep meditation that refuels themselves, Accensorites can also enter game baptized into a major faith. They adhere to a strict moral code and will put the well being of others from their faith ahead of their own."));
     strainList.add(new Strain("Natural One", 10, 6, 4, "Cure Toxins,Melee Weapon Large,Melee Weapon Small,Melee Weapon Standard,Melee Weapon Two-Handed,Throwing,Throwing Javelins",
         "Incredibly skilled warriors that deal extra damage with most weapon types, though all ranged skills that require technology are more difficult to learn. Anyone that does not belong to their tribal structure is not trusted. Can not start with the following professions: Mad Scientist, Engineer, or Gun Slinger"));
-    strainList.add(new Strain("Pure Blood", 6, 12, 3, "Backstab,Bolt-Action,Charisma,Cheat,Check Value,Income,Literacy",
+    strainList.add(new Strain("Pure Blood", 6, 12, 3, "Backstab,Bolt Action,Charisma,Cheat,Check Value,Income,Literacy",
         "Pure Bloods can generate extra income. They are weak to radiation and have to pay extra for Charisma or Refuse (used against Charisma from another Pure Blood) cost double. "));
-    strainList.add(new Strain("Reclaimer", 8, 13, 2, "Balance,Carry,Charge,Melee Weapon Standard,Hunters Mark,Avoid",
+    strainList.add(new Strain("Reclaimer", 8, 13, 2, "Balance,Carry,Charge,Melee Weapon Standard,Hunter's Mark,Avoid",
         "Along with the Skills available to their Strain, Reclaimers can also avoid Sunder or Mangle Limb. However they have trouble opening up to outsiders which causes Charisma and Entertain to cost extra when targeting non-Reclaimers"));
     strainList.add(new Strain("The Red Star", 6, 6, 6, "Avoid,Barricade,Bomb Awareness,Brewing,Fearful Glare,Frightening Force,Melee Weapon Large",
         "Members of the Red Star cells will not betray each other, regardless of skills used against them or death. They cannot posses currency and will not charge for services. They may not have the following professions: Caravan Driver, Charlatan, Entertainer, Gambler, or Priest. Additionally they can not benefit from faith powered Skills."));
@@ -58,13 +58,13 @@ public class StrainList {
         "Take half damage from all radiation. They are hideously mutated and must spend extra mind when using Charisma and not wearing a mask."));
     strainList.add(new Strain("Rover", 8, 8, 4, "Bartender's Tongue,Check Your Sleeves,Head Shrink,Melee Weapon Small,Refuse,Scrounge",
         "Rovers feel a deep sense of responsibility for guests they've shared food and drink with. Additionally they are bound by their word and will do everything they can to keep it or make up for a broken promise."));
-    strainList.add(new Strain("Salt Wise", 13, 8, 3, "Sailing,Fishing,Lore: Aquatic,Melee Weapon Small,Guild Membership,Lie,Escape Bonds",
+    strainList.add(new Strain("Salt Wise", 13, 8, 3, "Sailing,Fishing,Lore: Aquatic,Melee Weapon Small,Guild Member,Lie,Escape Bonds",
         "Expert fishers that can also breath underwater. They are bound to the ocean and do not feel refreshed when to far away from it. Most either owe debt to Murder Inc. or have family that do."));
-    strainList.add(new Strain("Semper Mort", 10, 10, 3, "Brawling,Charisma,Chase,Iron Fists,Nerve Punch,Tie Binds",
+    strainList.add(new Strain("Semper Mort", 10, 10, 3, "Brawling,Charisma,Chase,Iron Fists,Nerve Punch,Tie Bonds",
         "All Semper Mort have twisted hands with pronounced nails that can be developed into dangerous weapons. They can heal by drinking blood but not ingested brews or meals. They can never learn the profession Pugilist, cannot begin with Martial Artist, and can never use Knucks."));
     strainList.add(new Strain("Solestros", 6, 6, 4, "Income,Deep Pockets,Literacy,Charisma,Balance,Melee Weapon Standard,Refuse",
         "Solestros have evolved to be some of the most charismatic managers in the wastelands, giving them unique benefits with the Charisma skill. They can not use Charisma, Cheat, Fear, and Lie against Pure Bloods, and must make extra effort to generate income."));
-    strainList.add(new Strain("Unborn of Teixiptla", 4, 4, 7, "Melee Weapon Two-Handed,Psionic Basic Skill,Throwing Javelins",
+    strainList.add(new Strain("Unborn of Teixiptla", 4, 4, 7, "Melee Weapon Two-Handed,Psionic Skill: Basic,Throwing Javelins",
         "Immune to Poison, Diseases, and Radiation sickness. They are banned from ever having the following professions: Engineer, Mad Scientist, or Psionist. During bleed out they become eerily calm and will not call out for help, inject themselves, or use gizmos to stabilize themselves."));
     strainList.add(new Strain("Vegasian", 5, 10, 5, "Backstab,Black Market Connections,Cheat,Entertain,Lie,Literacy",
         "Vegasians can gain entrance to slave camp communities as a free slave owner. They are born cowards that have a unique ability to avoid taking damage in a fight. They are never allowed to have the following professions: Guard, Gun Slinger, Martial Artist, or Officer."));
