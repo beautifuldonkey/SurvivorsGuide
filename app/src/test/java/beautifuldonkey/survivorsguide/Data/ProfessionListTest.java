@@ -21,11 +21,11 @@ public class ProfessionListTest {
 
   @Test
   public void getProfessionByNameTest(){
-    assertThat(ProfessionList.getProfessionByName("Assassin").getName(), is("Assassin"));
-    assertThat(ProfessionList.getProfessionByName("Martial Artist").getName(), is("Martial Artist"));
-    assertThat(ProfessionList.getProfessionByName("Scavenger").getName(), is("Scavenger"));
-    assertThat(ProfessionList.getProfessionByName("Thug").getName(), is("Thug"));
-    assertThat(ProfessionList.getProfessionByName("Tinker").getName(), is("Tinker"));
+    List <Profession> professionList = ProfessionList.getProfessionList();
+    for (Profession profession : professionList){
+      Profession foundProfession = ProfessionList.getProfessionByName(profession.getName());
+      assertThat(foundProfession.getName(),is(profession.getName()));
+    }
   }
 
   @Test
