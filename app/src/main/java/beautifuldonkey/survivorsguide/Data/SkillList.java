@@ -86,7 +86,11 @@ public class SkillList {
   }
 
   private static Skill searchSkillList(List<Skill> skills, int start, int end, String name){
-    if(name.equals("No Strain Skills")){ return new Skill(); }
+    if(name.equals("No Strain Skills")){
+      Skill remSkill = new Skill();
+      remSkill.setName("No Strain Skills");
+      return remSkill;
+    }
 
     int mid = (start + end) / 2;
 
