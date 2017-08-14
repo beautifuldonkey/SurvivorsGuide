@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 import beautifuldonkey.survivorsguide.Data.StrainList;
@@ -25,7 +28,11 @@ public class StrainListTest {
 
   @Test
   public void getStrainByNameTest(){
-    assertThat(testStrainList.getStrainByName("Genjian").getName(), is("Genjian"));
+    List<Strain> strainList = testStrainList.getStrainList();
+    for(Strain strain: strainList){
+      Strain foundStrain = testStrainList.getStrainByName(strain.getName());
+      assertThat(foundStrain.getName(), is(strain.getName()));
+    }
   }
 
   @Test

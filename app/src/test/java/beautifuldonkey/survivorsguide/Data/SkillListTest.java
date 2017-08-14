@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 
@@ -15,6 +16,12 @@ import java.util.List;
 public class SkillListTest {
 
     private String testSkills = "Alert,Vanish,Teach,Rescue";
+
+    @Mock
+    private ProfessionList professionList;
+
+    @Mock
+    private StrainList strainList;
 
     @Test
     public void getSkillListTest() {
@@ -28,10 +35,9 @@ public class SkillListTest {
 
     @Test
     public void getSingleSkillByNameTest(){
-        String testSkillName = "Alert";
-        String testSkillNameCheck = "Alert";
+        String testSkillName = "SCIENCE!";
         List<Skill> testSkill = SkillList.getSkillsByName(testSkillName);
-        assertThat(testSkill.get(0).getName(),is(testSkillNameCheck));
+        assertThat(testSkill.get(0).getName(),is(testSkillName));
     }
 
     @Test
@@ -63,6 +69,42 @@ public class SkillListTest {
       for(Skill skill : testOpenSkillList){
         assertThat(skill.getName(),notNullValue());
         assertThat(skill.getBuildCost(),notNullValue());
+      }
+    }
+
+    @Test
+    public void getProfSkillsTest(){
+      List<Profession> profs = professionList.getProfessionList();
+      for(Profession prof: profs){
+        String profSkills = prof.getSkills();
+        List<Skill> testList = SkillList.getSkillsByName(profSkills);
+        for (Skill skill : testList){
+          assertThat(skill.getName(),notNullValue());
+        }
+      }
+    }
+
+    @Test
+    public void getStrainSkillsTest(){
+      List<Strain> strains = strainList.getStrainList();
+      for(Strain strain : strains){
+        if(strain.getName().equals("Remnant")){ continue; }
+        String strainSkills = strain.getSkills();
+        List<Skill> foundStrainSkills = SkillList.getSkillsByName(strainSkills);
+        for(Skill skill : foundStrainSkills){
+          assertThat(skill.getName(),notNullValue());
+        }
+      }
+    }
+
+    @Test
+    public void getAllSkillsTest(){
+      List<Skill> testFullSkillList = SkillList.getSkillList();
+      for(Skill skill : testFullSkillList){
+        List<Skill> foundSkillList = SkillList.getSkillsByName(skill.getName());
+        for(Skill foundSkill: foundSkillList){
+          assertThat(foundSkill.getName(),notNullValue());
+        }
       }
     }
 
