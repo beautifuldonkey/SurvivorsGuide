@@ -73,8 +73,14 @@ public class CharacterEditExistingActivity extends AppCompatActivity {
     }
 
     firstProf = charToEdit.getProfessions().get(0);
-    secondProf = charToEdit.getProfessions().get(1);
-    thirdProf = charToEdit.getProfessions().get(2);
+
+    if(charToEdit.getProfessions().size() > 1){
+      secondProf = charToEdit.getProfessions().get(1);
+    }
+
+    if(charToEdit.getProfessions().size() > 2){
+      thirdProf = charToEdit.getProfessions().get(2);
+    }
 
     spentBuild = Integer.valueOf(charToEdit.getRequiredBuild());
 
