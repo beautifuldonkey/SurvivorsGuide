@@ -125,6 +125,11 @@ public class CrossReferenceActivity extends AppCompatActivity {
     availableItems.clear();
     for (int i = 0; i < professions.size(); i++) {
       Boolean isProfAvail = true;
+
+      if(professions.get(i).getSkills() == null){
+        continue;
+      }
+
       String[] profSkills = professions.get(i).getSkills().split(",");
       for (int j = 0; j < requiredSkills.size(); j++) {
         Boolean profHasSkill = false;
