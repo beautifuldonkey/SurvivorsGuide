@@ -61,6 +61,9 @@ public class SkillListTest {
       for(Skill skill : testSingle){
         assertThat(skill.getBuildCost(),is(5));
       }
+
+      List<Skill> testNull = SkillList.getSkillsByNameSetCost(null,null);
+      assertThat(testNull.size(),is(0));
     }
 
     @Test

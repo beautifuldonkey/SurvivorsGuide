@@ -64,7 +64,7 @@ public class SkillList {
   public static List<Skill> getSkillsByNameSetCost(String skillName, String skillCost) {
     List<Skill> skills = new ArrayList<>();
 
-    if (skillName.contains(",")) {
+    if (skillName!=null && skillName.contains(",")) {
       String[] skillNames = skillName.split(",");
       String[] skillCosts = skillCost.split(",");
       for (int i = 0; i < skillNames.length; i++) {
