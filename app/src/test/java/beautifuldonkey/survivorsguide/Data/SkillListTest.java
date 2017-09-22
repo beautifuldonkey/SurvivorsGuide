@@ -49,6 +49,12 @@ public class SkillListTest {
     }
 
     @Test
+    public void getSkillsByNameNullTest(){
+      List<Skill> testNull = SkillList.getSkillsByName(null);
+      assertThat(testNull.size(),is(0));
+    }
+
+    @Test
     public void getSkillsByNameSetCostTest(){
       String testCosts = "5,5,5,5";
       List<Skill> testList = SkillList.getSkillsByNameSetCost(testSkills,testCosts);
@@ -62,6 +68,10 @@ public class SkillListTest {
         assertThat(skill.getBuildCost(),is(5));
       }
 
+    }
+
+    @Test
+    public void getSkillsByNameSetCostNullTest(){
       List<Skill> testNull = SkillList.getSkillsByNameSetCost(null,null);
       assertThat(testNull.size(),is(0));
     }
