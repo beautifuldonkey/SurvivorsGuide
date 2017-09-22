@@ -26,6 +26,10 @@ public class ProfessionList {
    * @return matched or empty profession
    */
   public static Profession getProfessionByName(String name) {
+    if(name == null){
+      return new Profession();
+    }
+
     return searchProfessionList(professionList, 0, professionList.size(),name);
   }
 
