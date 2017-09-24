@@ -26,15 +26,27 @@ public class ProfessionList {
    * @return matched or empty profession
    */
   public static Profession getProfessionByName(String name) {
-    Profession foundProf = new Profession();
-
-    for (int i = 0; i < professionList.size(); i++) {
-      if (professionList.get(i).getName().equals(name)) {
-        foundProf = professionList.get(i);
-      }
+    if(name == null){
+      return new Profession();
     }
 
-    return foundProf;
+    return searchProfessionList(professionList, 0, professionList.size(),name);
+  }
+
+  private static Profession searchProfessionList(List<Profession> professions, int start, int end,String name){
+    int mid = (start + end) / 2;
+
+    if(professions.get(mid).getName().equals(name)){
+      return professions.get(mid);
+    }
+
+    if(name.compareTo(professions.get(mid).getName()) < 0){
+//      left side - profession exists earlier in the prof list
+      return searchProfessionList(professions,start,mid-1,name);
+    }else{
+//      right side - profession exists later in the prof list
+      return searchProfessionList(professions,mid+1,end,name);
+    }
   }
 
   static {
@@ -96,7 +108,7 @@ public class ProfessionList {
         "tough, exotic trader who brings fish for market and raw materials to keep the " +
         "town running."
         , "Alert,Analyze Creature,Avoid,Bow,Brawling,Cheat,Fishing,Lie,Melee Weapon " +
-        "Two-Handed,Nail,Sailing,Throwing Javelins,Tie Binds", "strainReqs"
+        "Two-Handed,Nail,Sailing,Throwing Javelins,Tie Bonds", "strainReqs"
         , "3,3,6,3,3,3,6,3,3,3,3,3,3"));
     professionList.add(new Profession("Gambler", "Play a Gambler if you enjoy taking " +
         "outlandish risks and don't mind using dirty tricks to beat the odds."
@@ -238,7 +250,7 @@ public class ProfessionList {
         "weapon and shield."
         , "Avoid,Break Shield,Charge,Double-Tap,Florentine,Force Barricade,Interfere," +
         "Melee Weapon Expert,Melee Weapon Large,Melee Weapon Standard,Nail,Sever,Shield," +
-        "Throwing-Javelins", "N/A"
+        "Throwing Javelins", "N/A"
         , "3,6,6,6,6,6,3,6,3,3,3,3,3,3"));
     professionList.add(new Profession("Spy", "Play a Spy if you enjoy the challenge of " +
         "learning secrets you're not meant to know."

@@ -6,6 +6,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsNull.nullValue;
 
 /**
  * basic unit test for profession lists
@@ -26,6 +27,12 @@ public class ProfessionListTest {
       Profession foundProfession = ProfessionList.getProfessionByName(profession.getName());
       assertThat(foundProfession.getName(),is(profession.getName()));
     }
+  }
+
+  @Test
+  public void getProfessionByNameNullTest(){
+    Profession testNull = ProfessionList.getProfessionByName(null);
+    assertThat(testNull.getName(),is(nullValue()));
   }
 
   @Test

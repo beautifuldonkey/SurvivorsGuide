@@ -18,7 +18,7 @@ public class SkillList {
    */
   public static List<Skill> getOpenSkills(){
     if(openSkillList.size()==0){
-      String openSkillNames = "Avoid,Barricade,Bolt Action,Brawling,Check Quality,Check Value,First Aide,Force Barricade,Literacy,Lore,Melee Weapon Small,Melee Weapon Standard,Melee Weapon Two-Handed,Parry,Pistol Whip,Shield,Society Membership,Teach,Throwing,Throwing-Javelins,Tie Bonds";
+      String openSkillNames = "Avoid,Barricade,Bolt Action,Brawling,Check Quality,Check Value,First Aide,Force Barricade,Literacy,Lore,Melee Weapon Small,Melee Weapon Standard,Melee Weapon Two-Handed,Parry,Pistol Whip,Shield,Society Membership,Teach,Throwing,Throwing Javelins,Tie Bonds";
       String openSkillCosts = "9,9,9,9,9,9,9,9,6,6,6,6,6,6,9,6,0,1,6,6,6";
       openSkillList = getSkillsByNameSetCost(openSkillNames,openSkillCosts);
     }
@@ -41,20 +41,15 @@ public class SkillList {
 
     if (skills!=null && skills.contains(",")) {
       String[] skillNames = skills.split(",");
-      for (String skillName: skillNames) {
-        for (Skill skill: skillList ) {
-          if (skillName.equals(skill.getName())) {
-            list.add(skill);
-          }
-        }
+      for (String skillName : skillNames) {
+        System.out.println("Finding: "+skillName);
+        list.add(searchSkillList(skillList,0,skillList.size(),skillName));
+        System.out.println("Found: "+skillName);
       }
     }else if(skills!=null && skills.length()>0){
-      for(Skill skill : skillList){
-        if(skills.equals(skill.getName())){
-          list.add(skill);
-          break;
-        }
-      }
+      System.out.println("Finding: "+skills);
+      list.add(searchSkillList(skillList,0,skillList.size(),skills));
+      System.out.println("Found: "+skills);
     }
 
     return list;
@@ -69,43 +64,48 @@ public class SkillList {
   public static List<Skill> getSkillsByNameSetCost(String skillName, String skillCost) {
     List<Skill> skills = new ArrayList<>();
 
-    if (skillName.contains(",")) {
+    if (skillName!=null && skillName.contains(",")) {
       String[] skillNames = skillName.split(",");
       String[] skillCosts = skillCost.split(",");
       for (int i = 0; i < skillNames.length; i++) {
-        for (int j = 0; j < skillList.size(); j++) {
-          if (skillNames[i].equals(skillList.get(j).getName())) {
-            skillList.get(j).setBuildCost(Integer.valueOf(skillCosts[i]));
-            skills.add(skillList.get(j));
-          }
-        }
+        System.out.println("Finding: "+skillNames[i]);
+        Skill foundSkill = searchSkillList(skillList,0,skillList.size(),skillNames[i]);
+        foundSkill.setBuildCost(Integer.valueOf(skillCosts[i]));
+        skills.add(foundSkill);
+        System.out.println("Found: "+skillNames[i]);
       }
     } else if(skillName!=null && skillName.length()>0){
-      for (int j = 0; j < skillList.size(); j++) {
-        if (skillName.equals(skillList.get(j).getName())) {
-          skillList.get(j).setBuildCost(Integer.valueOf(skillCost));
-          skills.add(skillList.get(j));
-        }
-      }
+      System.out.println("Finding: "+skillName);
+      Skill foundSkill = searchSkillList(skillList,0,skillList.size(),skillName);
+      foundSkill.setBuildCost(Integer.valueOf(skillCost));
+      skills.add(foundSkill);
+      System.out.println("Found: "+skillName);
     }
 
     return skills;
   }
 
+  private static Skill searchSkillList(List<Skill> skills, int start, int end, String name){
+    if(name.equals("No Strain Skills")){ return new Skill(); }
+
+    int mid = (start + end) / 2;
+
+    if(name.contains("Lore")){
+      name = "Lore";
+    }
+
+    if(skills.get(mid).getName().equals(name)){
+      return skills.get(mid);
+    }
+
+    if(name.toLowerCase().compareTo(skills.get(mid).getName().toLowerCase()) < 0){
+      return searchSkillList(skills,start,mid-1,name);
+    }else{
+      return searchSkillList(skills,mid+1,end,name);
+    }
+  }
+
   static {
-
-    /**
-     * Skill{
-     * name
-     * mpCost
-     * desc
-     * isStrain
-     * buildCost
-     * currRank
-     * availRank
-     * }
-     */
-
     skillList.add(new Skill("Alert", 5, "Counters all stealth skills.", false, 3, 1, 1));
     skillList.add(new Skill("Analyze Compound", 1, "Counters disguise contents.", false, 3, 1, 1));
     skillList.add(new Skill("Analyze Creature", 1, "Countered by Disguise. To use point and " +
@@ -126,12 +126,12 @@ public class SkillList {
     skillList.add(new Skill("Balance", 5, "Counters Knockdown and Take Down. Can also be " +
         "used to provide additional 1 foot width to a narrow path for 10 paces or 1 min. " +
         "at a cost of 1 Mind.", false, 3, 1, 1));
-    skillList.add(new Skill("Bartender's Tongue", 0, "Usable at home game only. Allows a " +
-        "character to come into game with additional knowledge.", false, 3, 1, 1));
     skillList.add(new Skill("Barricade", 5, "Countered by Force Barricade. For every 2 Mind " +
         "and 2 Min. of roleplay a Barricade with a crafts level equal to every 2 Mind " +
         "spent is created. Crafting process may be repeated to add to this level.",
         false, 3, 1, 1));
+    skillList.add(new Skill("Bartender's Tongue", 0, "Usable at home game only. Allows a " +
+        "character to come into game with additional knowledge.", false, 3, 1, 1));
     skillList.add(new Skill("Beg For Life", 1, "Counters Killing Blows, can be countered by " +
         "Refuse. Unusable if under the effects of Choking Blow. Prevents any Killing " +
         "Blows from being called and lasts 2 min. or until the user takes any action " +
@@ -394,7 +394,7 @@ public class SkillList {
         , false, 3, 1, 1));
     skillList.add(new Skill("Parry", 5, "Counters all melee and brawling strikes delivered " +
         "from the front.", false, 3, 1, 1));
-    skillList.add(new Skill("Patch Job", 1, "Allows player to quickly replair Broken, " +
+    skillList.add(new Skill("Patch Job", 1, "Allows player to quickly repair Broken, " +
         "Destroyed or Melted items without a Workbench. By spending 1 Mind and 30 " +
         "seconds the crafts level is reduced by 1 and repaired.", false, 3, 1, 1));
     skillList.add(new Skill("Pick Pockets", 1, "Allows player to steal a held item from a " +
@@ -403,21 +403,21 @@ public class SkillList {
         "strike with a firearm. Players carry a small melee weapon to represent this " +
         "ability, only Parry may be used while wielding a melee weapon in this manner.",
         false, 3, 1, 1));
-    skillList.add(new Skill("Prepare Meal", 5, "Allows player to create Meals from Herbs and " +
-        "Produce by spending 5 Mind and 30 min of roleplay at a Kitchen.", false, 3, 1, 1));
     skillList.add(new Skill("Pray For Justice", 5, "Countered by Avoid if used as a ranged " +
         "attack. Causes the time for Faith Healing to be reduced to 2 min. allows the " +
         "player to call for vengeance from their deity causing 10 Blessed damage or to " +
         "Bless a weapon adding 10 Blessed (type) damage for the next 3 strikes."
         , false, 3, 1, 1));
+    skillList.add(new Skill("Prepare Meal", 5, "Allows player to create Meals from Herbs and " +
+        "Produce by spending 5 Mind and 30 min of roleplay at a Kitchen.", false, 3, 1, 1));
+    skillList.add(new Skill("Psionic Skill: Advanced", 15, "Defended against with Mind Resist. " +
+        "Allows a Psionicist to permanently add one Advanced skill from the Psionics " +
+        "Skill List.", false, 3, 1, 1));
     skillList.add(new Skill("Psionic Skill: Basic", 5, "Defended against with Mind Resist. " +
         "Allows a Psionicist to permanently add one Basic skill from the Psionics Skill " +
         "List.", false, 3, 1, 1));
     skillList.add(new Skill("Psionic Skill: Intermediate", 10, "Defended against with Mind Resist. " +
         "Allows a Psionicist to permanently add one Intermediate skill from the Psionics " +
-        "Skill List.", false, 3, 1, 1));
-    skillList.add(new Skill("Psionic Skill: Advanced", 15, "Defended against with Mind Resist. " +
-        "Allows a Psionicist to permanently add one Advanced skill from the Psionics " +
         "Skill List.", false, 3, 1, 1));
     skillList.add(new Skill("Refuse", 1, "Counters Beg for Life, Challenge, Charisma, " +
         "Entertain, and Fear. Does not protect against psionic powers.", false, 3, 1, 1));
@@ -456,7 +456,7 @@ public class SkillList {
         "student spends to a maximum of 30 min.", false, 3, 1, 1));
     skillList.add(new Skill("Throwing", 0, "Allows player to use throwing weapons under 12 " +
         "in. in size.", false, 3, 1, 1));
-    skillList.add(new Skill("Throwing-Javelins", 0, "Allows player to use throwing javelins " +
+    skillList.add(new Skill("Throwing Javelins", 0, "Allows player to use throwing javelins " +
         "between 12 and 50 in. in size.", false, 3, 1, 1));
     skillList.add(new Skill("Tie Bonds", 1, "Countered by Escape Bonds. Allows player to tie " +
         "a bond on willing, Bleeding Out or unconscious targets.", false, 3, 1, 1));
