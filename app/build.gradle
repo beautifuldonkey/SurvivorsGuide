@@ -8,8 +8,8 @@ android {
         applicationId "beautifuldonkey.survivorsguide"
         minSdkVersion 18
         targetSdkVersion 25
-        versionCode 16
-        versionName "1.9.5"
+        versionCode 17
+        versionName "1.9.6"
     }
 
     signingConfigs {
