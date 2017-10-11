@@ -1,6 +1,7 @@
 package beautifuldonkey.survivorsguide.Manager;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -16,6 +17,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import beautifuldonkey.survivorsguide.BuildConfig;
 import beautifuldonkey.survivorsguide.Data.PlayerCharacter;
 import beautifuldonkey.survivorsguide.Data.Profession;
 import beautifuldonkey.survivorsguide.Data.Skill;
@@ -159,6 +161,7 @@ public class CharacterManager {
       character.put("selectedSkills", gson.toJson( myCharacter.getSelectedSkills()) );
       character.put("availBuild", myCharacter.getAvailBuild());
       character.put("reqBuild", myCharacter.getRequiredBuild());
+      character.put("version", BuildConfig.VERSION_CODE);
       data.put(character);
     } catch (JSONException e) {
       e.printStackTrace();
@@ -207,15 +210,14 @@ public class CharacterManager {
       String charBody = "";
       String charMind = "";
       List<Skill> charSkills = new ArrayList<>();
-
       String charAvailBuild = "";
       String charRequiredBuild = "";
+      int version = 0;
 
       Type typeProfList = new TypeToken<List<Profession>>(){}.getType();
       Type typeSkillList = new TypeToken<List<Skill>>(){}.getType();
 
       for (int i = 0; i < data.length(); i++) {
-
         charName = data.getJSONObject(i).getString("name");
         charInfection = data.getJSONObject(i).getString("infection");
         charBody = data.getJSONObject(i).getString("body");
@@ -225,10 +227,20 @@ public class CharacterManager {
         charSkills = gson.fromJson(data.getJSONObject(i).getString("selectedSkills"),typeSkillList);
         charAvailBuild = data.getJSONObject(i).getString("availBuild");
         charRequiredBuild = data.getJSONObject(i).getString("reqBuild");
+        if(data.getJSONObject(i).has("version")){
+          version = data.getJSONObject(i).getInt("version");
+        }
       }
 
-      characterToLoad = new PlayerCharacter(charName, charBody, charMind, charStrain,
-          charInfection, charProfession, charSkills, charAvailBuild, charRequiredBuild);
+      // Checking that the character is from a current version of the app
+      if(version >= 16){
+        characterToLoad = new PlayerCharacter(charName, charBody, charMind, charStrain,
+            charInfection, charProfession, charSkills, charAvailBuild, charRequiredBuild);
+      } else {
+        Toast.makeText(context,"Selected character is from an older version of the app and is incompatible.",Toast.LENGTH_SHORT).show();
+      }
+
+
 
     } catch (Exception ex) {
       ex.printStackTrace();
