@@ -1,5 +1,11 @@
 # SurvivorsGuide
 
+1.9.8
+
+	• Updating app dependency versions
+	• Fixed issue #40: New Character - NumberFormatException
+	• Fixed issue #41: Update character skills - NullPointerException 
+
 1.9.7
 
 	• Updating app dependency versions and tags
