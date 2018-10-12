@@ -295,6 +295,12 @@ public class CharacterNewActivity extends AppCompatActivity {
   }
 
   @Override
+  protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    updateSkills();
+    super.onRestoreInstanceState(savedInstanceState);
+  }
+
+  @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
     getMenuInflater().inflate(R.menu.menu_character_new, menu);
