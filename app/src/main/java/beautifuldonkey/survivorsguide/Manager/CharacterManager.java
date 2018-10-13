@@ -66,7 +66,13 @@ public class CharacterManager {
     }
 
     for (int i = 0; i < incStrainSkills.size(); i++) {
+      if(incStrainSkills.get(i) == null || incStrainSkills.get(i).getName() == null){
+        continue;
+      }
       for (int k = 0; k < allProfSkills.size(); k++) {
+        if(allProfSkills.get(i) == null || allProfSkills.get(i).getName() == null){
+          continue;
+        }
         if (incStrainSkills.get(i).getName().equals(allProfSkills.get(k).getName())) {
           allProfSkills.remove(k);
         }
