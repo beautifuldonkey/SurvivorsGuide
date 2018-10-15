@@ -30,7 +30,7 @@ public class ProfessionList {
       return new Profession();
     }
 
-    return searchProfessionList(professionList, 0, professionList.size(),name);
+    return searchProfessionList(professionList, 0, professionList.size(),name.trim());
   }
 
   private static Profession searchProfessionList(List<Profession> professions, int start, int end,String name){
@@ -40,11 +40,16 @@ public class ProfessionList {
       return professions.get(mid);
     }
 
+    // endless recursion check
+    if(start == end){
+      return new Profession("Profession not found");
+    }
+
     if(name.compareTo(professions.get(mid).getName()) < 0){
-//      left side - profession exists earlier in the prof list
+      // left side - profession exists earlier in the prof list
       return searchProfessionList(professions,start,mid-1,name);
     }else{
-//      right side - profession exists later in the prof list
+      // right side - profession exists later in the prof list
       return searchProfessionList(professions,mid+1,end,name);
     }
   }

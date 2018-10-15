@@ -17,6 +17,10 @@ public class Profession implements Parcelable {
 
   public Profession(){}
 
+  public Profession(String profName){
+    this.name = profName;
+  }
+
   public Profession(String profName, String profDesc, String profSkills, String profStrainReqs, String profSkillCost) {
     this.name = profName;
     this.description = profDesc;

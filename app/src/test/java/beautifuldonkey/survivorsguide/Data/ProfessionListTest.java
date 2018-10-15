@@ -27,6 +27,8 @@ public class ProfessionListTest {
       Profession foundProfession = ProfessionList.getProfessionByName(profession.getName());
       assertThat(foundProfession.getName(),is(profession.getName()));
     }
+    Profession invalidProf = ProfessionList.getProfessionByName("Thief-1");
+    assertThat(invalidProf.getName(),is("Profession not found"));
   }
 
   @Test
