@@ -9,7 +9,7 @@ notifications:  #Optional
 
 env:
   global:   #Optional
-    - ANDROID_TARGET=android-19
+    - ANDROID_TARGET=android-25
     - ANDROID_ABI=armeabi-v7a
     - ADB_INSTALL_TIMEOUT=10    #Time out to 10 mins
 
