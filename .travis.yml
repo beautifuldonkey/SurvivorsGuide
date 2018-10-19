@@ -1,49 +1,49 @@
-
 language: android
-jdk: oraclejdk8
+jdk: oraclejdk7
+# Use the Travis Container-Based Infrastructure
 sudo: false
-
-notifications:  #Optional
-    email:
-        - jed.westover1986@gmail.com #Add your email address
-
-env:
-  global:   #Optional
-    - ANDROID_TARGET=android-25
-    - ANDROID_ABI=armeabi-v7a
-    - ADB_INSTALL_TIMEOUT=10    #Time out to 10 mins
-
-android:
-    components:
-        - tools
-        - platform-tools
-        - tools
-
-        # The BuildTools version used by your project
-        - build-tools-28.0.2
-
-        # The SDK version used to compile your project
-        - android-28
-
-        - sys-img-armeabi-v7a-android-26
-
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache
+    - ${TRAVIS_BUILD_DIR}/gradle/caches/
+    - ${TRAVIS_BUILD_DIR}/gradle/wrapper/dists/
+
+env:
+  global:
+    - ANDROID_API_LEVEL=23
+    - EMULATOR_API_LEVEL=21
+    - ANDROID_BUILD_TOOLS_VERSION=23.0.2
+    - ANDROID_ABI=armeabi-v7a
+    - ANDROID_TAG=google_apis
+    - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - tools
+    - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+    - android-$ANDROID_API_LEVEL
+    - android-$EMULATOR_API_LEVEL
+    # For Google APIs
+    - addon-google_apis-google-$ANDROID_API_LEVEL
+    - addon-google_apis-google-$EMULATOR_API_LEVEL
+    # Google Play Services
+    - extra-google-google_play_services
+    # Support library
+    - extra-android-support
+    # Latest artifacts in local repository
+    - extra-google-m2repository
+    - extra-android-m2repository
+    # Specify at least one system image
+    - sys-img-armeabi-v7a-google_apis-$ANDROID_API_LEVEL
+    - sys-img-armeabi-v7a-google_apis-$EMULATOR_API_LEVEL
+
+before_script:
+  # Create and start emulator
+  - echo no | android create avd --force -n test -t "android-"$EMULATOR_API_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
 
 script:
-    - android list targets
-    - ./gradlew build jacocoTestReport assembleAndroidTest
-    - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-    - emulator -avd test -no-skin -no-audio -no-window &
-    - android-wait-for-emulator
-    - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
-    - ./gradlew connectedCheck
-after_success:
-    - bash <(curl -s https://codecov.io/bash)
+  - ./gradlew clean check connectedCheck -x library:signArchives -PdisablePreDex
