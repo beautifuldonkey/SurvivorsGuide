@@ -1,6 +1,6 @@
 # SurvivorsGuide
 
-1.9.8
+1.9.9
 
 	• Added config file for Travis CI
 	• Fixed issue #43: Profession list search - StackOverflow
