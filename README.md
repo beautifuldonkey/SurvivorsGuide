@@ -2,6 +2,11 @@
 
 1.9.8
 
+	• Added config file for Travis CI
+	• Fixed issue #43: Profession list search - StackOverflow
+
+1.9.8
+
 	• Updating app dependency versions
 	• Fixed issue #40: New Character - NumberFormatException
 	• Fixed issue #41: Update character skills - NullPointerException 
