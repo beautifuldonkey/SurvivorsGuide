@@ -49,3 +49,9 @@ script:
   - ./gradlew clean check connectedCheck -x library:signArchives -PdisablePreDex
   - adb shell input keyevent 82 &
   - ./gradlew connectedCheck -PdisablePreDex --stacktrace
+
+before_install:
+  - pip install --user codecov    #Install codecov
+
+after_success:
+  - codecov                       #Run codecov
