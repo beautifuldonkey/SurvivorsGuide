@@ -49,7 +49,7 @@ before_script:
   - yes | sdkmanager "tools"
   - yes | sdkmanager "platforms;android-$ANDROID_API_LEVEL"
 
-script: ./gradlew clean build connectedCheck
+script: ./gradlew clean build connectedCheckDebug
 
 before_install:
   - pip install --user codecov    #Install codecov
