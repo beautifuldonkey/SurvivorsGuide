@@ -1,5 +1,5 @@
 language: android
-jdk: oraclejdk7
+jdk: oraclejdk8
 # Use the Travis Container-Based Infrastructure
 sudo: false
 
@@ -15,7 +15,7 @@ env:
     - ANDROID_BUILD_TOOLS_VERSION=23.0.2
     - ANDROID_ABI=armeabi-v7a
     - ANDROID_TAG=google_apis
-    - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
+    - ADB_INSTALL_TIMEOUT=10
 
 android:
   components:
@@ -26,29 +26,30 @@ android:
     - android-$ANDROID_API_LEVEL
     - android-$EMULATOR_API_LEVEL
     # For Google APIs
-    - addon-google_apis-google-$ANDROID_API_LEVEL
-    - addon-google_apis-google-$EMULATOR_API_LEVEL
+#    - addon-google_apis-google-$ANDROID_API_LEVEL
+#    - addon-google_apis-google-$EMULATOR_API_LEVEL
     # Google Play Services
-    - extra-google-google_play_services
+#    - extra-google-google_play_services
     # Support library
-    - extra-android-support
+#    - extra-android-support
     # Latest artifacts in local repository
-    - extra-google-m2repository
-    - extra-android-m2repository
+#    - extra-google-m2repository
+#    - extra-android-m2repository
     # Specify at least one system image
-    - sys-img-armeabi-v7a-google_apis-$ANDROID_API_LEVEL
+#    - sys-img-armeabi-v7a-google_apis-$ANDROID_API_LEVEL
     - sys-img-armeabi-v7a-google_apis-$EMULATOR_API_LEVEL
 
+# Emulator Management: Create, Start and Wait
 before_script:
-  # Create and start emulator
   - echo no | android create avd --force -n test -t "android-"$EMULATOR_API_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
-  - emulator -avd test -no-skin -no-audio -no-window &
+  - emulator -avd test -no-skin -no-window &
   - android-wait-for-emulator
-
-script:
-  - ./gradlew clean check connectedCheck -x library:signArchives -PdisablePreDex
   - adb shell input keyevent 82 &
-  - ./gradlew connectedCheck -PdisablePreDex --stacktrace
+  - chmod +x gradlew
+  - yes | sdkmanager "tools"
+  - yes | sdkmanager "platforms;android-$ANDROID_API_LEVEL"
+
+script: ./gradlew clean build connectedCheck
 
 before_install:
   - pip install --user codecov    #Install codecov
