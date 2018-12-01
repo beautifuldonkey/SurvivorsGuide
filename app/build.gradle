@@ -13,14 +13,14 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs {
-        releaseConfig {
-            storeFile file("C:/Keystores/sgKeystore.jks")
-            storePassword("123456")
-            keyAlias "sgAlias"
-            keyPassword "123456"
-        }
-    }
+//    signingConfigs {
+//        releaseConfig {
+//            storeFile file("C:/Keystores/sgKeystore.jks")
+//            storePassword("123456")
+//            keyAlias "sgAlias"
+//            keyPassword "123456"
+//        }
+//    }
 
     buildTypes {
         release {
