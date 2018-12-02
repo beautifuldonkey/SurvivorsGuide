@@ -126,6 +126,7 @@ public class CharacterManagerTest {
     }
   }
 
+  @Ignore
   @Test
   public void updateAvailableSkillListTest(){
     Profession testProfOne = new Profession();
