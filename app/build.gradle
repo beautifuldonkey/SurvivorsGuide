@@ -5,23 +5,24 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
+    signingConfigs {
+        release {
+            storeFile file("C:/Keystores/sgKeystore.jks")
+            storePassword("123456")
+            keyAlias "sgAlias"
+            keyPassword "123456"
+        }
+    }
+
     defaultConfig {
         applicationId "beautifuldonkey.survivorsguide"
         minSdkVersion 18
         targetSdkVersion 28
-        versionCode 20
-        versionName "1.9.9"
+        versionCode 21
+        versionName "1.9.10"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
-
-//    signingConfigs {
-//        releaseConfig {
-//            storeFile file("C:/Keystores/sgKeystore.jks")
-//            storePassword("123456")
-//            keyAlias "sgAlias"
-//            keyPassword "123456"
-//        }
-//    }
 
     buildTypes {
         release {
